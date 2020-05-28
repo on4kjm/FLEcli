@@ -1,0 +1,64 @@
+#header
+mycall on4kjm/p
+operator on4kjm
+mywwff onff-0259
+nickname ONFF-0259-1
+
+# Log 
+date 2020-05-24
+20m cw
+14.0448 1310 s57lc
+12 on4ly 5 9
+15 on6zq 339 599
+20 iw3iee
+25 oe7hhw 5 9
+37 ol90crk 5 9
+14.047 42 oe6jtd 3 9 Name Joe, qth Gratz
+14.060 1405 hb9fbg/qrp 5 9
+
+30m cw
+10.124 1415 hb9ijc 8 9
+25 f6acv 7 9
+27 dl5sfc/p 5 5
+29 dl6ta 449 5 qrpp
+pa1tt
+35 ik4gbu 5 9
+38 oh6mps
+42 yl2tn 5
+oh6npj 5
+47 dl5oe 449 5
+
+40m cw
+7.024 1500 i1ulj 8 5
+7.026 i1gis 5 9
+on5sy 6 9
+1520 gb1pbl 5 9
+ik2ecc
+pa0b
+om5hw
+ha0ml 5 9
+1525 om1ay
+sp8lep
+1528 ea2cia
+sp5cck 5
+1530 9a4fm 7
+f5pss
+sp8sv
+is3smb
+sm6cnx
+sq2lky
+on4bb
+7.024 sp2ymx 9 5
+sp2f
+f6eoc
+1545 ea1dt
+2e0ttd
+48 sq2eey 7
+iw2bna 7
+oh1xt 7
+1553 on4vt 5
+55 oz9vo 5 5
+57 g0tqt 5
+
+80m cw
+3.529 1625 dl2rps

@@ -25,3 +25,8 @@ Cobra documentation available at https://github.com/spf13/cobra/blob/master/cobr
 * `go mod init FLEcli`
 * `cobra init --pkg-name FLEcli -l MIT`
 * `cobra add load` adds a load command
+
+## Reading and processing file 
+
+* [Go by Example: Reading Files](https://gobyexample.com/reading-files)
+* https://stackoverflow.com/questions/8757389/reading-a-file-line-by-line-in-go
