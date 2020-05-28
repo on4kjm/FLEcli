@@ -1,6 +1,8 @@
 # FLEcli
-Multi-platform "Fast Log Entry"(FLE) processing tool 
+Multi-platform "Fast Log Entry"(FLE) processing tool.
 
-This is a tool intended to facilitate the processing of ["Fast Log Entry"](https://www.df3cb.com/fle/) entry files on other platform than Windows. The format is described on https://www.df3cb.com/fle/documentation/
+["Fast Log Entry"](https://www.df3cb.com/fle/) is a nifty tool, written by DF3CB. It allows quick and efficient entry of radio amateur contacts made during DXpeditions, contests or SOTA/WWFF activation. It can export the listed contacts in ADIF or Cabrilo format ready to be uploaded to eQSL or LOTW or submitted for SOTA and WWFF. The program is only availble as a Windows executable which leaves the Mac or Linux users in the cold.
 
-This is a project used to learn and explore GO.
+This tool is intended to process FLE formated files on other platform than Windows. The format is described on https://www.df3cb.com/fle/documentation/
+
+But is also the alibi to learn and explore GO.
