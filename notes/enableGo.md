@@ -19,7 +19,9 @@ test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 
 ## Enable cobra
 
+Cobra documentation available at https://github.com/spf13/cobra/blob/master/cobra/README.md
+
 * `go get -u github.com/spf13/cobra/cobra`
 * `go mod init FLEcli`
-* `cobra init --pkg-name FLEcli`
+* `cobra init --pkg-name FLEcli -l MIT`
 * `cobra add load` adds a load command
