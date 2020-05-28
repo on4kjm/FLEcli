@@ -1,0 +1,183 @@
+{ Sample contest log ARRL RTTY Roundup
+  Check: Options > "Contest Logging"
+- US stations send state
+- Canadian stations send province
+- DX stations send consecutive serial numbers in this sample starting with 33
+  Check: Options > "Consecutive Serial Numbers"
+- Times are interpolated in this sample
+  Check: Options > "Interpolate Log Times" }
+{ Enter your call sign after the mycall keyword }
+# Header
+mycall wb9zzz
+
+# Log
+date 2016-01-02
+rtty
+15m 
+1839 wy7fd  ,33 .wy
+20m
+1856 ku1t       .wv
+     w4nf       .va
+1901 n4zz       .tn
+     kn5o       .la
+     k3ww       .pa
+     w4lc       .ky
+     n0ni       .ia
+     ni8z       .oh
+     w6wrt      .ca
+     k9xd       .il
+     k0ad       .mn
+     kc4hw      .al
+     w4gkm      .tn
+     n2mm       .nj
+     w3iz       .ct
+     ai9t       .il
+     k8ajs      .oh
+     k4ro       .tn
+     aa8r       .mi
+     kj1j       .nh
+     w3yy       .va
+     w4dxx      .ga
+     k5zd       .ma
+     k2onp      .ny
+2010 k9dj       .wi
+
+{ next day }
+day +
+20m
+1144 k4gmh      .va
+15m
+1157 k4gmh      .va
+20m
+1210 nn1ss      .nh
+1211 w2yc       .nj
+15m
+1225 nn1ss      .nh
+1249 k3ww       .pa
+20m
+1252 k4qd       .fl
+1258 ny6dx      .ny
+15m
+1302 w4ox       .fl
+     n8cl       .ny
+     wg3j       .md
+     k9om       .fl
+     ku1t       .wv
+     n2mm       .nj
+     k5ek       .nc
+     n2wk       .ny
+20m  kt9l       .in
+     nd8l       .oh
+15m  w8bi       .oh
+     nr5m       .tx
+     k3md       .pa
+     aa5au      .la
+20m  wy7fd      .wy
+1403 k0md       .mn
+     ab3cv      .md
+     n4tb       .fl
+     k8ia       .az
+     ke5og      .tx
+     nn1n       .ct
+10m  kv1j       .me
+20m  kt0dx      .co
+     nx0i       .mo
+     w7rn       .nv
+15m  kc0w       .nd
+     ab0rx      .mo
+     k5wp       .al
+     ab1qb      .nh
+     w0sd       .sd
+1501 k8ajs      .oh
+     n9ck       .wi
+     w1slf      .me
+20m  w8jwn      .mi
+     w1rh       .ca
+     w1srd      .ca
+     k0wa       .ks
+     k0pc       .mn
+     k3est      .ca
+     n3rc       .mt
+15m  n0oj       .co
+     ab0lr      .co
+     kd0fw      .mo
+     w1zd       .az
+20m  w7rn       .nv
+15m  wb0n       .mn
+     n1kwf      .nh
+     wa1zam     .vt
+     ke9i       .in
+1601 n0kk       .mn
+     w7ct       .ut
+20m  nl7v       .554
+15m  w4hod      .al
+     k6ko       .ca
+     n3rc       .mt
+     dk40ech    .188
+20m  k7gs       .wa
+     k2po       .or
+     n7esu      .id
+15m  ki1g       .ri
+     nx5o       .ok
+     k1mk       .ct
+20m  n7bv       .wa
+     kf7pbm     .wa
+     ve7cc      .bc
+     wm5h       .la
+15m
+1701 n6ro       .ca
+     k0bj       .ks
+     ai6yl/7    .nv
+     n7bt       .wa
+20m
+     kk7pr      .or
+     wa5zup     .nm
+     w7ry       .wa
+15m
+     w7rn       .nv
+     w3ll       .md
+     k7btw      .wa
+20m
+     kl7iwc     .386
+     n6ro       .ca
+1800 n0bui      .mn
+     wb6jjj     .ca
+     nx5o       .ok
+     ke9i       .in
+15m  n0kbd      .mn
+     w3bui      .md
+     w1qa       .ma
+20m  n3me       .de
+     k0cn       .mn
+     k4wnw      .va
+20m  n7uvh      .id
+     wa7lnw     .ut
+     w4fde      .sc
+     k4ft       .ky
+     wa0mhj     .mn
+1858 kp2d       .642
+1906 w1slf      .me
+15m
+1909 ab4gg      .tn
+20m
+1910 k1ro       .nh
+     w1ng       .ct
+     ac0c       .ks
+     w0gj       .ia
+     k8ary      .sc
+     ab1qb      .nh
+     w0sd       .sd
+     aa5au      .la
+     kd5j       .ar
+     n6ar       .fl
+     ku5b       .tx
+     w9ily      .il
+     ww4ll      .ga
+     k3oq       .md
+     k0pc       .mn
+     k5ek       .nc
+     w4pk       .va
+     ab0lr      .co
+     k2cye      .ny
+     ks0aa      .ks
+2055 n4dsl      .va

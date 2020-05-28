@@ -1,0 +1,23 @@
+{ Sample WWFF and SOTA log }
+# Header
+mycall g3wgv
+operator 
+mywwff gff-0014
+mysota g/ld-008
+
+# Log
+date 2016-04-24
+40m cw
+1202 g4elz
+4 g3noh <PSE QSL Direct>
+2m fm
+1227 gw4gte <Dave>
+8 gw0tlk/m gwff-0021
+
+date 2016-06-03
+40m cw
+1404 gm0aaa 3 7
+5 on4ck/p 2 on/on-018
+7 dl0dan/p dlff-0002 dl/al-044
+20m
+10 yu7ls

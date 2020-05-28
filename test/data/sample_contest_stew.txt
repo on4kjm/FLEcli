@@ -1,0 +1,76 @@
+{ Sample file Stew Perry Contest
+  Check: Logging > "Contest Logging"
+- Exchanges in this contest are grid locators
+  Be sure to enter your own locator in the first QSO line after the comma
+- Times are not interpolated in this sample
+}
+{ Enter your call sign after the mycall keyword }
+mycall wb9zzz
+
+date 2015-12-18
+160m cw
+
+1924 ok1dol ,jn58 .jn69
+  26 e77dx        .jn84
+  30 hg5a         .jn97
+  32 ol7m         .jo80
+   3 s57un        .jn86
+   5 ok2zi        .jn89
+   9 dl1dxa       .jo61
+  40 dk9vz        .jn39
+   4 sm5mx        .jo99
+   8 f5in         .jn18
+  53 s51v         .jn86
+   4 f8bpn        .jn05
+   9 oh2bo        .kp20
+2002 pa4vhf       .jo32
+   4 g3bj         .io82
+   6 iv3prk       .jn66
+   7 rx3apm       .lo04
+  10 uw2m         .kn98
+   3 yl2sm        .ko37
+   4 tm6m         .in78
+   5 f6ddr        .jn38
+   6 uu7j         .kn85
+   9 dk6xz        .jn48
+  20 pi4tue       .jo21
+   2 g4buo        .jo01
+   3 dl5mx        .jo50
+   5 ok1hfp       .jn69
+   7 ha6nl        .jn98
+  31 on7pq        .jo10
+   3 i4ewh        .jn64
+2100 tf4m         .hp85
+   6 sn7q         .jo91
+  13 dk2oy        .jo44
+   9 dj3ra        .jo72
+   5 s53o         .jn86
+  20 dd5m         .jn58
+   8 on9cc        .jo20
+  30 ha3li        .jn96
+   2 g3wph        .io91
+   4 dj2ya        .jo40
+
+{ next day }
+day +
+
+0632 w1bb         .fn42
+   5 k8po         .fn54
+   6 pa5kt        .jo11
+   8 dj9mh        .jo50
+  40 om6al        .jn99
+   2 dl8uke       .jo72
+   3 ut3ua        .ko50
+  50 sm6cpy       .jo67
+   2 ly9y         .ko16
+   5 ok1dst       .jn79
+   9 sn2i         .jo93
+   9 ve3mmq       .fn14
+0707 g6mc         .io94
+  10 ok1fps       .jo70
+   3 se0x         .jo99
+   5 on4ww        .jo11
+   1 dl4me        .jo50
+   8 dj3we        .jn57
+  25 ok1tn        .jo70
+   8 n2kw/1       .fn32
