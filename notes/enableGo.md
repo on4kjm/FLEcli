@@ -30,3 +30,5 @@ Cobra documentation available at https://github.com/spf13/cobra/blob/master/cobr
 
 * [Go by Example: Reading Files](https://gobyexample.com/reading-files)
 * https://stackoverflow.com/questions/8757389/reading-a-file-line-by-line-in-go
+* https://www.golangprograms.com/golang-read-file-line-by-line-to-string.html
+

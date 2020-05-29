@@ -33,6 +33,7 @@ var loadCmd = &cobra.Command{
 // to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("load called")
+		fmt.Println("Inputfile: ",inputFilename)
 	},
 }
 
