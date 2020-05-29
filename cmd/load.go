@@ -17,8 +17,10 @@ limitations under the License.
 
 import (
 	"fmt"
-
 	"github.com/spf13/cobra"
+	"bufio"
+	"log"
+	"os"
 )
 
 // loadCmd represents the load command
@@ -34,6 +36,7 @@ var loadCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("load called")
 		fmt.Println("Inputfile: ",inputFilename)
+		loadFile()
 	},
 }
 
@@ -49,4 +52,26 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// loadCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+}
+
+func loadFile() {
+	file, err := os.Open(inputFilename)
+ 
+	if err != nil {
+		log.Fatalf("failed opening file: %s", err)
+	}
+ 
+	scanner := bufio.NewScanner(file)
+	scanner.Split(bufio.ScanLines)
+	var txtlines []string
+ 
+	for scanner.Scan() {
+		txtlines = append(txtlines, scanner.Text())
+	}
+ 
+	file.Close()
+ 
+	for _, eachline := range txtlines {
+		fmt.Println(eachline)
+	}
 }

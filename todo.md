@@ -11,7 +11,7 @@
 
 
 ## Input processing
-* [ ] Read the file into array
+* [x] Read the file into array
 * [ ] Parse every line
 * [ ] Load structured data
 * [ ] Create structured data storage
