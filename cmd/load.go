@@ -74,9 +74,19 @@ func loadFile() {
 
 	regexpLineComment, _ := regexp.Compile("^#")
 	regexpOnlySpaces, _ := regexp.Compile("^\\s+$")
+	regexpSingleMultiLineComment, _ := regexp.Compile("^{.+}$")
+	regexpStartMultiLineComment, _ := regexp.Compile("^{")
+	regexpEndMultiLineComment, _ := regexp.Compile("}$")
 
+	var isInMultiLine = false 
+	
  
+	//Loop through all the stored lined
 	for _, eachline := range txtlines {
+		// ****
+		// ** Lets do some house keeping first by droping the unecessary lines
+		// ****
+
 		//Skip the line if it starts with "#"
 		if(regexpLineComment.MatchString(eachline)) {
 			continue
@@ -85,6 +95,26 @@ func loadFile() {
 		if((len(eachline) == 0) || (regexpOnlySpaces.MatchString(eachline))) {
 			continue
 		}
+
+		// Process multi-line comments
+		if(regexpStartMultiLineComment.MatchString(eachline)) {
+			//Single-line "multi-line" coment
+			if(regexpSingleMultiLineComment.MatchString(eachline)) {
+			 	continue
+			}
+			isInMultiLine = true
+			continue
+		}
+		if(isInMultiLine) {
+			if(regexpEndMultiLineComment.MatchString(eachline)) {
+				isInMultiLine = false
+			}
+			continue
+		}
+
+		// ****
+		// ** Process the data line
+		// ****
 
 		fmt.Println(eachline)
 	}
