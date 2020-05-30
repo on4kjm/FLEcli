@@ -37,3 +37,6 @@ Cobra documentation available at https://github.com/spf13/cobra/blob/master/cobr
 * [Regex to verify Hamradio callsign and retrieve prefix](https://regex101.com/library/6QhGuD)
 * [Hamradio callsign](https://regex101.com/library/uP6xD2)
 * [Verify amateur radio call sign meets ITU format](https://regex101.com/library/gS6qG8)
+
+## Parsing 2
+* [Effective text parsing in golang](https://medium.com/@TobiasSchmidt89/effective-text-parsing-in-golang-163d13784288)
