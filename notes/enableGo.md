@@ -32,3 +32,6 @@ Cobra documentation available at https://github.com/spf13/cobra/blob/master/cobr
 * https://stackoverflow.com/questions/8757389/reading-a-file-line-by-line-in-go
 * https://www.golangprograms.com/golang-read-file-line-by-line-to-string.html
 
+
+## Parsing 2
+* [Effective text parsing in golang](https://medium.com/@TobiasSchmidt89/effective-text-parsing-in-golang-163d13784288)
