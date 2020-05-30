@@ -21,6 +21,7 @@ import (
 	"bufio"
 	"log"
 	"os"
+	"regexp"
 )
 
 // loadCmd represents the load command
@@ -34,8 +35,8 @@ var loadCmd = &cobra.Command{
 // This application is a tool to generate the needed files
 // to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("load called")
-		fmt.Println("Inputfile: ",inputFilename)
+		//fmt.Println("load called")
+		//fmt.Println("Inputfile: ",inputFilename)
 		loadFile()
 	},
 }
@@ -70,8 +71,21 @@ func loadFile() {
 	}
  
 	file.Close()
+
+	regexpLineComment, _ := regexp.Compile("^#")
+	regexpOnlySpaces, _ := regexp.Compile("^\\s+$")
+
  
 	for _, eachline := range txtlines {
+		//Skip the line if it starts with "#"
+		if(regexpLineComment.MatchString(eachline)) {
+			continue
+		}
+		//Skip if line is empty or blank
+		if((len(eachline) == 0) || (regexpOnlySpaces.MatchString(eachline))) {
+			continue
+		}
+
 		fmt.Println(eachline)
 	}
 }

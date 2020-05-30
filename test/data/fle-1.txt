@@ -1,6 +1,6 @@
 # Header 
 mycall on4kjm/p
-operator Jean-Marc
+operator on4kjm
 nickname Portable
 
 # Log 
@@ -11,6 +11,7 @@ date 2020-05-23
 7.037 1012 on6zq 9 449
 1020 dk5zx 9 7
 30m cw
+  
 10.120 1040 ol901ab 9 42
 20m 
 14.017 1055 ly2nk 9 9
