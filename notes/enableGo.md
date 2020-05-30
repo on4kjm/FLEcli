@@ -32,3 +32,8 @@ Cobra documentation available at https://github.com/spf13/cobra/blob/master/cobr
 * https://stackoverflow.com/questions/8757389/reading-a-file-line-by-line-in-go
 * https://www.golangprograms.com/golang-read-file-line-by-line-to-string.html
 
+## Regex
+* useful site: https://regex101.com
+* [Regex to verify Hamradio callsign and retrieve prefix](https://regex101.com/library/6QhGuD)
+* [Hamradio callsign](https://regex101.com/library/uP6xD2)
+* [Verify amateur radio call sign meets ITU format](https://regex101.com/library/gS6qG8)
