@@ -22,6 +22,7 @@ import (
 	"log"
 	"os"
 	"regexp"
+	"strings"
 )
 
 // loadCmd represents the load command
@@ -120,17 +121,22 @@ func loadFile() {
 		}
 
 		// ****
-		// ** Process the data line
+		// ** Process the Header block
 		// ****
 
-		//** is it a Header line?
 		if(regexpHeaderMyCall.MatchString(eachline)) {
 			myCallList := regexpHeaderMyCall.Split(eachline,-1)
-			fmt.Println(len(myCallList))
-			fmt.Println("myCallList", myCallList)
-			fmt.Println(myCallList[1])
+			myCall := ""
+			if(len(myCallList[1]) > 0) {
+				myCall = strings.ToUpper(myCallList[1])
+			}
+			fmt.Println("my call: ", myCall)
 			continue
 		}
+
+		// ****
+		// ** Process the data block
+		// ****
 
 		fmt.Println(eachline)
 	}
