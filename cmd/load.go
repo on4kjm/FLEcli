@@ -77,6 +77,13 @@ func loadFile() {
 	regexpSingleMultiLineComment, _ := regexp.Compile("^{.+}$")
 	regexpStartMultiLineComment, _ := regexp.Compile("^{")
 	regexpEndMultiLineComment, _ := regexp.Compile("}$")
+	regexpHeaderMyCall, _ := regexp.Compile("(?i)^mycall ")
+	// regexpHeaderOperator, _ := regexp.Compile("(?i)^operator ") 
+	// regexpHeaderMyWwff, _ := regexp.Compile("(?i)^mywwff ")
+	// regexpHeaderMySota, _ := regexp.Compile("(?i)^mysota ")
+	// regexpHeaderQslMsg, _ := regexp.Compile("(?i)^qslmsg ")
+	// regexpHeaderNickname, _ := regexp.Compile("(?i)^nickname ")
+	// regexpHeaderDate, _ := regexp.Compile("(?i)^date ")
 
 	var isInMultiLine = false 
 	
@@ -115,6 +122,15 @@ func loadFile() {
 		// ****
 		// ** Process the data line
 		// ****
+
+		//** is it a Header line?
+		if(regexpHeaderMyCall.MatchString(eachline)) {
+			myCallList := regexpHeaderMyCall.Split(eachline,-1)
+			fmt.Println(len(myCallList))
+			fmt.Println("myCallList", myCallList)
+			fmt.Println(myCallList[1])
+			continue
+		}
 
 		fmt.Println(eachline)
 	}
