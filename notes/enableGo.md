@@ -41,5 +41,5 @@ Cobra documentation available at https://github.com/spf13/cobra/blob/master/cobr
 ## Parsing 2
 * [Effective text parsing in golang](https://medium.com/@TobiasSchmidt89/effective-text-parsing-in-golang-163d13784288)
 
-## Parsing 2
-* [Effective text parsing in golang](https://medium.com/@TobiasSchmidt89/effective-text-parsing-in-golang-163d13784288)
+## Amateur related Golang libray
+* https://github.com/tzneal/ham-go
