@@ -35,9 +35,8 @@ func ValidateCall(sign string) (call, errorMsg string) {
 	case 1:
 		if validCallRegexp.MatchString(sign) {
 			return sign, ""
-		} else {
-			return wrongSign, "Invalid call"
 		}
+		return wrongSign, "Invalid call"
 	case 2:
 		// some ambiguity here we need to resolve, could be a prefix or a suffix
 		if validCallRegexp.MatchString(sp[0]) {
