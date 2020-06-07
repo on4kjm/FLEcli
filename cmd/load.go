@@ -22,7 +22,7 @@ import (
 	"log"
 	"os"
 	"regexp"
-	"strings"
+	//"strings"
 )
 
 // loadCmd represents the load command
@@ -79,12 +79,15 @@ func loadFile() {
 	regexpStartMultiLineComment, _ := regexp.Compile("^{")
 	regexpEndMultiLineComment, _ := regexp.Compile("}$")
 	regexpHeaderMyCall, _ := regexp.Compile("(?i)^mycall ")
-	// regexpHeaderOperator, _ := regexp.Compile("(?i)^operator ") 
+	regexpHeaderOperator, _ := regexp.Compile("(?i)^operator ") 
 	// regexpHeaderMyWwff, _ := regexp.Compile("(?i)^mywwff ")
 	// regexpHeaderMySota, _ := regexp.Compile("(?i)^mysota ")
 	// regexpHeaderQslMsg, _ := regexp.Compile("(?i)^qslmsg ")
 	// regexpHeaderNickname, _ := regexp.Compile("(?i)^nickname ")
 	// regexpHeaderDate, _ := regexp.Compile("(?i)^date ")
+
+	headerMyCall := ""
+	headerOperator := ""
 
 	var isInMultiLine = false 
 	
@@ -125,15 +128,24 @@ func loadFile() {
 		// ****
 
 		if(regexpHeaderMyCall.MatchString(eachline)) {
-			myCallList := regexpHeaderMyCall.Split(eachline,-1)
-			myCall := ""
+			errorMsg := ""
+			myCallList := regexpHeaderMyCall.Split(eachline,-1)			
 			if(len(myCallList[1]) > 0) {
-				myCall = strings.ToUpper(myCallList[1])
+				headerMyCall, errorMsg = ValidateCall(myCallList[1])
 			}
-			fmt.Println("my call: ", myCall)
+			fmt.Println("my call: ", headerMyCall, "-", errorMsg)
 			continue
 		}
 
+		if(regexpHeaderOperator.MatchString(eachline)) {
+			errorMsg := ""
+			myOperatorList := regexpHeaderOperator.Split(eachline,-1)
+			if(len(myOperatorList[1]) > 0) {
+				headerOperator, errorMsg = ValidateCall(myOperatorList[1])
+			}
+			fmt.Println("Operator: ", headerOperator, "-", errorMsg)
+			continue
+		}
 		// ****
 		// ** Process the data block
 		// ****
