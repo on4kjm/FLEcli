@@ -88,12 +88,18 @@ func loadFile() {
 
 	headerMyCall := ""
 	headerOperator := ""
+	lineCount := 0
 
 	var isInMultiLine = false 
+	var cleanedInput []string
+	var errorLog []string
+
 	
  
 	//Loop through all the stored lined
 	for _, eachline := range txtlines {
+		lineCount++
+
 		// ****
 		// ** Lets do some house keeping first by droping the unecessary lines
 		// ****
@@ -132,8 +138,12 @@ func loadFile() {
 			myCallList := regexpHeaderMyCall.Split(eachline,-1)			
 			if(len(myCallList[1]) > 0) {
 				headerMyCall, errorMsg = ValidateCall(myCallList[1])
+				cleanedInput = append(cleanedInput, fmt.Sprintf("My call: %s", headerMyCall))
+				errorLog = append(errorLog, fmt.Sprintf("Invalid myCall at line %d: %s (%s)",lineCount, myCallList[1], errorMsg))
+			} else {
+				errorLog = append(errorLog, fmt.Sprintf("Undefined myCall at line %d",lineCount))
 			}
-			fmt.Println("my call: ", headerMyCall, "-", errorMsg)
+			//fmt.Println("#", lineCount ,"  my call: ", headerMyCall, "-", errorMsg)
 			continue
 		}
 
@@ -142,14 +152,22 @@ func loadFile() {
 			myOperatorList := regexpHeaderOperator.Split(eachline,-1)
 			if(len(myOperatorList[1]) > 0) {
 				headerOperator, errorMsg = ValidateCall(myOperatorList[1])
+				cleanedInput = append(cleanedInput, fmt.Sprintf("Operator: %s", headerOperator))
+				errorLog = append(errorLog, fmt.Sprintf("Invalid Operator at line %d: %s (%s)",lineCount, myOperatorList[1], errorMsg))	
+			} else {
+				errorLog = append(errorLog, fmt.Sprintf("Undefined Operator at line %d",lineCount))		
 			}
-			fmt.Println("Operator: ", headerOperator, "-", errorMsg)
+			//fmt.Println("#", lineCount ,"  Operator: ", headerOperator, "-", errorMsg)
 			continue
 		}
 		// ****
 		// ** Process the data block
 		// ****
+		//cleanedInput = append(cleanedInput,eachline)
+		//fmt.Println(eachline)
 
-		fmt.Println(eachline)
+		for _, cleanedInputLine := range cleanedInput {
+			fmt.Println(cleanedInputLine)
+		}
 	}
 }
