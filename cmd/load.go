@@ -139,11 +139,12 @@ func loadFile() {
 			if(len(myCallList[1]) > 0) {
 				headerMyCall, errorMsg = ValidateCall(myCallList[1])
 				cleanedInput = append(cleanedInput, fmt.Sprintf("My call: %s", headerMyCall))
-				errorLog = append(errorLog, fmt.Sprintf("Invalid myCall at line %d: %s (%s)",lineCount, myCallList[1], errorMsg))
+				if(len(errorMsg) != 0) {
+					errorLog = append(errorLog, fmt.Sprintf("Invalid myCall at line %d: %s (%s)",lineCount, myCallList[1], errorMsg))
+				}
 			} else {
 				errorLog = append(errorLog, fmt.Sprintf("Undefined myCall at line %d",lineCount))
 			}
-			//fmt.Println("#", lineCount ,"  my call: ", headerMyCall, "-", errorMsg)
 			continue
 		}
 
@@ -153,21 +154,33 @@ func loadFile() {
 			if(len(myOperatorList[1]) > 0) {
 				headerOperator, errorMsg = ValidateCall(myOperatorList[1])
 				cleanedInput = append(cleanedInput, fmt.Sprintf("Operator: %s", headerOperator))
-				errorLog = append(errorLog, fmt.Sprintf("Invalid Operator at line %d: %s (%s)",lineCount, myOperatorList[1], errorMsg))	
+				if(len(errorMsg) != 0) {
+					errorLog = append(errorLog, fmt.Sprintf("Invalid Operator at line %d: %s (%s)",lineCount, myOperatorList[1], errorMsg))	
+				}
 			} else {
 				errorLog = append(errorLog, fmt.Sprintf("Undefined Operator at line %d",lineCount))		
 			}
-			//fmt.Println("#", lineCount ,"  Operator: ", headerOperator, "-", errorMsg)
 			continue
 		}
 		// ****
 		// ** Process the data block
 		// ****
-		//cleanedInput = append(cleanedInput,eachline)
-		//fmt.Println(eachline)
+		cleanedInput = append(cleanedInput,eachline)
 
-		for _, cleanedInputLine := range cleanedInput {
-			fmt.Println(cleanedInputLine)
-		}
 	}
+
+	for _, cleanedInputLine := range cleanedInput {
+		fmt.Println(cleanedInputLine)
+	}
+
+	if(len(errorLog) != 0){
+		fmt.Println("\nParsing errors:")
+		for _, errorLogLine := range errorLog {
+			fmt.Println(errorLogLine)
+		}
+	} else {
+		fmt.Println("\nSuccesfuly parsed ",lineCount, " lines.")
+	}
+
+
 }
