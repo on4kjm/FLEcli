@@ -13,21 +13,41 @@ func TestValidateWwff(t *testing.T) {
 		wantErrorMsg string
 	}{
 		{
-			"Good call (simple)", 
+			"Good ref (simple)", 
 			args{ inputStr: "onff-0258", }, 
 			"ONFF-0258", "",
 		},
 		{
-			"Good call (simple)", 
+			"Good ref (single digit country)", 
 			args{ inputStr: "fff-0258", }, 
 			"FFF-0258", "",
 		},
 		{
-			"Good call (simple)", 
+			"Good ref (Numerical country)", 
 			args{ inputStr: "4xff-0258", }, 
 			"4XFF-0258", "",
 		},
-		//TODO: add the invalid cases
+		{
+			"Bad ref (no country prefix)", 
+			args{ inputStr: "ff-0258", }, 
+			"*FF-0258", "Invalid WWFF reference",
+		},
+		{
+			"Bad ref (wrong separator)", 
+			args{ inputStr: "gff/0258", }, 
+			"*GFF/0258", "Invalid WWFF reference",
+		},
+		{
+			"Bad ref (reference too short)", 
+			args{ inputStr: "onff-258", }, 
+			"*ONFF-258", "Invalid WWFF reference",
+		},
+		{
+			"Bad ref (no country prefix)", 
+			args{ inputStr: "onff-02589", }, 
+			"*ONFF-02589", "Invalid WWFF reference",
+		},
+
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
