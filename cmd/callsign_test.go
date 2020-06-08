@@ -9,12 +9,52 @@ func TestValidateCall(t *testing.T) {
 	tests := []struct {
 		name         string
 		args 		 args
-		//args         string
 		wantCall     string
 		wantErrorMsg string
 	}{
-		{"Good call (simple)", args.String("on4kjm"), "ON4KJM", ""},
-		{"Good call (suffix)", "on4kjm/p", "ON4KJM/P", ""},
+		{
+			"Good call (simple)", 
+			args{ sign: "on4kjm", }, 
+			"ON4KJM", 
+			"",
+		},
+		{
+			"Good call (suffix)", 
+			args{ sign: "on4kjm/p", }, 
+			"ON4KJM/P", 
+			"",
+		},
+		{
+			"Good call (prefix only)", 
+			args{ sign: "DL/on4KJm", }, 
+			"DL/ON4KJM", 
+			"",
+		},
+		{
+			"Good call (prefix and suffix)", 
+			args{ sign: "DL/on4KJm/p", }, 
+			"DL/ON4KJM/P", 
+			"",
+		},
+		//Error cases
+		{
+			"Pure junk passed", 
+			args{ sign: "aaaaaa", }, 
+			"*AAAAAA", 
+			"Invalid call",
+		},
+		{
+			"empty string", 
+			args{ sign: "", }, 
+			"*", 
+			"Invalid call",
+		},
+		{
+			"string with spaces", 
+			args{ sign: "  ", }, 
+			"*", 
+			"Invalid call",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
