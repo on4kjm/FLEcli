@@ -15,45 +15,63 @@ func TestValidateCall(t *testing.T) {
 		{
 			"Good call (simple)", 
 			args{ sign: "on4kjm", }, 
-			"ON4KJM", 
-			"",
+			"ON4KJM", "",
 		},
 		{
 			"Good call (suffix)", 
 			args{ sign: "on4kjm/p", }, 
-			"ON4KJM/P", 
-			"",
+			"ON4KJM/P", "",
 		},
 		{
 			"Good call (prefix only)", 
 			args{ sign: "DL/on4KJm", }, 
-			"DL/ON4KJM", 
-			"",
+			"DL/ON4KJM", "",
 		},
 		{
 			"Good call (prefix and suffix)", 
 			args{ sign: "DL/on4KJm/p", }, 
-			"DL/ON4KJM/P", 
-			"",
+			"DL/ON4KJM/P", "",
+		},
+		{
+			"Good call (Numerical prefix)", 
+			args{ sign: "4x/on4KJm/p", }, 
+			"4X/ON4KJM/P", "",
+		},
+		{
+			"Good call (prefix and long suffix)", 
+			args{ sign: "DL/on4KJm/qrpp ", }, 
+			"DL/ON4KJM/QRPP", "",
 		},
 		//Error cases
 		{
 			"Pure junk passed", 
 			args{ sign: "aaaaaa", }, 
-			"*AAAAAA", 
-			"Invalid call",
+			"*AAAAAA", "Invalid call",
 		},
 		{
 			"empty string", 
 			args{ sign: "", }, 
-			"*", 
-			"Invalid call",
+			"*", "Invalid call",
 		},
 		{
 			"string with spaces", 
 			args{ sign: "  ", }, 
-			"*", 
-			"Invalid call",
+			"*", "Invalid call",
+		},		
+		{
+			"invalid prefix", 
+			args{ sign: "xyz/on4kjm", }, 
+			"*XYZ/ON4KJM", "Invalid prefix",
+		},
+		{
+			"Too many /", 
+			args{ sign: "F/on4kjm/p/x", }, 
+			"*F/ON4KJM/P/X", "Too many '/'",
+		},
+		{
+			"signe /", 
+			args{ sign: "/", }, 
+			"*/", "Invalid call",
 		},
 	}
 	for _, tt := range tests {

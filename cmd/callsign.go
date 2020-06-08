@@ -42,20 +42,28 @@ func ValidateCall(sign string) (call, errorMsg string) {
 		if validCallRegexp.MatchString(sp[0]) {
 			//Callisign with suffix (unchecked)
 			return sign, ""
-		} else {
-			//Callsign with prefix
-			//validate the part that should contain the call (sp[1]) 
-			if !validCallRegexp.MatchString(sp[1]) {
-				return wrongSign, "Invalid call"
-			}
-			//validate the prefix
-			if !validPrefixRegexp.MatchString(sp[0]) {
-				return wrongSign, "Invalid prefix"
-			}
-			return sign, ""
+		} 
+		//else we are dealing with a prefixed Callsign
+		//validate the part that should contain the call (sp[1]) 
+		if !validCallRegexp.MatchString(sp[1]) {
+			return wrongSign, "Invalid call"
 		}
+		//validate the prefix
+		if !validPrefixRegexp.MatchString(sp[0]) {
+			return wrongSign, "Invalid prefix"
+		}
+		return sign, ""
 	case 3:
-		return sign, "??????"
+		//validate the part that should contain the call (sp[1]) 
+		if !validCallRegexp.MatchString(sp[1]) {
+			return wrongSign, "Invalid call"
+		}
+		//validate the prefix
+		if !validPrefixRegexp.MatchString(sp[0]) {
+			return wrongSign, "Invalid prefix"
+		}
+		//We don't check the suffix
+		return sign, ""
 	}
-	return sign, "?????"
+	return wrongSign, "Too many '/'"
 }
