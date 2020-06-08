@@ -24,7 +24,7 @@ import (
 var validCallRegexp = regexp.MustCompile(`[\d]{0,1}[A-Z]{1,2}\d([A-Z]{1,4}|\d{3,3}|\d{1,3}[A-Z])[A-Z]{0,5}`)
 var validPrefixRegexp = regexp.MustCompile(`\A\d?[a-zA-Z]{1,2}$`)
 
-// ValidateCall veriffies whether the supplied string is a valid callsign.
+// ValidateCall verifies whether the supplied string is a valid callsign.
 // prefix and suffix are not checked for validity
 // If it is not valid, the supicious string is prefixed with a * and an erroMsg is genrated.
 func ValidateCall(sign string) (call, errorMsg string) {

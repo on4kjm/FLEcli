@@ -80,14 +80,17 @@ func loadFile() {
 	regexpEndMultiLineComment, _ := regexp.Compile("}$")
 	regexpHeaderMyCall, _ := regexp.Compile("(?i)^mycall ")
 	regexpHeaderOperator, _ := regexp.Compile("(?i)^operator ") 
-	// regexpHeaderMyWwff, _ := regexp.Compile("(?i)^mywwff ")
-	// regexpHeaderMySota, _ := regexp.Compile("(?i)^mysota ")
-	// regexpHeaderQslMsg, _ := regexp.Compile("(?i)^qslmsg ")
+	regexpHeaderMyWwff, _ := regexp.Compile("(?i)^mywwff ")
+	regexpHeaderMySota, _ := regexp.Compile("(?i)^mysota ")
+	regexpHeaderQslMsg, _ := regexp.Compile("(?i)^qslmsg ")
 	// regexpHeaderNickname, _ := regexp.Compile("(?i)^nickname ")
 	// regexpHeaderDate, _ := regexp.Compile("(?i)^date ")
 
 	headerMyCall := ""
 	headerOperator := ""
+	headerMyWWFF := ""
+	headerMySOTA := ""
+	//headerQslMsg := ""
 	lineCount := 0
 
 	var isInMultiLine = false 
@@ -133,6 +136,7 @@ func loadFile() {
 		// ** Process the Header block
 		// ****
 
+		//My Call
 		if(regexpHeaderMyCall.MatchString(eachline)) {
 			errorMsg := ""
 			myCallList := regexpHeaderMyCall.Split(eachline,-1)			
@@ -142,12 +146,12 @@ func loadFile() {
 				if(len(errorMsg) != 0) {
 					errorLog = append(errorLog, fmt.Sprintf("Invalid myCall at line %d: %s (%s)",lineCount, myCallList[1], errorMsg))
 				}
-			} else {
-				errorLog = append(errorLog, fmt.Sprintf("Undefined myCall at line %d",lineCount))
 			}
+			//If there is no data after the marker, we just skip the data.			
 			continue
 		}
 
+		//Operator
 		if(regexpHeaderOperator.MatchString(eachline)) {
 			errorMsg := ""
 			myOperatorList := regexpHeaderOperator.Split(eachline,-1)
@@ -157,11 +161,51 @@ func loadFile() {
 				if(len(errorMsg) != 0) {
 					errorLog = append(errorLog, fmt.Sprintf("Invalid Operator at line %d: %s (%s)",lineCount, myOperatorList[1], errorMsg))	
 				}
-			} else {
-				errorLog = append(errorLog, fmt.Sprintf("Undefined Operator at line %d",lineCount))		
 			}
+			//If there is no data after the marker, we just skip the data.
 			continue
 		}
+
+		// My WWFF
+		if(regexpHeaderMyWwff.MatchString(eachline)) {
+			errorMsg := ""
+			myWwffList := regexpHeaderMyWwff.Split(eachline,-1)
+			if(len(myWwffList[1]) > 0) {
+				headerMyWWFF, errorMsg = ValidateWwff(myWwffList[1])
+				cleanedInput = append(cleanedInput, fmt.Sprintf("My WWFF: %s", headerMyWWFF))
+				if(len(errorMsg) != 0) {
+					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My WWFF\" at line %d: %s (%s)",lineCount, myWwffList[1], errorMsg))	
+				}
+			} 			
+			//If there is no data after the marker, we just skip the data.
+			continue
+		}
+ 
+		//My Sota
+		if(regexpHeaderMySota.MatchString(eachline)) {
+			errorMsg := ""
+			mySotaList := regexpHeaderMySota.Split(eachline,-1)
+			if(len(mySotaList[1]) > 0) {
+				headerMySOTA, errorMsg = ValidateSota(mySotaList[1])
+				cleanedInput = append(cleanedInput, fmt.Sprintf("My Sota: %s", headerMySOTA))
+				if(len(errorMsg) != 0) {
+					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My SOTA\" at line %d: %s (%s)",lineCount, mySotaList[1], errorMsg))	
+				}
+			}
+			//If there is no data after the marker, we just skip the data.
+			continue
+		}
+
+		//QSL Message
+		if(regexpHeaderQslMsg.MatchString(eachline)) {
+			myQslMsgList := regexpHeaderQslMsg.Split(eachline,-1)
+			if(len(myQslMsgList[1]) > 0) {
+				cleanedInput = append(cleanedInput, fmt.Sprintf("QSL Message: %s", myQslMsgList[1]))
+			}
+			//If there is no data after the marker, we just skip the data.
+			continue
+		}
+
 		// ****
 		// ** Process the data block
 		// ****
@@ -169,6 +213,9 @@ func loadFile() {
 
 	}
 
+	//*****
+	//** display results
+	//*****
 	for _, cleanedInputLine := range cleanedInput {
 		fmt.Println(cleanedInputLine)
 	}
