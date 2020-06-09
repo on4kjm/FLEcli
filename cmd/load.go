@@ -83,14 +83,15 @@ func loadFile() {
 	regexpHeaderMyWwff, _ := regexp.Compile("(?i)^mywwff ")
 	regexpHeaderMySota, _ := regexp.Compile("(?i)^mysota ")
 	regexpHeaderQslMsg, _ := regexp.Compile("(?i)^qslmsg ")
-	// regexpHeaderNickname, _ := regexp.Compile("(?i)^nickname ")
+	regexpHeaderNickname, _ := regexp.Compile("(?i)^nickname ")
 	// regexpHeaderDate, _ := regexp.Compile("(?i)^date ")
 
 	headerMyCall := ""
 	headerOperator := ""
 	headerMyWWFF := ""
 	headerMySOTA := ""
-	//headerQslMsg := ""
+	headerQslMsg := ""
+	headerNickname := ""
 	lineCount := 0
 
 	var isInMultiLine = false 
@@ -200,7 +201,19 @@ func loadFile() {
 		if(regexpHeaderQslMsg.MatchString(eachline)) {
 			myQslMsgList := regexpHeaderQslMsg.Split(eachline,-1)
 			if(len(myQslMsgList[1]) > 0) {
-				cleanedInput = append(cleanedInput, fmt.Sprintf("QSL Message: %s", myQslMsgList[1]))
+				headerQslMsg = myQslMsgList[1]
+				cleanedInput = append(cleanedInput, fmt.Sprintf("QSL Message: %s", headerQslMsg))
+			}
+			//If there is no data after the marker, we just skip the data.
+			continue
+		}
+
+		//QSL Message
+		if(regexpHeaderNickname.MatchString(eachline)) {
+			myNicknameList := regexpHeaderNickname.Split(eachline,-1)
+			if(len(myNicknameList[1]) > 0) {
+				headerNickname = myNicknameList[1]
+				cleanedInput = append(cleanedInput, fmt.Sprintf("eQSL Nickmane: %s", headerNickname))
 			}
 			//If there is no data after the marker, we just skip the data.
 			continue

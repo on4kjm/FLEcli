@@ -1,0 +1,16 @@
+# Header 
+mycall on4kjm/p
+operator on4kjm
+nickname Portable
+myWwff onff-0258
+mySota on/on-001
+QslMsg This is a QSL message
+date 2020-05-23
+
+# Log 
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449
+1020 dk5zx 9 7
+30m cw
