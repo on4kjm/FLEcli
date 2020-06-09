@@ -5,13 +5,13 @@
 * [ ] document protocol as regexp
 
 ## Test framework
-* [ ] enable TDD
+* [x] enable TDD
 * [ ] automate build and test
 * [ ] type of target (cross compile) ?
 
 
 ## Input processing
 * [x] Read the file into array
-* [ ] Parse every line
-* [ ] Load structured data
+* [x] Parse every line
+* [x] Load structured data
 * [ ] Create structured data storage
