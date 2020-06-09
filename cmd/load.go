@@ -84,7 +84,7 @@ func loadFile() {
 	regexpHeaderMySota, _ := regexp.Compile("(?i)^mysota ")
 	regexpHeaderQslMsg, _ := regexp.Compile("(?i)^qslmsg ")
 	regexpHeaderNickname, _ := regexp.Compile("(?i)^nickname ")
-	// regexpHeaderDate, _ := regexp.Compile("(?i)^date ")
+	regexpHeaderDate, _ := regexp.Compile("(?i)^date ")
 
 	headerMyCall := ""
 	headerOperator := ""
@@ -92,6 +92,7 @@ func loadFile() {
 	headerMySOTA := ""
 	headerQslMsg := ""
 	headerNickname := ""
+	headerDate := ""
 	lineCount := 0
 
 	var isInMultiLine = false 
@@ -208,7 +209,7 @@ func loadFile() {
 			continue
 		}
 
-		//QSL Message
+		//Nickname
 		if(regexpHeaderNickname.MatchString(eachline)) {
 			myNicknameList := regexpHeaderNickname.Split(eachline,-1)
 			if(len(myNicknameList[1]) > 0) {
@@ -218,6 +219,21 @@ func loadFile() {
 			//If there is no data after the marker, we just skip the data.
 			continue
 		}
+
+		// Date
+		if(regexpHeaderDate.MatchString(eachline)) {
+			errorMsg := ""
+			myDateList := regexpHeaderDate.Split(eachline,-1)
+			if(len(myDateList[1]) > 0) {
+				headerDate, errorMsg = ValidateDate(myDateList[1])
+				cleanedInput = append(cleanedInput, fmt.Sprintf("Date: %s", headerDate))
+				if(len(errorMsg) != 0) {
+					errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)",lineCount, myDateList[1], errorMsg))	
+				}
+			} 			
+			//If there is no data after the marker, we just skip the data.
+			continue
+		}		
 
 		// ****
 		// ** Process the data block
