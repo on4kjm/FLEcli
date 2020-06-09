@@ -86,6 +86,7 @@ func loadFile() {
 	regexpHeaderNickname, _ := regexp.Compile("(?i)^nickname ")
 	regexpHeaderDate, _ := regexp.Compile("(?i)^date ")
 
+	
 	headerMyCall := ""
 	headerOperator := ""
 	headerMyWWFF := ""
