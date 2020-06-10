@@ -36,6 +36,8 @@ type LogLine struct {
 	Frequency string
 	Time      string
 	Call      string
+	Comment   string
+	QSLmsg    string
 }
 
 
@@ -45,6 +47,14 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 	regexpIsBand, _ := regexp.Compile("m$")
 
 	logLine = previousLine
+
+	//TODO: what happens when we have <> or when there are multiple comments
+	comment := getBraketedData(inputStr, "COMMENT")
+	if comment != "" {
+		logLine.Comment = comment
+		inputStr = strings.Replace(inputStr, "<" + comment + ">", "",1)
+		fmt.Println("Cleaned input string: ", inputStr)
+	}
 
 	elements := strings.Fields(inputStr)
 
@@ -89,8 +99,39 @@ func SprintLogRecord(logLine LogLine) (output string){
 	output = output + "Frequency " + logLine.Frequency + "\n"
 	output = output + "Time      " + logLine.Time + "\n"
 	output = output + "Call      " + logLine.Call + "\n"
+	output = output + "Comment   " + logLine.Comment + "\n"
+	output = output + "QSLmsg    " + logLine.QSLmsg + "\n"
 
 	return output
+}
+
+func getBraketedData(value, braketType string) (text string) {
+	// Get substring between two strings.
+	a := ""
+	b := ""
+
+	if braketType == "COMMENT" {
+		a = "<"
+		b = ">"
+	} 
+	if braketType == "QSL" {
+		a = "["
+		b = "]"
+	} 	
+
+    posFirst := strings.Index(value, a)
+    if posFirst == -1 {
+        return ""
+    }
+    posLast := strings.Index(value, b)
+    if posLast == -1 {
+        return ""
+    }
+    posFirstAdjusted := posFirst + 1
+    if posFirstAdjusted >= posLast {
+        return ""
+    }
+    return value[posFirstAdjusted:posLast]
 }
 
 func lookupMode(lookup string) bool {
