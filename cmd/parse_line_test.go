@@ -25,12 +25,12 @@ func TestParseLine(t *testing.T) {
 		{
 			"Parse for comment", 
 			args{ inputStr: "4 g3noh <PSE QSL Direct>", previousLine: LogLine{ Mode: "SSB", }}, 
-			LogLine{ Comment: "PSE QSL Direct", Call: "G3NOH", Time: "2"}, "",
+			LogLine{ Comment: "PSE QSL Direct", Call: "G3NOH", Mode: "SSB",}, "Unable to parse 4 ",
 		},
 		{
 			"Parse for QSL", 
-			args{ inputStr: "4 g3noh <Custom QSL message>", previousLine: LogLine{ Mode: "SSB", }}, 
-			LogLine{ QSLmsg: "Custom QSL message", Call: "G3NOH", Time: "2"}, "",
+			args{ inputStr: "g3noh [Custom QSL message]", previousLine: LogLine{ Mode: "SSB", }}, 
+			LogLine{ QSLmsg: "Custom QSL message", Call: "G3NOH", Mode: "SSB",}, "",
 		},
 		{
 			"Wrong mode", 

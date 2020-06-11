@@ -56,10 +56,9 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 		fmt.Println("Cleaned input string: ", inputStr)
 	}
 
-	comment,inputStr = getBraketedData(inputStr, QSL)
-	if comment != "" {
-		logLine.QSLmsg = comment
-		inputStr = strings.Replace(inputStr, "[" + comment + "]", "",1)
+	QSLmsg,inputStr := getBraketedData(inputStr, QSL)
+	if QSLmsg != "" {
+		logLine.QSLmsg = QSLmsg
 		fmt.Println("Cleaned input string: ", inputStr)
 	}
 
@@ -77,6 +76,14 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 		// Is it a band?
 		if regexpIsBand.MatchString(element) {
 			logLine.Band = element
+			continue
+		}
+
+		// Is it a call sign ?
+		if validCallRegexp.MatchString(strings.ToUpper(element)) {
+			callErrorMsg := ""
+			logLine.Call, callErrorMsg = ValidateCall(element)
+			errorMsg = errorMsg + callErrorMsg
 			continue
 		}
 
