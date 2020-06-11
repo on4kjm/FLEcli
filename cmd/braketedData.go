@@ -19,17 +19,26 @@ import (
 	"strings"
 )
 
-func getBraketedData(inputLine, braketType string) (text, cleanedLine string) {
+//The BraketType type is used to define the enumeration
+type BraketType int
+
+//Enumeration of the valid Bracket Types
+const (
+    COMMENT BraketType = iota
+    QSL
+)
+
+func getBraketedData(inputLine string, braketType BraketType) (braketedData, cleanedLine string) {
 	// Get substring between two strings.
 	a := ""
 	b := ""
 
 	//TODO: refactor that as a switch statement to exclude non supported bracket types
-	if braketType == "COMMENT" {
+	if braketType == COMMENT {
 		a = "<"
 		b = ">"
 	} 
-	if braketType == "QSL" {
+	if braketType == QSL {
 		a = "["
 		b = "]"
 	} 	
@@ -43,8 +52,11 @@ func getBraketedData(inputLine, braketType string) (text, cleanedLine string) {
         return "",inputLine
     }
     posFirstAdjusted := posFirst + 1
-    if posFirstAdjusted >= posLast {
+    if posFirstAdjusted > posLast {
         return "",inputLine
-    }
-    return inputLine[posFirstAdjusted:posLast], inputLine
+	}
+
+	braketedData = inputLine[posFirstAdjusted:posLast]
+	cleanedLine = strings.Replace(inputLine, a + braketedData + b, "",1)
+    return braketedData, cleanedLine
 }

@@ -50,14 +50,13 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 
 	//TODO: what happens when we have <> or when there are multiple comments
 	//TODO: Refactor this! it is ugly
-	comment,inputStr := getBraketedData(inputStr, "COMMENT")
+	comment,inputStr := getBraketedData(inputStr, COMMENT)
 	if comment != "" {
 		logLine.Comment = comment
-		inputStr = strings.Replace(inputStr, "<" + comment + ">", "",1)
 		fmt.Println("Cleaned input string: ", inputStr)
 	}
 
-	comment,inputStr = getBraketedData(inputStr, "QSL")
+	comment,inputStr = getBraketedData(inputStr, QSL)
 	if comment != "" {
 		logLine.QSLmsg = comment
 		inputStr = strings.Replace(inputStr, "[" + comment + "]", "",1)
