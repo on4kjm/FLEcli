@@ -40,11 +40,11 @@ type LogLine struct {
 	QSLmsg    string
 }
 
+var regexpIsBand = regexp.MustCompile("m$")
 
 // ParseLine cuts a FLE line into useful bits
 func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg string){
 	//TODO: input null protection?
-	regexpIsBand, _ := regexp.Compile("m$")
 
 	logLine = previousLine
 
