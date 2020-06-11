@@ -49,12 +49,21 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 	logLine = previousLine
 
 	//TODO: what happens when we have <> or when there are multiple comments
+	//TODO: Refactor this! it is ugly
 	comment := getBraketedData(inputStr, "COMMENT")
 	if comment != "" {
 		logLine.Comment = comment
 		inputStr = strings.Replace(inputStr, "<" + comment + ">", "",1)
 		fmt.Println("Cleaned input string: ", inputStr)
 	}
+
+	comment = getBraketedData(inputStr, "QSL")
+	if comment != "" {
+		logLine.QSLmsg = comment
+		inputStr = strings.Replace(inputStr, "[" + comment + "]", "",1)
+		fmt.Println("Cleaned input string: ", inputStr)
+	}
+
 
 	elements := strings.Fields(inputStr)
 
@@ -110,6 +119,7 @@ func getBraketedData(value, braketType string) (text string) {
 	a := ""
 	b := ""
 
+	//TODO: refactor that as a switch statement to exclude non supported bracket types
 	if braketType == "COMMENT" {
 		a = "<"
 		b = ">"
