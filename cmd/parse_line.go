@@ -50,14 +50,14 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 
 	//TODO: what happens when we have <> or when there are multiple comments
 	//TODO: Refactor this! it is ugly
-	comment := getBraketedData(inputStr, "COMMENT")
+	comment,inputStr := getBraketedData(inputStr, "COMMENT")
 	if comment != "" {
 		logLine.Comment = comment
 		inputStr = strings.Replace(inputStr, "<" + comment + ">", "",1)
 		fmt.Println("Cleaned input string: ", inputStr)
 	}
 
-	comment = getBraketedData(inputStr, "QSL")
+	comment,inputStr = getBraketedData(inputStr, "QSL")
 	if comment != "" {
 		logLine.QSLmsg = comment
 		inputStr = strings.Replace(inputStr, "[" + comment + "]", "",1)
@@ -114,35 +114,7 @@ func SprintLogRecord(logLine LogLine) (output string){
 	return output
 }
 
-func getBraketedData(value, braketType string) (text string) {
-	// Get substring between two strings.
-	a := ""
-	b := ""
 
-	//TODO: refactor that as a switch statement to exclude non supported bracket types
-	if braketType == "COMMENT" {
-		a = "<"
-		b = ">"
-	} 
-	if braketType == "QSL" {
-		a = "["
-		b = "]"
-	} 	
-
-    posFirst := strings.Index(value, a)
-    if posFirst == -1 {
-        return ""
-    }
-    posLast := strings.Index(value, b)
-    if posLast == -1 {
-        return ""
-    }
-    posFirstAdjusted := posFirst + 1
-    if posFirstAdjusted >= posLast {
-        return ""
-    }
-    return value[posFirstAdjusted:posLast]
-}
 
 func lookupMode(lookup string) bool {
 	switch lookup {

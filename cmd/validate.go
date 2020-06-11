@@ -18,7 +18,37 @@ limitations under the License.
 import (
 	"regexp"
 	"strings"
+	"fmt"
+	"time"
 )
+
+
+var validSotaRegexp = regexp.MustCompile(`^[0-9A-Z]{1,3}/[A-Z]{2}-[\d]{3}$`)
+
+// ValidateSota verifies whether the supplied string is a valid SOTA reference.
+// The syntax is: AA/NN-CCC: Association/Name-3-digit numeric Code (e.g. G/CE-001). 
+func ValidateSota(inputStr string) (ref, errorMsg string) {
+	inputStr = strings.ToUpper(strings.TrimSpace(inputStr))
+	wrongInputStr := "*" + inputStr
+		if validSotaRegexp.MatchString(inputStr) {
+			return inputStr, ""
+		}
+		return wrongInputStr, "Invalid SOTA reference"
+}
+
+var validWwffRegexp = regexp.MustCompile(`^[\d]{0,1}[A-Z]{1,2}FF-[\d]{4}$`)
+
+// ValidateWwff verifies whether the supplied string is a valid WWFF reference.
+// The syntax is: AAFF-CCCC: AA = national prefix, CCCC = 4-digit numeric code (e.g. ONFF-0001).
+func ValidateWwff(inputStr string) (ref, errorMsg string) {
+	inputStr = strings.ToUpper(strings.TrimSpace(inputStr))
+	wrongInputStr := "*" + inputStr
+		if validWwffRegexp.MatchString(inputStr) {
+			return inputStr, ""
+		}
+		return wrongInputStr, "Invalid WWFF reference"
+}
+
 
 
 var validCallRegexp = regexp.MustCompile(`[\d]{0,1}[A-Z]{1,2}\d([A-Z]{1,4}|\d{3,3}|\d{1,3}[A-Z])[A-Z]{0,5}`)
@@ -66,4 +96,20 @@ func ValidateCall(sign string) (call, errorMsg string) {
 		return sign, ""
 	}
 	return wrongSign, "Too many '/'"
+}
+
+// ValidateDate verifies whether the string is a valid date (YYYY-MM-DD).
+func ValidateDate(inputStr string) (ref, errorMsg string) {
+
+	const RFC3339FullDate = "2006-01-02"
+
+	inputStr = strings.ToUpper(strings.TrimSpace(inputStr))
+	wrongInputStr := "*" + inputStr
+	_, err := time.Parse(RFC3339FullDate, inputStr)
+
+	if err == nil {
+		return inputStr, ""
+	}
+
+	return wrongInputStr, fmt.Sprint(err)
 }
