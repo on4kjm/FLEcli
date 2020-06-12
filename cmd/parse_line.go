@@ -41,11 +41,14 @@ type LogLine struct {
 }
 
 var regexpIsBand = regexp.MustCompile("m$")
+var regexpIsFullTime = regexp.MustCompile("^[0-2]{1}[0-9]{3}$")
+var regexpIsTimePart = regexp.MustCompile("^[0-5]{1}[0-9]{1}$|^[1-9]{1}$")
 
 // ParseLine cuts a FLE line into useful bits
 func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg string){
 	//TODO: input null protection?
 
+	//TODO: Make something more intelligent
 	logLine = previousLine
 
 	//TODO: what happens when we have <> or when there are multiple comments
@@ -86,6 +89,24 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 			errorMsg = errorMsg + callErrorMsg
 			continue
 		}
+
+		// Is it a "full" time ?
+		if regexpIsFullTime.MatchString(element) {
+			logLine.Time = element
+			continue
+		}
+
+		// Is it a partial time ?
+		if regexpIsTimePart.MatchString(element) {
+			if logLine.Time == "" {
+				logLine.Time = element
+			} else {
+				goodPart := logLine.Time[:len(logLine.Time)-len(element)]
+				logLine.Time = goodPart + element
+			}
+			continue
+		}
+
 
 		//If we come here, we could not make sense of what we found
 		errorMsg = errorMsg + "Unable to parse " + element + " "

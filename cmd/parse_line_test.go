@@ -23,9 +23,29 @@ func TestParseLine(t *testing.T) {
 			LogLine{ Band: "40m", Mode: "CW",}, "",
 		},
 		{
+			"Parse for time", 
+			args{ inputStr: "1314 g3noh", previousLine: LogLine{ Mode: "SSB", }}, 
+			LogLine{ Time: "1314", Call: "G3NOH", Mode: "SSB",}, "",
+		},
+		{
+			"Parse partial time - 1", 
+			args{ inputStr: "4 g3noh", previousLine: LogLine{ Time: "", Mode: "SSB", }}, 
+			LogLine{ Time: "4", Call: "G3NOH", Mode: "SSB",}, "",
+		},
+		{
+			"Parse partial time - 2", 
+			args{ inputStr: "15 g3noh", previousLine: LogLine{ Time: "1200", Mode: "SSB", }}, 
+			LogLine{ Time: "1215", Call: "G3NOH", Mode: "SSB",}, "",
+		},
+		{
+			"Parse partial time - 3", 
+			args{ inputStr: "4 g3noh", previousLine: LogLine{ Time: "1200", Mode: "SSB", }}, 
+			LogLine{ Time: "1204", Call: "G3NOH", Mode: "SSB",}, "",
+		},
+		{
 			"Parse for comment", 
 			args{ inputStr: "4 g3noh <PSE QSL Direct>", previousLine: LogLine{ Mode: "SSB", }}, 
-			LogLine{ Comment: "PSE QSL Direct", Call: "G3NOH", Mode: "SSB",}, "Unable to parse 4 ",
+			LogLine{ Time: "4", Comment: "PSE QSL Direct", Call: "G3NOH", Mode: "SSB",}, "",
 		},
 		{
 			"Parse for QSL", 
