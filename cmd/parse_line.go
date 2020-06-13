@@ -40,6 +40,8 @@ type LogLine struct {
 	QSLmsg    string
 	OMname    string
 	GridLoc   string
+	RSTsent   string
+	RSTrcvd   string
 }
 
 var regexpIsBand = regexp.MustCompile("m$")
@@ -52,7 +54,13 @@ var regexpIsGridLoc = regexp.MustCompile("^#")
 func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg string){
 	//TODO: input null protection?
 
+	//Flag telling that we are processing data to the right of the callsign
+	//isRightOfCall := false
+
 	//TODO: Make something more intelligent
+	previousLine.Call = ""
+	previousLine.RSTsent = ""
+	previousLine.RSTrcvd = ""
 	logLine = previousLine
 
 	//TODO: what happens when we have <> or when there are multiple comments
@@ -77,6 +85,23 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 		//  Is it a mode?
 		if lookupMode( strings.ToUpper(element)) {
 			logLine.Mode = strings.ToUpper(element)
+			// Set the default RST depending of the mode
+			if (logLine.RSTsent == "") || (logLine.RSTrcvd == "") {
+				switch logLine.Mode {
+				case "SSB", "AM", "FM" :
+					logLine.RSTsent = "59"
+					logLine.RSTrcvd = "59"
+				case "CW", "RTTY", "PSK":
+					logLine.RSTsent = "599"
+					logLine.RSTrcvd = "599"
+				case "JT65", "JT9", "JT6M", "JT4", "JT44", "FSK441", "FT8", "ISCAT", "MSK144", "QRA64", "T10", "WSPR" :
+					logLine.RSTsent = "-10"
+					logLine.RSTrcvd = "-10"				
+				}
+
+			} else {
+				errorMsg = errorMsg + "Double definitiion of RST"
+			}
 			continue
 		}
 
@@ -91,6 +116,7 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 			callErrorMsg := ""
 			logLine.Call, callErrorMsg = ValidateCall(element)
 			errorMsg = errorMsg + callErrorMsg
+			//isRightOfCall = true
 			continue
 		}
 
@@ -155,6 +181,8 @@ func SprintLogRecord(logLine LogLine) (output string){
 	output = output + "QSLmsg    " + logLine.QSLmsg + "\n"
 	output = output + "OMname    " + logLine.OMname + "\n"
 	output = output + "GridLoc   " + logLine.GridLoc + "\n"
+	output = output + "RSTsent   " + logLine.RSTsent + "\n"
+	output = output + "RSTrcvd   " + logLine.RSTrcvd + "\n"
 
 	return output
 }

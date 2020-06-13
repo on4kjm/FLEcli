@@ -20,7 +20,7 @@ func TestParseLine(t *testing.T) {
 		{
 			"Parse band and mode only", 
 			args{ inputStr: "40m cw", previousLine: LogLine{ Mode: "SSB", }}, 
-			LogLine{ Band: "40m", Mode: "CW",}, "",
+			LogLine{ Band: "40m", Mode: "CW", RSTsent: "599", RSTrcvd: "599"}, "",
 		},
 		{
 			"Parse for time", 
