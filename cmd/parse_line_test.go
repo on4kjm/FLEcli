@@ -30,7 +30,7 @@ func TestParseLine(t *testing.T) {
 		{
 			"Parse partial time - 1", 
 			args{ inputStr: "4 g3noh", previousLine: LogLine{ Time: "", Mode: "SSB", }}, 
-			LogLine{ Time: "4", Call: "G3NOH", Mode: "SSB",}, "",
+			LogLine{ Time: "4", Call: "G3NOH", Mode: "SSB",}, "", //TODO: should fail
 		},
 		{
 			"Parse partial time - 2", 
@@ -56,6 +56,16 @@ func TestParseLine(t *testing.T) {
 			"Wrong mode", 
 			args{ inputStr: "cww", previousLine: LogLine{ Mode: "SSB", }}, 
 			LogLine{ Mode: "SSB",}, "Unable to parse cww ",
+		},
+		{
+			"Parse OM name", 
+			args{ inputStr: "@Jean", previousLine: LogLine{ Mode: "SSB", }}, 
+			LogLine{ OMname: "Jean", Mode: "SSB",}, "",
+		},
+		{
+			"Parse Grid locator", 
+			args{ inputStr: "#grid", previousLine: LogLine{ Mode: "SSB", }}, 
+			LogLine{ GridLoc: "grid", Mode: "SSB",}, "",
 		},
 	}
 	for _, tt := range tests {

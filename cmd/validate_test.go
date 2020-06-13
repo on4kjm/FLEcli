@@ -241,6 +241,11 @@ func TestValidateDate(t *testing.T) {
 			args{ inputStr: "2020-06-10", }, 
 			"2020-06-10", "",
 		},
+		// {
+		// 	"Good date (extrapolate, different delimiter)", 
+		// 	args{ inputStr: "16-2-1", }, 
+		// 	"2020-06-10", "",
+		// },
 		{
 			"Bad date (simple)", 
 			args{ inputStr: "2020-13-10", }, 

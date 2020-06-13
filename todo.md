@@ -11,8 +11,10 @@
 
 
 ## Input processing
-* [x] Read the file into array
-* [x] Parse every line
-* [x] Load structured data
-* [X] Create structured data storage
 * [ ] Create the logic to take over from the previous line
+* [ ] Support different date delimiter
+* [ ] Support extrapolated date
+* [ ] Support date not prefixed by "date" (non header mode)
+* [ ] Support date increment
+* [ ] decode and check frequency 
+* [ ] infer rst

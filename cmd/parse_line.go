@@ -38,11 +38,15 @@ type LogLine struct {
 	Call      string
 	Comment   string
 	QSLmsg    string
+	OMname    string
+	GridLoc   string
 }
 
 var regexpIsBand = regexp.MustCompile("m$")
 var regexpIsFullTime = regexp.MustCompile("^[0-2]{1}[0-9]{3}$")
 var regexpIsTimePart = regexp.MustCompile("^[0-5]{1}[0-9]{1}$|^[1-9]{1}$")
+var regexpIsOMname = regexp.MustCompile("^@")
+var regexpIsGridLoc = regexp.MustCompile("^#")
 
 // ParseLine cuts a FLE line into useful bits
 func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg string){
@@ -107,6 +111,18 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 			continue
 		}
 
+		// Is it the OM's name (starting with "@")
+		if regexpIsOMname.MatchString(element) {
+			logLine.OMname = strings.TrimLeft(element, "@") 
+			continue
+		}
+
+
+		// Is it the Grid Locator (starting with "#")
+		if regexpIsGridLoc.MatchString(element) {
+			logLine.GridLoc = strings.TrimLeft(element, "#") 
+			continue
+		}
 
 		//If we come here, we could not make sense of what we found
 		errorMsg = errorMsg + "Unable to parse " + element + " "
@@ -137,6 +153,8 @@ func SprintLogRecord(logLine LogLine) (output string){
 	output = output + "Call      " + logLine.Call + "\n"
 	output = output + "Comment   " + logLine.Comment + "\n"
 	output = output + "QSLmsg    " + logLine.QSLmsg + "\n"
+	output = output + "OMname    " + logLine.OMname + "\n"
+	output = output + "GridLoc   " + logLine.GridLoc + "\n"
 
 	return output
 }
