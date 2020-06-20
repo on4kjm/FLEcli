@@ -20,7 +20,7 @@ func TestParseLine(t *testing.T) {
 		{
 			"Parse band and mode only", 
 			args{ inputStr: "40M cw", previousLine: LogLine{ Mode: "SSB", }}, 
-			LogLine{ Band: "40m", BandLowerLimit: 7, BandUpperLimit: 7.3, Mode: "CW", RSTsent: "599", RSTrcvd: "599"}, "",
+			LogLine{ Band: "40m", BandLowerLimit: 7, BandUpperLimit: 7.3, Mode: "CW", ModeType: "CW", RSTsent: "599", RSTrcvd: "599"}, "",
 		},
 		{
 			"Parse for time", 
@@ -68,9 +68,34 @@ func TestParseLine(t *testing.T) {
 			LogLine{ GridLoc: "grid", Mode: "SSB",}, "",
 		},
 		{
-			"parse partial RST", 
-			args{ inputStr: "1230 on4kjm 5", previousLine: LogLine{ Mode: "CW", }}, 
-			LogLine{ Call: "ON4KJM", Time: "1230", RSTsent: "559", Mode: "CW",}, "",
+			"parse partial RST (sent) - CW", 
+			args{ inputStr: "1230 on4kjm 5", previousLine: LogLine{ Mode: "CW", ModeType: "CW"}}, 
+			LogLine{ Call: "ON4KJM", Time: "1230", RSTsent: "559", Mode: "CW", ModeType: "CW"}, "",
+		},
+		{
+			"parse partial RST (received) - CW", 
+			args{ inputStr: "1230 on4kjm 5 44", previousLine: LogLine{ Mode: "CW", ModeType: "CW"}}, 
+			LogLine{ Call: "ON4KJM", Time: "1230", RSTsent: "559", RSTrcvd: "449", Mode: "CW", ModeType: "CW"}, "",
+		},
+		{
+			"parse full RST (received) - CW", 
+			args{ inputStr: "1230 on4kjm 5 448", previousLine: LogLine{ Mode: "CW", ModeType: "CW"}}, 
+			LogLine{ Call: "ON4KJM", Time: "1230", RSTsent: "559", RSTrcvd: "448", Mode: "CW", ModeType: "CW"}, "",
+		},
+		{
+			"parse partial report (sent) - FM", 
+			args{ inputStr: "1230 on4kjm 5", previousLine: LogLine{ Mode: "FM", ModeType: "PHONE"}}, 
+			LogLine{ Call: "ON4KJM", Time: "1230", RSTsent: "55", Mode: "FM", ModeType: "PHONE"}, "",
+		},
+		{
+			"parse partial report (received) - FM", 
+			args{ inputStr: "1230 on4kjm 5 44", previousLine: LogLine{ Mode: "FM", ModeType: "PHONE"}}, 
+			LogLine{ Call: "ON4KJM", Time: "1230", RSTsent: "55", RSTrcvd: "44", Mode: "FM", ModeType: "PHONE"}, "",
+		},
+		{
+			"Incompatible report", 
+			args{ inputStr: "1230 on4kjm 5 599", previousLine: LogLine{ Mode: "FM", ModeType: "PHONE"}}, 
+			LogLine{ Call: "ON4KJM", Time: "1230", RSTsent: "55", RSTrcvd: "*599", Mode: "FM", ModeType: "PHONE"}, "Invalid report (599) for PHONE mode ",
 		},
 	}
 	for _, tt := range tests {

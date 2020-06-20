@@ -32,6 +32,7 @@ type LogLine struct {
 	QslMsg    string
 	Nickname  string
 	Mode      string
+	ModeType  string
 	Band      string
 	BandLowerLimit float32
 	BandUpperLimit float32
@@ -46,11 +47,11 @@ type LogLine struct {
 	RSTrcvd   string
 }
 
-var regexpIsBand = regexp.MustCompile("m$")
 var regexpIsFullTime = regexp.MustCompile("^[0-2]{1}[0-9]{3}$")
 var regexpIsTimePart = regexp.MustCompile("^[0-5]{1}[0-9]{1}$|^[1-9]{1}$")
 var regexpIsOMname = regexp.MustCompile("^@")
 var regexpIsGridLoc = regexp.MustCompile("^#")
+var regexpIsRst = regexp.MustCompile("^[\\d]{1,3}$")
 
 // ParseLine cuts a FLE line into useful bits
 func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg string){
@@ -58,6 +59,9 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 
 	//Flag telling that we are processing data to the right of the callsign
 	isRightOfCall := false
+
+	//Flag used to know if we are parsing the Sent RST (first) or received RST (second)
+	haveSentRST := false
 
 	//TODO: Make something more intelligent
 	//TODO: What happens if we have partial lines
@@ -92,12 +96,15 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 			if (logLine.RSTsent == "") || (logLine.RSTrcvd == "") {
 				switch logLine.Mode {
 				case "SSB", "AM", "FM" :
+					logLine.ModeType = "PHONE"
 					logLine.RSTsent = "59"
 					logLine.RSTrcvd = "59"
 				case "CW", "RTTY", "PSK":
+					logLine.ModeType = "CW"
 					logLine.RSTsent = "599"
 					logLine.RSTrcvd = "599"
 				case "JT65", "JT9", "JT6M", "JT4", "JT44", "FSK441", "FT8", "ISCAT", "MSK144", "QRA64", "T10", "WSPR" :
+					logLine.ModeType = "DIGITAL"
 					logLine.RSTsent = "-10"
 					logLine.RSTrcvd = "-10"				
 				}
@@ -161,8 +168,41 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 
 		if isRightOfCall {
 			//This is probably a RST
-			//TODO: is it a number (or a data report)
-			//TODO: it is sent or rcvd
+			if regexpIsRst.MatchString(element) {
+				workRST := ""
+				switch len(element) {
+				case 1:
+					if logLine.ModeType == "CW" {
+						workRST = "5" + element + "9"
+					} else { 
+						if logLine.ModeType == "PHONE" {
+							workRST = "5" + element
+						}						
+					}
+				case 2:
+					if logLine.ModeType == "CW" {
+						workRST = element + "9"
+					} else { 
+						if logLine.ModeType == "PHONE" {
+							workRST = element
+						}						
+					}
+				case 3:
+					if logLine.ModeType == "CW" {
+						workRST = element
+					} else {
+						workRST = "*" + element
+						errorMsg = errorMsg + "Invalid report (" + element + ") for " + logLine.ModeType + " mode "
+					}
+				}
+				if haveSentRST {
+					logLine.RSTrcvd = workRST
+				} else {
+					logLine.RSTsent = workRST
+					haveSentRST = true
+				}
+				continue
+			}
 		}
 
 		//If we come here, we could not make sense of what we found
@@ -188,6 +228,7 @@ func SprintLogRecord(logLine LogLine) (output string){
 	output = output + "QslMsg    " + logLine.QslMsg + "\n"
 	output = output + "Nickname  " + logLine.Nickname + "\n"
 	output = output + "Mode      " + logLine.Mode + "\n"
+	output = output + "ModeType  " + logLine.ModeType + "\n"
 	output = output + "Band      " + logLine.Band + "\n"
 	output = output + "  Lower   " + fmt.Sprintf("%f", logLine.BandLowerLimit) + "\n"
 	output = output + "  Upper   " + fmt.Sprintf("%f", logLine.BandLowerLimit) + "\n"
