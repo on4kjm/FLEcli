@@ -6,12 +6,15 @@
 
 ## Test framework
 * [x] enable TDD
-* [ ] automate build and test
-* [ ] type of target (cross compile) ?
+* [x] automate build and test
+* [ ] Improve build processing (cross compile, directory)
+* [ ] Perform the test of the complete app
 
 
 ## Input processing
 * [ ] infer rst
+* [ ] DATE keyword is now optional
+* [ ] New MYGRID keyword
 * [ ] Create the logic to take over from the previous line
 * [ ] Support different date delimiter
 * [ ] Support extrapolated date

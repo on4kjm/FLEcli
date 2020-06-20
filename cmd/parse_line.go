@@ -55,9 +55,10 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 	//TODO: input null protection?
 
 	//Flag telling that we are processing data to the right of the callsign
-	//isRightOfCall := false
+	isRightOfCall := false
 
 	//TODO: Make something more intelligent
+	//TODO: What happens if we have partial lines
 	previousLine.Call = ""
 	previousLine.RSTsent = ""
 	previousLine.RSTrcvd = ""
@@ -116,26 +117,29 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 			callErrorMsg := ""
 			logLine.Call, callErrorMsg = ValidateCall(element)
 			errorMsg = errorMsg + callErrorMsg
-			//isRightOfCall = true
+			isRightOfCall = true
 			continue
 		}
 
 		// Is it a "full" time ?
-		if regexpIsFullTime.MatchString(element) {
-			logLine.Time = element
-			continue
-		}
-
-		// Is it a partial time ?
-		if regexpIsTimePart.MatchString(element) {
-			if logLine.Time == "" {
+		if isRightOfCall == false {
+			if regexpIsFullTime.MatchString(element) {
 				logLine.Time = element
-			} else {
-				goodPart := logLine.Time[:len(logLine.Time)-len(element)]
-				logLine.Time = goodPart + element
+				continue
 			}
-			continue
+
+			// Is it a partial time ?
+			if regexpIsTimePart.MatchString(element) {
+				if logLine.Time == "" {
+					logLine.Time = element
+				} else {
+					goodPart := logLine.Time[:len(logLine.Time)-len(element)]
+					logLine.Time = goodPart + element
+				}
+				continue
+			}
 		}
+		
 
 		// Is it the OM's name (starting with "@")
 		if regexpIsOMname.MatchString(element) {
@@ -148,6 +152,12 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 		if regexpIsGridLoc.MatchString(element) {
 			logLine.GridLoc = strings.TrimLeft(element, "#") 
 			continue
+		}
+
+		if isRightOfCall {
+			//This is probably a RST
+			//TODO: is it a number (or a data report)
+			//TODO: it is sent or rcvd
 		}
 
 		//If we come here, we could not make sense of what we found

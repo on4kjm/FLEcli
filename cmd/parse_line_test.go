@@ -67,6 +67,11 @@ func TestParseLine(t *testing.T) {
 			args{ inputStr: "#grid", previousLine: LogLine{ Mode: "SSB", }}, 
 			LogLine{ GridLoc: "grid", Mode: "SSB",}, "",
 		},
+		{
+			"parse partial RST", 
+			args{ inputStr: "1230 on4kjm 5", previousLine: LogLine{ Mode: "CW", }}, 
+			LogLine{ Call: "ON4KJM", Time: "1230", RSTsent: "559", Mode: "CW",}, "",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
