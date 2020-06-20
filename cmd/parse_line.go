@@ -33,6 +33,8 @@ type LogLine struct {
 	Nickname  string
 	Mode      string
 	Band      string
+	BandLowerLimit float32
+	BandUpperLimit float32
 	Frequency string
 	Time      string
 	Call      string
@@ -107,8 +109,11 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 		}
 
 		// Is it a band?
-		if regexpIsBand.MatchString(element) {
-			logLine.Band = element
+		isBandElement, bandLowerLimit, bandUpperLimit  := IsBand(element) 
+		if isBandElement {
+			logLine.Band = strings.ToLower(element)
+			logLine.BandLowerLimit = bandLowerLimit
+			logLine.BandUpperLimit = bandUpperLimit
 			continue
 		}
 
@@ -184,6 +189,8 @@ func SprintLogRecord(logLine LogLine) (output string){
 	output = output + "Nickname  " + logLine.Nickname + "\n"
 	output = output + "Mode      " + logLine.Mode + "\n"
 	output = output + "Band      " + logLine.Band + "\n"
+	output = output + "  Lower   " + fmt.Sprintf("%f", logLine.BandLowerLimit) + "\n"
+	output = output + "  Upper   " + fmt.Sprintf("%f", logLine.BandLowerLimit) + "\n"
 	output = output + "Frequency " + logLine.Frequency + "\n"
 	output = output + "Time      " + logLine.Time + "\n"
 	output = output + "Call      " + logLine.Call + "\n"
@@ -258,51 +265,3 @@ func lookupMode(lookup string) bool {
 
 
 
-// func lookupBand(lookup string) bool {
-// 	switch lookup {
-// 	case
-// 		"900898296857",
-// 		"900898302052",
-// 		"900898296492",
-// 		"900898296850",
-// 		"900898296703",
-// 		"900898296633",
-// 		"900898296613",
-// 		"900898296615",
-// 		"900898296620",
-// 		"900898296636":
-// 		return true
-// 	}
-// 	return false
-// }
-
-// 2190m	.1357	.1378
-// 630m	.472	.479
-// 560m	.501	.504
-// 160m	1.8	2.0
-// 80m	3.5	4.0
-// 60m	5.06	5.45
-// 40m	7.0	7.3
-// 30m	10.1	10.15
-// 20m	14.0	14.35
-// 17m	18.068	18.168
-// 15m	21.0	21.45
-// 12m	24.890	24.99
-// 10m	28.0	29.7
-// 6m	50	54
-// 4m	70	71
-// 2m	144	148
-// 1.25m	222	225
-// 70cm	420	450
-// 33cm	902	928
-// 23cm	1240	1300
-// 13cm	2300	2450
-// 9cm	3300	3500
-// 6cm	5650	5925
-// 3cm	10000	10500
-// 1.25cm	24000	24250
-// 6mm	47000	47200
-// 4mm	75500	81000
-// 2.5mm	119980	120020
-// 2mm	142000	149000
-// 1mm	241000	250000

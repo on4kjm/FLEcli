@@ -113,3 +113,71 @@ func ValidateDate(inputStr string) (ref, errorMsg string) {
 
 	return wrongInputStr, fmt.Sprint(err)
 }
+
+//IsBand retuns true if the passed input string is a valid string
+//TODO: return the frequencies
+func IsBand(inputStr string) (result bool, lowerLimit, upperLimit float32) {
+	switch strings.ToLower(inputStr) {
+		case "2190m":	
+			return true, 0.1357, 0.1378
+		case "630m":	
+			return true, 0.472,	0.479
+		case "560m":	
+			return true, 0.501,	0.504
+		case "160m":	
+			return true, 1.8, 2.0
+		case "80m":		
+			return true, 3.5, 4.0
+		case "60m":		
+			return true, 5.06, 5.45
+		case "40m":		
+			return true, 7.0, 7.3
+		case "30m":		
+			return true, 10.1, 10.15
+		case "20m":		
+			return true, 14.0, 14.35
+		case "17m":		
+			return true, 18.068, 18.168
+		case "15m":		
+			return true, 21.0, 21.45
+		case "12m":		
+			return true, 24.890, 24.99
+		case "10m":		
+			return true, 28.0, 29.7
+		case "6m":		
+			return true, 50, 54
+		case "4m":		
+			return true, 70, 71
+		case "2m":		
+			return true, 144, 148
+		case "1.25m":	
+			return true, 222, 225
+		case "70cm":	
+			return true, 420, 450
+		case "33cm":	
+			return true, 902, 928
+		case "23cm":	
+			return true, 1240, 1300
+		case "13cm":	
+			return true, 2300, 2450
+		case "9cm":		
+			return true, 3300, 3500
+		case "6cm":		
+			return true, 5650, 5925
+		case "3cm":		
+			return true, 10000, 10500
+		case "1.25cm":	
+			return true, 24000, 24250
+		case "6mm":		
+			return true, 47000, 47200
+		case "4mm":		
+			return true, 75500, 81000
+		case "2.5mm":	
+			return true, 119980, 120020
+		case "2mm":		
+			return true, 142000, 149000
+		case "1mm":		
+			return true, 241000, 250000
+	}
+	return false, 0, 0
+}
