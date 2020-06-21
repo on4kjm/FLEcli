@@ -231,7 +231,7 @@ func SprintLogRecord(logLine LogLine) (output string){
 	output = output + "ModeType  " + logLine.ModeType + "\n"
 	output = output + "Band      " + logLine.Band + "\n"
 	output = output + "  Lower   " + fmt.Sprintf("%f", logLine.BandLowerLimit) + "\n"
-	output = output + "  Upper   " + fmt.Sprintf("%f", logLine.BandLowerLimit) + "\n"
+	output = output + "  Upper   " + fmt.Sprintf("%f", logLine.BandUpperLimit) + "\n"
 	output = output + "Frequency " + logLine.Frequency + "\n"
 	output = output + "Time      " + logLine.Time + "\n"
 	output = output + "Call      " + logLine.Call + "\n"

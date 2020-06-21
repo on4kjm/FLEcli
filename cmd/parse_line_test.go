@@ -110,3 +110,45 @@ func TestParseLine(t *testing.T) {
 		})
 	}
 }
+
+func TestHappyParseLine(t *testing.T) {
+	type args struct {
+		inputStr     string
+		previousLine LogLine
+	}
+	tests := []struct {
+		name         string
+		args         args
+		wantLogLine  LogLine
+		wantErrorMsg string
+	}{
+
+// 4 g3noh <PSE QSL Direct>
+// 2m fm
+// 1227 gw4gte <Dave>
+// 8 gw0tlk/m gwff-0021
+		{
+			"test1", 
+			args{ inputStr: "1202 g4elz", 
+			      previousLine: LogLine{ Mode: "CW", ModeType: "CW", Band: "40m", BandLowerLimit: 7, BandUpperLimit: 7.3}}, 
+			LogLine{ Time: "1202", Call: "G4ELZ", Band: "40m", BandLowerLimit: 7, BandUpperLimit: 7.3, Mode: "CW", ModeType: "CW", RSTsent: "599", RSTrcvd: "599"}, "",
+		},
+		{
+			"test2", 
+			args{ inputStr: "4 g3noh <PSE QSL Direct>", 
+			      previousLine: LogLine{ Time: "1202", Mode: "CW", ModeType: "CW", Band: "40m", BandLowerLimit: 7, BandUpperLimit: 7.3}}, 
+			LogLine{ Time: "1204", Call: "G3NOH", Band: "40m", BandLowerLimit: 7, BandUpperLimit: 7.3, Mode: "CW", ModeType: "CW", Comment: "PSE QSL Direct", RSTsent: "599", RSTrcvd: "599"}, "",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			gotLogLine, gotErrorMsg := ParseLine(tt.args.inputStr, tt.args.previousLine)
+			if !reflect.DeepEqual(gotLogLine, tt.wantLogLine) {
+				t.Errorf("ParseLine() gotLogLine = %v, want %v", gotLogLine, tt.wantLogLine)
+			}
+			if gotErrorMsg != tt.wantErrorMsg {
+				t.Errorf("ParseLine() gotErrorMsg = %v, want %v", gotErrorMsg, tt.wantErrorMsg)
+			}
+		})
+	}
+}
