@@ -92,22 +92,14 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 		//  Is it a mode?
 		if lookupMode( strings.ToUpper(element)) {
 			logLine.Mode = strings.ToUpper(element)
+			//TODO: improve this: what if the band is at the end of the line
 			// Set the default RST depending of the mode
 			if (logLine.RSTsent == "") || (logLine.RSTrcvd == "") {
-				switch logLine.Mode {
-				case "SSB", "AM", "FM" :
-					logLine.ModeType = "PHONE"
-					logLine.RSTsent = "59"
-					logLine.RSTrcvd = "59"
-				case "CW", "RTTY", "PSK":
-					logLine.ModeType = "CW"
-					logLine.RSTsent = "599"
-					logLine.RSTrcvd = "599"
-				case "JT65", "JT9", "JT6M", "JT4", "JT44", "FSK441", "FT8", "ISCAT", "MSK144", "QRA64", "T10", "WSPR" :
-					logLine.ModeType = "DIGITAL"
-					logLine.RSTsent = "-10"
-					logLine.RSTrcvd = "-10"				
-				}
+				// get default RST and Mode category
+				modeType, defaultReport := getDefaultReport(logLine.Mode)
+				logLine.ModeType = modeType
+				logLine.RSTsent = defaultReport
+				logLine.RSTrcvd = defaultReport
 
 			} else {
 				errorMsg = errorMsg + "Double definitiion of RST"
@@ -210,8 +202,16 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 
 	}
 
-	fmt.Println(elements, len(elements))
+	//If no report is present, let's fill it with mode default
+	if logLine.RSTsent == "" {
+		_, logLine.RSTsent = getDefaultReport(logLine.Mode)
+	}
+	if logLine.RSTrcvd == "" {
+		_, logLine.RSTrcvd = getDefaultReport(logLine.Mode)
+	}
 
+	//Debug
+	fmt.Println(elements, len(elements))
 	fmt.Println("\n", SprintLogRecord(logLine))
 
 	return logLine, errorMsg
@@ -245,6 +245,23 @@ func SprintLogRecord(logLine LogLine) (output string){
 	return output
 }
 
+func getDefaultReport(mode string) (modeType, defaultReport string) {
+	modeType = ""
+	defaultReport = ""
+
+	switch mode {
+	case "SSB", "AM", "FM" :
+		modeType = "PHONE"
+		defaultReport = "59"
+	case "CW", "RTTY", "PSK":
+		modeType = "CW"
+		defaultReport = "599"
+	case "JT65", "JT9", "JT6M", "JT4", "JT44", "FSK441", "FT8", "ISCAT", "MSK144", "QRA64", "T10", "WSPR" :
+		modeType = "DIGITAL"
+		defaultReport = "-10"		
+	}
+	return modeType, defaultReport
+}
 
 
 func lookupMode(lookup string) bool {

@@ -25,52 +25,52 @@ func TestParseLine(t *testing.T) {
 		{
 			"Parse for time", 
 			args{ inputStr: "1314 g3noh", previousLine: LogLine{ Mode: "SSB", }}, 
-			LogLine{ Time: "1314", Call: "G3NOH", Mode: "SSB",}, "",
+			LogLine{ Time: "1314", Call: "G3NOH", Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "",
 		},
 		{
 			"Parse partial time - 1", 
 			args{ inputStr: "4 g3noh", previousLine: LogLine{ Time: "", Mode: "SSB", }}, 
-			LogLine{ Time: "4", Call: "G3NOH", Mode: "SSB",}, "", //TODO: should fail
+			LogLine{ Time: "4", Call: "G3NOH", Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "", //TODO: should fail
 		},
 		{
 			"Parse partial time - 2", 
 			args{ inputStr: "15 g3noh", previousLine: LogLine{ Time: "1200", Mode: "SSB", }}, 
-			LogLine{ Time: "1215", Call: "G3NOH", Mode: "SSB",}, "",
+			LogLine{ Time: "1215", Call: "G3NOH", Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "",
 		},
 		{
 			"Parse partial time - 3", 
 			args{ inputStr: "4 g3noh", previousLine: LogLine{ Time: "1200", Mode: "SSB", }}, 
-			LogLine{ Time: "1204", Call: "G3NOH", Mode: "SSB",}, "",
+			LogLine{ Time: "1204", Call: "G3NOH", Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "",
 		},
 		{
 			"Parse for comment", 
 			args{ inputStr: "4 g3noh <PSE QSL Direct>", previousLine: LogLine{ Mode: "SSB", }}, 
-			LogLine{ Time: "4", Comment: "PSE QSL Direct", Call: "G3NOH", Mode: "SSB",}, "",
+			LogLine{ Time: "4", Comment: "PSE QSL Direct", Call: "G3NOH", Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "",
 		},
 		{
 			"Parse for QSL", 
 			args{ inputStr: "g3noh [Custom QSL message]", previousLine: LogLine{ Mode: "SSB", }}, 
-			LogLine{ QSLmsg: "Custom QSL message", Call: "G3NOH", Mode: "SSB",}, "",
+			LogLine{ QSLmsg: "Custom QSL message", Call: "G3NOH", Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "",
 		},
 		{
 			"Wrong mode", 
 			args{ inputStr: "cww", previousLine: LogLine{ Mode: "SSB", }}, 
-			LogLine{ Mode: "SSB",}, "Unable to parse cww ",
+			LogLine{ Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "Unable to parse cww ",
 		},
 		{
 			"Parse OM name", 
 			args{ inputStr: "@Jean", previousLine: LogLine{ Mode: "SSB", }}, 
-			LogLine{ OMname: "Jean", Mode: "SSB",}, "",
+			LogLine{ OMname: "Jean", Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "",
 		},
 		{
 			"Parse Grid locator", 
 			args{ inputStr: "#grid", previousLine: LogLine{ Mode: "SSB", }}, 
-			LogLine{ GridLoc: "grid", Mode: "SSB",}, "",
+			LogLine{ GridLoc: "grid", Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "",
 		},
 		{
 			"parse partial RST (sent) - CW", 
 			args{ inputStr: "1230 on4kjm 5", previousLine: LogLine{ Mode: "CW", ModeType: "CW"}}, 
-			LogLine{ Call: "ON4KJM", Time: "1230", RSTsent: "559", Mode: "CW", ModeType: "CW"}, "",
+			LogLine{ Call: "ON4KJM", Time: "1230", RSTsent: "559", RSTrcvd: "599", Mode: "CW", ModeType: "CW"}, "",
 		},
 		{
 			"parse partial RST (received) - CW", 
@@ -85,7 +85,7 @@ func TestParseLine(t *testing.T) {
 		{
 			"parse partial report (sent) - FM", 
 			args{ inputStr: "1230 on4kjm 5", previousLine: LogLine{ Mode: "FM", ModeType: "PHONE"}}, 
-			LogLine{ Call: "ON4KJM", Time: "1230", RSTsent: "55", Mode: "FM", ModeType: "PHONE"}, "",
+			LogLine{ Call: "ON4KJM", Time: "1230", RSTsent: "55", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE"}, "",
 		},
 		{
 			"parse partial report (received) - FM", 
