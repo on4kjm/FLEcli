@@ -25,4 +25,5 @@
 ## Later 
 * [ ] Process contest reports
 * [ ] Infer digital mode report
+* [ ] add unit test for the DefaultReport validate function
 
