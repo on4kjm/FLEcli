@@ -100,6 +100,8 @@ func loadFile() {
 	var cleanedInput []string
 	var errorLog []string
 
+	var previousLogLine LogLine
+	var fullLog []LogLine
 	
  
 	//Loop through all the stored lined
@@ -227,7 +229,6 @@ func loadFile() {
 			myDateList := regexpHeaderDate.Split(eachline,-1)
 			if(len(myDateList[1]) > 0) {
 				headerDate, errorMsg = ValidateDate(myDateList[1])
-				cleanedInput = append(cleanedInput, fmt.Sprintf("Date: %s", headerDate))
 				if(len(errorMsg) != 0) {
 					errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)",lineCount, myDateList[1], errorMsg))	
 				}
@@ -239,15 +240,43 @@ func loadFile() {
 		// ****
 		// ** Process the data block
 		// ****
-		cleanedInput = append(cleanedInput,eachline)
+		
+		// Load the header values in the previousLogLine
+		previousLogLine.MyCall = headerMyCall
+		previousLogLine.Operator = headerOperator
+		previousLogLine.MyWWFF = headerMyWWFF
+		previousLogLine.MySOTA = headerMySOTA
+		previousLogLine.QSLmsg = headerQslMsg //previousLogLine.QslMsg is redundant
+		previousLogLine.Nickname = headerNickname
+		previousLogLine.Date = headerDate
+
+		//
+		logline, errorLine := ParseLine(eachline, previousLogLine)
+		if logline.Call != "" {
+			fullLog = append(fullLog, logline)
+		}
+		if errorLine != "" {
+			errorLog = append(errorLog, fmt.Sprintf("Parsing error at line %d: %s ",lineCount,errorLine))
+		}
+		previousLogLine = logline
+		//Go back to the top (Continue not necessary)
 
 	}
 
 	//*****
 	//** display results
 	//*****
-	for _, cleanedInputLine := range cleanedInput {
-		fmt.Println(cleanedInputLine)
+	// for _, filledLofLine := range fullLog {
+	// 	fmt.Println(SprintLogRecord(filledLofLine))
+	// }
+	firstLine := true
+	for _, filledLogLine := range fullLog {
+		if firstLine {
+			fmt.Println(SprintHeaderValues(filledLogLine))
+			fmt.Print(SprintColumnTitles(filledLogLine))
+			firstLine = false
+		}
+		fmt.Print(SprintLogInColumn(filledLogLine))
 	}
 
 	if(len(errorLog) != 0){

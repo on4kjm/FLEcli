@@ -22,6 +22,9 @@ import (
 	"fmt"
 )
 
+//TODO: validate a record for minimal values
+
+
 // LogLine is used to store all the data of a single log line
 type LogLine struct {
     Date      string
@@ -233,36 +236,6 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 	fmt.Println("\n", SprintLogRecord(logLine))
 
 	return logLine, errorMsg
-}
-
-// SprintLogRecord outputs the content of a logline
-func SprintLogRecord(logLine LogLine) (output string){
-	output = ""
-	output = output + "Date      " + logLine.Date + "\n"
-	output = output + "MyCall    " + logLine.MyCall + "\n"
-	output = output + "Operator  " + logLine.Operator + "\n"
-	output = output + "MyWWFF    " + logLine.MyWWFF + "\n"
-	output = output + "MySOTA    " + logLine.MySOTA + "\n"
-	output = output + "QslMsg    " + logLine.QslMsg + "\n"
-	output = output + "Nickname  " + logLine.Nickname + "\n"
-	output = output + "Mode      " + logLine.Mode + "\n"
-	output = output + "ModeType  " + logLine.ModeType + "\n"
-	output = output + "Band      " + logLine.Band + "\n"
-	output = output + "  Lower   " + fmt.Sprintf("%f", logLine.BandLowerLimit) + "\n"
-	output = output + "  Upper   " + fmt.Sprintf("%f", logLine.BandUpperLimit) + "\n"
-	output = output + "Frequency " + logLine.Frequency + "\n"
-	output = output + "Time      " + logLine.Time + "\n"
-	output = output + "Call      " + logLine.Call + "\n"
-	output = output + "Comment   " + logLine.Comment + "\n"
-	output = output + "QSLmsg    " + logLine.QSLmsg + "\n"
-	output = output + "OMname    " + logLine.OMname + "\n"
-	output = output + "GridLoc   " + logLine.GridLoc + "\n"
-	output = output + "RSTsent   " + logLine.RSTsent + "\n"
-	output = output + "RSTrcvd   " + logLine.RSTrcvd + "\n"
-	output = output + "SOTA      " + logLine.SOTA + "\n"
-	output = output + "WWFF      " + logLine.WWFF + "\n"
-
-	return output
 }
 
 
