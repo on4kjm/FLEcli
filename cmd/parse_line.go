@@ -45,6 +45,8 @@ type LogLine struct {
 	GridLoc   string
 	RSTsent   string
 	RSTrcvd   string
+	WWFF      string
+	SOTA      string
 }
 
 var regexpIsFullTime = regexp.MustCompile("^[0-2]{1}[0-9]{3}$")
@@ -68,6 +70,8 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 	previousLine.Call = ""
 	previousLine.RSTsent = ""
 	previousLine.RSTrcvd = ""
+	previousLine.SOTA = ""
+	previousLine.WWFF = ""
 	logLine = previousLine
 
 	//TODO: what happens when we have <> or when there are multiple comments
@@ -195,6 +199,20 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 				}
 				continue
 			}
+
+			// Is it a WWFF to WWFF reference?
+			workRef, wwffErr := ValidateWwff(element) 
+			if wwffErr == "" {
+				logLine.WWFF = workRef
+				continue
+			}
+
+			// Is it a WWFF to WWFF reference?
+			workRef, sotaErr := ValidateSota(element) 
+			if sotaErr == "" {
+				logLine.SOTA = workRef
+				continue
+			}
 		}
 
 		//If we come here, we could not make sense of what we found
@@ -241,26 +259,10 @@ func SprintLogRecord(logLine LogLine) (output string){
 	output = output + "GridLoc   " + logLine.GridLoc + "\n"
 	output = output + "RSTsent   " + logLine.RSTsent + "\n"
 	output = output + "RSTrcvd   " + logLine.RSTrcvd + "\n"
+	output = output + "SOTA      " + logLine.SOTA + "\n"
+	output = output + "WWFF      " + logLine.WWFF + "\n"
 
 	return output
-}
-
-func getDefaultReport(mode string) (modeType, defaultReport string) {
-	modeType = ""
-	defaultReport = ""
-
-	switch mode {
-	case "SSB", "AM", "FM" :
-		modeType = "PHONE"
-		defaultReport = "59"
-	case "CW", "RTTY", "PSK":
-		modeType = "CW"
-		defaultReport = "599"
-	case "JT65", "JT9", "JT6M", "JT4", "JT44", "FSK441", "FT8", "ISCAT", "MSK144", "QRA64", "T10", "WSPR" :
-		modeType = "DIGITAL"
-		defaultReport = "-10"		
-	}
-	return modeType, defaultReport
 }
 
 

@@ -122,11 +122,6 @@ func TestHappyParseLine(t *testing.T) {
 		wantLogLine  LogLine
 		wantErrorMsg string
 	}{
-
-// 4 g3noh <PSE QSL Direct>
-// 2m fm
-// 1227 gw4gte <Dave>
-// 8 gw0tlk/m gwff-0021
 		{
 			"test1", 
 			args{ inputStr: "1202 g4elz", 
@@ -138,6 +133,24 @@ func TestHappyParseLine(t *testing.T) {
 			args{ inputStr: "4 g3noh <PSE QSL Direct>", 
 			      previousLine: LogLine{ Time: "1202", Mode: "CW", ModeType: "CW", Band: "40m", BandLowerLimit: 7, BandUpperLimit: 7.3}}, 
 			LogLine{ Time: "1204", Call: "G3NOH", Band: "40m", BandLowerLimit: 7, BandUpperLimit: 7.3, Mode: "CW", ModeType: "CW", Comment: "PSE QSL Direct", RSTsent: "599", RSTrcvd: "599"}, "",
+		},
+		{
+			"test3", 
+			args{ inputStr: "1227 gw4gte <Dave>", 
+			      previousLine: LogLine{ Time: "1202", Mode: "FM", ModeType: "PHONE", Band: "2m", BandLowerLimit: 144, BandUpperLimit: 148}}, 
+			LogLine{ Time: "1227", Call: "GW4GTE", Band: "2m", BandLowerLimit: 144, BandUpperLimit: 148, Mode: "FM", ModeType: "PHONE", Comment: "Dave", RSTsent: "59", RSTrcvd: "59"}, "",
+		},
+		{
+			"test4", 
+			args{ inputStr: "8 gw0tlk/m gwff-0021", 
+			      previousLine: LogLine{ Time: "1227", Mode: "FM", ModeType: "PHONE", Band: "2m", BandLowerLimit: 144, BandUpperLimit: 148}}, 
+			LogLine{ Time: "1228", Call: "GW0TLK/M", Band: "2m", BandLowerLimit: 144, BandUpperLimit: 148, Mode: "FM", ModeType: "PHONE", WWFF: "GWFF-0021", RSTsent: "59", RSTrcvd: "59"}, "",
+		},
+		{
+			"test5", 
+			args{ inputStr: "7 dl0dan/p dlff-0002 dl/al-044", 
+			      previousLine: LogLine{ Time: "1220", Mode: "FM", ModeType: "PHONE", Band: "2m", BandLowerLimit: 144, BandUpperLimit: 148}}, 
+			LogLine{ Time: "1227", Call: "DL0DAN/P", Band: "2m", BandLowerLimit: 144, BandUpperLimit: 148, Mode: "FM", ModeType: "PHONE", WWFF: "DLFF-0002", SOTA: "DL/AL-044", RSTsent: "59", RSTrcvd: "59"}, "",
 		},
 	}
 	for _, tt := range tests {

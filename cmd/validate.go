@@ -115,7 +115,6 @@ func ValidateDate(inputStr string) (ref, errorMsg string) {
 }
 
 //IsBand retuns true if the passed input string is a valid string
-//TODO: return the frequencies
 func IsBand(inputStr string) (result bool, lowerLimit, upperLimit float32) {
 	switch strings.ToLower(inputStr) {
 		case "2190m":	
@@ -180,4 +179,23 @@ func IsBand(inputStr string) (result bool, lowerLimit, upperLimit float32) {
 			return true, 241000, 250000
 	}
 	return false, 0, 0
+}
+
+
+func getDefaultReport(mode string) (modeType, defaultReport string) {
+	modeType = ""
+	defaultReport = ""
+
+	switch mode {
+	case "SSB", "AM", "FM" :
+		modeType = "PHONE"
+		defaultReport = "59"
+	case "CW", "RTTY", "PSK":
+		modeType = "CW"
+		defaultReport = "599"
+	case "JT65", "JT9", "JT6M", "JT4", "JT44", "FSK441", "FT8", "ISCAT", "MSK144", "QRA64", "T10", "WSPR" :
+		modeType = "DIGITAL"
+		defaultReport = "-10"		
+	}
+	return modeType, defaultReport
 }
