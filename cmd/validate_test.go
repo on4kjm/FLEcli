@@ -274,8 +274,8 @@ func TestIsBand(t *testing.T) {
 		name           string
 		args           args
 		wantResult     bool
-		wantLowerLimit float32
-		wantUpperLimit float32
+		wantLowerLimit float64
+		wantUpperLimit float64
 	}{
 		{
 			"invalid band",

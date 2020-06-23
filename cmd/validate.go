@@ -115,7 +115,7 @@ func ValidateDate(inputStr string) (ref, errorMsg string) {
 }
 
 //IsBand retuns true if the passed input string is a valid string
-func IsBand(inputStr string) (result bool, lowerLimit, upperLimit float32) {
+func IsBand(inputStr string) (result bool, lowerLimit, upperLimit float64) {
 	switch strings.ToLower(inputStr) {
 		case "2190m":	
 			return true, 0.1357, 0.1378

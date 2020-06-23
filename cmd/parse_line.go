@@ -17,8 +17,11 @@ limitations under the License.
 
 
 import (
+	"fmt"
 	"regexp"
+	"strconv"
 	"strings"
+	//"fmt"
 )
 
 //TODO: validate a record for minimal values
@@ -36,8 +39,8 @@ type LogLine struct {
 	Mode      string
 	ModeType  string
 	Band      string
-	BandLowerLimit float32
-	BandUpperLimit float32
+	BandLowerLimit float64
+	BandUpperLimit float64
 	Frequency string
 	Time      string
 	Call      string
@@ -56,7 +59,7 @@ var regexpIsTimePart = regexp.MustCompile("^[0-5]{1}[0-9]{1}$|^[1-9]{1}$")
 var regexpIsOMname = regexp.MustCompile("^@")
 var regexpIsGridLoc = regexp.MustCompile("^#")
 var regexpIsRst = regexp.MustCompile("^[\\d]{1,3}$")
-var regexpIsFreq = regexp.MustCompile("^[\\d]+.[\\d]+$")
+var regexpIsFreq = regexp.MustCompile("^[\\d]+\\.[\\d]+$")
 
 // ParseLine cuts a FLE line into useful bits
 func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg string){
@@ -126,11 +129,18 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 
 		// Is it a Frequency?
 		if regexpIsFreq.MatchString(element) {
-			//TODO: check if we are in the band limits (is a band defined?)
-			//TODO: how do we handle/report errors
-			//TODO: take only 3 decimal digits
-			//TODO: update the column display
-			logLine.Frequency = element
+			var qrg float64
+			qrg,_ = strconv.ParseFloat(element, 32)
+			if (logLine.BandLowerLimit != 0.0) && (logLine.BandUpperLimit != 0.0){
+				if (qrg >= logLine.BandLowerLimit) && (qrg <= logLine.BandUpperLimit) {
+					logLine.Frequency = fmt.Sprintf("%.3f",qrg)
+				} else {
+					logLine.Frequency = ""
+					errorMsg = errorMsg + " Frequency " + element + " is invalid for " + logLine.Band + " band"
+				}
+			} else {
+				errorMsg = errorMsg + " Unable to load frequency " + element + ": no band defined."
+			}
 			continue
 		}
 
@@ -241,6 +251,9 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 	if logLine.RSTrcvd == "" {
 		_, logLine.RSTrcvd = getDefaultReport(logLine.Mode)
 	}
+
+	//For debug purposes
+	//fmt.Println("\n", SprintLogRecord(logLine))
 
 	return logLine, errorMsg
 }

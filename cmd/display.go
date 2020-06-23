@@ -82,6 +82,9 @@ func SprintColumnTitles(logLine LogLine) (output string){
 // SprintLogInColumn displays the logLine in column mode
 func SprintLogInColumn(logLine LogLine) (output string){
 	notes := ""
+	if logLine.Frequency != "" {
+		notes = notes + "QRG: " + logLine.Frequency + " "
+	}
 	if logLine.Comment != "" {
 		notes = notes + "[" + logLine.Comment + "] "
 	}

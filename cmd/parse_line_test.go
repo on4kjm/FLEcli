@@ -69,8 +69,13 @@ func TestParseLine(t *testing.T) {
 		},
 		{
 			"Parse frequency", 
-			args{ inputStr: "14.453 on4kjm", previousLine: LogLine{ Mode: "SSB", Band: "20m"}}, 
-			LogLine{ Band: "20m", Frequency: "14.453", Call: "ON4KJM" ,Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "",
+			args{ inputStr: "14.153 on4kjm", previousLine: LogLine{ Mode: "SSB", Band: "20m", BandLowerLimit: 14.0, BandUpperLimit:  14.35}}, 
+			LogLine{ Band: "20m", BandLowerLimit: 14.0, BandUpperLimit:  14.35, Frequency: "14.153", Call: "ON4KJM" ,Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "",
+		},
+		{
+			"Parse frequency out of limit", 
+			args{ inputStr: "14.453 on4kjm", previousLine: LogLine{ Mode: "SSB", Band: "20m", BandLowerLimit: 14.0, BandUpperLimit:  14.35}}, 
+			LogLine{ Band: "20m", BandLowerLimit: 14.0, BandUpperLimit:  14.35, Call: "ON4KJM" ,Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, " Frequency 14.453 is invalid for 20m band",
 		},
 		{
 			"parse partial RST (sent) - CW", 
