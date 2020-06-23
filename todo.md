@@ -2,17 +2,15 @@
 
 ## Input protocol
 * [ ] document input protocol
-* [ ] document protocol as regexp
 
 ## Test framework
-* [x] enable TDD
-* [x] automate build and test
-* [ ] Improve build processing (cross compile, directory)
 * [ ] Perform the test of the complete app
+* [ ] Improve build processing (cross compile, directory)
+
 
 
 ## Input processing
-* [ ] infer RST
+* [x] infer RST
 * [ ] DATE keyword is now optional
 * [ ] New MYGRID keyword
 * [ ] Create the logic to take over from the previous line

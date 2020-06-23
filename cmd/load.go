@@ -280,7 +280,7 @@ func loadFile() {
 	}
 
 	if(len(errorLog) != 0){
-		fmt.Println("\nParsing errors:")
+		fmt.Println("\nProcessing errors:")
 		for _, errorLogLine := range errorLog {
 			fmt.Println(errorLogLine)
 		}

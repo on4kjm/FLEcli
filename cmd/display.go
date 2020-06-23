@@ -58,8 +58,14 @@ func SprintHeaderValues(logLine LogLine) (output string){
 	}
 	output = output + "\n"
 
-	output = output + "MyWWFF    " + logLine.MyWWFF + "\n"
-	output = output + "MySOTA    " + logLine.MySOTA + "\n"
+	if logLine.MyWWFF != "" {
+		output = output + "MyWWFF    " + logLine.MyWWFF + "\n"
+	}
+
+	if logLine.MySOTA != "" {
+		output = output + "MySOTA    " + logLine.MySOTA + "\n"
+	}
+
 
 	return output
 }
