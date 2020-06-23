@@ -13,14 +13,14 @@ date 2020-05-24
 20 iw3iee
 25 oe7hhw 5 9
 37 ol90crk 5 9
-14.047 42 oe6jtd 3 9 Name Joe, qth Gratz
+14.047 42 oe6jtd 3 9 <Name Joe, QTH Gratz>
 14.060 1405 hb9fbg/qrp 5 9
 
 30m cw
 10.124 1415 hb9ijc 8 9
 25 f6acv 7 9
 27 dl5sfc/p 5 5
-29 dl6ta 449 5 qrpp
+29 dl6ta 449 5 <qrpp>
 pa1tt
 35 ik4gbu 5 9
 38 oh6mps

@@ -64,7 +64,7 @@ func SprintHeaderValues(logLine LogLine) (output string){
 	return output
 }
 // Date, Time, band, mode, call, report sent, report rcvd, Notes
-var logLineFormat = "%10s %4s %4s %4s %10s %4s %4s %s \n"
+var logLineFormat = "%-10s %-4s %-4s %-4s %-10s %-4s %-4s %s \n"
 
 // SprintColumnTitles displays the column titles for a log line
 func SprintColumnTitles(logLine LogLine) (output string){

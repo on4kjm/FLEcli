@@ -19,7 +19,6 @@ limitations under the License.
 import (
 	"regexp"
 	"strings"
-	"fmt"
 )
 
 //TODO: validate a record for minimal values
@@ -75,6 +74,9 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 	previousLine.RSTrcvd = ""
 	previousLine.SOTA = ""
 	previousLine.WWFF = ""
+	previousLine.OMname = ""
+	previousLine.GridLoc = ""
+	previousLine.Comment = ""
 	logLine = previousLine
 
 	//TODO: what happens when we have <> or when there are multiple comments
@@ -82,13 +84,11 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 	comment,inputStr := getBraketedData(inputStr, COMMENT)
 	if comment != "" {
 		logLine.Comment = comment
-		fmt.Println("Cleaned input string: ", inputStr)
 	}
 
 	QSLmsg,inputStr := getBraketedData(inputStr, QSL)
 	if QSLmsg != "" {
 		logLine.QSLmsg = QSLmsg
-		fmt.Println("Cleaned input string: ", inputStr)
 	}
 
 
@@ -230,10 +230,6 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 	if logLine.RSTrcvd == "" {
 		_, logLine.RSTrcvd = getDefaultReport(logLine.Mode)
 	}
-
-	//Debug
-	fmt.Println(elements, len(elements))
-	fmt.Println("\n", SprintLogRecord(logLine))
 
 	return logLine, errorMsg
 }
