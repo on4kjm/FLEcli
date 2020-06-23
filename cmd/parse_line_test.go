@@ -68,6 +68,11 @@ func TestParseLine(t *testing.T) {
 			LogLine{ GridLoc: "grid", Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "",
 		},
 		{
+			"Parse frequency", 
+			args{ inputStr: "14.453 on4kjm", previousLine: LogLine{ Mode: "SSB", Band: "20m"}}, 
+			LogLine{ Band: "20m", Frequency: "14.453", Call: "ON4KJM" ,Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "",
+		},
+		{
 			"parse partial RST (sent) - CW", 
 			args{ inputStr: "1230 on4kjm 5", previousLine: LogLine{ Mode: "CW", ModeType: "CW"}}, 
 			LogLine{ Call: "ON4KJM", Time: "1230", RSTsent: "559", RSTrcvd: "599", Mode: "CW", ModeType: "CW"}, "",

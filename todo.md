@@ -11,14 +11,15 @@
 
 ## Input processing
 * [x] infer RST
+* [x] Create the logic to take over from the previous line
+* [ ] decode and check frequency 
 * [ ] DATE keyword is now optional
 * [ ] New MYGRID keyword
-* [ ] Create the logic to take over from the previous line
 * [ ] Support different date delimiter
 * [ ] Support extrapolated date
 * [ ] Support date not prefixed by "date" (non header mode)
 * [ ] Support date increment
-* [ ] decode and check frequency 
+
 
 ## Later 
 * [ ] Process contest reports

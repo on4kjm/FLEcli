@@ -56,6 +56,7 @@ var regexpIsTimePart = regexp.MustCompile("^[0-5]{1}[0-9]{1}$|^[1-9]{1}$")
 var regexpIsOMname = regexp.MustCompile("^@")
 var regexpIsGridLoc = regexp.MustCompile("^#")
 var regexpIsRst = regexp.MustCompile("^[\\d]{1,3}$")
+var regexpIsFreq = regexp.MustCompile("^[\\d]+.[\\d]+$")
 
 // ParseLine cuts a FLE line into useful bits
 func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg string){
@@ -120,6 +121,16 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 			logLine.Band = strings.ToLower(element)
 			logLine.BandLowerLimit = bandLowerLimit
 			logLine.BandUpperLimit = bandUpperLimit
+			continue
+		}
+
+		// Is it a Frequency?
+		if regexpIsFreq.MatchString(element) {
+			//TODO: check if we are in the band limits (is a band defined?)
+			//TODO: how do we handle/report errors
+			//TODO: take only 3 decimal digits
+			//TODO: update the column display
+			logLine.Frequency = element
 			continue
 		}
 
