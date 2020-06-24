@@ -20,8 +20,8 @@
 * [ ] Support date increment
 
 ## Output processing
-* [ ] Standard ADIF output
 * [ ] WWFF ADIF output
+* [ ] Standard ADIF output
 * [ ] SOTA ADIF
 * [ ] SOTA CSV
 
