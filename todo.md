@@ -12,14 +12,18 @@
 ## Input processing
 * [x] infer RST
 * [x] Create the logic to take over from the previous line
-* [ ] decode and check frequency 
-* [ ] DATE keyword is now optional
+* [x] decode and check frequency 
 * [ ] New MYGRID keyword
 * [ ] Support different date delimiter
 * [ ] Support extrapolated date
-* [ ] Support date not prefixed by "date" (non header mode)
+* [ ] Support date not prefixed by "date" (non header mode) DATE keyword is now optional
 * [ ] Support date increment
 
+## Output processing
+* [ ] Standard ADIF output
+* [ ] WWFF ADIF output
+* [ ] SOTA ADIF
+* [ ] SOTA CSV
 
 ## Later 
 * [ ] Process contest reports
