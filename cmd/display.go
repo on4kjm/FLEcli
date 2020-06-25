@@ -1,4 +1,5 @@
 package cmd
+
 /*
 Copyright © 2020 Jean-Marc Meessen, ON4KJM <on4kjm@gmail.com>
 
@@ -19,7 +20,7 @@ import (
 )
 
 // SprintLogRecord outputs the content of a logline
-func SprintLogRecord(logLine LogLine) (output string){
+func SprintLogRecord(logLine LogLine) (output string) {
 	output = ""
 	output = output + "Date      " + logLine.Date + "\n"
 	output = output + "MyCall    " + logLine.MyCall + "\n"
@@ -49,10 +50,10 @@ func SprintLogRecord(logLine LogLine) (output string){
 }
 
 // SprintHeaderValues displays the header values
-func SprintHeaderValues(logLine LogLine) (output string){
+func SprintHeaderValues(logLine LogLine) (output string) {
 	output = ""
 
-	output = output + "MyCall    " + logLine.MyCall 
+	output = output + "MyCall    " + logLine.MyCall
 	if logLine.Operator != "" {
 		output = output + " (" + logLine.Operator + ")"
 	}
@@ -66,21 +67,21 @@ func SprintHeaderValues(logLine LogLine) (output string){
 		output = output + "MySOTA    " + logLine.MySOTA + "\n"
 	}
 
-
 	return output
 }
+
 // Date, Time, band, mode, call, report sent, report rcvd, Notes
 var logLineFormat = "%-10s %-4s %-4s %-4s %-10s %-4s %-4s %s \n"
 
 // SprintColumnTitles displays the column titles for a log line
-func SprintColumnTitles(logLine LogLine) (output string){
+func SprintColumnTitles(logLine LogLine) (output string) {
 	output = fmt.Sprintf(logLineFormat, "Date", "Time", "Band", "Mode", "Call", "Sent", "Rcvd", "Notes")
 	output = output + fmt.Sprintf(logLineFormat, "----", "----", "----", "----", "----", "----", "----", "----")
 	return output
 }
 
 // SprintLogInColumn displays the logLine in column mode
-func SprintLogInColumn(logLine LogLine) (output string){
+func SprintLogInColumn(logLine LogLine) (output string) {
 	notes := ""
 	if logLine.Frequency != "" {
 		notes = notes + "QRG: " + logLine.Frequency + " "

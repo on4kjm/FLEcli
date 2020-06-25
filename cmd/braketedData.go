@@ -1,4 +1,5 @@
 package cmd
+
 /*
 Copyright © 2020 Jean-Marc Meessen, ON4KJM <on4kjm@gmail.com>
 
@@ -24,8 +25,8 @@ type BraketType int
 
 //Enumeration of the valid Bracket Types
 const (
-    COMMENT BraketType = iota
-    QSL
+	COMMENT BraketType = iota
+	QSL
 )
 
 func getBraketedData(inputLine string, braketType BraketType) (braketedData, cleanedLine string) {
@@ -37,26 +38,26 @@ func getBraketedData(inputLine string, braketType BraketType) (braketedData, cle
 	if braketType == COMMENT {
 		a = "<"
 		b = ">"
-	} 
+	}
 	if braketType == QSL {
 		a = "["
 		b = "]"
-	} 	
+	}
 
-    posFirst := strings.Index(inputLine, a)
-    if posFirst == -1 {
-        return "",inputLine
-    }
-    posLast := strings.Index(inputLine, b)
-    if posLast == -1 {
-        return "",inputLine
-    }
-    posFirstAdjusted := posFirst + 1
-    if posFirstAdjusted > posLast {
-        return "",inputLine
+	posFirst := strings.Index(inputLine, a)
+	if posFirst == -1 {
+		return "", inputLine
+	}
+	posLast := strings.Index(inputLine, b)
+	if posLast == -1 {
+		return "", inputLine
+	}
+	posFirstAdjusted := posFirst + 1
+	if posFirstAdjusted > posLast {
+		return "", inputLine
 	}
 
 	braketedData = inputLine[posFirstAdjusted:posLast]
-	cleanedLine = strings.Replace(inputLine, a + braketedData + b, "",1)
-    return braketedData, cleanedLine
+	cleanedLine = strings.Replace(inputLine, a+braketedData+b, "", 1)
+	return braketedData, cleanedLine
 }

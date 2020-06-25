@@ -1,4 +1,5 @@
 package cmd
+
 /*
 Copyright © 2020 Jean-Marc Meessen, ON4KJM <on4kjm@gmail.com>
 
@@ -15,7 +16,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-
 import (
 	"fmt"
 	"regexp"
@@ -26,32 +26,31 @@ import (
 
 //TODO: validate a record for minimal values
 
-
 // LogLine is used to store all the data of a single log line
 type LogLine struct {
-    Date      string
-	MyCall    string
-	Operator  string
-	MyWWFF    string
-	MySOTA    string
-	QslMsg    string
-	Nickname  string
-	Mode      string
-	ModeType  string
-	Band      string
+	Date           string
+	MyCall         string
+	Operator       string
+	MyWWFF         string
+	MySOTA         string
+	QslMsg         string
+	Nickname       string
+	Mode           string
+	ModeType       string
+	Band           string
 	BandLowerLimit float64
 	BandUpperLimit float64
-	Frequency string
-	Time      string
-	Call      string
-	Comment   string
-	QSLmsg    string
-	OMname    string
-	GridLoc   string
-	RSTsent   string
-	RSTrcvd   string
-	WWFF      string
-	SOTA      string
+	Frequency      string
+	Time           string
+	Call           string
+	Comment        string
+	QSLmsg         string
+	OMname         string
+	GridLoc        string
+	RSTsent        string
+	RSTrcvd        string
+	WWFF           string
+	SOTA           string
 }
 
 var regexpIsFullTime = regexp.MustCompile("^[0-2]{1}[0-9]{3}$")
@@ -62,7 +61,7 @@ var regexpIsRst = regexp.MustCompile("^[\\d]{1,3}$")
 var regexpIsFreq = regexp.MustCompile("^[\\d]+\\.[\\d]+$")
 
 // ParseLine cuts a FLE line into useful bits
-func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg string){
+func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg string) {
 	//TODO: input null protection?
 
 	//Flag telling that we are processing data to the right of the callsign
@@ -85,23 +84,22 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 
 	//TODO: what happens when we have <> or when there are multiple comments
 	//TODO: Refactor this! it is ugly
-	comment,inputStr := getBraketedData(inputStr, COMMENT)
+	comment, inputStr := getBraketedData(inputStr, COMMENT)
 	if comment != "" {
 		logLine.Comment = comment
 	}
 
-	QSLmsg,inputStr := getBraketedData(inputStr, QSL)
+	QSLmsg, inputStr := getBraketedData(inputStr, QSL)
 	if QSLmsg != "" {
 		logLine.QSLmsg = QSLmsg
 	}
-
 
 	elements := strings.Fields(inputStr)
 
 	for _, element := range elements {
 
 		//  Is it a mode?
-		if lookupMode( strings.ToUpper(element)) {
+		if lookupMode(strings.ToUpper(element)) {
 			logLine.Mode = strings.ToUpper(element)
 			//TODO: improve this: what if the band is at the end of the line
 			// Set the default RST depending of the mode
@@ -119,7 +117,7 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 		}
 
 		// Is it a band?
-		isBandElement, bandLowerLimit, bandUpperLimit  := IsBand(element) 
+		isBandElement, bandLowerLimit, bandUpperLimit := IsBand(element)
 		if isBandElement {
 			logLine.Band = strings.ToLower(element)
 			logLine.BandLowerLimit = bandLowerLimit
@@ -130,10 +128,10 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 		// Is it a Frequency?
 		if regexpIsFreq.MatchString(element) {
 			var qrg float64
-			qrg,_ = strconv.ParseFloat(element, 32)
-			if (logLine.BandLowerLimit != 0.0) && (logLine.BandUpperLimit != 0.0){
+			qrg, _ = strconv.ParseFloat(element, 32)
+			if (logLine.BandLowerLimit != 0.0) && (logLine.BandUpperLimit != 0.0) {
 				if (qrg >= logLine.BandLowerLimit) && (qrg <= logLine.BandUpperLimit) {
-					logLine.Frequency = fmt.Sprintf("%.3f",qrg)
+					logLine.Frequency = fmt.Sprintf("%.3f", qrg)
 				} else {
 					logLine.Frequency = ""
 					errorMsg = errorMsg + " Frequency " + element + " is invalid for " + logLine.Band + " band"
@@ -171,18 +169,16 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 				continue
 			}
 		}
-		
 
 		// Is it the OM's name (starting with "@")
 		if regexpIsOMname.MatchString(element) {
-			logLine.OMname = strings.TrimLeft(element, "@") 
+			logLine.OMname = strings.TrimLeft(element, "@")
 			continue
 		}
 
-
 		// Is it the Grid Locator (starting with "#")
 		if regexpIsGridLoc.MatchString(element) {
-			logLine.GridLoc = strings.TrimLeft(element, "#") 
+			logLine.GridLoc = strings.TrimLeft(element, "#")
 			continue
 		}
 
@@ -194,18 +190,18 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 				case 1:
 					if logLine.ModeType == "CW" {
 						workRST = "5" + element + "9"
-					} else { 
+					} else {
 						if logLine.ModeType == "PHONE" {
 							workRST = "5" + element
-						}						
+						}
 					}
 				case 2:
 					if logLine.ModeType == "CW" {
 						workRST = element + "9"
-					} else { 
+					} else {
 						if logLine.ModeType == "PHONE" {
 							workRST = element
-						}						
+						}
 					}
 				case 3:
 					if logLine.ModeType == "CW" {
@@ -225,14 +221,14 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 			}
 
 			// Is it a WWFF to WWFF reference?
-			workRef, wwffErr := ValidateWwff(element) 
+			workRef, wwffErr := ValidateWwff(element)
 			if wwffErr == "" {
 				logLine.WWFF = workRef
 				continue
 			}
 
 			// Is it a WWFF to WWFF reference?
-			workRef, sotaErr := ValidateSota(element) 
+			workRef, sotaErr := ValidateSota(element)
 			if sotaErr == "" {
 				logLine.SOTA = workRef
 				continue
@@ -258,15 +254,14 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 	return logLine, errorMsg
 }
 
-
 func lookupMode(lookup string) bool {
 	switch lookup {
 	case
-		"CW", 
-		"SSB", 
+		"CW",
+		"SSB",
 		"AM",
 		"FM",
-		"RTTY", 
+		"RTTY",
 		"FT8",
 		"PSK",
 		"JT65",
@@ -310,11 +305,8 @@ func lookupMode(lookup string) bool {
 		"V4",
 		"VOI",
 		"WINMOR",
-		"WSPR":	
+		"WSPR":
 		return true
 	}
 	return false
 }
-
-
-
