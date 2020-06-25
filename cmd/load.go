@@ -72,6 +72,10 @@ func loadFile() {
 		txtlines = append(txtlines, scanner.Text())
 	}
 
+    if error := scanner.Err(); error != nil {
+        log.Fatal(error)
+    }
+
 	file.Close()
 
 	regexpLineComment, _ := regexp.Compile("^#")
