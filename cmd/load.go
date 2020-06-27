@@ -29,7 +29,7 @@ import (
 // loadCmd represents the load command
 var loadCmd = &cobra.Command{
 	Use:   "load",
-	Short: "Loads and validates a FLE type logfile",
+	Short: "Loads and validates a FLE type shorthand logfile",
 	// 	Long: `A longer description that spans multiple lines and likely contains examples
 	// and usage of using your command. For example:
 
