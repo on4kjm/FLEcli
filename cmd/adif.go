@@ -17,11 +17,9 @@ limitations under the License.
 */
 
 import (
-
 	"fmt"
 	"github.com/spf13/cobra"
-//	"log"
-
+	//	"log"
 	//"strings"
 )
 
@@ -34,7 +32,7 @@ var adifCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("adif called")
-		fmt.Println("Inputfile: ",inputFilename)
+		fmt.Println("Inputfile: ", inputFilename)
 		loadFile()
 	},
 }
