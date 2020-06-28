@@ -66,8 +66,8 @@ func init() {
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.FLEcli.yaml)")
 
-	rootCmd.PersistentFlags().StringVarP(&inputFilename, "input", "i", "", "FLE formatted input file")
-	rootCmd.MarkFlagRequired("input")
+	rootCmd.PersistentFlags().StringVarP(&inputFilename, "input", "i", "", "FLE formatted input file (mandatory)")
+	rootCmd.MarkPersistentFlagRequired("input")
 }
 
 // initConfig reads in config file and ENV variables if set.

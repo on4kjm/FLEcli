@@ -53,9 +53,24 @@ func Test_buildOutputFilename(t *testing.T) {
 			"", false,
 		},
 		{
-			"Output exisit but no overwrite",
+			"Output exist but no overwrite",
 			args{input: "a file", output: testFile, overwrite: false},
 			"", false,
+		},
+		{
+			"no output, input provided with extention",
+			args{input: "/test/data/file.txt", output: "", overwrite: false},
+			"/test/data/file.adi", true,
+		},
+		{
+			"no output, input provided without extention",
+			args{input: "/test/data/file", output: "", overwrite: false},
+			"/test/data/file.adi", true,
+		},
+		{
+			"no output, input provided, enfing with a point",
+			args{input: "/test/data/file.", output: "", overwrite: false},
+			"/test/data/file.adi", true,
 		},
 	}
 

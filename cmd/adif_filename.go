@@ -20,6 +20,7 @@ import (
 	"os"
 	//"log"
 	"fmt"
+	"path/filepath"
 )
 
 // does the target file exist?
@@ -33,6 +34,14 @@ func buildOutputFilename(output string, input string, overwrite bool) (outputFil
 	//validate that input is populated (should never happen if properly called)
 	if input == "" {
 		return "", false
+	}
+
+	//No output was provided, let's create one from the input file
+	if output == "" {
+		extension := filepath.Ext(input)
+		outputRootPart := input[0:len(input)-len(extension)]
+		output = outputRootPart + ".adi"
+		fmt.Println("No output provided, defaulting to \""+output+ "\"" )
 	}
 
 	//an output was provided by the user
@@ -53,9 +62,6 @@ func buildOutputFilename(output string, input string, overwrite bool) (outputFil
 		return "", false
 	}
 
-	//if output is not null, check if file exits
-	//if it exists, check the flag
-	//if output
 	return outputFilename, true
 }
 
