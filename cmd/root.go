@@ -35,6 +35,7 @@ import (
 var cfgFile string
 var inputFilename string
 
+
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:              "FLEcli",
@@ -65,7 +66,8 @@ func init() {
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.FLEcli.yaml)")
 
-	rootCmd.PersistentFlags().StringVarP(&inputFilename, "inputFilename", "i", "", "FLE formatted input file")
+	rootCmd.PersistentFlags().StringVarP(&inputFilename, "input", "i", "", "FLE formatted input file")
+	rootCmd.MarkFlagRequired("input")
 }
 
 // initConfig reads in config file and ENV variables if set.

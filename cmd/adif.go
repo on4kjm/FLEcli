@@ -23,6 +23,9 @@ import (
 	//"strings"
 )
 
+var outputFilename string
+var isWwff bool
+
 // adifCmd is executed when choosing the adif option (load and generate adif file)
 var adifCmd = &cobra.Command{
 	Use:   "adif",
@@ -31,14 +34,25 @@ var adifCmd = &cobra.Command{
 	// and usage of using your command. For example:
 
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("adif called")
-		fmt.Println("Inputfile: ", inputFilename)
-		loadFile()
+		processAdifCommand()
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(adifCmd)
 
-	adifCmd.PersistentFlags().BoolP("wwff", "w", false, "Generates an ADIF file ready to be uploaded on WWFF")
+	adifCmd.PersistentFlags().BoolVarP(&isWwff,"wwff", "w", false, "Generates an ADIF file ready to be uploaded on WWFF")
+	adifCmd.PersistentFlags().StringVarP(&outputFilename, "output", "o", "", "Output filename")
+}
+
+func processAdifCommand(){
+	
+	verifiedOutputFilename, wasOK := buildOutputFilename(outputFilename,inputFilename,false)
+	fmt.Println("adif called")
+	fmt.Println("Inputfile: ", inputFilename)
+	fmt.Println("OutputFile: ", outputFilename)
+	fmt.Println("computed output: ", verifiedOutputFilename)
+	fmt.Println("Output wasOK: ", wasOK)
+	fmt.Println("wwff: ", isWwff) 
+	//loadFile()
 }
