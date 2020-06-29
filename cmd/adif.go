@@ -42,20 +42,29 @@ var adifCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(adifCmd)
 
-	adifCmd.PersistentFlags().BoolVarP(&isWwff,"wwff", "w", false, "Generates an ADIF file ready to be uploaded on WWFF")
-	adifCmd.PersistentFlags().BoolVarP(&isOverwrite,"overWrite", "", false, "Overwrites the output file if it exisits")
+	adifCmd.PersistentFlags().BoolVarP(&isWwff, "wwff", "w", false, "Generates an ADIF file ready to be uploaded on WWFF")
+	adifCmd.PersistentFlags().BoolVarP(&isOverwrite, "overwrite", "", false, "Overwrites the output file if it exisits")
 	adifCmd.PersistentFlags().StringVarP(&outputFilename, "output", "o", "", "Output filename")
 }
 
-func processAdifCommand(){
-	
-	verifiedOutputFilename, wasOK := buildOutputFilename(outputFilename,inputFilename,isOverwrite)
+func processAdifCommand() {
+
+	verifiedOutputFilename, wasOK := buildOutputFilename(outputFilename, inputFilename, isOverwrite)
 	fmt.Println("adif called")
 	fmt.Println("Inputfile: ", inputFilename)
 	fmt.Println("OutputFile: ", outputFilename)
 	fmt.Println("computed output: ", verifiedOutputFilename)
 	fmt.Println("Output wasOK: ", wasOK)
-	fmt.Println("wwff: ", isWwff) 
+	fmt.Println("wwff: ", isWwff)
 	fmt.Println("isOverwrite: ", isOverwrite)
-	//loadFile()
+
+	// if the output file could not be parsed correctly do noting
+	if wasOK {
+		loadedLogFile, isLoadedOK := loadFile()
+		if isLoadedOK {
+			//check if we have the necessary information for the type
+
+			writeAdif(verifiedOutputFilename, loadedLogFile)
+		}
+	}
 }

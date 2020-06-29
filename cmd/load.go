@@ -57,9 +57,8 @@ func init() {
 	// loadCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 
-
 //returns nill if failure to process
-func loadFile() (filleFullLog []LogLine) {
+func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 	file, err := os.Open(inputFilename)
 
 	if err != nil {
@@ -275,12 +274,13 @@ func loadFile() (filleFullLog []LogLine) {
 		for _, errorLogLine := range errorLog {
 			fmt.Println(errorLogLine)
 		}
-		return nil
-	} else {
+		isProcessedOK = false
+	}else {
 		fmt.Println("\nSuccesfuly parsed ", lineCount, " lines.")
+		isProcessedOK = true
 	}
 
-	return fullLog
+	return fullLog, isProcessedOK
 
 }
 
@@ -297,4 +297,3 @@ func displayLogSimple(fullLog []LogLine) {
 	}
 
 }
-

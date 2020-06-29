@@ -16,6 +16,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-// does the target file exist?
-// is the file defined
-//	remove the extention
+func writeAdif(outputFile string, fullLog []LogLine) {
+
+// TODO: create an array of strings first
+// TODO: write the array list to file
+}
