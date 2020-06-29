@@ -57,7 +57,9 @@ func init() {
 	// loadCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 
-func loadFile() {
+
+//returns nill if failure to process
+func loadFile() (filleFullLog []LogLine) {
 	file, err := os.Open(inputFilename)
 
 	if err != nil {
@@ -105,7 +107,7 @@ func loadFile() {
 	var errorLog []string
 
 	var previousLogLine LogLine
-	var fullLog []LogLine
+	fullLog := []LogLine{}
 
 	//Loop through all the stored lined
 	for _, eachline := range txtlines {
@@ -263,15 +265,27 @@ func loadFile() {
 		}
 		previousLogLine = logline
 		//Go back to the top (Continue not necessary)
-
 	}
 
-	//*****
-	//** display results
-	//*****
-	// for _, filledLofLine := range fullLog {
-	// 	fmt.Println(SprintLogRecord(filledLofLine))
-	// }
+	displayLogSimple(fullLog)
+
+	//Display parsing errors, if any
+	if len(errorLog) != 0 {
+		fmt.Println("\nProcessing errors:")
+		for _, errorLogLine := range errorLog {
+			fmt.Println(errorLogLine)
+		}
+		return nil
+	} else {
+		fmt.Println("\nSuccesfuly parsed ", lineCount, " lines.")
+	}
+
+	return fullLog
+
+}
+
+//displayLogSimple will print to stdout a simplified dump of a full log
+func displayLogSimple(fullLog []LogLine) {
 	firstLine := true
 	for _, filledLogLine := range fullLog {
 		if firstLine {
@@ -282,13 +296,5 @@ func loadFile() {
 		fmt.Print(SprintLogInColumn(filledLogLine))
 	}
 
-	if len(errorLog) != 0 {
-		fmt.Println("\nProcessing errors:")
-		for _, errorLogLine := range errorLog {
-			fmt.Println(errorLogLine)
-		}
-	} else {
-		fmt.Println("\nSuccesfuly parsed ", lineCount, " lines.")
-	}
-
 }
+
