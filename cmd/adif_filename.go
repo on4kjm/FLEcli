@@ -39,9 +39,9 @@ func buildOutputFilename(output string, input string, overwrite bool) (outputFil
 	//No output was provided, let's create one from the input file
 	if output == "" {
 		extension := filepath.Ext(input)
-		outputRootPart := input[0:len(input)-len(extension)]
+		outputRootPart := input[0 : len(input)-len(extension)]
 		output = outputRootPart + ".adi"
-		fmt.Println("No output provided, defaulting to \""+output+ "\"" )
+		fmt.Println("No output provided, defaulting to \"" + output + "\"")
 	}
 
 	//an output was provided by the user
@@ -58,8 +58,10 @@ func buildOutputFilename(output string, input string, overwrite bool) (outputFil
 		if overwrite {
 			//user accepted to overwrite the file
 			return output, true
+		} else {
+			fmt.Println("File already exists. Use --overwrite flag if necessary.")
+			return "", false
 		}
-		return "", false
 	}
 
 	return outputFilename, true

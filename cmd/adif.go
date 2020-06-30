@@ -49,22 +49,35 @@ func init() {
 
 func processAdifCommand() {
 
-	verifiedOutputFilename, wasOK := buildOutputFilename(outputFilename, inputFilename, isOverwrite)
+	verifiedOutputFilename, filenameWasOK := buildOutputFilename(outputFilename, inputFilename, isOverwrite)
 	fmt.Println("adif called")
 	fmt.Println("Inputfile: ", inputFilename)
 	fmt.Println("OutputFile: ", outputFilename)
 	fmt.Println("computed output: ", verifiedOutputFilename)
-	fmt.Println("Output wasOK: ", wasOK)
+	fmt.Println("Output filenameWasOK: ", filenameWasOK)
 	fmt.Println("wwff: ", isWwff)
 	fmt.Println("isOverwrite: ", isOverwrite)
 
 	// if the output file could not be parsed correctly do noting
-	if wasOK {
+	if filenameWasOK {
 		loadedLogFile, isLoadedOK := loadFile()
-		if isLoadedOK {
-			//check if we have the necessary information for the type
 
-			writeAdif(verifiedOutputFilename, loadedLogFile)
+		//TODO: move this in a function so that it can be more easily tested
+		if isLoadedOK {
+			if len(loadedLogFile) == 0 {
+				fmt.Println("No useful data read. Aborting...")
+				return
+			}
+
+			//check if we have the necessary information for the type
+			if isWwff {
+				if loadedLogFile[0].MyWWFF == "" {
+					fmt.Println("Missing MY-WWFF reference. Aborting...")
+					return
+				}
+			}
+
+			outputAdif(verifiedOutputFilename, loadedLogFile)
 		}
 	}
 }

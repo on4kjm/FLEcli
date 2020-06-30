@@ -1,7 +1,9 @@
 package cmd
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -21,12 +23,17 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-func writeAdif(outputFile string, fullLog []LogLine) {
+// outputAdif generates and writes data in ADIF format
+func outputAdif(outputFile string, fullLog []LogLine) {
 
-	// TODO: create an array of strings first
-	// TODO: write the array list to file
+	//convert the log data to an in-memory ADIF file
+	adifData := buildAdif(fullLog)
+
+	//write to a file
+	writeAdif(outputFile, adifData)
 }
 
+// buildAdif creates the adif file in memory ready to be printed
 func buildAdif(fullLog []LogLine) (adifList []string) {
 	//Print the fixed header
 	adifList = append(adifList, "ADIF Export for Fast Log Entry by DF3CB")
@@ -63,6 +70,37 @@ func buildAdif(fullLog []LogLine) (adifList []string) {
 	return adifList
 }
 
+// writeAdif writes the in-memory adif data to a file
+func writeAdif(outputFile string, adifData []string) {
+
+	//TODO: check access rights
+	f, err := os.Create(outputFile)
+	checkFileError(err)
+
+	defer f.Close()
+
+	w := bufio.NewWriter(f)
+
+	lineCount := 0
+	for _, adifLine := range adifData {
+		_, err := w.WriteString(adifLine + "\n")
+		checkFileError(err)
+
+		w.Flush()
+		checkFileError(err)
+		lineCount++
+	}
+	fmt.Printf("\nSuccessfully wrote %d lines to file \"%s\"", lineCount, outputFile)
+}
+
+// adifElement generated the ADIF sub-element
 func adifElement(elementName, elementValue string) (element string) {
 	return fmt.Sprintf("<%s:%d>%s ", strings.ToUpper(elementName), len(elementValue), elementValue)
+}
+
+// checkFileError handles file related errors
+func checkFileError(e error) {
+	if e != nil {
+		panic(e)
+	}
 }

@@ -275,7 +275,7 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 			fmt.Println(errorLogLine)
 		}
 		isProcessedOK = false
-	}else {
+	} else {
 		fmt.Println("\nSuccesfuly parsed ", lineCount, " lines.")
 		isProcessedOK = true
 	}
