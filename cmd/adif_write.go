@@ -34,15 +34,6 @@ func buildAdif(fullLog []LogLine) (adifList []string) {
 	adifList = append(adifList, "<ADIF_VER:5>3.0.6")
 	adifList = append(adifList, "<EOH>")
 
-	//<STATION_CALLSIGN:8>ON4KJM/P
-	//<CALL:5>S57LC
-	//<QSO_DATE:8>20200524
-	//<TIME_ON:4>1310
-	//<BAND:3>20m
-	//<MODE:2>CW
-	//<FREQ:6>14.045
-	//<RST_SENT:3>599 <RST_RCVD:3>599
-	//<MY_SIG:4>WWFF <MY_SIG_INFO:9>ONFF-0259 <OPERATOR:6>ON4KJM <APP_EQSL_QTH_NICKNAME:11>ONFF-0259-1 <EOR>
 	for _, logLine := range fullLog {
 		adifLine := ""
 		adifLine = adifLine + adifElement("STATION_CALLSIGN", logLine.MyCall)
@@ -60,9 +51,11 @@ func buildAdif(fullLog []LogLine) (adifList []string) {
 		adifLine = adifLine + adifElement("MY_SIG", "WWFF")
 		adifLine = adifLine + adifElement("MY_SIG_INFO", logLine.MyWWFF)
 		adifLine = adifLine + adifElement("OPERATOR", logLine.Operator)
-		adifLine = adifLine + adifElement("BAND", logLine.Band)
-		//EQSL nickname??
+		if logLine.Nickname != "" {
+			adifLine = adifLine + adifElement("APP_EQSL_QTH_NICKNAME", logLine.Nickname)
+		}
 		adifLine = adifLine + "<EOR>"
+
 		adifList = append(adifList, adifLine)
 
 	}
