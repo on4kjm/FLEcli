@@ -37,8 +37,8 @@ func Test_adifElement(t *testing.T) {
 
 func Test_buildAdif(t *testing.T) {
 	sampleFilledLog1 := []LogLine{
-		{MyCall: "ON4KJM/P", Call: "S57LC", Date: "20200524", Time: "1310", Band: "20m", Frequency: "14.045", Mode: "CW", RSTsent: "599", RSTrcvd: "599", MyWWFF: "ONFF-0259", Operator: "ON4KJM", Nickname: "ONFF-0259-1"},
-		{MyCall: "ON4KJM/P", Call: "ON4LY", Date: "20200524", Time: "1312", Band: "20m", Mode: "CW", RSTsent: "559", RSTrcvd: "599", MyWWFF: "ONFF-0259", Operator: "ON4KJM"},
+		{MyCall: "ON4KJM/P", Call: "S57LC", Date: "2020-05-24", Time: "1310", Band: "20m", Frequency: "14.045", Mode: "CW", RSTsent: "599", RSTrcvd: "599", MyWWFF: "ONFF-0259", Operator: "ON4KJM", Nickname: "ONFF-0259-1"},
+		{MyCall: "ON4KJM/P", Call: "ON4LY", Date: "2020-05-24", Time: "1312", Band: "20m", Mode: "CW", RSTsent: "559", RSTrcvd: "599", MyWWFF: "ONFF-0259", Operator: "ON4KJM"},
 	}
 
 	expectedOutput1 := []string{
@@ -68,6 +68,36 @@ func Test_buildAdif(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if gotAdifList := buildAdif(tt.args.fullLog); !reflect.DeepEqual(gotAdifList, tt.wantAdifList) {
 				t.Errorf("buildAdif() = %v, want %v", gotAdifList, tt.wantAdifList)
+			}
+		})
+	}
+}
+
+func Test_adifDate(t *testing.T) {
+	type args struct {
+		inputDate string
+	}
+	tests := []struct {
+		name           string
+		args           args
+		wantOutputDate string
+	}{
+		{
+			"Happy case",
+			args{inputDate: "2020-06-13"},
+			"20200613",
+		},
+		//Panics as expected but I don't know how to test this.
+		// {
+		// 	"Bad format",
+		// 	args{inputDate: "2020-13-06"},
+		// 	"20200613",
+		// },
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if gotOutputDate := adifDate(tt.args.inputDate); gotOutputDate != tt.wantOutputDate {
+				t.Errorf("adifDate() = %v, want %v", gotOutputDate, tt.wantOutputDate)
 			}
 		})
 	}

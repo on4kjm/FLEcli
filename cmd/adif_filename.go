@@ -48,6 +48,7 @@ func buildOutputFilename(output string, input string, overwrite bool) (outputFil
 	if output != "" {
 		info, err := os.Stat(output)
 		if os.IsNotExist(err) {
+			//File doesn't exist, so we're good
 			return output, true
 		}
 		//It exisits but is a directory
@@ -58,10 +59,10 @@ func buildOutputFilename(output string, input string, overwrite bool) (outputFil
 		if overwrite {
 			//user accepted to overwrite the file
 			return output, true
-		} else {
-			fmt.Println("File already exists. Use --overwrite flag if necessary.")
-			return "", false
 		}
+
+		fmt.Println("File already exists. Use --overwrite flag if necessary.")
+		return "", false
 	}
 
 	return outputFilename, true

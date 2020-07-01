@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"time"
 )
 
 /*
@@ -44,9 +45,8 @@ func buildAdif(fullLog []LogLine) (adifList []string) {
 	for _, logLine := range fullLog {
 		adifLine := ""
 		adifLine = adifLine + adifElement("STATION_CALLSIGN", logLine.MyCall)
-		adifLine = adifLine + adifElement("CALL", logLine.Call)
-		//TODO: strip the delimiters of the date
-		adifLine = adifLine + adifElement("QSO_DATE", logLine.Date)
+		adifLine = adifLine + adifElement("CALL", logLine.Call)	
+        adifLine = adifLine + adifElement("QSO_DATE", adifDate(logLine.Date))
 		adifLine = adifLine + adifElement("TIME_ON", logLine.Time)
 		adifLine = adifLine + adifElement("BAND", logLine.Band)
 		adifLine = adifLine + adifElement("MODE", logLine.Mode)
@@ -103,4 +103,17 @@ func checkFileError(e error) {
 	if e != nil {
 		panic(e)
 	}
+}
+
+//adifDate converts a date in YYYY-MM-DD format to YYYYMMDD
+func adifDate(inputDate string) (outputDate string) {
+	const RFC3339FullDate = "2006-01-02"
+	date, err := time.Parse(RFC3339FullDate, inputDate)
+	//error should never happen
+	if err != nil {
+		panic(err)
+	}
+	outputDate = fmt.Sprintf("%04d%02d%02d", date.Year(), date.Month(), date.Day())
+
+	return outputDate
 }
