@@ -19,10 +19,12 @@ limitations under the License.
 import (
 	"bufio"
 	"fmt"
-	"github.com/spf13/cobra"
 	"log"
 	"os"
 	"regexp"
+	"time"
+
+	"github.com/spf13/cobra"
 	//"strings"
 )
 
@@ -100,6 +102,12 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 	headerNickname := ""
 	headerDate := ""
 	lineCount := 0
+
+	//lastTime := ""
+	//lastTimeRow := 0
+	//noTimeCount := 0
+	//nextTime
+	//deltatime
 
 	var isInMultiLine = false
 	var cleanedInput []string
@@ -254,8 +262,9 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 		previousLogLine.Nickname = headerNickname
 		previousLogLine.Date = headerDate
 
-		//
+		//parse a line
 		logline, errorLine := ParseLine(eachline, previousLogLine)
+		//we have a valid line (contains a call)
 		if logline.Call != "" {
 			fullLog = append(fullLog, logline)
 		}
@@ -296,4 +305,17 @@ func displayLogSimple(fullLog []LogLine) {
 		fmt.Print(SprintLogInColumn(filledLogLine))
 	}
 
+}
+
+func convertDateTime(dateStr string) (fullDate time.Time) {
+	const RFC3339FullDate = "2006-01-02 1504"
+
+	date, err := time.Parse(RFC3339FullDate, dateStr)
+	//error should never happen
+	if err != nil {
+		panic(err)
+	}
+	//outputDate = fmt.Sprintf("%04d%02d%02d", date.Year(), date.Month(), date.Day())
+
+	return date
 }

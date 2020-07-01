@@ -18,9 +18,10 @@
 * [ ] Support extrapolated date
 * [ ] Support date not prefixed by "date" (non header mode) DATE keyword is now optional
 * [ ] Support date increment
+* [ ] Support WWFF keyword
 
 ## Output processing
-* [ ] WWFF ADIF output
+* [x] WWFF ADIF output
 * [ ] Standard ADIF output
 * [ ] SOTA ADIF
 * [ ] SOTA CSV

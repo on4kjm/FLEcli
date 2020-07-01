@@ -45,8 +45,8 @@ func buildAdif(fullLog []LogLine) (adifList []string) {
 	for _, logLine := range fullLog {
 		adifLine := ""
 		adifLine = adifLine + adifElement("STATION_CALLSIGN", logLine.MyCall)
-		adifLine = adifLine + adifElement("CALL", logLine.Call)	
-        adifLine = adifLine + adifElement("QSO_DATE", adifDate(logLine.Date))
+		adifLine = adifLine + adifElement("CALL", logLine.Call)
+		adifLine = adifLine + adifElement("QSO_DATE", adifDate(logLine.Date))
 		adifLine = adifLine + adifElement("TIME_ON", logLine.Time)
 		adifLine = adifLine + adifElement("BAND", logLine.Band)
 		adifLine = adifLine + adifElement("MODE", logLine.Mode)
