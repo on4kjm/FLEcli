@@ -59,6 +59,7 @@ func init() {
 	// loadCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 
+
 //returns nill if failure to process
 func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 	file, err := os.Open(inputFilename)
@@ -103,11 +104,7 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 	headerDate := ""
 	lineCount := 0
 
-	//lastTime := ""
-	//lastTimeRow := 0
-	//noTimeCount := 0
-	//nextTime
-	//deltatime
+	var wrkTimeBlock InferTimeBlock
 
 	var isInMultiLine = false
 	var cleanedInput []string
@@ -264,9 +261,15 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 
 		//parse a line
 		logline, errorLine := ParseLine(eachline, previousLogLine)
+
 		//we have a valid line (contains a call)
 		if logline.Call != "" {
 			fullLog = append(fullLog, logline)
+
+			//store time inference data
+			if isInterpolateTime { 
+				storeTimeGap(logline, len(fullLog), wrkTimeBlock)
+			}
 		}
 		if errorLine != "" {
 			errorLog = append(errorLog, fmt.Sprintf("Parsing error at line %d: %s ", lineCount, errorLine))
@@ -319,3 +322,5 @@ func convertDateTime(dateStr string) (fullDate time.Time) {
 
 	return date
 }
+
+
