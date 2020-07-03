@@ -22,7 +22,6 @@ import (
 	"log"
 	"os"
 	"regexp"
-	"time"
 
 	"github.com/spf13/cobra"
 	//"strings"
@@ -58,7 +57,6 @@ func init() {
 	// is called directly, e.g.:
 	// loadCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
-
 
 //returns nill if failure to process
 func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
@@ -267,7 +265,7 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 			fullLog = append(fullLog, logline)
 
 			//store time inference data
-			if isInterpolateTime { 
+			if isInterpolateTime {
 				storeTimeGap(logline, len(fullLog), wrkTimeBlock)
 			}
 		}
@@ -309,18 +307,3 @@ func displayLogSimple(fullLog []LogLine) {
 	}
 
 }
-
-func convertDateTime(dateStr string) (fullDate time.Time) {
-	const RFC3339FullDate = "2006-01-02 1504"
-
-	date, err := time.Parse(RFC3339FullDate, dateStr)
-	//error should never happen
-	if err != nil {
-		panic(err)
-	}
-	//outputDate = fmt.Sprintf("%04d%02d%02d", date.Year(), date.Month(), date.Day())
-
-	return date
-}
-
-

@@ -23,7 +23,8 @@ type InferTimeBlock struct {
 	lastRecordedTime time.Time
 	nextValidTime    time.Time
 
-	noTimeCount     int
+	noTimeCount int
+	//First log entry with missing date
 	logFilePosition int
 
 	//deltatime
@@ -32,14 +33,31 @@ type InferTimeBlock struct {
 //TODO: reset record
 //TODO: finalize record (case no end, negative difference)
 
-func storeTimeGap(logline LogLine, position int, timeBlock InferTimeBlock) {
-	//ActualTime is filled if a time could be found
+func storeTimeGap(logline LogLine, position int, timeBlock InferTimeBlock) (newTimeBlock InferTimeBlock) {
+	//ActualTime is filled if a time could be found in the FLE input
 	if logline.ActualTime != "" {
-		//store the date and time
-		timeBlock.lastRecordedTime = convertDateTime(logline.Date + " " + logline.ActualTime)
-		timeBlock.noTimeCount = 0
+		//we might be starting a new inference block
+		if timeBlock.noTimeCount == 0 {
+			timeBlock.lastRecordedTime = convertDateTime(logline.Date + " " + logline.ActualTime)
+			timeBlock.logFilePosition = position
+		} else {
+			// We reached the end of the gap
+		}
 	} else {
-		//if the noTimeCount is 0, store the position in the logfile
-		//increment the no time caount
+		timeBlock.noTimeCount++
 	}
+	return timeBlock
+}
+
+//convertDateTime converts the FLE date and time into a Go time structure
+func convertDateTime(dateStr string) (fullDate time.Time) {
+	const RFC3339FullDate = "2006-01-02 1504"
+
+	date, err := time.Parse(RFC3339FullDate, dateStr)
+	//error should never happen
+	if err != nil {
+		panic(err)
+	}
+
+	return date
 }
