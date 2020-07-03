@@ -30,13 +30,22 @@ type InferTimeBlock struct {
 	//deltatime
 }
 
-//TODO: reset record
 //TODO: finalize record (case no end, negative difference)
+
+//newTimeGap returns a blancked out InferTimeBlock record
+func newTimeGap() (timeBlock InferTimeBlock) {
+	timeBlock.noTimeCount = 0
+	timeBlock.logFilePosition = 0
+	timeBlock.lastRecordedTime = time.Time{}
+	timeBlock.nextValidTime = time.Time{}
+	
+	return timeBlock
+}
 
 func storeTimeGap(logline LogLine, position int, timeBlock InferTimeBlock) (newTimeBlock InferTimeBlock) {
 	//ActualTime is filled if a time could be found in the FLE input
 	if logline.ActualTime != "" {
-		//we might be starting a new inference block
+		//Are we starting a new block
 		if timeBlock.noTimeCount == 0 {
 			timeBlock.lastRecordedTime = convertDateTime(logline.Date + " " + logline.ActualTime)
 			timeBlock.logFilePosition = position
