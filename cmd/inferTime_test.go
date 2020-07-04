@@ -1,63 +1,30 @@
 package cmd
 
 import (
-	"reflect"
 	"testing"
-	"time"
 )
 
-func Test_storeTimeGap(t *testing.T) {
-	type args struct {
-		logline   LogLine
-		position  int
-		timeBlock InferTimeBlock
+// // Test<NomDeLaFocntion>_<CasTesté>. Le cas testé doit compléter la phrase "it...", dans mon cas ça donerais "it
+// // returns values".
+// func TestAnalyze_ReturnsValues(t *testing.T) {
+func TestInferTimeBlock_storeTimeGap(t *testing.T) {
+	// Given (mise en place du test)
+	input, err := ioutil.ReadFile("./myinput")
+	if err != nil {
+		t.Fatal(err)
 	}
-	tests := []struct {
-		name             string
-		args             args
-		wantNewTimeBlock InferTimeBlock
-	}{
-		{
-			"Time defined in FLE log",
-			args{LogLine{Date: "2020-05-24", Time: "2312", ActualTime: "2312"}, 1, InferTimeBlock{}},
-			InferTimeBlock{lastRecordedTime: time.Date(2020, time.May, 24, 23, 12, 0, 0, time.UTC), noTimeCount: 0, logFilePosition: 1},
-		},
-		{
-			"Time is not defined in FLE log",
-			args{LogLine{Date: "2020-05-24", Time: "2312", ActualTime: ""}, 1, InferTimeBlock{lastRecordedTime: time.Date(2020, time.May, 24, 23, 12, 0, 0, time.UTC), noTimeCount: 3, logFilePosition: 1}},
-			InferTimeBlock{lastRecordedTime: time.Date(2020, time.May, 24, 23, 12, 0, 0, time.UTC), noTimeCount: 4, logFilePosition: 1},
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if gotNewTimeBlock := storeTimeGap(tt.args.logline, tt.args.position, tt.args.timeBlock); !reflect.DeepEqual(gotNewTimeBlock, tt.wantNewTimeBlock) {
-				t.Errorf("storeTimeGap() = %v, want %v", gotNewTimeBlock, tt.wantNewTimeBlock)
-			}
-		})
-	}
-}
+	// When (appel a ta fonction testée)
+	got, err := Analyze(string(input))
 
-func Test_convertDateTime(t *testing.T) {
-	type args struct {
-		dateStr string
-		timeStr string
+	// Then (Assertions sur tes valeurs de retours).
+	if err != nil {
+		t.Fail("unexpected error", err)
+		return
 	}
-	tests := []struct {
-		name         string
-		args         args
-		wantFullDate time.Time
-	}{
-		{
-			"case 1",
-			args{dateStr: "2020-05-24 2312"},
-			time.Date(2020, time.May, 24, 23, 12, 0, 0, time.UTC),
-		},
+
+	if len(got) == 0 {
+		t.Fail("should have items")
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if gotFullDate := convertDateTime(tt.args.dateStr); !reflect.DeepEqual(gotFullDate, tt.wantFullDate) {
-				t.Errorf("convertDateTime() = %v, want %v", gotFullDate, tt.wantFullDate)
-			}
-		})
-	}
+
+	// and so on...
 }
