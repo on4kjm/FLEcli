@@ -1,6 +1,9 @@
 package cmd
 
-import "time"
+import (
+	"log"
+	"time"
+)
 
 /*
 Copyright © 2020 Jean-Marc Meessen, ON4KJM <on4kjm@gmail.com>
@@ -32,8 +35,8 @@ type InferTimeBlock struct {
 
 //TODO: finalize record (case no end, negative difference)
 
-
-func (timeBlock *InferTimeBlock) storeTimeGap(logline LogLine, position int) {
+//storeTimeGap updates an InferTimeBLock (last valid time, nbr of records without time). It returns true if we reache the end of the time gap.
+func (timeBlock *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool) {
 	//ActualTime is filled if a time could be found in the FLE input
 	if logline.ActualTime != "" {
 		//Are we starting a new block
@@ -42,11 +45,27 @@ func (timeBlock *InferTimeBlock) storeTimeGap(logline LogLine, position int) {
 			timeBlock.logFilePosition = position
 		} else {
 			// We reached the end of the gap
+			nullTime :=time.Time{}
+			if timeBlock.lastRecordedTime == nullTime {
+				log.Fatal("Fatal error: gap start time is empty")
+			}
+
+			timeBlock.nextValidTime = convertDateTime(logline.Date + " " + logline.ActualTime)
+			return true
 		}
 	} else {
+		//Check the data is correct.
+		nullTime :=time.Time{}
+		if timeBlock.lastRecordedTime == nullTime {
+			log.Fatal("Fatal error: gap start time is empty")
+		}
+		if timeBlock.nextValidTime != nullTime {
+			log.Fatal("Fatal error: gap end time is not empty")
+		}
+
 		timeBlock.noTimeCount++
 	}
-	return
+	return false
 }
 
 //convertDateTime converts the FLE date and time into a Go time structure

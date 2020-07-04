@@ -266,7 +266,7 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 
 			//store time inference data
 			if isInterpolateTime {
-				storeTimeGap(logline, len(fullLog), wrkTimeBlock)
+				wrkTimeBlock.storeTimeGap(logline, len(fullLog))
 			}
 		}
 		if errorLine != "" {
