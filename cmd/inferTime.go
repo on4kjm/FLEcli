@@ -27,79 +27,119 @@ type InferTimeBlock struct {
 	lastRecordedTime time.Time
 	nextValidTime    time.Time
 
+	//Number of records without actual time
 	noTimeCount int
+
 	//First log entry with missing date
 	logFilePosition int
 
-	//deltatime
+	//Computed time interval
+	deltatime int
 }
 
 //finalizeTimeGap makes the necessary checks and computation
-func (timeBlock *InferTimeBlock) finalizeTimeGap() error {
+func (tb *InferTimeBlock) finalizeTimeGap() error {
 	var err error
-	err = nil 
+	err = nil
 
 	//Check that lastRecordedTime and nextValidTime are not null
 	nullTime := time.Time{}
-	if timeBlock.lastRecordedTime == nullTime {
+	if tb.lastRecordedTime == nullTime {
 		errMsg := "Fatal error: gap start time is empty"
 		log.Println(errMsg)
 		err = fmt.Errorf(errMsg)
 		return err
 	}
-	if timeBlock.nextValidTime == nullTime {
+	if tb.nextValidTime == nullTime {
 		errMsg := "Fatal error: gap end time is empty"
 		log.Println(errMsg)
 		err = fmt.Errorf(errMsg)
 		return err
 	}
-	//TODO: is the difference positive
-	//TODO: do we have a non null noTimeCount
+
+	//Are the two times equal?
+	if tb.nextValidTime == tb.lastRecordedTime {
+		errMsg := "Fatal error: the start and end gap times are equal"
+		log.Println(errMsg)
+		err = fmt.Errorf(errMsg)
+		return err
+	}
+
+	//Compute the time difference
+	startTime := tb.lastRecordedTime
+	endTime := tb.nextValidTime
+	fmt.Println(startTime)
+	fmt.Println(endTime)
+
+	diff := endTime.Sub(startTime)
+	fmt.Printf("Diff: %f min \n", diff.Minutes())
+
+	//Fail if we have a negative time difference
+	if diff.Minutes() < 0 {
+		errMsg := "Fatal error: Gap start time is later than the Gap end time"
+		log.Println(errMsg)
+		return fmt.Errorf(errMsg)
+	}
+
+	//Do we have a non null noTimeCount
+	if tb.noTimeCount < 1 {
+		errMsg := fmt.Sprintf("Fatal error: invalid number of records without time (%d)\n", tb.noTimeCount)
+		log.Println(errMsg)
+		return fmt.Errorf(errMsg)
+	}
+
 	//TODO: What should we expect as logFilePosition?
-	//TODO: compute the gap
+
+	//Compute the gap
+	floatInterval := diff.Minutes() / float64(tb.noTimeCount+1)
+	intInterval := int(floatInterval)
+
+	fmt.Printf("Interval: %f, Float interval: %f, Int interval: %d\n", diff.Minutes(), floatInterval, intInterval)
+
+	tb.deltatime = intInterval
 
 	return nil
 }
 
 //storeTimeGap updates an InferTimeBLock (last valid time, nbr of records without time). It returns true if we reached the end of the time gap.
-func (timeBlock *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool, error) {
+func (tb *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool, error) {
 	var err error
-	err = nil 
+	err = nil
 
 	//ActualTime is filled if a time could be found in the FLE input
 	if logline.ActualTime != "" {
 		//Are we starting a new block
-		if timeBlock.noTimeCount == 0 {
-			timeBlock.lastRecordedTime = convertDateTime(logline.Date + " " + logline.ActualTime)
-			timeBlock.logFilePosition = position
+		if tb.noTimeCount == 0 {
+			tb.lastRecordedTime = convertDateTime(logline.Date + " " + logline.ActualTime)
+			tb.logFilePosition = position
 		} else {
 			// We reached the end of the gap
 			nullTime := time.Time{}
-			if timeBlock.lastRecordedTime == nullTime {
+			if tb.lastRecordedTime == nullTime {
 				errMsg := "Fatal error: gap start time is empty"
 				log.Println(errMsg)
 				err = fmt.Errorf(errMsg)
 				return false, err
 			}
 
-			timeBlock.nextValidTime = convertDateTime(logline.Date + " " + logline.ActualTime)
+			tb.nextValidTime = convertDateTime(logline.Date + " " + logline.ActualTime)
 			return true, err
 		}
 	} else {
 		//Check the data is correct.
 		nullTime := time.Time{}
-		if timeBlock.lastRecordedTime == nullTime {
+		if tb.lastRecordedTime == nullTime {
 			errMsg := "Fatal error: gap start time is empty"
 			log.Println(errMsg)
 			err = fmt.Errorf(errMsg)
 		}
-		if timeBlock.nextValidTime != nullTime {
+		if tb.nextValidTime != nullTime {
 			errMsg := "Fatal error: gap end time is not empty"
 			log.Println(errMsg)
 			err = fmt.Errorf(errMsg)
 		}
 
-		timeBlock.noTimeCount++
+		tb.noTimeCount++
 	}
 	return false, err
 }
