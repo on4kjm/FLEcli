@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"fmt"
 	"log"
 	"time"
 )
@@ -33,10 +34,38 @@ type InferTimeBlock struct {
 	//deltatime
 }
 
-//TODO: finalize record (case no end, negative difference)
+//finalizeTimeGap makes the necessary checks and computation
+func (timeBlock *InferTimeBlock) finalizeTimeGap() error {
+	var err error
+	err = nil 
 
-//storeTimeGap updates an InferTimeBLock (last valid time, nbr of records without time). It returns true if we reache the end of the time gap.
-func (timeBlock *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool) {
+	//Check that lastRecordedTime and nextValidTime are not null
+	nullTime := time.Time{}
+	if timeBlock.lastRecordedTime == nullTime {
+		errMsg := "Fatal error: gap start time is empty"
+		log.Println(errMsg)
+		err = fmt.Errorf(errMsg)
+		return err
+	}
+	if timeBlock.nextValidTime == nullTime {
+		errMsg := "Fatal error: gap end time is empty"
+		log.Println(errMsg)
+		err = fmt.Errorf(errMsg)
+		return err
+	}
+	//TODO: is the difference positive
+	//TODO: do we have a non null noTimeCount
+	//TODO: What should we expect as logFilePosition?
+	//TODO: compute the gap
+
+	return nil
+}
+
+//storeTimeGap updates an InferTimeBLock (last valid time, nbr of records without time). It returns true if we reached the end of the time gap.
+func (timeBlock *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool, error) {
+	var err error
+	err = nil 
+
 	//ActualTime is filled if a time could be found in the FLE input
 	if logline.ActualTime != "" {
 		//Are we starting a new block
@@ -45,27 +74,34 @@ func (timeBlock *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bo
 			timeBlock.logFilePosition = position
 		} else {
 			// We reached the end of the gap
-			nullTime :=time.Time{}
+			nullTime := time.Time{}
 			if timeBlock.lastRecordedTime == nullTime {
-				log.Fatal("Fatal error: gap start time is empty")
+				errMsg := "Fatal error: gap start time is empty"
+				log.Println(errMsg)
+				err = fmt.Errorf(errMsg)
+				return false, err
 			}
 
 			timeBlock.nextValidTime = convertDateTime(logline.Date + " " + logline.ActualTime)
-			return true
+			return true, err
 		}
 	} else {
 		//Check the data is correct.
-		nullTime :=time.Time{}
+		nullTime := time.Time{}
 		if timeBlock.lastRecordedTime == nullTime {
-			log.Fatal("Fatal error: gap start time is empty")
+			errMsg := "Fatal error: gap start time is empty"
+			log.Println(errMsg)
+			err = fmt.Errorf(errMsg)
 		}
 		if timeBlock.nextValidTime != nullTime {
-			log.Fatal("Fatal error: gap end time is not empty")
+			errMsg := "Fatal error: gap end time is not empty"
+			log.Println(errMsg)
+			err = fmt.Errorf(errMsg)
 		}
 
 		timeBlock.noTimeCount++
 	}
-	return false
+	return false, err
 }
 
 //convertDateTime converts the FLE date and time into a Go time structure
