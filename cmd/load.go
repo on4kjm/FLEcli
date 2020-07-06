@@ -103,6 +103,7 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 	lineCount := 0
 
 	wrkTimeBlock := InferTimeBlock{}
+	missingTimeBlockList := []InferTimeBlock{}
 
 	var isInMultiLine = false
 	var cleanedInput []string
@@ -279,9 +280,9 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 						log.Fatal(err)
 					}
 
-					fmt.Printf("Gap: \n%s\n", wrkTimeBlock.displayTimeGapInfo())
-
 					//TODO: add it to the gap collection
+					missingTimeBlockList = append(missingTimeBlockList, wrkTimeBlock)
+
 					//create a new block
 					wrkTimeBlock = InferTimeBlock{}
 					//Store this record in the new block as a new gap might be following
@@ -297,7 +298,12 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 		//Go back to the top (Continue not necessary)
 	}
 
-	//TODO: if asked to infer the date, lets update the loaded logfile
+	if isInterpolateTime {
+		for _, timeBlock := range missingTimeBlockList {
+			fmt.Printf("Gap: \n%s\n", timeBlock.displayTimeGapInfo())
+			//TODO: if asked to infer the date, lets update the loaded logfile
+		}
+	}
 
 	displayLogSimple(fullLog)
 
