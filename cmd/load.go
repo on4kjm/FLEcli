@@ -22,6 +22,7 @@ import (
 	"log"
 	"os"
 	"regexp"
+	"time"
 
 	"github.com/spf13/cobra"
 	//"strings"
@@ -298,9 +299,18 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 		//Go back to the top (Continue not necessary)
 	}
 
+	//*** We have done processing the log file
+
 	if isInterpolateTime {
 		for _, timeBlock := range missingTimeBlockList {
 			fmt.Printf("Gap: \n%s\n", timeBlock.displayTimeGapInfo())
+			
+			pLogLine := &fullLog[timeBlock.logFilePosition] 
+			call := pLogLine.Call
+			fmt.Println("Call: " + call)
+			newTime := timeBlock.lastRecordedTime.Add(time.Minute * time.Duration(timeBlock.deltatime))
+			timeFormat := "1504"
+			fmt.Printf("New Time: %s\n", newTime.Format(timeFormat))
 			//TODO: if asked to infer the date, lets update the loaded logfile
 		}
 	}
