@@ -33,7 +33,7 @@ type InferTimeBlock struct {
 	//First log entry with missing date
 	logFilePosition int
 
-	//Computed time interval
+	//Computed time interval (in seconds)
 	deltatime int
 }
 
@@ -84,7 +84,7 @@ func (tb *InferTimeBlock) finalizeTimeGap() error {
 	diff := endTime.Sub(startTime)
 
 	//Fail if we have a negative time difference
-	if diff.Minutes() < 0 {
+	if diff.Seconds() < 0 {
 		errMsg := "Fatal error: Gap start time is later than the Gap end time"
 		log.Println(errMsg)
 		return fmt.Errorf(errMsg)
@@ -100,7 +100,7 @@ func (tb *InferTimeBlock) finalizeTimeGap() error {
 	//TODO: What should we expect as logFilePosition?
 
 	//Compute the gap
-	floatInterval := diff.Minutes() / float64(tb.noTimeCount+1)
+	floatInterval := diff.Seconds() / float64(tb.noTimeCount+1)
 	tb.deltatime = int(floatInterval)
 
 	return nil

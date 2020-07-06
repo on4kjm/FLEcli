@@ -301,6 +301,7 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 
 	//*** We have done processing the log file, so let's post process it
 
+	//if asked to infer the date, lets update the loaded logfile accordingly
 	if isInterpolateTime {
 		for _, timeBlock := range missingTimeBlockList {
 			fmt.Printf("Gap: \n%s\n", timeBlock.displayTimeGapInfo())
@@ -311,17 +312,13 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 
 				fmt.Println("Call: " + pLogLine.Call)
 
-				newTime := timeBlock.lastRecordedTime.Add(time.Minute * time.Duration(timeBlock.deltatime*i))
+				durationOffset := time.Second * time.Duration(timeBlock.deltatime*(i+1))
+				newTime := timeBlock.lastRecordedTime.Add(durationOffset)
 				updatedTimeString := newTime.Format("1504")
+				pLogLine.Time = updatedTimeString
 
 				fmt.Printf("New Time: %s\n", updatedTimeString)
-				
-				pLogLine.Time = updatedTimeString
 			}
-
-
-
-			//TODO: if asked to infer the date, lets update the loaded logfile
 		}
 	}
 
