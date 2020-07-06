@@ -37,6 +37,19 @@ type InferTimeBlock struct {
 	deltatime int
 }
 
+//displayTimeGapInfo will print the details stored in an InferTimeBlock
+func (tb *InferTimeBlock) displayTimeGapInfo() string {
+	timeFormat :="2006-01-02 15:04"
+	buffer := ""
+	buffer = buffer + fmt.Sprintf("Last Recorded Time:                 %s\n",tb.lastRecordedTime.Format(timeFormat))
+	buffer = buffer + fmt.Sprintf("next Recorded Time:                 %s\n",tb.nextValidTime.Format(timeFormat))
+	buffer = buffer + fmt.Sprintf("Log position of last recorded time: %d\n", tb.logFilePosition)
+	buffer = buffer + fmt.Sprintf("Nbr of entries without time:        %d\n", tb.noTimeCount)
+	buffer = buffer + fmt.Sprintf("Computed interval:                  %d\n",tb.deltatime)
+
+	return buffer
+}
+
 //finalizeTimeGap makes the necessary checks and computation
 func (tb *InferTimeBlock) finalizeTimeGap() error {
 	var err error
@@ -68,11 +81,7 @@ func (tb *InferTimeBlock) finalizeTimeGap() error {
 	//Compute the time difference
 	startTime := tb.lastRecordedTime
 	endTime := tb.nextValidTime
-	fmt.Println(startTime)
-	fmt.Println(endTime)
-
 	diff := endTime.Sub(startTime)
-	fmt.Printf("Diff: %f min \n", diff.Minutes())
 
 	//Fail if we have a negative time difference
 	if diff.Minutes() < 0 {
@@ -92,11 +101,7 @@ func (tb *InferTimeBlock) finalizeTimeGap() error {
 
 	//Compute the gap
 	floatInterval := diff.Minutes() / float64(tb.noTimeCount+1)
-	intInterval := int(floatInterval)
-
-	fmt.Printf("Interval: %f, Float interval: %f, Int interval: %d\n", diff.Minutes(), floatInterval, intInterval)
-
-	tb.deltatime = intInterval
+	tb.deltatime = int(floatInterval)
 
 	return nil
 }

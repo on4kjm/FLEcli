@@ -102,7 +102,7 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 	headerDate := ""
 	lineCount := 0
 
-	var wrkTimeBlock InferTimeBlock
+	wrkTimeBlock := InferTimeBlock{}
 
 	var isInMultiLine = false
 	var cleanedInput []string
@@ -266,7 +266,28 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 
 			//store time inference data
 			if isInterpolateTime {
-				wrkTimeBlock.storeTimeGap(logline, len(fullLog))
+				isEndOfGap, err := wrkTimeBlock.storeTimeGap(logline, len(fullLog))
+				//If an error occured it is a fatal error
+				if err != nil {
+					log.Fatal(err)
+				}
+				//If we reached the end of the time gap, we make the necessary checks and make our gap calculation
+				if isEndOfGap {
+					err := wrkTimeBlock.finalizeTimeGap()
+					//If an error occured it is a fatal error
+					if err != nil {
+						log.Fatal(err)
+					}
+
+					fmt.Printf("Gap: \n%s\n", wrkTimeBlock.displayTimeGapInfo())
+
+					//TODO: add it to the gap collection
+					//create a new block
+					wrkTimeBlock = InferTimeBlock{}
+					//Store this record in the new block as a new gap might be following
+					//no error or endOfGap processing as it has already been succesfully processed
+					wrkTimeBlock.storeTimeGap(logline, len(fullLog))
+				}
 			}
 		}
 		if errorLine != "" {
@@ -275,6 +296,8 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 		previousLogLine = logline
 		//Go back to the top (Continue not necessary)
 	}
+
+	//TODO: if asked to infer the date, lets update the loaded logfile
 
 	displayLogSimple(fullLog)
 
