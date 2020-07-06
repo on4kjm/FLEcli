@@ -46,7 +46,6 @@ func TestInferTimeBlock_full_happyCase(t *testing.T) {
 		t.Errorf("Unexpected error finalizing the timeGap")
 	}
 
-
 	//Then
 	expectedCount := 1
 	if tb.noTimeCount != expectedCount {
@@ -69,30 +68,30 @@ func TestInferTimeBlock_full_happyCase(t *testing.T) {
 	}
 }
 
-func TestInferTimeBlock_display_happyCase(t *testing.T){
-		//Given
-		tb := InferTimeBlock{}
-		tb.lastRecordedTime = time.Date(2020, time.May, 24, 14, 01, 0, 0, time.UTC)
-		tb.nextValidTime = time.Date(2020, time.May, 24, 14, 10, 10, 0, time.UTC)
-		tb.noTimeCount = 1
+func TestInferTimeBlock_display_happyCase(t *testing.T) {
+	//Given
+	tb := InferTimeBlock{}
+	tb.lastRecordedTime = time.Date(2020, time.May, 24, 14, 01, 0, 0, time.UTC)
+	tb.nextValidTime = time.Date(2020, time.May, 24, 14, 10, 10, 0, time.UTC)
+	tb.noTimeCount = 1
 
-		//When
-		buffer1 := tb.displayTimeGapInfo()
+	//When
+	buffer1 := tb.displayTimeGapInfo()
 
-		tb.finalizeTimeGap()
+	tb.finalizeTimeGap()
 
-		buffer2 := tb.displayTimeGapInfo()
+	buffer2 := tb.displayTimeGapInfo()
 
-		//Then
-		expectedBuffer1 := "Last Recorded Time:                 2020-05-24 14:01\nnext Recorded Time:                 2020-05-24 14:10\nLog position of last recorded time: 0\nNbr of entries without time:        1\nComputed interval:                  0\n"
-		expectedBuffer2 := "Last Recorded Time:                 2020-05-24 14:01\nnext Recorded Time:                 2020-05-24 14:10\nLog position of last recorded time: 0\nNbr of entries without time:        1\nComputed interval:                  275\n"
+	//Then
+	expectedBuffer1 := "Last Recorded Time:                 2020-05-24 14:01\nnext Recorded Time:                 2020-05-24 14:10\nLog position of last recorded time: 0\nNbr of entries without time:        1\nComputed interval:                  0\n"
+	expectedBuffer2 := "Last Recorded Time:                 2020-05-24 14:01\nnext Recorded Time:                 2020-05-24 14:10\nLog position of last recorded time: 0\nNbr of entries without time:        1\nComputed interval:                  275\n"
 
-		if buffer1 != expectedBuffer1 {
-			t.Errorf("Not the expected display: got: \n%s\n while expecting: \n%s\n",buffer1,expectedBuffer1)
-		}
-		if buffer2 != expectedBuffer2 {
-			t.Errorf("Not the expected finalized display: got: \n%s\n while expecting: \n%s\n",buffer2,expectedBuffer2)
-		}
+	if buffer1 != expectedBuffer1 {
+		t.Errorf("Not the expected display: got: \n%s\n while expecting: \n%s\n", buffer1, expectedBuffer1)
+	}
+	if buffer2 != expectedBuffer2 {
+		t.Errorf("Not the expected finalized display: got: \n%s\n while expecting: \n%s\n", buffer2, expectedBuffer2)
+	}
 }
 
 func TestInferTimeBlock_computeGaps_invalidData(t *testing.T) {

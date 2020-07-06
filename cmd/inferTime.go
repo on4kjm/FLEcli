@@ -39,13 +39,13 @@ type InferTimeBlock struct {
 
 //displayTimeGapInfo will print the details stored in an InferTimeBlock
 func (tb *InferTimeBlock) displayTimeGapInfo() string {
-	timeFormat :="2006-01-02 15:04"
+	timeFormat := "2006-01-02 15:04"
 	buffer := ""
-	buffer = buffer + fmt.Sprintf("Last Recorded Time:                 %s\n",tb.lastRecordedTime.Format(timeFormat))
-	buffer = buffer + fmt.Sprintf("next Recorded Time:                 %s\n",tb.nextValidTime.Format(timeFormat))
+	buffer = buffer + fmt.Sprintf("Last Recorded Time:                 %s\n", tb.lastRecordedTime.Format(timeFormat))
+	buffer = buffer + fmt.Sprintf("next Recorded Time:                 %s\n", tb.nextValidTime.Format(timeFormat))
 	buffer = buffer + fmt.Sprintf("Log position of last recorded time: %d\n", tb.logFilePosition)
 	buffer = buffer + fmt.Sprintf("Nbr of entries without time:        %d\n", tb.noTimeCount)
-	buffer = buffer + fmt.Sprintf("Computed interval:                  %d\n",tb.deltatime)
+	buffer = buffer + fmt.Sprintf("Computed interval:                  %d\n", tb.deltatime)
 
 	return buffer
 }
