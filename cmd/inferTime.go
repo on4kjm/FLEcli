@@ -31,8 +31,8 @@ type InferTimeBlock struct {
 	noTimeCount int
 	//Position in file of the first log entry with missing date
 	logFilePosition int
-	//Computed time interval (in seconds)
-	deltatime int
+	//Computed time interval
+	deltatime time.Duration
 }
 
 //RFC3339FullDate describes the ADIF date & time parsing and displaying format pattern
@@ -45,7 +45,7 @@ func (tb *InferTimeBlock) String() string {
 	buffer.WriteString(fmt.Sprintf("next Recorded Time:                 %s\n", tb.nextValidTime.Format(RFC3339FullDate)))
 	buffer.WriteString(fmt.Sprintf("Log position of last recorded time: %d\n", tb.logFilePosition))
 	buffer.WriteString(fmt.Sprintf("Nbr of entries without time:        %d\n", tb.noTimeCount))
-	buffer.WriteString(fmt.Sprintf("Computed interval:                  %d\n", tb.deltatime))
+	buffer.WriteString(fmt.Sprintf("Computed interval:                  %ds\n", int(tb.deltatime.Seconds())))
 	return buffer.String()
 }
 
@@ -76,7 +76,7 @@ func (tb *InferTimeBlock) finalizeTimeGap() error {
 		return errors.New("Gap start time is later than the Gap end time")
 	}
 
-	//Do we have a non null noTimeCount
+	//Do we have a non-null noTimeCount
 	if tb.noTimeCount < 1 {
 		return fmt.Errorf("Invalid number of records without time (%d)", tb.noTimeCount)
 	}
@@ -84,8 +84,7 @@ func (tb *InferTimeBlock) finalizeTimeGap() error {
 	//TODO: What should we expect as logFilePosition?
 
 	//Compute the gap
-	floatInterval := diff.Seconds() / float64(tb.noTimeCount+1)
-	tb.deltatime = int(floatInterval)
+	tb.deltatime = time.Duration(diff / time.Duration(tb.noTimeCount+1))
 
 	return nil
 }

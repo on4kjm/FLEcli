@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 	"time"
@@ -46,13 +47,15 @@ func TestInferTimeBlock_full_happyCase(t *testing.T) {
 		t.Errorf("Unexpected error finalizing the timeGap")
 	}
 
+	fmt.Println(tb.String())
+
 	//Then
 	expectedCount := 1
 	if tb.noTimeCount != expectedCount {
 		t.Errorf("Unexpected number of missing records: %d, expected %d", tb.noTimeCount, expectedCount)
 	}
 
-	expectedInterval := 270
+	expectedInterval := time.Duration(time.Second * 270)
 	if tb.deltatime != expectedInterval {
 		t.Errorf("Unexpected interval: %d, expected %d", tb.deltatime, expectedInterval)
 	}
@@ -83,8 +86,8 @@ func TestInferTimeBlock_display_happyCase(t *testing.T) {
 	buffer2 := tb.String()
 
 	//Then
-	expectedBuffer1 := "Last Recorded Time:                 2020-05-24 1401\nnext Recorded Time:                 2020-05-24 1410\nLog position of last recorded time: 0\nNbr of entries without time:        1\nComputed interval:                  0\n"
-	expectedBuffer2 := "Last Recorded Time:                 2020-05-24 1401\nnext Recorded Time:                 2020-05-24 1410\nLog position of last recorded time: 0\nNbr of entries without time:        1\nComputed interval:                  275\n"
+	expectedBuffer1 := "Last Recorded Time:                 2020-05-24 1401\nnext Recorded Time:                 2020-05-24 1410\nLog position of last recorded time: 0\nNbr of entries without time:        1\nComputed interval:                  0s\n"
+	expectedBuffer2 := "Last Recorded Time:                 2020-05-24 1401\nnext Recorded Time:                 2020-05-24 1410\nLog position of last recorded time: 0\nNbr of entries without time:        1\nComputed interval:                  275s\n"
 
 	if buffer1 != expectedBuffer1 {
 		t.Errorf("Not the expected display: got: \n%s\n while expecting: \n%s\n", buffer1, expectedBuffer1)

@@ -24,6 +24,8 @@ import (
 	"regexp"
 	"time"
 
+	//"time"
+
 	"github.com/spf13/cobra"
 	//"strings"
 )
@@ -312,7 +314,8 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 				position := timeBlock.logFilePosition + i
 				pLogLine := &fullLog[position]
 
-				durationOffset := time.Second * time.Duration(timeBlock.deltatime*(i+1))
+				// durationOffset := time.Second * time.Duration(timeBlock.deltatime*(i+1))
+				durationOffset := timeBlock.deltatime * time.Duration(i+1)
 				newTime := timeBlock.lastRecordedTime.Add(durationOffset)
 				updatedTimeString := newTime.Format("1504")
 				pLogLine.Time = updatedTimeString
