@@ -24,7 +24,7 @@ import (
 func SprintLogRecord(logLine LogLine) string {
 	var output strings.Builder
 
-	output.WriteString( "Date      " + logLine.Date + "\n")
+	output.WriteString("Date      " + logLine.Date + "\n")
 	output.WriteString("MyCall    " + logLine.MyCall + "\n")
 	output.WriteString("Operator  " + logLine.Operator + "\n")
 	output.WriteString("MyWWFF    " + logLine.MyWWFF + "\n")

@@ -3,7 +3,6 @@ package cmd
 import (
 	"errors"
 	"fmt"
-	"log"
 	"strings"
 	"time"
 )
@@ -36,7 +35,7 @@ type InferTimeBlock struct {
 	deltatime int
 }
 
-//RFC3339FullDate describes the ADIF date & time format pattern for parsing and displaying
+//RFC3339FullDate describes the ADIF date & time parsing and displaying format pattern
 const RFC3339FullDate = "2006-01-02 1504"
 
 //displayTimeGapInfo will print the details stored in an InferTimeBlock
@@ -56,21 +55,15 @@ func (tb *InferTimeBlock) finalizeTimeGap() error {
 	//Check that lastRecordedTime and nextValidTime are not null
 	nullTime := time.Time{}
 	if tb.lastRecordedTime == nullTime {
-		errMsg := "Fatal error: gap start time is empty"
-		log.Println(errMsg)
-		return errors.New(errMsg)
+		return errors.New("Gap start time is empty")
 	}
 	if tb.nextValidTime == nullTime {
-		errMsg := "Fatal error: gap end time is empty"
-		log.Println(errMsg)
-		return errors.New(errMsg)
+		return errors.New("Gap end time is empty")
 	}
 
 	//Are the two times equal?
 	if tb.nextValidTime == tb.lastRecordedTime {
-		errMsg := "Fatal error: the start and end gap times are equal"
-		log.Println(errMsg)
-		return errors.New(errMsg)
+		return errors.New("The start and end gap times are equal")
 	}
 
 	//Compute the time difference
@@ -80,15 +73,12 @@ func (tb *InferTimeBlock) finalizeTimeGap() error {
 
 	//Fail if we have a negative time difference
 	if diff.Seconds() < 0 {
-		errMsg := "Fatal error: Gap start time is later than the Gap end time"
-		return errors.New(errMsg)
+		return errors.New("Gap start time is later than the Gap end time")
 	}
 
 	//Do we have a non null noTimeCount
 	if tb.noTimeCount < 1 {
-		errMsg := fmt.Sprintf("Fatal error: invalid number of records without time (%d)\n", tb.noTimeCount)
-		log.Println(errMsg)
-		return errors.New(errMsg)
+		return fmt.Errorf("Invalid number of records without time (%d)", tb.noTimeCount)
 	}
 
 	//TODO: What should we expect as logFilePosition?
@@ -115,9 +105,7 @@ func (tb *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool, err
 			// We reached the end of the gap
 			nullTime := time.Time{}
 			if tb.lastRecordedTime == nullTime {
-				errMsg := "Fatal error: gap start time is empty"
-				log.Println(errMsg)
-				err = fmt.Errorf(errMsg)
+				err = errors.New("Gap start time is empty")
 				return false, err
 			}
 
@@ -128,16 +116,11 @@ func (tb *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool, err
 		//Check the data is correct.
 		nullTime := time.Time{}
 		if tb.lastRecordedTime == nullTime {
-			errMsg := "Fatal error: gap start time is empty"
-			log.Println(errMsg)
-			err = fmt.Errorf(errMsg)
+			err = errors.New("Gap start time is empty")
 		}
 		if tb.nextValidTime != nullTime {
-			errMsg := "Fatal error: gap end time is not empty"
-			log.Println(errMsg)
-			err = fmt.Errorf(errMsg)
+			err = errors.New("Gap end time is not empty")
 		}
-
 		tb.noTimeCount++
 	}
 	return false, err

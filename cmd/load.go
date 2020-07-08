@@ -271,21 +271,23 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 				isEndOfGap, err := wrkTimeBlock.storeTimeGap(logline, len(fullLog))
 				//If an error occured it is a fatal error
 				if err != nil {
-					log.Fatal(err)
+					log.Println("Fatal error: ", err)
+					os.Exit(1)
 				}
 				//If we reached the end of the time gap, we make the necessary checks and make our gap calculation
 				if isEndOfGap {
-					err := wrkTimeBlock.finalizeTimeGap()
-					//If an error occured it is a fatal error
-					if err != nil {
-						log.Fatal(err)
+					if err := wrkTimeBlock.finalizeTimeGap(); err != nil {
+						//If an error occured it is a fatal error
+						log.Println("Fatal error: ", err)
+						os.Exit(1)
 					}
 
-					//TODO: add it to the gap collection
+					//add it to the gap collection
 					missingTimeBlockList = append(missingTimeBlockList, wrkTimeBlock)
 
 					//create a new block
 					wrkTimeBlock = InferTimeBlock{}
+
 					//Store this record in the new block as a new gap might be following
 					//no error or endOfGap processing as it has already been succesfully processed
 					wrkTimeBlock.storeTimeGap(logline, len(fullLog))
@@ -299,27 +301,21 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 		//Go back to the top (Continue not necessary)
 	}
 
-	//*** 
+	//***
 	//*** We have done processing the log file, so let's post process it
-	//*** 
+	//***
 
 	//if asked to infer the date, lets update the loaded logfile accordingly
 	if isInterpolateTime {
 		for _, timeBlock := range missingTimeBlockList {
-			fmt.Printf("Gap: \n%s\n", timeBlock.String())
-
 			for i := 0; i < timeBlock.noTimeCount; i++ {
 				position := timeBlock.logFilePosition + i
 				pLogLine := &fullLog[position]
-
-				fmt.Println("Call: " + pLogLine.Call)
 
 				durationOffset := time.Second * time.Duration(timeBlock.deltatime*(i+1))
 				newTime := timeBlock.lastRecordedTime.Add(durationOffset)
 				updatedTimeString := newTime.Format("1504")
 				pLogLine.Time = updatedTimeString
-
-				fmt.Printf("New Time: %s\n", updatedTimeString)
 			}
 		}
 	}
