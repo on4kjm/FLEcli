@@ -299,12 +299,14 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 		//Go back to the top (Continue not necessary)
 	}
 
+	//*** 
 	//*** We have done processing the log file, so let's post process it
+	//*** 
 
 	//if asked to infer the date, lets update the loaded logfile accordingly
 	if isInterpolateTime {
 		for _, timeBlock := range missingTimeBlockList {
-			fmt.Printf("Gap: \n%s\n", timeBlock.displayTimeGapInfo())
+			fmt.Printf("Gap: \n%s\n", timeBlock.String())
 
 			for i := 0; i < timeBlock.noTimeCount; i++ {
 				position := timeBlock.logFilePosition + i

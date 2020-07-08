@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"log"
+	"strings"
 	"time"
 )
 
@@ -30,7 +31,7 @@ type InferTimeBlock struct {
 	//Number of records without actual time
 	noTimeCount int
 
-	//First log entry with missing date
+	//Position in file of the first log entry with missing date
 	logFilePosition int
 
 	//Computed time interval (in seconds)
@@ -38,16 +39,17 @@ type InferTimeBlock struct {
 }
 
 //displayTimeGapInfo will print the details stored in an InferTimeBlock
-func (tb *InferTimeBlock) displayTimeGapInfo() string {
+func (tb *InferTimeBlock) String() string {
 	timeFormat := "2006-01-02 15:04"
-	buffer := ""
-	buffer = buffer + fmt.Sprintf("Last Recorded Time:                 %s\n", tb.lastRecordedTime.Format(timeFormat))
-	buffer = buffer + fmt.Sprintf("next Recorded Time:                 %s\n", tb.nextValidTime.Format(timeFormat))
-	buffer = buffer + fmt.Sprintf("Log position of last recorded time: %d\n", tb.logFilePosition)
-	buffer = buffer + fmt.Sprintf("Nbr of entries without time:        %d\n", tb.noTimeCount)
-	buffer = buffer + fmt.Sprintf("Computed interval:                  %d\n", tb.deltatime)
+	var buffer strings.Builder
 
-	return buffer
+	buffer.WriteString(fmt.Sprintf("Last Recorded Time:                 %s\n", tb.lastRecordedTime.Format(timeFormat)))
+	buffer.WriteString(fmt.Sprintf("next Recorded Time:                 %s\n", tb.nextValidTime.Format(timeFormat)))
+	buffer.WriteString(fmt.Sprintf("Log position of last recorded time: %d\n", tb.logFilePosition))
+	buffer.WriteString(fmt.Sprintf("Nbr of entries without time:        %d\n", tb.noTimeCount))
+	buffer.WriteString(fmt.Sprintf("Computed interval:                  %d\n", tb.deltatime))
+
+	return buffer.String()
 }
 
 //finalizeTimeGap makes the necessary checks and computation

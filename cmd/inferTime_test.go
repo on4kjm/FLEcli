@@ -76,11 +76,11 @@ func TestInferTimeBlock_display_happyCase(t *testing.T) {
 	tb.noTimeCount = 1
 
 	//When
-	buffer1 := tb.displayTimeGapInfo()
+	buffer1 := tb.String()
 
 	tb.finalizeTimeGap()
 
-	buffer2 := tb.displayTimeGapInfo()
+	buffer2 := tb.String()
 
 	//Then
 	expectedBuffer1 := "Last Recorded Time:                 2020-05-24 14:01\nnext Recorded Time:                 2020-05-24 14:10\nLog position of last recorded time: 0\nNbr of entries without time:        1\nComputed interval:                  0\n"
