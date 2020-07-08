@@ -83,8 +83,8 @@ func TestInferTimeBlock_display_happyCase(t *testing.T) {
 	buffer2 := tb.String()
 
 	//Then
-	expectedBuffer1 := "Last Recorded Time:                 2020-05-24 14:01\nnext Recorded Time:                 2020-05-24 14:10\nLog position of last recorded time: 0\nNbr of entries without time:        1\nComputed interval:                  0\n"
-	expectedBuffer2 := "Last Recorded Time:                 2020-05-24 14:01\nnext Recorded Time:                 2020-05-24 14:10\nLog position of last recorded time: 0\nNbr of entries without time:        1\nComputed interval:                  275\n"
+	expectedBuffer1 := "Last Recorded Time:                 2020-05-24 1401\nnext Recorded Time:                 2020-05-24 1410\nLog position of last recorded time: 0\nNbr of entries without time:        1\nComputed interval:                  0\n"
+	expectedBuffer2 := "Last Recorded Time:                 2020-05-24 1401\nnext Recorded Time:                 2020-05-24 1410\nLog position of last recorded time: 0\nNbr of entries without time:        1\nComputed interval:                  275\n"
 
 	if buffer1 != expectedBuffer1 {
 		t.Errorf("Not the expected display: got: \n%s\n while expecting: \n%s\n", buffer1, expectedBuffer1)
