@@ -270,9 +270,8 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 
 			//store time inference data
 			if isInterpolateTime {
-				isEndOfGap, err := wrkTimeBlock.storeTimeGap(logline, len(fullLog))
-				//If an error occured it is a fatal error
-				if err != nil {
+				var isEndOfGap bool
+				if isEndOfGap, err = wrkTimeBlock.storeTimeGap(logline, len(fullLog)); err != nil {
 					log.Println("Fatal error: ", err)
 					os.Exit(1)
 				}
@@ -296,11 +295,16 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 				}
 			}
 		}
+
+		//Store append the accumulated soft parsing errors into the global parsing error log file
 		if errorLine != "" {
 			errorLog = append(errorLog, fmt.Sprintf("Parsing error at line %d: %s ", lineCount, errorLine))
 		}
+
+		//store the current logline so that it can be used as a model when parsing the next line
 		previousLogLine = logline
-		//Go back to the top (Continue not necessary)
+
+		//We go back to the top to process the next loaded log line (Continue not necessary here)
 	}
 
 	//***

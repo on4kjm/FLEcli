@@ -92,6 +92,8 @@ func (tb *InferTimeBlock) finalizeTimeGap() error {
 func (tb *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool, error) {
 	var err error
 
+	//TODO: try to return fast
+
 	//ActualTime is filled if a time could be found in the FLE input
 	if logline.ActualTime != "" {
 		//Are we starting a new block
@@ -105,14 +107,12 @@ func (tb *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool, err
 			// We reached the end of the gap
 			nullTime := time.Time{}
 			if tb.lastRecordedTime == nullTime {
-				err = errors.New("Gap start time is empty")
-				return false, err
+				return false, errors.New("Gap start time is empty")
 			}
 			if tb.nextValidTime, err = time.Parse(ADIFdateTimeFormat, logline.Date+" "+logline.ActualTime); err != nil {
 				log.Println("Fatal error during internal date concersion: ", err)
 				os.Exit(1)
 			}
-
 			return true, nil
 		}
 	} else {
@@ -120,6 +120,7 @@ func (tb *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool, err
 		nullTime := time.Time{}
 		if tb.lastRecordedTime == nullTime {
 			err = errors.New("Gap start time is empty")
+			//TODO:  this smells
 		}
 		if tb.nextValidTime != nullTime {
 			err = errors.New("Gap end time is not empty")
