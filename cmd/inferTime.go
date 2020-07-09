@@ -57,6 +57,7 @@ func (tb *InferTimeBlock) finalizeTimeGap() error {
 	//Check that lastRecordedTime and nextValidTime are not null
 	nullTime := time.Time{}
 	if tb.lastRecordedTime == nullTime {
+		// if tb.lastRecordedTime == nullTime {
 		return errors.New("Gap start time is empty")
 	}
 	if tb.nextValidTime == nullTime {
@@ -68,25 +69,21 @@ func (tb *InferTimeBlock) finalizeTimeGap() error {
 		return errors.New("The start and end gap times are equal")
 	}
 
-	//Compute the time difference
-	startTime := tb.lastRecordedTime
-	endTime := tb.nextValidTime
-	diff := endTime.Sub(startTime)
-
 	//Fail if we have a negative time difference
-	if diff.Seconds() < 0 {
+	if tb.nextValidTime.Before(tb.lastRecordedTime) {
 		return errors.New("Gap start time is later than the Gap end time")
 	}
 
-	//Do we have a non-null noTimeCount
+	//Compute the gap
+	diff := tb.nextValidTime.Sub(tb.lastRecordedTime)
+	tb.deltatime = time.Duration(diff / time.Duration(tb.noTimeCount+1))
+
+	//Do we have a positive noTimeCount
 	if tb.noTimeCount < 1 {
 		return fmt.Errorf("Invalid number of records without time (%d)", tb.noTimeCount)
 	}
 
 	//TODO: What should we expect as logFilePosition?
-
-	//Compute the gap
-	tb.deltatime = time.Duration(diff / time.Duration(tb.noTimeCount+1))
 
 	return nil
 }
