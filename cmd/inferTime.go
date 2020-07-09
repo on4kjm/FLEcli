@@ -3,6 +3,8 @@ package cmd
 import (
 	"errors"
 	"fmt"
+	"log"
+	"os"
 	"strings"
 	"time"
 )
@@ -35,14 +37,14 @@ type InferTimeBlock struct {
 	deltatime time.Duration
 }
 
-//RFC3339FullDate describes the ADIF date & time parsing and displaying format pattern
-const RFC3339FullDate = "2006-01-02 1504"
+//ADIFdateTimeFormat describes the ADIF date & time parsing and displaying format pattern
+const ADIFdateTimeFormat = "2006-01-02 1504"
 
 //displayTimeGapInfo will print the details stored in an InferTimeBlock
 func (tb *InferTimeBlock) String() string {
 	var buffer strings.Builder
-	buffer.WriteString(fmt.Sprintf("Last Recorded Time:                 %s\n", tb.lastRecordedTime.Format(RFC3339FullDate)))
-	buffer.WriteString(fmt.Sprintf("next Recorded Time:                 %s\n", tb.nextValidTime.Format(RFC3339FullDate)))
+	buffer.WriteString(fmt.Sprintf("Last Recorded Time:                 %s\n", tb.lastRecordedTime.Format(ADIFdateTimeFormat)))
+	buffer.WriteString(fmt.Sprintf("next Recorded Time:                 %s\n", tb.nextValidTime.Format(ADIFdateTimeFormat)))
 	buffer.WriteString(fmt.Sprintf("Log position of last recorded time: %d\n", tb.logFilePosition))
 	buffer.WriteString(fmt.Sprintf("Nbr of entries without time:        %d\n", tb.noTimeCount))
 	buffer.WriteString(fmt.Sprintf("Computed interval:                  %ds\n", int(tb.deltatime.Seconds())))
@@ -92,13 +94,15 @@ func (tb *InferTimeBlock) finalizeTimeGap() error {
 //storeTimeGap updates an InferTimeBLock (last valid time, nbr of records without time). It returns true if we reached the end of the time gap.
 func (tb *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool, error) {
 	var err error
-	err = nil
 
 	//ActualTime is filled if a time could be found in the FLE input
 	if logline.ActualTime != "" {
 		//Are we starting a new block
 		if tb.noTimeCount == 0 {
-			tb.lastRecordedTime = convertDateTime(logline.Date + " " + logline.ActualTime)
+			if tb.lastRecordedTime, err = time.Parse(ADIFdateTimeFormat, logline.Date+" "+logline.ActualTime); err != nil {
+				log.Println("Fatal error during internal date concersion: ", err)
+				os.Exit(1)
+			}
 			tb.logFilePosition = position
 		} else {
 			// We reached the end of the gap
@@ -107,9 +111,12 @@ func (tb *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool, err
 				err = errors.New("Gap start time is empty")
 				return false, err
 			}
+			if tb.nextValidTime, err = time.Parse(ADIFdateTimeFormat, logline.Date+" "+logline.ActualTime); err != nil {
+				log.Println("Fatal error during internal date concersion: ", err)
+				os.Exit(1)
+			}
 
-			tb.nextValidTime = convertDateTime(logline.Date + " " + logline.ActualTime)
-			return true, err
+			return true, nil
 		}
 	} else {
 		//Check the data is correct.
@@ -123,15 +130,4 @@ func (tb *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool, err
 		tb.noTimeCount++
 	}
 	return false, err
-}
-
-//convertDateTime converts the FLE date and time into a Go time structure
-func convertDateTime(dateStr string) (fullDate time.Time) {
-	date, err := time.Parse(RFC3339FullDate, dateStr)
-	//error should never happen
-	if err != nil {
-		panic(err)
-	}
-
-	return date
 }
