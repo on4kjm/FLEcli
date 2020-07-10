@@ -55,12 +55,10 @@ func (tb *InferTimeBlock) String() string {
 func (tb *InferTimeBlock) finalizeTimeGap() error {
 
 	//Check that lastRecordedTime and nextValidTime are not null
-	nullTime := time.Time{}
-	if tb.lastRecordedTime == nullTime {
-		// if tb.lastRecordedTime == nullTime {
+	if tb.lastRecordedTime.IsZero() {
 		return errors.New("Gap start time is empty")
 	}
-	if tb.nextValidTime == nullTime {
+	if tb.nextValidTime.IsZero() {
 		return errors.New("Gap end time is empty")
 	}
 
@@ -92,7 +90,7 @@ func (tb *InferTimeBlock) finalizeTimeGap() error {
 func (tb *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool, error) {
 	var err error
 
-	//TODO: try to return fast
+	//TODO: try to return fast and/or simpllify
 
 	//ActualTime is filled if a time could be found in the FLE input
 	if logline.ActualTime != "" {
@@ -105,8 +103,7 @@ func (tb *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool, err
 			tb.logFilePosition = position
 		} else {
 			// We reached the end of the gap
-			nullTime := time.Time{}
-			if tb.lastRecordedTime == nullTime {
+			if tb.lastRecordedTime.IsZero(){
 				return false, errors.New("Gap start time is empty")
 			}
 			if tb.nextValidTime, err = time.Parse(ADIFdateTimeFormat, logline.Date+" "+logline.ActualTime); err != nil {
@@ -117,12 +114,11 @@ func (tb *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool, err
 		}
 	} else {
 		//Check the data is correct.
-		nullTime := time.Time{}
-		if tb.lastRecordedTime == nullTime {
+		if tb.lastRecordedTime.IsZero() {
 			err = errors.New("Gap start time is empty")
 			//TODO:  this smells
 		}
-		if tb.nextValidTime != nullTime {
+		if !tb.nextValidTime.IsZero() {
 			err = errors.New("Gap end time is not empty")
 		}
 		tb.noTimeCount++
