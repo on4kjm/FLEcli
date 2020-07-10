@@ -42,6 +42,7 @@ type LogLine struct {
 	BandUpperLimit float64
 	Frequency      string
 	Time           string
+	ActualTime     string //time actually recorded in FLE
 	Call           string
 	Comment        string
 	QSLmsg         string
@@ -80,6 +81,7 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 	previousLine.OMname = ""
 	previousLine.GridLoc = ""
 	previousLine.Comment = ""
+	previousLine.ActualTime = ""
 	logLine = previousLine
 
 	//TODO: what happens when we have <> or when there are multiple comments
@@ -155,6 +157,7 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 		if isRightOfCall == false {
 			if regexpIsFullTime.MatchString(element) {
 				logLine.Time = element
+				logLine.ActualTime = element
 				continue
 			}
 
@@ -162,9 +165,11 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 			if regexpIsTimePart.MatchString(element) {
 				if logLine.Time == "" {
 					logLine.Time = element
+					logLine.ActualTime = element
 				} else {
 					goodPart := logLine.Time[:len(logLine.Time)-len(element)]
 					logLine.Time = goodPart + element
+					logLine.ActualTime = goodPart + element
 				}
 				continue
 			}

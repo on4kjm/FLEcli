@@ -15,12 +15,14 @@
 * [x] decode and check frequency 
 * [ ] New MYGRID keyword
 * [ ] Support different date delimiter
-* [ ] Support extrapolated date
+* [x] Support extrapolated date
 * [ ] Support date not prefixed by "date" (non header mode) DATE keyword is now optional
 * [ ] Support date increment
+* [ ] Support WWFF keyword
+* [ ] Validate that we have the necessary dat for the output 
 
 ## Output processing
-* [ ] WWFF ADIF output
+* [x] WWFF ADIF output
 * [ ] Standard ADIF output
 * [ ] SOTA ADIF
 * [ ] SOTA CSV

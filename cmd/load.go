@@ -19,10 +19,14 @@ limitations under the License.
 import (
 	"bufio"
 	"fmt"
-	"github.com/spf13/cobra"
 	"log"
 	"os"
 	"regexp"
+	"time"
+
+	//"time"
+
+	"github.com/spf13/cobra"
 	//"strings"
 )
 
@@ -100,6 +104,9 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 	headerNickname := ""
 	headerDate := ""
 	lineCount := 0
+
+	wrkTimeBlock := InferTimeBlock{}
+	missingTimeBlockList := []InferTimeBlock{}
 
 	var isInMultiLine = false
 	var cleanedInput []string
@@ -254,16 +261,70 @@ func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
 		previousLogLine.Nickname = headerNickname
 		previousLogLine.Date = headerDate
 
-		//
+		//parse a line
 		logline, errorLine := ParseLine(eachline, previousLogLine)
+
+		//we have a valid line (contains a call)
 		if logline.Call != "" {
 			fullLog = append(fullLog, logline)
+
+			//store time inference data
+			if isInterpolateTime {
+				var isEndOfGap bool
+				if isEndOfGap, err = wrkTimeBlock.storeTimeGap(logline, len(fullLog)); err != nil {
+					log.Println("Fatal error: ", err)
+					os.Exit(1)
+				}
+				//If we reached the end of the time gap, we make the necessary checks and make our gap calculation
+				if isEndOfGap {
+					if err := wrkTimeBlock.finalizeTimeGap(); err != nil {
+						//If an error occured it is a fatal error
+						log.Println("Fatal error: ", err)
+						os.Exit(1)
+					}
+
+					//add it to the gap collection
+					missingTimeBlockList = append(missingTimeBlockList, wrkTimeBlock)
+
+					//create a new block
+					wrkTimeBlock = InferTimeBlock{}
+
+					//Store this record in the new block as a new gap might be following
+					//no error or endOfGap processing as it has already been succesfully processed
+					wrkTimeBlock.storeTimeGap(logline, len(fullLog))
+				}
+			}
 		}
+
+		//Store append the accumulated soft parsing errors into the global parsing error log file
 		if errorLine != "" {
 			errorLog = append(errorLog, fmt.Sprintf("Parsing error at line %d: %s ", lineCount, errorLine))
 		}
+
+		//store the current logline so that it can be used as a model when parsing the next line
 		previousLogLine = logline
-		//Go back to the top (Continue not necessary)
+
+		//We go back to the top to process the next loaded log line (Continue not necessary here)
+	}
+
+	//***
+	//*** We have done processing the log file, so let's post process it
+	//***
+
+	//if asked to infer the date, lets update the loaded logfile accordingly
+	if isInterpolateTime {
+		for _, timeBlock := range missingTimeBlockList {
+			for i := 0; i < timeBlock.noTimeCount; i++ {
+				position := timeBlock.logFilePosition + i
+				pLogLine := &fullLog[position]
+
+				// durationOffset := time.Second * time.Duration(timeBlock.deltatime*(i+1))
+				durationOffset := timeBlock.deltatime * time.Duration(i+1)
+				newTime := timeBlock.lastRecordedTime.Add(durationOffset)
+				updatedTimeString := newTime.Format("1504")
+				pLogLine.Time = updatedTimeString
+			}
+		}
 	}
 
 	displayLogSimple(fullLog)
