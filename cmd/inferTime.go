@@ -103,7 +103,7 @@ func (tb *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool, err
 			tb.logFilePosition = position
 		} else {
 			// We reached the end of the gap
-			if tb.lastRecordedTime.IsZero(){
+			if tb.lastRecordedTime.IsZero() {
 				return false, errors.New("Gap start time is empty")
 			}
 			if tb.nextValidTime, err = time.Parse(ADIFdateTimeFormat, logline.Date+" "+logline.ActualTime); err != nil {
