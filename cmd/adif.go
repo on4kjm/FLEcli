@@ -24,7 +24,8 @@ import (
 )
 
 var outputFilename string
-var isWwff bool
+var isWWFFcli bool
+var isSOTAcli bool
 var isOverwrite bool
 
 // adifCmd is executed when choosing the adif option (load and generate adif file)
@@ -42,7 +43,8 @@ var adifCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(adifCmd)
 
-	adifCmd.PersistentFlags().BoolVarP(&isWwff, "wwff", "w", false, "Generates an ADIF file ready to be uploaded on WWFF")
+	adifCmd.PersistentFlags().BoolVarP(&isWWFFcli, "wwff", "w", false, "Generates a WWFF ready ADIF file.")
+	adifCmd.PersistentFlags().BoolVarP(&isSOTAcli, "sota", "s", false, "Generates a SOTA ready ADIF file.")
 	adifCmd.PersistentFlags().BoolVarP(&isOverwrite, "overwrite", "", false, "Overwrites the output file if it exisits")
 	adifCmd.PersistentFlags().StringVarP(&outputFilename, "output", "o", "", "Output filename")
 }
@@ -55,7 +57,8 @@ func processAdifCommand() {
 	fmt.Println("OutputFile: ", outputFilename)
 	fmt.Println("computed output: ", verifiedOutputFilename)
 	fmt.Println("Output filenameWasOK: ", filenameWasOK)
-	fmt.Println("wwff: ", isWwff)
+	fmt.Println("wwff: ", isWWFFcli)
+	fmt.Println("sota: ", isSOTAcli)
 	fmt.Println("isOverwrite: ", isOverwrite)
 
 	// if the output file could not be parsed correctly do noting
@@ -69,15 +72,16 @@ func processAdifCommand() {
 				return
 			}
 
+			//TODO: There are more tests required here
 			//check if we have the necessary information for the type
-			if isWwff {
+			if isWWFFcli {
 				if loadedLogFile[0].MyWWFF == "" {
 					fmt.Println("Missing MY-WWFF reference. Aborting...")
 					return
 				}
 			}
 
-			outputAdif(verifiedOutputFilename, loadedLogFile)
+			outputAdif(verifiedOutputFilename, loadedLogFile, isWWFFcli, isSOTAcli)
 		}
 	}
 }

@@ -28,30 +28,30 @@ import (
 
 // LogLine is used to store all the data of a single log line
 type LogLine struct {
-	Date           string
-	MyCall         string
-	Operator       string
-	MyWWFF         string
-	MySOTA         string
-	QslMsg         string
-	Nickname       string
-	Mode           string
-	ModeType       string
-	Band           string
-	BandLowerLimit float64
-	BandUpperLimit float64
-	Frequency      string
-	Time           string
-	ActualTime     string //time actually recorded in FLE
-	Call           string
-	Comment        string
-	QSLmsg         string
-	OMname         string
-	GridLoc        string
-	RSTsent        string
-	RSTrcvd        string
-	WWFF           string
-	SOTA           string
+	Date             string
+	MyCall           string
+	Operator         string
+	MyWWFF           string
+	MySOTA           string
+	QslMsgFromHeader string
+	Nickname         string
+	Mode             string
+	ModeType         string
+	Band             string
+	BandLowerLimit   float64
+	BandUpperLimit   float64
+	Frequency        string
+	Time             string
+	ActualTime       string //time actually recorded in FLE
+	Call             string
+	Comment          string
+	QSLmsg           string
+	OMname           string
+	GridLoc          string
+	RSTsent          string
+	RSTrcvd          string
+	WWFF             string
+	SOTA             string
 }
 
 var regexpIsFullTime = regexp.MustCompile("^[0-2]{1}[0-9]{3}$")

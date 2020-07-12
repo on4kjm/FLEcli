@@ -29,7 +29,7 @@ func SprintLogRecord(logLine LogLine) string {
 	output.WriteString("Operator  " + logLine.Operator + "\n")
 	output.WriteString("MyWWFF    " + logLine.MyWWFF + "\n")
 	output.WriteString("MySOTA    " + logLine.MySOTA + "\n")
-	output.WriteString("QslMsg    " + logLine.QslMsg + "\n")
+	output.WriteString("QslMsg    " + logLine.QslMsgFromHeader + "\n")
 	output.WriteString("Nickname  " + logLine.Nickname + "\n")
 	output.WriteString("Mode      " + logLine.Mode + "\n")
 	output.WriteString("ModeType  " + logLine.ModeType + "\n")

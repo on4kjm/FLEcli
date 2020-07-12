@@ -25,45 +25,58 @@ limitations under the License.
 */
 
 // outputAdif generates and writes data in ADIF format
-func outputAdif(outputFile string, fullLog []LogLine) {
+func outputAdif(outputFile string, fullLog []LogLine, isWWFF bool, isSOTA bool) {
+
+	//TODO: validate input data for combination
 
 	//convert the log data to an in-memory ADIF file
-	adifData := buildAdif(fullLog)
+	adifData := buildAdif(fullLog, isWWFF, isSOTA)
 
 	//write to a file
 	writeAdif(outputFile, adifData)
 }
 
 // buildAdif creates the adif file in memory ready to be printed
-func buildAdif(fullLog []LogLine) (adifList []string) {
+func buildAdif(fullLog []LogLine, isWWFF bool, isSOTA bool) (adifList []string) {
 	//Print the fixed header
 	adifList = append(adifList, "ADIF Export for Fast Log Entry by DF3CB")
 	adifList = append(adifList, "<PROGRAMID:3>FLE")
-	adifList = append(adifList, "<ADIF_VER:5>3.0.6")
+	adifList = append(adifList, "<ADIF_VER:5>3.1.0")
 	adifList = append(adifList, "<EOH>")
 
 	for _, logLine := range fullLog {
-		adifLine := ""
-		adifLine = adifLine + adifElement("STATION_CALLSIGN", logLine.MyCall)
-		adifLine = adifLine + adifElement("CALL", logLine.Call)
-		adifLine = adifLine + adifElement("QSO_DATE", adifDate(logLine.Date))
-		adifLine = adifLine + adifElement("TIME_ON", logLine.Time)
-		adifLine = adifLine + adifElement("BAND", logLine.Band)
-		adifLine = adifLine + adifElement("MODE", logLine.Mode)
+		var adifLine strings.Builder
+		adifLine.WriteString(adifElement("STATION_CALLSIGN", logLine.MyCall))
+		adifLine.WriteString(adifElement("CALL", logLine.Call))
+		adifLine.WriteString(adifElement("QSO_DATE", adifDate(logLine.Date)))
+		adifLine.WriteString(adifElement("TIME_ON", logLine.Time))
+		adifLine.WriteString(adifElement("BAND", logLine.Band))
+		adifLine.WriteString(adifElement("MODE", logLine.Mode))
 		if logLine.Frequency != "" {
-			adifLine = adifLine + adifElement("FREQ", logLine.Frequency)
+			adifLine.WriteString(adifElement("FREQ", logLine.Frequency))
 		}
-		adifLine = adifLine + adifElement("RST_SENT", logLine.RSTsent)
-		adifLine = adifLine + adifElement("RST_RCVD", logLine.RSTrcvd)
-		adifLine = adifLine + adifElement("MY_SIG", "WWFF")
-		adifLine = adifLine + adifElement("MY_SIG_INFO", logLine.MyWWFF)
-		adifLine = adifLine + adifElement("OPERATOR", logLine.Operator)
+		adifLine.WriteString(adifElement("RST_SENT", logLine.RSTsent))
+		adifLine.WriteString(adifElement("RST_RCVD", logLine.RSTrcvd))
+		if logLine.QSLmsg != "" {
+			adifLine.WriteString(adifElement("QSLMSG", logLine.RSTrcvd))
+		}
+		if isWWFF {
+			adifLine.WriteString(adifElement("MY_SIG", "WWFF"))
+			adifLine.WriteString(adifElement("MY_SIG_INFO", logLine.MyWWFF))
+		}
+		if isSOTA {
+			adifLine.WriteString(adifElement("MY_SOTA_REF", logLine.MySOTA))
+			if logLine.SOTA != "" {
+				adifLine.WriteString(adifElement("SOTA_REF", logLine.SOTA))
+			}
+		}
+		adifLine.WriteString(adifElement("OPERATOR", logLine.Operator))
 		if logLine.Nickname != "" {
-			adifLine = adifLine + adifElement("APP_EQSL_QTH_NICKNAME", logLine.Nickname)
+			adifLine.WriteString(adifElement("APP_EQSL_QTH_NICKNAME", logLine.Nickname))
 		}
-		adifLine = adifLine + "<EOR>"
+		adifLine.WriteString("<EOR>")
 
-		adifList = append(adifList, adifLine)
+		adifList = append(adifList, adifLine.String())
 
 	}
 
@@ -107,13 +120,13 @@ func checkFileError(e error) {
 
 //adifDate converts a date in YYYY-MM-DD format to YYYYMMDD
 func adifDate(inputDate string) (outputDate string) {
-	const RFC3339FullDate = "2006-01-02"
-	date, err := time.Parse(RFC3339FullDate, inputDate)
+	const FLEdateFormat = "2006-01-02"
+	date, err := time.Parse(FLEdateFormat, inputDate)
 	//error should never happen
 	if err != nil {
 		panic(err)
 	}
-	outputDate = fmt.Sprintf("%04d%02d%02d", date.Year(), date.Month(), date.Day())
 
-	return outputDate
+	const ADIFdateFormat = "20060102"
+	return date.Format(ADIFdateFormat)
 }
