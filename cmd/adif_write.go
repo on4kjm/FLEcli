@@ -1,13 +1,5 @@
 package cmd
 
-import (
-	"bufio"
-	"fmt"
-	"os"
-	"strings"
-	"time"
-)
-
 /*
 Copyright © 2020 Jean-Marc Meessen, ON4KJM <on4kjm@gmail.com>
 
@@ -24,6 +16,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+	"time"
+)
+
 // outputAdif generates and writes data in ADIF format
 func outputAdif(outputFile string, fullLog []LogLine, isWWFF bool, isSOTA bool) {
 
@@ -33,7 +33,7 @@ func outputAdif(outputFile string, fullLog []LogLine, isWWFF bool, isSOTA bool) 
 	adifData := buildAdif(fullLog, isWWFF, isSOTA)
 
 	//write to a file
-	writeAdif(outputFile, adifData)
+	writeFile(outputFile, adifData)
 }
 
 // buildAdif creates the adif file in memory ready to be printed
@@ -83,8 +83,8 @@ func buildAdif(fullLog []LogLine, isWWFF bool, isSOTA bool) (adifList []string) 
 	return adifList
 }
 
-// writeAdif writes the in-memory adif data to a file
-func writeAdif(outputFile string, adifData []string) {
+// writeFile writes the in-memory data (lines) to a file
+func writeFile(outputFile string, adifData []string) {
 
 	//TODO: check access rights
 	f, err := os.Create(outputFile)

@@ -57,14 +57,14 @@ func processCsvCommand() {
 
 	// if the output file could not be parsed correctly do noting
 	if filenameWasOK {
-		// loadedLogFile, isLoadedOK := loadFile()
+		loadedLogFile, isLoadedOK := loadFile()
 
-		// //TODO: move this in a function so that it can be more easily tested
-		// if isLoadedOK {
-		// 	if len(loadedLogFile) == 0 {
-		// 		fmt.Println("No useful data read. Aborting...")
-		// 		return
-		// 	}
+		//TODO: move this in a function so that it can be more easily tested
+		if isLoadedOK {
+			if len(loadedLogFile) == 0 {
+				fmt.Println("No useful data read. Aborting...")
+				return
+			}
 
 		// 	//TODO: There are more tests required here
 		// 	//check if we have the necessary information for the type
@@ -75,7 +75,7 @@ func processCsvCommand() {
 		// 		}
 		// 	}
 
-		// 	outputAdif(verifiedOutputFilename, loadedLogFile, isWWFFcli, isSOTAcli)
-		// }
+			outputCsv(verifiedOutputFilename, loadedLogFile)
+		}
 	}
 }
