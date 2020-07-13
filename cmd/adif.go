@@ -51,7 +51,7 @@ func init() {
 
 func processAdifCommand() {
 
-	verifiedOutputFilename, filenameWasOK := buildOutputFilename(outputFilename, inputFilename, isOverwrite)
+	verifiedOutputFilename, filenameWasOK := buildOutputFilename(outputFilename, inputFilename, isOverwrite, ".adi")
 	fmt.Println("adif called")
 	fmt.Println("Inputfile: ", inputFilename)
 	fmt.Println("OutputFile: ", outputFilename)

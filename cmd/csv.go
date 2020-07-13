@@ -47,13 +47,13 @@ func init() {
 
 func processCsvCommand() {
 
-	verifiedOutputFilename, filenameWasOK := buildOutputFilename(outputFilename, inputFilename, isOverwrite)
+	verifiedOutputFilename, filenameWasOK := buildOutputFilename(outputCsvFilename, inputFilename, isOverwrite, ".csv")
 	fmt.Println("csv called")
 	fmt.Println("Inputfile: ", inputFilename)
 	fmt.Println("OutputFile: ", outputFilename)
 	fmt.Println("computed output: ", verifiedOutputFilename)
 	fmt.Println("Output filenameWasOK: ", filenameWasOK)
-	fmt.Println("isOverwrite: ", isOverwrite)
+	fmt.Println("isOverwriteCsv: ", isOverwriteCsv)
 
 	// if the output file could not be parsed correctly do noting
 	if filenameWasOK {

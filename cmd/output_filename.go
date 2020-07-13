@@ -18,7 +18,6 @@ limitations under the License.
 
 import (
 	"os"
-	//"log"
 	"fmt"
 	"path/filepath"
 )
@@ -28,7 +27,7 @@ import (
 //	remove the extention
 
 //returning "" is considered as invalid
-func buildOutputFilename(output string, input string, overwrite bool) (outputFilename string, wasOK bool) {
+func buildOutputFilename(output string, input string, overwrite bool, newExtension string) (outputFilename string, wasOK bool) {
 	outputFilename = ""
 
 	//validate that input is populated (should never happen if properly called)
@@ -40,7 +39,7 @@ func buildOutputFilename(output string, input string, overwrite bool) (outputFil
 	if output == "" {
 		extension := filepath.Ext(input)
 		outputRootPart := input[0 : len(input)-len(extension)]
-		output = outputRootPart + ".adi"
+		output = outputRootPart + newExtension
 		fmt.Println("No output provided, defaulting to \"" + output + "\"")
 	}
 

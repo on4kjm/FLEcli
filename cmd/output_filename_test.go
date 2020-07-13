@@ -30,6 +30,7 @@ func Test_buildOutputFilename(t *testing.T) {
 		output    string
 		input     string
 		overwrite bool
+		extension string
 	}
 	tests := []struct {
 		name               string
@@ -39,37 +40,37 @@ func Test_buildOutputFilename(t *testing.T) {
 	}{
 		{
 			"input file not provided",
-			args{input: "", output: "xxx", overwrite: false},
+			args{input: "", output: "xxx", overwrite: false, extension: ".adi"},
 			"", false,
 		},
 		{
 			"Output file does not exist",
-			args{input: "a file", output: "output.adi", overwrite: false},
+			args{input: "a file", output: "output.adi", overwrite: false, extension: ".adi"},
 			"output.adi", true,
 		},
 		{
 			"Output name is a directory",
-			args{input: "a file", output: testDir, overwrite: false},
+			args{input: "a file", output: testDir, overwrite: false, extension: ".adi"},
 			"", false,
 		},
 		{
 			"Output exist but no overwrite",
-			args{input: "a file", output: testFile, overwrite: false},
+			args{input: "a file", output: testFile, overwrite: false, extension: ".adi"},
 			"", false,
 		},
 		{
 			"no output, input provided with extention",
-			args{input: "/test/data/file.txt", output: "", overwrite: false},
+			args{input: "/test/data/file.txt", output: "", overwrite: false, extension: ".adi"},
 			"/test/data/file.adi", true,
 		},
 		{
 			"no output, input provided without extention",
-			args{input: "/test/data/file", output: "", overwrite: false},
+			args{input: "/test/data/file", output: "", overwrite: false, extension: ".adi"},
 			"/test/data/file.adi", true,
 		},
 		{
 			"no output, input provided, enfing with a point",
-			args{input: "/test/data/file.", output: "", overwrite: false},
+			args{input: "/test/data/file.", output: "", overwrite: false, extension: ".adi"},
 			"/test/data/file.adi", true,
 		},
 	}
@@ -79,7 +80,7 @@ func Test_buildOutputFilename(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			gotOutputFilename, gotWasOK := buildOutputFilename(tt.args.output, tt.args.input, tt.args.overwrite)
+			gotOutputFilename, gotWasOK := buildOutputFilename(tt.args.output, tt.args.input, tt.args.overwrite, tt.args.extension)
 			if gotOutputFilename != tt.wantOutputFilename {
 				t.Errorf("buildOutputFilename() gotOutputFilename = %v, want %v", gotOutputFilename, tt.wantOutputFilename)
 			}
