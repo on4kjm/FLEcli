@@ -2,6 +2,7 @@
 mycall on4kjm/p
 operator on4kjm
 mywwff onff-0259
+mysota ON/ON-001
 nickname ONFF-0259-1
 
 # Log 

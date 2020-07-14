@@ -266,36 +266,39 @@ func TestValidateDate(t *testing.T) {
 	}
 }
 
+
+
 func TestIsBand(t *testing.T) {
 	type args struct {
 		inputStr string
 	}
 	tests := []struct {
-		name           string
-		args           args
-		wantResult     bool
-		wantLowerLimit float64
-		wantUpperLimit float64
+		name            string
+		args            args
+		wantResult      bool
+		wantLowerLimit  float64
+		wantUpperLimit  float64
+		wantAltBandName string
 	}{
 		{
 			"invalid band",
 			args{inputStr: "zzzz"},
-			false, 0, 0,
+			false, 0, 0, "",
 		},
 		{
 			"valid band",
 			args{inputStr: "40m"},
-			true, 7.0, 7.3,
+			true, 7.0, 7.3, "7Mhz",
 		},
 		{
 			"valid band but uppercase",
 			args{inputStr: "40M"},
-			true, 7.0, 7.3,
+			true, 7.0, 7.3,"7Mhz",
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			gotResult, gotLowerLimit, gotUpperLimit := IsBand(tt.args.inputStr)
+			gotResult, gotLowerLimit, gotUpperLimit, gotAltBandName := IsBand(tt.args.inputStr)
 			if gotResult != tt.wantResult {
 				t.Errorf("IsBand() gotResult = %v, want %v", gotResult, tt.wantResult)
 			}
@@ -304,6 +307,9 @@ func TestIsBand(t *testing.T) {
 			}
 			if gotUpperLimit != tt.wantUpperLimit {
 				t.Errorf("IsBand() gotUpperLimit = %v, want %v", gotUpperLimit, tt.wantUpperLimit)
+			}
+			if gotAltBandName != tt.wantAltBandName {
+				t.Errorf("IsBand() gotAltBandName = %v, want %v", gotAltBandName, tt.wantAltBandName)
 			}
 		})
 	}

@@ -47,13 +47,7 @@ func init() {
 
 func processCsvCommand() {
 
-	verifiedOutputFilename, filenameWasOK := buildOutputFilename(outputCsvFilename, inputFilename, isOverwrite, ".csv")
-	fmt.Println("csv called")
-	fmt.Println("Inputfile: ", inputFilename)
-	fmt.Println("OutputFile: ", outputFilename)
-	fmt.Println("computed output: ", verifiedOutputFilename)
-	fmt.Println("Output filenameWasOK: ", filenameWasOK)
-	fmt.Println("isOverwriteCsv: ", isOverwriteCsv)
+	verifiedOutputFilename, filenameWasOK := buildOutputFilename(outputCsvFilename, inputFilename, isOverwriteCsv, ".csv")
 
 	// if the output file could not be parsed correctly do noting
 	if filenameWasOK {
@@ -66,14 +60,11 @@ func processCsvCommand() {
 				return
 			}
 
-		// 	//TODO: There are more tests required here
-		// 	//check if we have the necessary information for the type
-		// 	if isWWFFcli {
-		// 		if loadedLogFile[0].MyWWFF == "" {
-		// 			fmt.Println("Missing MY-WWFF reference. Aborting...")
-		// 			return
-		// 		}
-		// 	}
+			//check if we have the necessary information for the type
+			if loadedLogFile[0].MySOTA == "" {
+				fmt.Println("Missing MY-SOTA reference. Aborting...")
+				return
+			}
 
 			outputCsv(verifiedOutputFilename, loadedLogFile)
 		}

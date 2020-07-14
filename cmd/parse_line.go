@@ -119,7 +119,7 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 		}
 
 		// Is it a band?
-		isBandElement, bandLowerLimit, bandUpperLimit := IsBand(element)
+		isBandElement, bandLowerLimit, bandUpperLimit, _ := IsBand(element)
 		if isBandElement {
 			logLine.Band = strings.ToLower(element)
 			logLine.BandLowerLimit = bandLowerLimit

@@ -46,7 +46,9 @@ func buildCsv(fullLog []LogLine) (csvList []string) {
 		csvLine.WriteString(fmt.Sprintf("%s,", logLine.MySOTA))
 		csvLine.WriteString(fmt.Sprintf("%s,", csvDate(logLine.Date)))
 		csvLine.WriteString(fmt.Sprintf("%s,", logLine.Time))
-		// adifLine.WriteString(adifElement("BAND", logLine.Band))
+		//TODO: Should we test the result
+		_, _, _, sotaBand := IsBand(logLine.Band)
+		csvLine.WriteString(fmt.Sprintf("%s,",sotaBand ))
 		csvLine.WriteString(fmt.Sprintf("%s,",logLine.Mode))
 		csvLine.WriteString(fmt.Sprintf("%s", logLine.Call))
 

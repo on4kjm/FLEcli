@@ -52,14 +52,6 @@ func init() {
 func processAdifCommand() {
 
 	verifiedOutputFilename, filenameWasOK := buildOutputFilename(outputFilename, inputFilename, isOverwrite, ".adi")
-	fmt.Println("adif called")
-	fmt.Println("Inputfile: ", inputFilename)
-	fmt.Println("OutputFile: ", outputFilename)
-	fmt.Println("computed output: ", verifiedOutputFilename)
-	fmt.Println("Output filenameWasOK: ", filenameWasOK)
-	fmt.Println("wwff: ", isWWFFcli)
-	fmt.Println("sota: ", isSOTAcli)
-	fmt.Println("isOverwrite: ", isOverwrite)
 
 	// if the output file could not be parsed correctly do noting
 	if filenameWasOK {
@@ -79,6 +71,12 @@ func processAdifCommand() {
 					fmt.Println("Missing MY-WWFF reference. Aborting...")
 					return
 				}
+			}
+			if isSOTAcli {
+				if loadedLogFile[0].MySOTA == "" {
+					fmt.Println("Missing MY-SOTA reference. Aborting...")
+					return
+				}				
 			}
 
 			outputAdif(verifiedOutputFilename, loadedLogFile, isWWFFcli, isSOTAcli)

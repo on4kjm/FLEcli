@@ -36,8 +36,8 @@ func Test_buildCsv(t *testing.T) {
 	}
 
 	expectedOutput1 := []string{
-		"V2,ON4KJM/P,ON/ON-001,24/05/20,1310,14MHz,CW,S57LC",
-		"V2,ON4KJM/P,ON/ON-001,24/05/20,1312,14MHz,CW,ON4LY",
+		"V2,ON4KJM/P,ON/ON-001,24/05/20,1310,14Mhz,CW,S57LC",
+		"V2,ON4KJM/P,ON/ON-001,24/05/20,1312,14Mhz,CW,ON4LY",
 	}
 
 	type args struct {
