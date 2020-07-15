@@ -6,6 +6,7 @@
 ## Test framework
 * [ ] Perform the test of the complete app
 * [ ] Improve build processing (cross compile, directory)
+* [ ] Implement continuous integration
 
 
 
@@ -19,16 +20,17 @@
 * [ ] Support date not prefixed by "date" (non header mode) DATE keyword is now optional
 * [ ] Support date increment
 * [ ] Support WWFF keyword
-* [ ] Validate that we have the necessary dat for the output 
+* [ ] Validate that we have the necessary data for the output 
 
 ## Output processing
 * [x] WWFF ADIF output
-* [ ] Standard ADIF output
-* [ ] SOTA ADIF
-* [ ] SOTA CSV
+* [x] Standard ADIF output
+* [x] SOTA ADIF
+* [x] SOTA CSV
 
 ## Later 
 * [ ] Process contest reports
 * [ ] Infer digital mode report
 * [ ] add unit test for the DefaultReport validate function
+* [ ] look how to make it work as a CGI
 
