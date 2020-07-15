@@ -38,15 +38,38 @@ Use "FLEcli [command] --help" for more information about a command.
 
 To load and validate the FLE formated file (.txt):
 
->./FLEcli load -i=ON4KJM@ONFF-025920200524.txt
-
+```
+./FLEcli load -i=ON4KJM@ONFF-025920200524.txt
+```
 This command will parse and display the QSOs in grid format. 
 Fields that couldn't be succesfuly parsed are prefixed with "*". 
-Parsing errors or doubts are listed at the end of the display.
+Parsing errors or doubts are listed at the end of the list.
 
 
 ### Example: generate an ADIF file
+
+To generate an ADIF file based on `activation.txt`:
+
+```
+./FLEcli adif -i activation.txt -o output/activation.adi --overwrite --interpolate
+```
+The `-o` (or the long form, `--output`) specifies the path and name of the output file.
+If the flag and value are omitted, the tool will generate a filename.
+It is based on the input filename, just replacing the extention with `.adi`.
+
+The `--overwrite` flag indicates that, if the output file already exsist, it should be overwritten. 
+
+The `--interpolate` flag will interpolate the missing non-entered times based on the first and the last entered time.
+
 ### Example: generate an ADIF file for WWFF upload
+
+To generate a WWFF ready ADIF file: 
+```
+./FLEcli adif -i activation.txt -o output/activation.adi --wwff --interpolate
+```
+The `--wwff` indicates the adif flavour to produce.
+
+
 ### Example: generate a SOTA csv file
 
 Display all the options
