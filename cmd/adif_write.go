@@ -27,8 +27,6 @@ import (
 // outputAdif generates and writes data in ADIF format
 func outputAdif(outputFile string, fullLog []LogLine, isWWFF bool, isSOTA bool) {
 
-	//TODO: validate input data for combination
-
 	//convert the log data to an in-memory ADIF file
 	adifData := buildAdif(fullLog, isWWFF, isSOTA)
 
@@ -57,8 +55,14 @@ func buildAdif(fullLog []LogLine, isWWFF bool, isSOTA bool) (adifList []string) 
 		}
 		adifLine.WriteString(adifElement("RST_SENT", logLine.RSTsent))
 		adifLine.WriteString(adifElement("RST_RCVD", logLine.RSTrcvd))
+		if logLine.Comment != "" {
+			adifLine.WriteString(adifElement("COMMENT", logLine.Comment))		
+		}
+		if logLine.OMname != "" {
+			adifLine.WriteString(adifElement("NAME", logLine.OMname))		
+		}
 		if logLine.QSLmsg != "" {
-			adifLine.WriteString(adifElement("QSLMSG", logLine.RSTrcvd))
+			adifLine.WriteString(adifElement("QSLMSG", logLine.QSLmsg))
 		}
 		if isWWFF {
 			adifLine.WriteString(adifElement("MY_SIG", "WWFF"))
@@ -103,7 +107,7 @@ func writeFile(outputFile string, adifData []string) {
 		checkFileError(err)
 		lineCount++
 	}
-	fmt.Printf("\nSuccessfully wrote %d lines to file \"%s\"", lineCount, outputFile)
+	fmt.Printf("\nSuccessfully wrote %d lines to file \"%s\"\n", lineCount, outputFile)
 }
 
 // adifElement generated the ADIF sub-element

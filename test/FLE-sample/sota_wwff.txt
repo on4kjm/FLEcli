@@ -1,7 +1,7 @@
 { Sample WWFF and SOTA log }
 # Header
-mycall g3wgv
-operator 
+mycall g3wgv/p
+operator g3wgv
 mywwff gff-0014
 mysota g/ld-008
 

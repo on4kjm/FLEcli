@@ -71,6 +71,10 @@ func processAdifCommand() {
 					fmt.Println("Missing MY-WWFF reference. Aborting...")
 					return
 				}
+				if loadedLogFile[0].Operator == "" {
+					fmt.Println("Missing Operator. Aborting...")
+					return
+				}
 			}
 			if isSOTAcli {
 				if loadedLogFile[0].MySOTA == "" {
