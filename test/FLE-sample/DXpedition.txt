@@ -1,0 +1,26 @@
+{ Sample FLE QSO editor file for a DXpedition }
+{ Enter your call sign after the mycall keyword }
+mycall wb9zzz
+
+{ Start your log entry with a start date using the DATE keyword in the format yyyy-mm-dd }
+date 2016-06-30
+
+{ Then enter band and mode }
+80m cw 2335 ra3ax
+dj2mx
+40 dk4rm
+2 oh7ms 449 559
+8 rn6bn 3 6
+51 dl5mo < strong signal > #JO50
+dl7on
+3 dj2bw
+
+{ Times can be interpolated between two given times, e.g. between 0014 and 0038 in the following example }
+day ++ 40m ssb
+0014 g3fpq
+     ra6au
+     oh2pj
+     oh3es
+     sm5wp
+     sp8brq
+  38 ua3tcj
