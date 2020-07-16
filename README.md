@@ -55,7 +55,7 @@ Flags:
 To load and validate the FLE formated file (.txt):
 
 ```
-./FLEcli load -i=ON4KJM@ONFF-025920200524.txt
+./FLEcli load -i=myActivation.txt
 ```
 This command will parse and display the QSOs in grid format. 
 Fields that couldn't be succesfuly parsed are prefixed with "*". 
@@ -81,11 +81,13 @@ The `--interpolate` flag will interpolate the missing non-entered times based on
 
 To generate a WWFF-ready ADIF file: 
 ```
-./FLEcli adif -i activation.txt -o output/activation.adi --wwff --interpolate
+./FLEcli adif -i ON4KJM@ONFF-025920200524.txt --wwff --interpolate
 ```
 The `--wwff` indicates the adif flavour to produce.
 You can use the `--sota` switch to generate an ADIF file containing SOTA details.
 The switch can be used together with `--wwff`
+
+As we didn't provide an output filename, the default output, `ON4KJM@ONFF-025920200524.adi` will be used.  
 
 
 ### Example: generate a SOTA csv file
@@ -95,7 +97,7 @@ To generate a CSV file that can be uploaded to https://www.sotadata.org.uk/ to r
 ```
 ./FLEcli csv -i activation.txt --overwrite --interpolate
 ```
-This command will generate `activation.csv` based on the `activation.txt` FLE logfile.
+This command will generate `sotaActivation.csv` based on the `sotaActivation.txt` FLE logfile.
 If the output file exists, it will be overwritten as the `--overwrite` flag has been specified.
 The `--interpolate` flag will interpolate the missing non-entered times based on the first and the last entered time.
 
