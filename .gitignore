@@ -6,6 +6,7 @@
 *.dylib
 FLEcli
 executables/*
+test/output/temp/*
 
 # Test binary, built with `go test -c`
 *.test
