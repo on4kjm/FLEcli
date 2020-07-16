@@ -92,7 +92,7 @@ As we didn't provide an output filename, the default output, `ON4KJM@ONFF-025920
 
 ### Example: generate a SOTA csv file
 
-To generate a CSV file that can be uploaded to https://www.sotadata.org.uk/ to report SOTA cativations:
+To generate a CSV file that can be uploaded to https://www.sotadata.org.uk/ to report SOTA activations:
 
 ```
 ./FLEcli csv -i activation.txt --overwrite --interpolate
