@@ -10,7 +10,7 @@ But is also the alibi to learn and explore GO.
 ## Usage
 
 ### Installing
-Running on a Mac, Linux, windows
+TBD: Running on a Mac, Linux, windows. 
 
 ### Commands and options
 
@@ -19,22 +19,38 @@ Usage:
   FLEcli [command]
 
 Available Commands:
+  load        Loads and validates a FLE type shorthand logfile
   adif        Generates an ADIF file based on a FLE type shorthand logfile.
   csv         Generates a SOTA .csv file based on a FLE type shorthand logfile.
   help        Help about any command
-  load        Loads and validates a FLE type shorthand logfile
 
-Flags:
-      --config string   config file (default is $HOME/.FLEcli.yaml)
-  -h, --help            help for FLEcli
+General Flags:
+  -v, --version         Displays the version for FLEcli
   -i, --input string    FLE formatted input file (mandatory)
       --interpolate     Interpolates the missing time entries.
-  -v, --version         version for FLEcli
+      --config string   config file (default is $HOME/.FLEcli.yaml)
+  -h, --help            help for FLEcli
 
 Use "FLEcli [command] --help" for more information about a command.
-````
+------
+FLEcli adif [flags]
 
-### Example: validate the FLE syntax
+Flags:
+  -h, --help            help for adif
+  -o, --output string   Output filename
+      --overwrite       Overwrites the output file if it exisits
+  -s, --sota            Generates a SOTA ready ADIF file.
+  -w, --wwff            Generates a WWFF ready ADIF file.
+-----
+FLEcli csv [flags]
+
+Flags:
+  -h, --help            help for csv
+  -o, --output string   Output filename
+      --overwrite       Overwrites the output file if it exisits
+```
+
+### Example: validate the FLE syntax of a file
 
 To load and validate the FLE formated file (.txt):
 
@@ -63,13 +79,24 @@ The `--interpolate` flag will interpolate the missing non-entered times based on
 
 ### Example: generate an ADIF file for WWFF upload
 
-To generate a WWFF ready ADIF file: 
+To generate a WWFF-ready ADIF file: 
 ```
 ./FLEcli adif -i activation.txt -o output/activation.adi --wwff --interpolate
 ```
 The `--wwff` indicates the adif flavour to produce.
+You can use the `--sota` switch to generate an ADIF file containing SOTA details.
+The switch can be used together with `--wwff`
 
 
 ### Example: generate a SOTA csv file
 
-Display all the options
+To generate a CSV file that can be uploaded to https://www.sotadata.org.uk/ to report SOTA cativations:
+
+```
+./FLEcli csv -i activation.txt --overwrite --interpolate
+```
+This command will generate `activation.csv` based on the `activation.txt` FLE logfile.
+If the output file exists, it will be overwritten as the `--overwrite` flag has been specified.
+The `--interpolate` flag will interpolate the missing non-entered times based on the first and the last entered time.
+
+
