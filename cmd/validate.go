@@ -122,35 +122,35 @@ func IsBand(inputStr string) (result bool, lowerLimit, upperLimit float64, altBa
 	case "560m":
 		return true, 0.501, 0.504, "tbd"
 	case "160m":
-		return true, 1.8, 2.0, "1.8Mhz"
+		return true, 1.8, 2.0, "1.8MHz"
 	case "80m":
-		return true, 3.5, 4.0, "3.5Mhz"
+		return true, 3.5, 4.0, "3.5MHz"
 	case "60m":
-		return true, 5.06, 5.45, "5Mhz"
+		return true, 5.06, 5.45, "5MHz"
 	case "40m":
-		return true, 7.0, 7.3, "7Mhz"
+		return true, 7.0, 7.3, "7MHz"
 	case "30m":
-		return true, 10.1, 10.15, "10Mhz"
+		return true, 10.1, 10.15, "10MHz"
 	case "20m":
-		return true, 14.0, 14.35, "14Mhz"
+		return true, 14.0, 14.35, "14MHz"
 	case "17m":
-		return true, 18.068, 18.168, "18Mhz"
+		return true, 18.068, 18.168, "18MHz"
 	case "15m":
-		return true, 21.0, 21.45, "21Mhz"
+		return true, 21.0, 21.45, "21MHz"
 	case "12m":
-		return true, 24.890, 24.99, "24Mhz"
+		return true, 24.890, 24.99, "24MHz"
 	case "10m":
-		return true, 28.0, 29.7, "28Mhz"
+		return true, 28.0, 29.7, "28MHz"
 	case "6m":
-		return true, 50, 54, "50Mhz"
+		return true, 50, 54, "50MHz"
 	case "4m":
-		return true, 70, 71, "70Mhz"
+		return true, 70, 71, "70MHz"
 	case "2m":
-		return true, 144, 148, "144Mhz"
+		return true, 144, 148, "144MHz"
 	case "1.25m":
-		return true, 222, 225, "222Mhz"
+		return true, 222, 225, "222MHz"
 	case "70cm":
-		return true, 420, 450, "432Mhz"
+		return true, 420, 450, "432MHz"
 	case "33cm":
 		return true, 902, 928, "tbd"
 	case "23cm":

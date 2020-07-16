@@ -34,10 +34,11 @@ func Test_buildCsv(t *testing.T) {
 		{MyCall: "ON4KJM/P", Call: "S57LC", Date: "2020-05-24", Time: "1310", Band: "20m", Frequency: "14.045", Mode: "CW", RSTsent: "599", RSTrcvd: "599", MySOTA: "ON/ON-001", Operator: "ON4KJM", Nickname: "ONFF-0259-1"},
 		{MyCall: "ON4KJM/P", Call: "ON4LY", Date: "2020-05-24", Time: "1312", Band: "20m", Mode: "CW", RSTsent: "559", RSTrcvd: "599", MySOTA: "ON/ON-001", Operator: "ON4KJM"},
 	}
+	//add case with no SOTA and with or no comment
 
 	expectedOutput1 := []string{
-		"V2,ON4KJM/P,ON/ON-001,24/05/20,1310,14Mhz,CW,S57LC",
-		"V2,ON4KJM/P,ON/ON-001,24/05/20,1312,14Mhz,CW,ON4LY",
+		"V2,ON4KJM/P,ON/ON-001,24/05/20,1310,14MHz,CW,S57LC",
+		"V2,ON4KJM/P,ON/ON-001,24/05/20,1312,14MHz,CW,ON4LY",
 	}
 
 	type args struct {

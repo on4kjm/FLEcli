@@ -288,12 +288,12 @@ func TestIsBand(t *testing.T) {
 		{
 			"valid band",
 			args{inputStr: "40m"},
-			true, 7.0, 7.3, "7Mhz",
+			true, 7.0, 7.3, "7MHz",
 		},
 		{
 			"valid band but uppercase",
 			args{inputStr: "40M"},
-			true, 7.0, 7.3,"7Mhz",
+			true, 7.0, 7.3,"7MHz",
 		},
 	}
 	for _, tt := range tests {
