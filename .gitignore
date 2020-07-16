@@ -1,10 +1,10 @@
 # Binaries for programs and plugins
-*.exe
+#*.exe
 *.exe~
 *.dll
 *.so
 *.dylib
-FLEcli
+./FLEcli
 #executables/*
 test/output/temp/*
 
