@@ -1,0 +1,40 @@
+# This is an example goreleaser.yaml file with some sane defaults.
+# Make sure to check the documentation at http://goreleaser.com
+before:
+  hooks:
+    # Update the version so that it is included in the app
+    - ./update-version.sh
+builds:
+- goos:
+  - linux
+  - windows
+  - darwin
+  ignore:
+    - goos: darwin
+      goarch: 386
+    - goos: windows
+      goarch: amd64
+  env:
+  - CGO_ENABLED=0
+archives:
+- replacements:
+    amd64: 64-bit
+    386: 32-bit
+    darwin: macOS
+    linux: Linux
+  name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+  format_overrides:
+  - goos: windows
+    format: zip
+  files:
+      - README.md
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: "{{ .Tag }}-next"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+    - '^docs:'
+    - '^test:'
