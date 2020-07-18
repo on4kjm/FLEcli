@@ -15,13 +15,14 @@ jobs:
     name: Build & Test
     steps:
     - uses: actions/checkout@v2
+    - name: Update version
+      run: ./update-version.sh
     - uses: actions/setup-go@v2
       with:
         go-version: '^1.14.0'
     - run: go mod download
     - name: Build & Test
       run: |
-        ./update-version.sh
         go build -v .
         go test ./...
     - name: Run GoReleaser
