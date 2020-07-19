@@ -3,10 +3,13 @@
 ## Input protocol
 * [ ] document input protocol
 
-## Test framework
+## Test & Build framework
 * [ ] Perform the test of the complete app
-* [ ] Improve build processing (cross compile, directory)
-* [ ] Implement continuous integration
+* [x] Improve build processing (cross compile, directory)
+* [ ] Add quality badges to main page
+* [ ] Make a more reasonable/richer version display
+* [ ] Create standalone documentation (separate from README)
+* [ ] Re-visit the release notes (far too verbose)
 
 
 
