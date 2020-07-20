@@ -33,7 +33,8 @@ func ValidateSota(inputStr string) (ref, errorMsg string) {
 	if validSotaRegexp.MatchString(inputStr) {
 		return inputStr, ""
 	}
-	return wrongInputStr, "Invalid SOTA reference"
+	errorMsg = "[" + inputStr + "] is an invalid SOTA reference"
+	return wrongInputStr, errorMsg
 }
 
 var validWwffRegexp = regexp.MustCompile(`^[\d]{0,1}[A-Z]{1,2}FF-[\d]{4}$`)
@@ -46,7 +47,8 @@ func ValidateWwff(inputStr string) (ref, errorMsg string) {
 	if validWwffRegexp.MatchString(inputStr) {
 		return inputStr, ""
 	}
-	return wrongInputStr, "Invalid WWFF reference"
+	errorMsg = "[" + inputStr + "] is an invalid WWFF reference"
+	return wrongInputStr, errorMsg
 }
 
 var validCallRegexp = regexp.MustCompile(`[\d]{0,1}[A-Z]{1,2}\d([A-Z]{1,4}|\d{3,3}|\d{1,3}[A-Z])[A-Z]{0,5}`)
