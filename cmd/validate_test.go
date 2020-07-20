@@ -210,8 +210,8 @@ func TestValidateCall(t *testing.T) {
 		},
 		{
 			"invalid prefix",
-			args{sign: "xyz/on4kjm"},
-			"*XYZ/ON4KJM", "Invalid prefix",
+			args{sign: "xyz4/on4kjm"},
+			"*XYZ4/ON4KJM", "Invalid prefix",
 		},
 		{
 			"Too many /",

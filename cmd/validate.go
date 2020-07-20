@@ -50,7 +50,7 @@ func ValidateWwff(inputStr string) (ref, errorMsg string) {
 }
 
 var validCallRegexp = regexp.MustCompile(`[\d]{0,1}[A-Z]{1,2}\d([A-Z]{1,4}|\d{3,3}|\d{1,3}[A-Z])[A-Z]{0,5}`)
-var validPrefixRegexp = regexp.MustCompile(`\A\d?[a-zA-Z]{1,2}$`)
+var validPrefixRegexp = regexp.MustCompile(`\A[a-zA-Z0-9]{1,3}$`)
 
 // ValidateCall verifies whether the supplied string is a valid callsign.
 // prefix and suffix are not checked for validity
