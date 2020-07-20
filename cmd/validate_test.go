@@ -196,32 +196,32 @@ func TestValidateCall(t *testing.T) {
 		{
 			"Pure junk passed",
 			args{sign: "aaaaaa"},
-			"*AAAAAA", "Invalid call",
+			"*AAAAAA", "[AAAAAA] is an invalid call",
 		},
 		{
 			"empty string",
 			args{sign: ""},
-			"*", "Invalid call",
+			"*", "[] is an invalid call",
 		},
 		{
 			"string with spaces",
 			args{sign: "  "},
-			"*", "Invalid call",
+			"*", "[] is an invalid call",
 		},
 		{
 			"invalid prefix",
 			args{sign: "xyz4/on4kjm"},
-			"*XYZ4/ON4KJM", "Invalid prefix",
+			"*XYZ4/ON4KJM", "[XYZ4] is an invalid prefix",
 		},
 		{
 			"Too many /",
 			args{sign: "F/on4kjm/p/x"},
-			"*F/ON4KJM/P/X", "Too many '/'",
+			"*F/ON4KJM/P/X", "[F/ON4KJM/P/X] is invalid: too many '/'",
 		},
 		{
 			"signe /",
 			args{sign: "/"},
-			"*/", "Invalid call",
+			"*/", "[] is an invalid call",
 		},
 	}
 	for _, tt := range tests {
