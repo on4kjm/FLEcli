@@ -31,6 +31,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: FLEcli_binaries
-        path: |
-          /home/runner/work/FLEcli/FLEcli/dist/FLEcli*/
-          !/home/runner/work/FLEcli/FLEcli/dist/FLEcli_v*.*
+        path: /home/runner/work/FLEcli/FLEcli/dist/FLEcli_v*.*
