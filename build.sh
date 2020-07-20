@@ -2,7 +2,5 @@
 
 set -e
 
-./update-version.sh
-
-go build
 go test ./...
+go build -ldflags=-X=FLEcli/cmd.VersionString=privateBuild
