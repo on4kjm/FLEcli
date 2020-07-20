@@ -9,9 +9,6 @@ on:
       - '*'
 jobs:
   build:
-    # strategy:
-      # matrix:
-      #   os: [ubuntu-latest]
     runs-on: ubuntu-latest
     name: Build & Test
     steps:
@@ -35,3 +32,8 @@ jobs:
       with:
         name: FLEcli_darwin_amd64
         path: /home/runner/work/FLEcli/FLEcli/dist/FLEcli_darwin_amd64/FLEcli
+    - name: Upload MacOS binary 2
+      uses: actions/upload-artifact@v2
+      with:
+        name: FLEcli_darwin_amd64
+        path: /home/runner/work/FLEcli/FLEcli/dist/FLEcli*/
