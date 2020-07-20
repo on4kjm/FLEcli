@@ -9,10 +9,10 @@ on:
       - '*'
 jobs:
   build:
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-    runs-on: ${{ matrix.os }}
+    # strategy:
+      # matrix:
+      #   os: [ubuntu-latest]
+    runs-on: ubuntu-latest
     name: Build & Test
     steps:
     - uses: actions/checkout@v2
@@ -30,8 +30,8 @@ jobs:
         args: release --snapshot  --rm-dist
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Upload math result for job 2
-      uses: actions/upload-artifact@v1
+    - name: Upload MacOS binary
+      uses: actions/upload-artifact@v2
       with:
         name: FLEcli_darwin_amd64
         path: /home/runner/work/FLEcli/FLEcli/dist/FLEcli_darwin_amd64/FLEcli
