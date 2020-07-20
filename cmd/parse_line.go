@@ -60,6 +60,7 @@ var regexpIsOMname = regexp.MustCompile("^@")
 var regexpIsGridLoc = regexp.MustCompile("^#")
 var regexpIsRst = regexp.MustCompile("^[\\d]{1,3}$")
 var regexpIsFreq = regexp.MustCompile("^[\\d]+\\.[\\d]+$")
+var regexpIsSotaKeyWord = regexp.MustCompile("(?i)^sota")
 
 // ParseLine cuts a FLE line into useful bits
 func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg string) {
@@ -232,7 +233,13 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 				continue
 			}
 
-			// Is it a WWFF to WWFF reference?
+			// If the "sota" keyword is used, skip it
+			if regexpIsSotaKeyWord.MatchString(element) {
+				// this keyword is not supported anymore with FLE 3 and doesn't add any value 
+				continue
+			}			
+
+			// Is it a Summit to Summit (sota) reference?
 			workRef, sotaErr := ValidateSota(element)
 			if sotaErr == "" {
 				logLine.SOTA = workRef

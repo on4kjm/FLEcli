@@ -106,6 +106,11 @@ func TestParseLine(t *testing.T) {
 			args{inputStr: "1230 on4kjm 5 599", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
 			LogLine{Call: "ON4KJM", Time: "1230", ActualTime: "1230", RSTsent: "55", RSTrcvd: "*599", Mode: "FM", ModeType: "PHONE"}, "Invalid report (599) for PHONE mode ",
 		},
+		{
+			"SOTA keywork ",
+			args{inputStr: "1230 oe6cud/p sota oe/st-309", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
+			LogLine{Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", SOTA: "OE/ST-309"}, "",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
