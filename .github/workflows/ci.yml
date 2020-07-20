@@ -27,13 +27,10 @@ jobs:
         args: release --snapshot  --rm-dist
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Upload MacOS binary
+    - name: Upload Compiled Binaries
       uses: actions/upload-artifact@v2
       with:
-        name: FLEcli_darwin_amd64
-        path: /home/runner/work/FLEcli/FLEcli/dist/FLEcli_darwin_amd64/FLEcli
-    - name: Upload MacOS binary 2
-      uses: actions/upload-artifact@v2
-      with:
-        name: FLEcli_darwin_amd64
-        path: /home/runner/work/FLEcli/FLEcli/dist/FLEcli*/
+        name: FLEcli_binaries
+        path: |
+          /home/runner/work/FLEcli/FLEcli/dist/FLEcli*/
+          !/home/runner/work/FLEcli/FLEcli/dist/FLEcli_v*.*
