@@ -182,7 +182,17 @@ func TestValidateCall(t *testing.T) {
 			args{sign: "DL/on4KJm/qrpp "},
 			"DL/ON4KJM/QRPP", "",
 		},
-		//Error cases
+		{
+			"Valid prefix (issue #2)",
+			args{sign: "e7/z35m/p"},
+			"E7/Z35M/P", "",
+		},
+		{
+			"Valid E7 callsign (issue #2)",
+			args{sign: "e7xyz"},
+			"E7XYZ", "",
+		},
+		//*** Error cases *****
 		{
 			"Pure junk passed",
 			args{sign: "aaaaaa"},

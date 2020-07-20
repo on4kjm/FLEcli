@@ -1,0 +1,60 @@
+date 2020-07-19
+mycall  ON6ZQ/P
+mysota  ON/ON-018
+
+# No 1
+
+# Spotlite
+# ON6ZQ/P ON ON-018 7.032 cw
+
+# parking:
+# Rue du Broux
+# 6940 Durbuy
+# 50.326490, 5.532476
+
+cw
+30m
+1150
+
+55 ix1ihr
+f8dgf
+56 ea2dt
+57 oe6cud/p sota oe/st-309
+yo6cfb
+1200 e7/z35m/p
+dl2hwi
+04 oe7phi
+04 dl8dxl
+05 ok1dpu
+ei5hj
+iw0hk
+g3rtu
+07 ok2uz
+08 ct1drb
+ok2k
+11 dd6do
+12 oz6abz
+13 ea2if/p sota ea2/nv-189
+dl5dxs/p  oo25
+15 dl7uxg
+
+40m
+25 dl1fu
+26 hb9agh
+30 oe8spw
+yl3cw
+hb9bhu/p sota hb/bl-005
+dl7vkd
+31 hb9cbr/p sota hb/NE-007
+hb9afi/p sota hb/VS-239
+m0tcl/p
+f6dra
+35 g0aol
+
+# Parsing error at line 22: Unable to parse sota
+# Parsing error at line 24: Invalid prefix
+# Parsing error at line 37: Unable to parse sota
+# Parsing error at line 38: Unable to parse oo25
+# Parsing error at line 46: Unable to parse sota
+# Parsing error at line 48: Unable to parse sota
+# Parsing error at line 49: Unable to parse sota
