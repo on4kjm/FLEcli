@@ -137,10 +137,10 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 					logLine.Frequency = fmt.Sprintf("%.3f", qrg)
 				} else {
 					logLine.Frequency = ""
-					errorMsg = errorMsg + " Frequency " + element + " is invalid for " + logLine.Band + " band"
+					errorMsg = errorMsg + "Frequency [" + element + "] is invalid for " + logLine.Band + " band."
 				}
 			} else {
-				errorMsg = errorMsg + " Unable to load frequency " + element + ": no band defined."
+				errorMsg = errorMsg + "Unable to load frequency [" + element + "]: no band defined for that frequency."
 			}
 			continue
 		}
@@ -214,7 +214,7 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 						workRST = element
 					} else {
 						workRST = "*" + element
-						errorMsg = errorMsg + "Invalid report (" + element + ") for " + logLine.ModeType + " mode "
+						errorMsg = errorMsg + "Invalid report [" + element + "] for " + logLine.ModeType + " mode."
 					}
 				}
 				if haveSentRST {
@@ -248,7 +248,7 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 		}
 
 		//If we come here, we could not make sense of what we found
-		errorMsg = errorMsg + "Unable to parse " + element + " "
+		errorMsg = errorMsg + "Unable to make sense of [" + element + "]."
 
 	}
 

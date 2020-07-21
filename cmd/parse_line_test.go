@@ -54,7 +54,7 @@ func TestParseLine(t *testing.T) {
 		{
 			"Wrong mode",
 			args{inputStr: "cww", previousLine: LogLine{Mode: "SSB"}},
-			LogLine{Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "Unable to parse cww ",
+			LogLine{Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "Unable to make sense of [cww].",
 		},
 		{
 			"Parse OM name",
@@ -74,7 +74,7 @@ func TestParseLine(t *testing.T) {
 		{
 			"Parse frequency out of limit",
 			args{inputStr: "14.453 on4kjm", previousLine: LogLine{Mode: "SSB", Band: "20m", BandLowerLimit: 14.0, BandUpperLimit: 14.35}},
-			LogLine{Band: "20m", BandLowerLimit: 14.0, BandUpperLimit: 14.35, Call: "ON4KJM", Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, " Frequency 14.453 is invalid for 20m band",
+			LogLine{Band: "20m", BandLowerLimit: 14.0, BandUpperLimit: 14.35, Call: "ON4KJM", Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "Frequency [14.453] is invalid for 20m band.",
 		},
 		{
 			"parse partial RST (sent) - CW",
@@ -104,7 +104,7 @@ func TestParseLine(t *testing.T) {
 		{
 			"Incompatible report",
 			args{inputStr: "1230 on4kjm 5 599", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
-			LogLine{Call: "ON4KJM", Time: "1230", ActualTime: "1230", RSTsent: "55", RSTrcvd: "*599", Mode: "FM", ModeType: "PHONE"}, "Invalid report (599) for PHONE mode ",
+			LogLine{Call: "ON4KJM", Time: "1230", ActualTime: "1230", RSTsent: "55", RSTrcvd: "*599", Mode: "FM", ModeType: "PHONE"}, "Invalid report [599] for PHONE mode.",
 		},
 		{
 			"SOTA keywork ",
