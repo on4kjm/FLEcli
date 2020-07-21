@@ -4,7 +4,7 @@
 *.dll
 *.so
 *.dylib
-FLEcli
+/FLEcli.
 test/output/temp/*
 ./dist/*
 
