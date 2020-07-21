@@ -33,7 +33,8 @@ func ValidateSota(inputStr string) (ref, errorMsg string) {
 	if validSotaRegexp.MatchString(inputStr) {
 		return inputStr, ""
 	}
-	return wrongInputStr, "Invalid SOTA reference"
+	errorMsg = "[" + inputStr + "] is an invalid SOTA reference"
+	return wrongInputStr, errorMsg
 }
 
 var validWwffRegexp = regexp.MustCompile(`^[\d]{0,1}[A-Z]{1,2}FF-[\d]{4}$`)
@@ -46,7 +47,8 @@ func ValidateWwff(inputStr string) (ref, errorMsg string) {
 	if validWwffRegexp.MatchString(inputStr) {
 		return inputStr, ""
 	}
-	return wrongInputStr, "Invalid WWFF reference"
+	errorMsg = "[" + inputStr + "] is an invalid WWFF reference"
+	return wrongInputStr, errorMsg
 }
 
 var validCallRegexp = regexp.MustCompile(`[\d]{0,1}[A-Z]{1,2}\d([A-Z]{1,4}|\d{3,3}|\d{1,3}[A-Z])[A-Z]{0,5}`)
@@ -64,7 +66,7 @@ func ValidateCall(sign string) (call, errorMsg string) {
 		if validCallRegexp.MatchString(sign) {
 			return sign, ""
 		}
-		return wrongSign, "Invalid call"
+		return wrongSign, "[" + sign + "] is an invalid call"
 	case 2:
 		// some ambiguity here we need to resolve, could be a prefix or a suffix
 		if validCallRegexp.MatchString(sp[0]) {
@@ -74,26 +76,26 @@ func ValidateCall(sign string) (call, errorMsg string) {
 		//else we are dealing with a prefixed Callsign
 		//validate the part that should contain the call (sp[1])
 		if !validCallRegexp.MatchString(sp[1]) {
-			return wrongSign, "Invalid call"
+			return wrongSign, "[" + sp[1] + "] is an invalid call"
 		}
 		//validate the prefix
 		if !validPrefixRegexp.MatchString(sp[0]) {
-			return wrongSign, "Invalid prefix"
+			return wrongSign, "[" + sp[0] + "] is an invalid prefix"
 		}
 		return sign, ""
 	case 3:
 		//validate the part that should contain the call (sp[1])
 		if !validCallRegexp.MatchString(sp[1]) {
-			return wrongSign, "Invalid call"
+			return wrongSign, "[" + sp[1] + "] is an invalid call"
 		}
 		//validate the prefix
 		if !validPrefixRegexp.MatchString(sp[0]) {
-			return wrongSign, "Invalid prefix"
+			return wrongSign, "[" + sp[0] + "] is an invalid prefix"
 		}
 		//We don't check the suffix
 		return sign, ""
 	}
-	return wrongSign, "Too many '/'"
+	return wrongSign, "[" + sign + "] is invalid: too many '/'"
 }
 
 // ValidateDate verifies whether the string is a valid date (YYYY-MM-DD).

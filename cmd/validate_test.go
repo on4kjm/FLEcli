@@ -32,22 +32,22 @@ func TestValidateWwff(t *testing.T) {
 		{
 			"Bad ref (no country prefix)",
 			args{inputStr: "ff-0258"},
-			"*FF-0258", "Invalid WWFF reference",
+			"*FF-0258", "[FF-0258] is an invalid WWFF reference",
 		},
 		{
 			"Bad ref (wrong separator)",
 			args{inputStr: "gff/0258"},
-			"*GFF/0258", "Invalid WWFF reference",
+			"*GFF/0258", "[GFF/0258] is an invalid WWFF reference",
 		},
 		{
 			"Bad ref (reference too short)",
 			args{inputStr: "onff-258"},
-			"*ONFF-258", "Invalid WWFF reference",
+			"*ONFF-258", "[ONFF-258] is an invalid WWFF reference",
 		},
 		{
 			"Bad ref (no country prefix)",
 			args{inputStr: "onff-02589"},
-			"*ONFF-02589", "Invalid WWFF reference",
+			"*ONFF-02589", "[ONFF-02589] is an invalid WWFF reference",
 		},
 	}
 	for _, tt := range tests {
@@ -96,37 +96,37 @@ func TestValidateSota(t *testing.T) {
 		{
 			"Bad ref (long prefix)",
 			args{inputStr: "xxxx/ON-001"},
-			"*XXXX/ON-001", "Invalid SOTA reference",
+			"*XXXX/ON-001", "[XXXX/ON-001] is an invalid SOTA reference",
 		},
 		{
 			"Bad ref (missing slash)",
 			args{inputStr: "on ON-001"},
-			"*ON ON-001", "Invalid SOTA reference",
+			"*ON ON-001", "[ON ON-001] is an invalid SOTA reference",
 		},
 		{
 			"Bad ref (numerical region)",
 			args{inputStr: "on/9N-001"},
-			"*ON/9N-001", "Invalid SOTA reference",
+			"*ON/9N-001", "[ON/9N-001] is an invalid SOTA reference",
 		},
 		{
 			"Bad ref (too long region)",
 			args{inputStr: "on/ONA-001"},
-			"*ON/ONA-001", "Invalid SOTA reference",
+			"*ON/ONA-001", "[ON/ONA-001] is an invalid SOTA reference",
 		},
 		{
 			"Bad ref (no dash)",
 			args{inputStr: "on/ON/001"},
-			"*ON/ON/001", "Invalid SOTA reference",
+			"*ON/ON/001", "[ON/ON/001] is an invalid SOTA reference",
 		},
 		{
 			"Bad ref (number too short)",
 			args{inputStr: "on/ON-01"},
-			"*ON/ON-01", "Invalid SOTA reference",
+			"*ON/ON-01", "[ON/ON-01] is an invalid SOTA reference",
 		},
 		{
 			"Bad ref (Number too long)",
 			args{inputStr: "on/ON-9001"},
-			"*ON/ON-9001", "Invalid SOTA reference",
+			"*ON/ON-9001", "[ON/ON-9001] is an invalid SOTA reference",
 		},
 	}
 	for _, tt := range tests {
@@ -196,32 +196,32 @@ func TestValidateCall(t *testing.T) {
 		{
 			"Pure junk passed",
 			args{sign: "aaaaaa"},
-			"*AAAAAA", "Invalid call",
+			"*AAAAAA", "[AAAAAA] is an invalid call",
 		},
 		{
 			"empty string",
 			args{sign: ""},
-			"*", "Invalid call",
+			"*", "[] is an invalid call",
 		},
 		{
 			"string with spaces",
 			args{sign: "  "},
-			"*", "Invalid call",
+			"*", "[] is an invalid call",
 		},
 		{
 			"invalid prefix",
 			args{sign: "xyz4/on4kjm"},
-			"*XYZ4/ON4KJM", "Invalid prefix",
+			"*XYZ4/ON4KJM", "[XYZ4] is an invalid prefix",
 		},
 		{
 			"Too many /",
 			args{sign: "F/on4kjm/p/x"},
-			"*F/ON4KJM/P/X", "Too many '/'",
+			"*F/ON4KJM/P/X", "[F/ON4KJM/P/X] is invalid: too many '/'",
 		},
 		{
 			"signe /",
 			args{sign: "/"},
-			"*/", "Invalid call",
+			"*/", "[] is an invalid call",
 		},
 	}
 	for _, tt := range tests {
