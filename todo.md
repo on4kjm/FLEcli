@@ -1,35 +1,32 @@
 # TODO
 
 ## Input protocol
-* [ ] document input protocol
+* [ ] document the FLE input format
 
 ## Test & Build framework
 * [ ] Perform the test of the complete app
-* [x] Improve build processing (cross compile, directory)
+* [ ] Implement MacOS codesigning (issue #9) 
 * [ ] Add quality badges to main page
-* [ ] Make a more reasonable/richer version display
-* [ ] Create standalone documentation (separate from README)
+* [ ] Make a more reasonable/richer version display (issue #10)
+* [ ] Create standalone documentation, separate from README (issue #13)
 * [ ] Re-visit the release notes (far too verbose)
+* [ ] Implement and track code coverage
 
 
 
 ## Input processing
-* [x] infer RST
-* [x] Create the logic to take over from the previous line
-* [x] decode and check frequency 
 * [ ] New MYGRID keyword
 * [ ] Support different date delimiter
-* [x] Support extrapolated date
+* [ ] Support extrapolated date
 * [ ] Support date not prefixed by "date" (non header mode) DATE keyword is now optional
-* [ ] Support date increment
+* [ ] Support date increment ("date +" and "date ++")
 * [ ] Support WWFF keyword
 * [ ] Validate that we have the necessary data for the output 
+* [ ] Support the contest related fields
 
 ## Output processing
-* [x] WWFF ADIF output
-* [x] Standard ADIF output
-* [x] SOTA ADIF
-* [x] SOTA CSV
+* [ ] Implement CABRILLO output
+
 
 ## Later 
 * [ ] Process contest reports
