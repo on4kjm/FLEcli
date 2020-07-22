@@ -35,14 +35,12 @@ import (
 var cfgFile string
 var inputFilename string
 var isInterpolateTime bool
-var VersionString string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:              "FLEcli",
 	Short:            "A Command Line \"Fast Log Entry\" (FLE) processor",
 	TraverseChildren: true,
-	Version:          VersionString,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -58,10 +56,6 @@ func init() {
 	cobra.OnInitialize(initConfig)
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.FLEcli.yaml)")
-	rootCmd.PersistentFlags().BoolVarP(&isInterpolateTime, "interpolate", "", false, "Interpolates the missing time entries.")
-
-	rootCmd.PersistentFlags().StringVarP(&inputFilename, "input", "i", "", "FLE formatted input file (mandatory)")
-	rootCmd.MarkPersistentFlagRequired("input")
 }
 
 // initConfig reads in config file and ENV variables if set.

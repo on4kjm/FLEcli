@@ -1,9 +1,5 @@
 # This is an example goreleaser.yaml file with some sane defaults.
 # Make sure to check the documentation at http://goreleaser.com
-before:
-  hooks:
-    # Update the version so that it is included in the app
-    #- ./update-version.sh
 builds:
 - goos:
   - linux
@@ -15,7 +11,7 @@ builds:
     - goos: windows
       goarch: amd64
   ldflags:
-    - -s -w -X "FLEcli/cmd.VersionString={{.Version}} ({{.ShortCommit}})"
+    - -s -w -X FLEcli/cmd.version={{.Version}} -X FLEcli/cmd.commit={{.Commit}} -X FLEcli/cmd.date={{.Date}} -X=FLEcli/cmd.builtBy=goReleaser
   env:
   - CGO_ENABLED=0
 archives:
