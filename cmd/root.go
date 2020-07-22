@@ -35,7 +35,6 @@ import (
 var cfgFile string
 var inputFilename string
 var isInterpolateTime bool
-var VersionString string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -57,11 +56,6 @@ func init() {
 	cobra.OnInitialize(initConfig)
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.FLEcli.yaml)")
-	rootCmd.PersistentFlags().BoolVarP(&isInterpolateTime, "interpolate", "", false, "Interpolates the missing time entries.")
-
-
-	//TODO: move this down
-	rootCmd.PersistentFlags().StringVarP(&inputFilename, "input", "i", "", "FLE formatted input file (mandatory)")
 }
 
 // initConfig reads in config file and ENV variables if set.

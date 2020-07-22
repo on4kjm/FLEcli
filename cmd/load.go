@@ -50,6 +50,13 @@ var loadCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(loadCmd)
 
+	loadCmd.PersistentFlags().StringVarP(&inputFilename, "input", "i", "", "FLE formatted input file (mandatory)")
+	loadCmd.MarkPersistentFlagRequired("input")
+
+	loadCmd.PersistentFlags().BoolVarP(&isInterpolateTime, "interpolate", "", false, "Interpolates the missing time entries.")
+
+	// rootCmd.PersistentFlags().StringVarP(&inputFilename, "input", "i", "", "FLE formatted input file (mandatory)")
+
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command

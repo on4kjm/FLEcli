@@ -49,7 +49,6 @@ var (
 					} else {
 						prettyPrintedDate = fmt.Sprint(error)
 					}
-
 				}
 				response = fmt.Sprintf("FLEcli :\n- version:  %s\n- commit:   %s\n- date:     %s\n- built by: %s\n", version, commit, prettyPrintedDate, builtBy)
 			} else {

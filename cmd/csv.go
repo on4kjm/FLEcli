@@ -41,6 +41,10 @@ var csvCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(csvCmd)
 
+	csvCmd.PersistentFlags().StringVarP(&inputFilename, "input", "i", "", "FLE formatted input file (mandatory)")
+	csvCmd.MarkPersistentFlagRequired("input")
+	csvCmd.PersistentFlags().BoolVarP(&isInterpolateTime, "interpolate", "", false, "Interpolates the missing time entries.")
+
 	csvCmd.PersistentFlags().BoolVarP(&isOverwriteCsv, "overwrite", "", false, "Overwrites the output file if it exisits")
 	csvCmd.PersistentFlags().StringVarP(&outputCsvFilename, "output", "o", "", "Output filename")
 }

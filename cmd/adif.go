@@ -43,6 +43,10 @@ var adifCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(adifCmd)
 
+	adifCmd.PersistentFlags().StringVarP(&inputFilename, "input", "i", "", "FLE formatted input file (mandatory)")
+	adifCmd.MarkPersistentFlagRequired("input")
+	adifCmd.PersistentFlags().BoolVarP(&isInterpolateTime, "interpolate", "", false, "Interpolates the missing time entries.")
+
 	adifCmd.PersistentFlags().BoolVarP(&isWWFFcli, "wwff", "w", false, "Generates a WWFF ready ADIF file.")
 	adifCmd.PersistentFlags().BoolVarP(&isSOTAcli, "sota", "s", false, "Generates a SOTA ready ADIF file.")
 	adifCmd.PersistentFlags().BoolVarP(&isOverwrite, "overwrite", "", false, "Overwrites the output file if it exisits")
@@ -80,7 +84,7 @@ func processAdifCommand() {
 				if loadedLogFile[0].MySOTA == "" {
 					fmt.Println("Missing MY-SOTA reference. Aborting...")
 					return
-				}				
+				}
 			}
 
 			outputAdif(verifiedOutputFilename, loadedLogFile, isWWFFcli, isSOTAcli)
