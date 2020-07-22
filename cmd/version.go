@@ -1,5 +1,5 @@
-
 package cmd
+
 /*
 Copyright © 2020 Jean-Marc Meessen, ON4KJM <on4kjm@gmail.com>
 
@@ -24,30 +24,38 @@ THE SOFTWARE.
 
 import (
 	"fmt"
-
+	"time"
 	"github.com/spf13/cobra"
-	goVersion "go.hein.dev/go-version"
 )
 
 var (
-	shortened  = false
-	version    = "dev"
-	commit     = "none"
-	date       = "unknown"
-	output     = "json"
+	detailed = false
+	version  = "private build"
+	commit   = "none"
+	date     = "unknown"
+	builtBy  = ""
 	versionCmd = &cobra.Command{
 		Use:   "version",
-		Short: "Version will output the current build information",
+		Short: "\"version\" will output the current build information",
 		Long:  ``,
 		Run: func(_ *cobra.Command, _ []string) {
 			var response string
-			versionOutput := goVersion.New(version, commit, date)
-		
-			if shortened {
-				response = versionOutput.ToShortened()
+			if detailed {
+				prettyPrintedDate := "Unknown"
+				if date != "unknown" {
+					buildDate, error := time.Parse(time.RFC3339, date)
+					if error == nil {
+						prettyPrintedDate = buildDate.Format("2006-01-02 15:04") + " (UTC)"
+					} else {
+						prettyPrintedDate = fmt.Sprint(error)
+					}
+
+				}
+				response = fmt.Sprintf("FLEcli :\n- version:  %s\n- commit:   %s\n- date:     %s\n- built by: %s\n", version, commit, prettyPrintedDate, builtBy)
 			} else {
-				response = versionOutput.ToJSON()
+				response = fmt.Sprintf("FLEcli version: %s\n", version)
 			}
+
 			fmt.Printf("%+v", response)
 			return
 		},
@@ -55,7 +63,6 @@ var (
 )
 
 func init() {
-	versionCmd.Flags().BoolVarP(&shortened, "short", "s", false, "Print just the version number.")
-	versionCmd.Flags().StringVarP(&output, "output", "o", "json", "Output format. One of 'yaml' or 'json'.")
+	versionCmd.Flags().BoolVarP(&detailed, "detailed", "d", false, "Prints the detailed version information")
 	rootCmd.AddCommand(versionCmd)
 }

@@ -4,9 +4,9 @@
 *.dll
 *.so
 *.dylib
-/FLEcli.
+FLEcli
 test/output/temp/*
-./dist/*
+dist/*
 
 # Test binary, built with `go test -c`
 *.test
