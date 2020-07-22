@@ -21,35 +21,65 @@ Usage:
   FLEcli [command]
 
 Available Commands:
-  load        Loads and validates a FLE type shorthand logfile
   adif        Generates an ADIF file based on a FLE type shorthand logfile.
   csv         Generates a SOTA .csv file based on a FLE type shorthand logfile.
   help        Help about any command
+  load        Loads and validates a FLE type shorthand logfile
+  version     "version" will output the current build information
 
-General Flags:
-  -v, --version         Displays the version for FLEcli
-  -i, --input string    FLE formatted input file (mandatory)
-      --interpolate     Interpolates the missing time entries.
+Flags:
       --config string   config file (default is $HOME/.FLEcli.yaml)
   -h, --help            help for FLEcli
 
 Use "FLEcli [command] --help" for more information about a command.
 ------
-FLEcli adif [flags]
+FLEcli load --help
+Loads and validates a FLE type shorthand logfile
+
+Usage:
+  FLEcli load [flags]
+
+Flags:
+  -h, --help           help for load
+  -i, --input string   FLE formatted input file (mandatory)
+      --interpolate    Interpolates the missing time entries.
+
+Global Flags:
+      --config string   config file (default is $HOME/.FLEcli.yaml)
+-----
+FLEcli adif --help
+Generates an ADIF file based on a FLE type shorthand logfile.
+
+Usage:
+  FLEcli adif [flags]
 
 Flags:
   -h, --help            help for adif
+  -i, --input string    FLE formatted input file (mandatory)
+      --interpolate     Interpolates the missing time entries.
   -o, --output string   Output filename
       --overwrite       Overwrites the output file if it exisits
   -s, --sota            Generates a SOTA ready ADIF file.
   -w, --wwff            Generates a WWFF ready ADIF file.
+
+Global Flags:
+      --config string   config file (default is $HOME/.FLEcli.yaml)
 -----
-FLEcli csv [flags]
+FLEcli csv --help
+Generates a SOTA .csv file based on a FLE type shorthand logfile.
+
+Usage:
+  FLEcli csv [flags]
 
 Flags:
   -h, --help            help for csv
+  -i, --input string    FLE formatted input file (mandatory)
+      --interpolate     Interpolates the missing time entries.
   -o, --output string   Output filename
       --overwrite       Overwrites the output file if it exisits
+
+Global Flags:
+      --config string   config file (default is $HOME/.FLEcli.yaml)
 ```
 
 ### Example: validate the FLE syntax of a file
