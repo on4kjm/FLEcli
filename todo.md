@@ -5,9 +5,9 @@
 
 ## Test & Build framework
 * [ ] Perform the test of the complete app
-* [ ] Implement MacOS codesigning (issue #9) 
-* [ ] Add quality badges to main page
-* [ ] Make a more reasonable/richer version display (issue #10)
+* [-] Implement MacOS codesigning (issue #9) 
+* [x] Add quality badges to main page
+* [x] Make a more reasonable/richer version display (issue #10)
 * [ ] Create standalone documentation, separate from README (issue #13)
 * [ ] Re-visit the release notes (far too verbose)
 * [ ] Implement and track code coverage
