@@ -1,5 +1,0 @@
-FROM alpine:3.12.0
-
-COPY FLEcli /
-RUN chmod +x /FLEcli
-ENTRYPOINT ["FLEcli"]
