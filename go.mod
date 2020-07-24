@@ -15,5 +15,4 @@ require (
 	github.com/spf13/viper v1.7.0
 	golang.org/x/sys v0.0.0-20200523222454-059865788121 // indirect
 	gopkg.in/ini.v1 v1.57.0 // indirect
-	go.hein.dev/go-version v0.1.0
 )
