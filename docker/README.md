@@ -11,7 +11,10 @@
 
 * `docker run --rm -i fle_cli version -d`
 * `docker run --rm -i -v "$(pwd)":/FLEcli_data fle_cli version -d`
-* `docker run --rm -ti jmmeessen/flecli version -d`
+* `docker run --rm -i jmmeessen/flecli version -d`
+
+* `docker run --rm -i --user $(id -u):$(id -g) -v $(pwd):/FLEcli_data jmmeessen/flecli`. 
+* `alias FLEcli="docker run --rm  --user $(id -u):$(id -g) -v $(pwd):/FLEcli_data jmmeessen/flecli"`
 
 ## Running bash in the container
 
