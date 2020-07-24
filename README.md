@@ -12,7 +12,17 @@ But is also the alibi to learn and explore GO.
 ## Usage
 
 ### Installing
-TBD: Running on a Mac, Linux, windows. 
+The tool is installed by downloading and unpacking the archive for your operating system.
+
+The releases are downloaded for https://github.com/on4kjm/FLEcli/releases
+
+The application is available in the following packaging:
+* `FLEcli_v..._macOS_64-bit.tar.gz` is the MacOS version.
+* `FLEcli_v..._windows_32-bit.zip` is the Windows version. Only the 32 bit is proposed as it should work also on older Windows version.
+* FLEcli_v..._Linux_64-bit.tar.gz
+* FLEcli_v..._Linux_32-bit.tar.gz
+* FLEcli_v..._Linux_arm.tar.gz
+* FLEcli_v..._Linux_arm64.tar.gz
 
 ### Commands and options
 
