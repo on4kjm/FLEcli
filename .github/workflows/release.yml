@@ -9,6 +9,8 @@ jobs:
     name: goreleaser
     steps:
     - uses: actions/checkout@v2
+    - name: Login to DockerHub Registry
+      run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
     - name: Unshallow Fetch
       run: git fetch --prune --unshallow
     - uses: actions/setup-go@v2
