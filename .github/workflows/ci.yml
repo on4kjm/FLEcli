@@ -1,5 +1,6 @@
 #Continuous integration action
-name: Go Build & Test
+# largely inspired by https://brunopaz.dev/blog/building-a-basic-ci-cd-pipeline-for-a-golang-application-using-github-actions
+name: Build & Test
 on:
   push:
     branches:
@@ -7,7 +8,27 @@ on:
   pull_request:
     branches:
       - '*'
+
 jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '^1.14.3'
+
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Lint Go Code
+        run: |
+          # export PATH=$PATH:$(go env GOPATH)/bin # temporary fix. See https://github.com/actions/setup-go/issues/14
+          go get -u golang.org/x/lint/golint 
+          golint -set_exit_status ./...
+
+
   build:
     runs-on: ubuntu-latest
     name: Build & Test
@@ -19,8 +40,6 @@ jobs:
     - run: go mod download
     - name: Build & Test
       run: |
-        # check this
-        goreleaser build
         go test ./...
     - name: Run GoReleaser
       uses: goreleaser/goreleaser-action@master
