@@ -69,10 +69,12 @@ jobs:
       uses: goreleaser/goreleaser-action@master
       with:
         args: release --snapshot --skip-publish --rm-dist
+    - run: docker image ls
 
   integration:
     runs-on: ubuntu-latest
     name: Integration testing
     needs: [build]
     steps:
-    - run: docker run on4kjm/flecli version -d
+    - run: docker image ls
+    - run: docker run on4kjm/flecli:latest version -d
