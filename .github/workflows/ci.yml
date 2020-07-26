@@ -61,6 +61,10 @@ jobs:
       with:
         go-version: '^1.14.3'
     - run: go mod download
+    - name: Validates GO releaser config
+      uses: goreleaser/goreleaser-action@master
+      with:
+        args: check
     - name: Run GoReleaser
       uses: goreleaser/goreleaser-action@master
       with:
