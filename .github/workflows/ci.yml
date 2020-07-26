@@ -44,11 +44,11 @@ jobs:
           go test -short -coverprofile cover.out -covermode=atomic ./... 
           cat cover.out >> coverage.txt
       
-      # - name: Upload Coverage report to CodeCov
-      #   uses: codecov/codecov-action@v1.0.0
-      #   with:
-      #     token: ${{secrets.CODECOV_TOKEN}}
-      #     file: ./coverage.txt
+      - name: Upload Coverage report to CodeCov
+        uses: codecov/codecov-action@v1.0.0
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}
+          file: ./coverage.txt
 
 
   build:
