@@ -3,16 +3,30 @@ Multi-platform "Fast Log Entry"(FLE) processing tool.
 
 ![Go Build & Test](https://github.com/jmMeessen/FLEcli/workflows/Go%20Build%20&%20Test/badge.svg)
 
-["Fast Log Entry"](https://www.df3cb.com/fle/) is a nifty tool, written by DF3CB. It allows quick and efficient entry of radio amateur contacts made during DXpeditions, contests or SOTA/WWFF activation. It can export the listed contacts in ADIF format ready to be uploaded to eQSL/LOTW or submitted for SOTA and WWFF. The program is only availble as a Windows executable which leaves the Mac or Linux users (like me) in the cold.
+["Fast Log Entry"](https://www.df3cb.com/fle/) is a nifty tool, written by DF3CB. It allows quick and efficient entry of radio amateur contacts made during DXpeditions, contests or SOTA/WWFF activation. It can export the listed contacts in ADIF format ready to be uploaded to eQSL/LOTW or submitted for SOTA and WWFF. The program is only available as a Windows executable which leaves the Mac or Linux users (like me) in the cold.
 
-This tool is intended to process FLE formated files on other platform than Windows. The FLE file format is described on https://www.df3cb.com/fle/documentation/
+This tool is intended to process FLE formatted files on other platform than Windows. The FLE file format is described on https://www.df3cb.com/fle/documentation/
 
 But is also the alibi to learn and explore GO.
 
 ## Usage
 
 ### Installing
-TBD: Running on a Mac, Linux, windows. 
+The tool is installed by downloading and unpacking the archive for your operating system.
+
+The releases are downloaded for https://github.com/on4kjm/FLEcli/releases
+
+The application is available in the following packaging:
+* `FLEcli_v..._macOS_64-bit.tar.gz` is the MacOS version.
+* `FLEcli_v..._windows_32-bit.zip` is the Windows version. Only the 32 bit is proposed as it should work also on older Windows version.
+* `FLEcli_v..._Linux_64-bit.tar.gz` is the 64 bits distribution for Linux.
+* `FLEcli_v..._Linux_32-bit.tar.gz` is the 32 bits distribution for Linux
+* `FLEcli_v..._Linux_arm.tar.gz` is the 32 bits ARM (instruction set 6) distribution (for RaspberryPi older models for example) 
+* `FLEcli_v..._Linux_arm64.tar.gz` is the 64 bits ARM (instruction set 6) distribution
+
+Detailed installation instructions can be found here (TODO).
+
+**Important note:** at this stage, the MacOS binary is not signed. It will fail to load on the recent OS version unless a very permissive security setting is enable (which is not advised). Therefore, it is advised to run FLEcli as a Docker application (available on DockerHub). An alternative is to compile the application. Further explanation can be found here (TODO)
 
 ### Commands and options
 
@@ -90,7 +104,7 @@ To load and validate the FLE formated file (.txt):
 ./FLEcli load -i=myActivation.txt
 ```
 This command will parse and display the QSOs in grid format. 
-Fields that couldn't be succesfuly parsed are prefixed with "*". 
+Fields that couldn't be successfully parsed are prefixed with "*". 
 Parsing errors or doubts are listed at the end of the list.
 
 
@@ -103,9 +117,9 @@ To generate an ADIF file based on `activation.txt`:
 ```
 The `-o` (or the long form, `--output`) specifies the path and name of the output file.
 If the flag and value are omitted, the tool will generate a filename.
-It is based on the input filename, just replacing the extention with `.adi`.
+It is based on the input filename, just replacing the extension with `.adi`.
 
-The `--overwrite` flag indicates that, if the output file already exsist, it should be overwritten. 
+The `--overwrite` flag indicates that, if the output file already exists, it should be overwritten. 
 
 The `--interpolate` flag will interpolate the missing non-entered times based on the first and the last entered time.
 

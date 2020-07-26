@@ -5,6 +5,13 @@ builds:
   - linux
   - windows
   - darwin
+  goarch:
+  - 386
+  - amd64
+  - arm
+  - arm64
+  goarm:
+  - 6
   ignore:
     - goos: darwin
       goarch: 386
@@ -14,6 +21,32 @@ builds:
     - -s -w -X FLEcli/cmd.version={{.Version}} -X FLEcli/cmd.commit={{.Commit}} -X FLEcli/cmd.date={{.Date}} -X=FLEcli/cmd.builtBy=goReleaser
   env:
   - CGO_ENABLED=0
+
+dockers:
+- goos: linux
+  goarch: amd64
+  goarm: ''
+  binaries:
+  - FLEcli
+  image_templates:
+  - "on4kjm/flecli:latest"
+  - "on4kjm/flecli:{{ .Tag }}"
+  # Skips the docker push. Could be useful if you also do draft releases.
+  # If set to auto, the release will not be pushed to the docker repository
+  # in case there is an indicator for prerelease in the tag e.g. v1.0.0-rc1
+  # Defaults to false.
+  skip_push: auto
+  # Path to the Dockerfile (from the project root).
+  dockerfile: docker/Dockerfile
+
+  # Template of the docker build flags.
+  build_flag_templates:
+  - "--pull"
+  - "--label=org.opencontainers.image.created={{.Date}}"
+  - "--label=org.opencontainers.image.title={{.ProjectName}}"
+  - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+  - "--label=org.opencontainers.image.version={{.Version}}"
+
 archives:
 - replacements:
     amd64: 64-bit
@@ -26,10 +59,13 @@ archives:
     format: zip
   files:
       - README.md
+
 checksum:
   name_template: 'checksums.txt'
+
 snapshot:
   name_template: "{{ .Tag }}-next"
+
 changelog:
   skip: true
   sort: asc

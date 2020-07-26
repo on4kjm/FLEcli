@@ -1,5 +1,6 @@
 #Continuous integration action
-name: Go Build & Test
+# largely inspired by https://brunopaz.dev/blog/building-a-basic-ci-cd-pipeline-for-a-golang-application-using-github-actions
+name: Build & Test
 on:
   push:
     branches:
@@ -7,24 +8,67 @@ on:
   pull_request:
     branches:
       - '*'
+
 jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '^1.14.3'
+
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Lint Go Code
+        run: |
+          go get -u golang.org/x/lint/golint 
+          golint -set_exit_status ./...
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '^1.14.3'
+
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Run Unit tests.
+        run: |
+          go test -short -coverprofile cover.out -covermode=atomic ./... 
+          cat cover.out >> coverage.txt
+      
+      - name: Upload Coverage report to CodeCov
+        uses: codecov/codecov-action@v1.0.0
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}
+          file: ./coverage.txt
+
+
   build:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macOS-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
-    name: Build & Test
+    runs-on: ubuntu-latest
+    name: Build and Integration tests
+    needs: [lint, test]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-go@v2
       with:
-        go-version: '^1.14.0'
+        go-version: '^1.14.3'
     - run: go mod download
-    - name: Build & Test
-      run: |
-        go build -v .
-        go test ./...
+    - name: Validates GO releaser config
+      uses: goreleaser/goreleaser-action@master
+      with:
+        args: check
     - name: Run GoReleaser
       uses: goreleaser/goreleaser-action@master
       with:
         args: release --snapshot --skip-publish --rm-dist
+    - name: test container
+      run: docker run on4kjm/flecli:latest version -d
+
