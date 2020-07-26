@@ -19,7 +19,8 @@ jobs:
     - run: go mod download
     - name: Build & Test
       run: |
-        go build -v .
+        # check this
+        goreleaser build
         go test ./...
     - name: Run GoReleaser
       uses: goreleaser/goreleaser-action@master
