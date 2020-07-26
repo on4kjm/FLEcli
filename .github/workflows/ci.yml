@@ -53,7 +53,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    name: Build
+    name: Build and Integration tests
     needs: [lint, test]
     steps:
     - uses: actions/checkout@v2
@@ -69,12 +69,6 @@ jobs:
       uses: goreleaser/goreleaser-action@master
       with:
         args: release --snapshot --skip-publish --rm-dist
-    - run: docker image ls
+    - name: test container
+      run: docker run on4kjm/flecli:latest version -d
 
-  integration:
-    runs-on: ubuntu-latest
-    name: Integration testing
-    needs: [build]
-    steps:
-    - run: docker image ls
-    - run: docker run on4kjm/flecli:latest version -d
