@@ -1,21 +1,24 @@
-## Building docker image by hand
-
-* `docker build -t fle_cli .`
 
 ## goReleaser built Docker images
 
 * `goreleaser --snapshot --skip-publish --rm-dist`
-* docker image is named "jmmeessen/flecli". It creates two labels automatically ("latest" and the last release)
+* docker image is named "on4kjm/flecli". It creates two labels automatically ("latest" and the last release)
+
+## Building the image by hand
+(this assumes that the Linux executable is available in `dist/`, thus as built by GoReleaser)
+
+* `docker build -f docker/Dockerfile -t test/test dist/FLEcli_linux_amd64` will create a image called `test/test:latest`.
 
 ## Running the container
 
-* `docker run --rm -i fle_cli version -d`
-* `docker run --rm -i -v "$(pwd)":/FLEcli_data fle_cli version -d`
-* `docker run --rm -i jmmeessen/flecli version -d`
+To start and execute the `<FLEcli command>` use : `docker run --rm -i --user $(id -u):$(id -g) -v $(pwd):/FLEcli_data on4kjm/flecli <FLEcli command>`. If no command is specified, help is displayed.
 
-* `docker run --rm -i --user $(id -u):$(id -g) -v $(pwd):/FLEcli_data jmmeessen/flecli`. 
-* `alias FLEcli="docker run --rm  --user $(id -u):$(id -g) -v $(pwd):/FLEcli_data jmmeessen/flecli"`
+This little command will create an alias that avoids typing the whole command: `alias FLEcli="docker run --rm  --user $(id -u):$(id -g) -v $(pwd):/FLEcli_data on4kjm/flecli"`. To use it, type `FLEcli version` for example.
+
+Important note: when specifying the path of a file (input or output), it must be relative to the directory the container was started in.
 
 ## Running bash in the container
 
-* `docker run --rm -i -v "$(pwd)":/FLEcli_data --entrypoint /bin/sh  fle_cli`
+Note, this doesn't work with the SCRATCH image. You need to use the Alpine base image. Anyway, if you want to enter the container, you know what I am talking about.
+
+* `docker run --rm -i -v "$(pwd)":/FLEcli_data --entrypoint /bin/sh  on4kjm/flecli`
