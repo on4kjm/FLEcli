@@ -12,9 +12,8 @@ But is also the alibi to learn and explore GO.
 
 ------
 
-## Usage
 
-### Installing
+## Installing
 The tool is installed by downloading and unpacking the archive for your operating system.
 
 A version is available for Windows, MacOS, Linux and ARM (RaspeberyPi). 
@@ -26,13 +25,13 @@ The releases can be downloaded from https://github.com/on4kjm/FLEcli/releases
 Detailed installation instructions can be found [at this page](doc/install.md).
 
 
-### Commands and options
+## Usage
 
 Detailed explanations can be found [on this page](doc/usage.md).
 
 Most comon use cases are described hereafter as examples.
 
-#### Example: validate the FLE syntax of a file
+### Example: validate the FLE syntax of a file
 
 To load and validate the FLE formated file (`myActivation.txt`:
 
@@ -44,7 +43,7 @@ Fields that couldn't be successfully parsed are prefixed with "*".
 Parsing errors or doubts are listed at the end of the list.
 
 
-#### Example: generate an ADIF file
+### Example: generate an ADIF file
 
 To generate an ADIF file based on `activation.txt`:
 
@@ -59,7 +58,7 @@ The `--overwrite` flag indicates that, if the output file already exists, it sho
 
 The `--interpolate` flag will interpolate the missing non-entered times based on the first and the last entered time.
 
-#### Example: generate an ADIF file for WWFF upload
+### Example: generate an ADIF file for WWFF upload
 
 To generate a WWFF-ready ADIF file: 
 ```
@@ -72,7 +71,7 @@ The switch can be used together with `--wwff`
 As we didn't provide an output filename, the default output, `ON4KJM@ONFF-025920200524.adi` will be used.  
 
 
-#### Example: generate a SOTA csv file
+### Example: generate a SOTA csv file
 
 To generate a CSV file that can be uploaded to https://www.sotadata.org.uk/ to report SOTA activations:
 
