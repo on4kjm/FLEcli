@@ -18,6 +18,8 @@ limitations under the License.
 
 import (
 	"FLEcli/fleprocess"
+	"fmt"
+
 	"github.com/spf13/cobra"
 )
 
@@ -28,12 +30,25 @@ var isOverwrite bool
 
 // adifCmd is executed when choosing the adif option (load and generate adif file)
 var adifCmd = &cobra.Command{
-	Use:   "adif",
+	Use:   "adif [flags] inputFile [outputFile]",
 	Short: "Generates an ADIF file based on a FLE type shorthand logfile.",
 	// 	Long: `A longer description that spans multiple lines and likely contains examples
 	// and usage of using your command. For example:
 
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
+		//if args is empty, throw an error
+		if len(args) == 0 {
+			//TODO: fix this ugly statement (because I am lazy)
+			return fmt.Errorf("Missing input file %s", "")
+		}
+		inputFilename = args[0]
+		if len(args) == 2 {
+			outputFilename = args[1]
+		}
+		if len(args) > 2 {
+			return fmt.Errorf("Too many arguments.%s", "")
+		}
+
 		fleprocess.ProcessAdifCommand(
 			inputFilename,
 			outputFilename,
@@ -41,18 +56,16 @@ var adifCmd = &cobra.Command{
 			isWWFFcli,
 			isSOTAcli,
 			isOverwrite)
+
+		return nil
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(adifCmd)
 
-	adifCmd.PersistentFlags().StringVarP(&inputFilename, "input", "i", "", "FLE formatted input file (mandatory)")
-	adifCmd.MarkPersistentFlagRequired("input")
-	adifCmd.PersistentFlags().BoolVarP(&isInterpolateTime, "interpolate", "", false, "Interpolates the missing time entries.")
-
+	adifCmd.PersistentFlags().BoolVarP(&isInterpolateTime, "interpolate", "i", false, "Interpolates the missing time entries.")
 	adifCmd.PersistentFlags().BoolVarP(&isWWFFcli, "wwff", "w", false, "Generates a WWFF ready ADIF file.")
 	adifCmd.PersistentFlags().BoolVarP(&isSOTAcli, "sota", "s", false, "Generates a SOTA ready ADIF file.")
-	adifCmd.PersistentFlags().BoolVarP(&isOverwrite, "overwrite", "", false, "Overwrites the output file if it exisits")
-	adifCmd.PersistentFlags().StringVarP(&outputFilename, "output", "o", "", "Output filename")
+	adifCmd.PersistentFlags().BoolVarP(&isOverwrite, "overwrite", "o", false, "Overwrites the output file if it exisits")
 }

@@ -16,9 +16,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-
 import (
 	"FLEcli/fleprocess"
+	"fmt"
+
 	"github.com/spf13/cobra"
 )
 
@@ -32,19 +33,32 @@ var csvCmd = &cobra.Command{
 	// 	Long: `A longer description that spans multiple lines and likely contains examples
 	// and usage of using your command. For example:
 
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
+		//if args is empty, throw an error
+		if len(args) == 0 {
+			//TODO: fix this ugly statement (because I am lazy)
+			return fmt.Errorf("Missing input file %s", "")
+		}
+		inputFilename = args[0]
+		if len(args) == 2 {
+			outputCsvFilename = args[1]
+		}
+		if len(args) > 2 {
+			return fmt.Errorf("Too many arguments.%s", "")
+		}
+
+
+		//TODO: should return an error
 		fleprocess.ProcessCsvCommand(inputFilename, outputCsvFilename, isInterpolateTime, isOverwriteCsv)
+		return nil
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(csvCmd)
 
-	csvCmd.PersistentFlags().StringVarP(&inputFilename, "input", "i", "", "FLE formatted input file (mandatory)")
-	csvCmd.MarkPersistentFlagRequired("input")
-	csvCmd.PersistentFlags().BoolVarP(&isInterpolateTime, "interpolate", "", false, "Interpolates the missing time entries.")
+	csvCmd.PersistentFlags().BoolVarP(&isInterpolateTime, "interpolate", "i", false, "Interpolates the missing time entries.")
 
-	csvCmd.PersistentFlags().BoolVarP(&isOverwriteCsv, "overwrite", "", false, "Overwrites the output file if it exisits")
-	csvCmd.PersistentFlags().StringVarP(&outputCsvFilename, "output", "o", "", "Output filename")
+	csvCmd.PersistentFlags().BoolVarP(&isOverwriteCsv, "overwrite", "o", false, "Overwrites the output file if it exisits")
 }
 
