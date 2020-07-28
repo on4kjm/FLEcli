@@ -36,7 +36,7 @@ Most comon use cases are described hereafter as examples.
 To load and validate the FLE formated file (`myActivation.txt`:
 
 ```
-./FLEcli load -i=myActivation.txt
+./FLEcli load myActivation.txt
 ```
 This command will parse and display the QSOs in grid format. 
 Fields that couldn't be successfully parsed are prefixed with "*". 
@@ -48,21 +48,21 @@ Parsing errors or doubts are listed at the end of the list.
 To generate an ADIF file based on `activation.txt`:
 
 ```
-./FLEcli adif -i activation.txt -o output/activation.adi --overwrite --interpolate
+./FLEcli adif -i --overwrite activation.txt output/activation.adi
 ```
-The `-o` (or the long form, `--output`) specifies the path and name of the output file.
-If the flag and value are omitted, the tool will generate a filename.
+The second element after the input specifies the path and name of the output file.
+If is omitted, the tool will generate a filename.
 It is based on the input filename, just replacing the extension with `.adi`.
 
-The `--overwrite` flag indicates that, if the output file already exists, it should be overwritten. 
+The `-o` or `--overwrite` flag indicates that, if the output file already exists, it should be overwritten. 
 
-The `--interpolate` flag will interpolate the missing non-entered times based on the first and the last entered time.
+The `-i` or `--interpolate` flag will interpolate the missing non-entered times based on the first and the last entered time.
 
 ### Example: generate an ADIF file for WWFF upload
 
 To generate a WWFF-ready ADIF file: 
 ```
-./FLEcli adif -i ON4KJM@ONFF-025920200524.txt --wwff --interpolate
+./FLEcli adif -i --wwff ON4KJM@ONFF-025920200524.txt 
 ```
 The `--wwff` indicates the adif flavour to produce.
 You can use the `--sota` switch to generate an ADIF file containing SOTA details.
@@ -76,7 +76,11 @@ As we didn't provide an output filename, the default output, `ON4KJM@ONFF-025920
 To generate a CSV file that can be uploaded to https://www.sotadata.org.uk/ to report SOTA activations:
 
 ```
-./FLEcli csv -i sotaActivation.txt --overwrite --interpolate
+./FLEcli csv --interpolate --overwrite sotaActivation.txt
+```
+or the short form
+```
+./FLEcli csv -i -o sotaActivation.txt
 ```
 This command will generate `sotaActivation.csv` based on the `sotaActivation.txt` FLE logfile.
 If the output file exists, it will be overwritten as the `--overwrite` flag has been specified.
