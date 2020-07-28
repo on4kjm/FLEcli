@@ -18,7 +18,6 @@ limitations under the License.
 
 import (
 	"FLEcli/fleprocess"
-	"fmt"
 	"github.com/spf13/cobra"
 )
 

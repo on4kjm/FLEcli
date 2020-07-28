@@ -18,13 +18,7 @@ limitations under the License.
 
 import (
 	"FLEcli/fleprocess"
-	"bufio"
-	"fmt"
 	"github.com/spf13/cobra"
-	"log"
-	"os"
-	"regexp"
-	"time"
 )
 
 // loadCmd represents the load command

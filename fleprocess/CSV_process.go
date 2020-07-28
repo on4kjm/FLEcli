@@ -16,45 +16,35 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+//Documentation of SOTA CSV format: https://www.sotadata.org.uk/en/upload/activator/csv/info
+
 import (
 	"fmt"
 )
 
-//ProcessAdifCommand FIXME
-func ProcessAdifCommand(inputFilename, outputFilename string, isInterpolateTime, isWWFFcli, isSOTAcli, isOverwrite bool) {
 
-	verifiedOutputFilename, filenameWasOK := buildOutputFilename(outputFilename, inputFilename, isOverwrite, ".adi")
+func ProcessCsvCommand(inputFilename, outputCsvFilename string, isInterpolateTime, isOverwriteCsv bool) {
+
+	verifiedOutputFilename, filenameWasOK := buildOutputFilename(outputCsvFilename, inputFilename, isOverwriteCsv, ".csv")
 
 	// if the output file could not be parsed correctly do noting
 	if filenameWasOK {
-		loadedLogFile, isLoadedOK := LoadFile(inputFilename,isInterpolateTime)
+		loadedLogFile, isLoadedOK := LoadFile(inputFilename, isInterpolateTime)
 
+		//TODO: move this in a function so that it can be more easily tested
 		if isLoadedOK {
 			if len(loadedLogFile) == 0 {
 				fmt.Println("No useful data read. Aborting...")
 				return
 			}
 
-			//TODO: There are more tests required here
 			//check if we have the necessary information for the type
-			if isWWFFcli {
-				if loadedLogFile[0].MyWWFF == "" {
-					fmt.Println("Missing MY-WWFF reference. Aborting...")
-					return
-				}
-				if loadedLogFile[0].Operator == "" {
-					fmt.Println("Missing Operator. Aborting...")
-					return
-				}
-			}
-			if isSOTAcli {
-				if loadedLogFile[0].MySOTA == "" {
-					fmt.Println("Missing MY-SOTA reference. Aborting...")
-					return
-				}
+			if loadedLogFile[0].MySOTA == "" {
+				fmt.Println("Missing MY-SOTA reference. Aborting...")
+				return
 			}
 
-			OutputAdif(verifiedOutputFilename, loadedLogFile, isWWFFcli, isSOTAcli)
+			outputCsv(verifiedOutputFilename, loadedLogFile)
 		}
 	}
 }
