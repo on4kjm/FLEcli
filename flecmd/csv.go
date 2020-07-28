@@ -28,7 +28,7 @@ var isOverwriteCsv bool
 
 // csvCmd is executed when choosing the csv option (load FLE file and generate csv file)
 var csvCmd = &cobra.Command{
-	Use:   "csv",
+	Use:   "csv [flags] inputFile [outputFile]",
 	Short: "Generates a SOTA .csv file based on a FLE type shorthand logfile.",
 	// 	Long: `A longer description that spans multiple lines and likely contains examples
 	// and usage of using your command. For example:
