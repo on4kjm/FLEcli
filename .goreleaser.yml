@@ -18,7 +18,7 @@ builds:
     - goos: windows
       goarch: amd64
   ldflags:
-    - -s -w -X FLEcli/cmd.version={{.Version}} -X FLEcli/cmd.commit={{.Commit}} -X FLEcli/cmd.date={{.Date}} -X=FLEcli/cmd.builtBy=goReleaser
+    - -s -w -X FLEcli/flecmd.version={{.Version}} -X FLEcli/flecmd.commit={{.Commit}} -X FLEcli/flecmd.date={{.Date}} -X=FLEcli/flecmd.builtBy=goReleaser
   env:
   - CGO_ENABLED=0
 

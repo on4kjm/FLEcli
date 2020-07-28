@@ -23,7 +23,7 @@ package main
 
 import "github.com/spf13/cobra/cobra/cmd"
 
-import "FLEcli/flecmd"
+//import "FLEcli/flecmd"
 
 func main() {
 	cmd.Execute()
