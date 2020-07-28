@@ -22,7 +22,7 @@ import (
 	"fmt"
 )
 
-
+//ProcessCsvCommand loads an FLE input to produce a SOTA CSV
 func ProcessCsvCommand(inputFilename, outputCsvFilename string, isInterpolateTime, isOverwriteCsv bool) {
 
 	verifiedOutputFilename, filenameWasOK := buildOutputFilename(outputCsvFilename, inputFilename, isOverwriteCsv, ".csv")

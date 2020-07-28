@@ -22,11 +22,7 @@ import (
 	"path/filepath"
 )
 
-// does the target file exist?
-// is the file defined
-//	remove the extention
-
-//buildOutputFilename FIXME returning "" is considered as invalid
+//buildOutputFilname will try to figure out an output filename (for the case none was provided)
 func buildOutputFilename(output string, input string, overwrite bool, newExtension string) (outputFilename string, wasOK bool) {
 	outputFilename = ""
 
