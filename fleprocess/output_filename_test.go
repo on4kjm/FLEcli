@@ -80,7 +80,7 @@ func Test_buildOutputFilename(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			gotOutputFilename, gotWasOK := BuildOutputFilename(tt.args.output, tt.args.input, tt.args.overwrite, tt.args.extension)
+			gotOutputFilename, gotWasOK := buildOutputFilename(tt.args.output, tt.args.input, tt.args.overwrite, tt.args.extension)
 			if gotOutputFilename != tt.wantOutputFilename {
 				t.Errorf("buildOutputFilename() gotOutputFilename = %v, want %v", gotOutputFilename, tt.wantOutputFilename)
 			}
