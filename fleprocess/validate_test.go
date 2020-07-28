@@ -1,4 +1,4 @@
-package cmd
+package fleprocess
 
 import (
 	"testing"
@@ -276,8 +276,6 @@ func TestValidateDate(t *testing.T) {
 	}
 }
 
-
-
 func TestIsBand(t *testing.T) {
 	type args struct {
 		inputStr string
@@ -303,7 +301,7 @@ func TestIsBand(t *testing.T) {
 		{
 			"valid band but uppercase",
 			args{inputStr: "40M"},
-			true, 7.0, 7.3,"7MHz",
+			true, 7.0, 7.3, "7MHz",
 		},
 	}
 	for _, tt := range tests {

@@ -1,4 +1,4 @@
-package cmd
+package flecmd
 
 /*
 Copyright © 2020 Jean-Marc Meessen, ON4KJM <on4kjm@gmail.com>
@@ -16,9 +16,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-//Documentation of SOTA CSV format: https://www.sotadata.org.uk/en/upload/activator/csv/info 
+//Documentation of SOTA CSV format: https://www.sotadata.org.uk/en/upload/activator/csv/info
 
 import (
+	"FLEcli/fleprocess"
 	"fmt"
 	"github.com/spf13/cobra"
 )

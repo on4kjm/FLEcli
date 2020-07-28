@@ -1,4 +1,4 @@
-package cmd
+package fleprocess
 
 /*
 Copyright © 2020 Jean-Marc Meessen, ON4KJM <on4kjm@gmail.com>
@@ -235,9 +235,9 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 
 			// If the "sota" keyword is used, skip it
 			if regexpIsSotaKeyWord.MatchString(element) {
-				// this keyword is not supported anymore with FLE 3 and doesn't add any value 
+				// this keyword is not supported anymore with FLE 3 and doesn't add any value
 				continue
-			}			
+			}
 
 			// Is it a Summit to Summit (sota) reference?
 			workRef, sotaErr := ValidateSota(element)

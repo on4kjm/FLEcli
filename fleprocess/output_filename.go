@@ -1,4 +1,4 @@
-package cmd
+package fleprocess
 
 /*
 Copyright © 2020 Jean-Marc Meessen, ON4KJM <on4kjm@gmail.com>
@@ -17,8 +17,8 @@ limitations under the License.
 */
 
 import (
-	"os"
 	"fmt"
+	"os"
 	"path/filepath"
 )
 
@@ -26,7 +26,7 @@ import (
 // is the file defined
 //	remove the extention
 
-//returning "" is considered as invalid
+//buildOutputFilename FIXME returning "" is considered as invalid
 func buildOutputFilename(output string, input string, overwrite bool, newExtension string) (outputFilename string, wasOK bool) {
 	outputFilename = ""
 

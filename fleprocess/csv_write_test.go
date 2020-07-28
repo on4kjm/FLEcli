@@ -1,11 +1,11 @@
-package cmd
+package fleprocess
 
 import (
 	"reflect"
 	"testing"
 )
 
-func Test_csvDate(t *testing.T) {	
+func Test_csvDate(t *testing.T) {
 	type args struct {
 		inputDate string
 	}

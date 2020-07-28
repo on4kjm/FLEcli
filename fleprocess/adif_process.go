@@ -1,4 +1,4 @@
-package cmd
+package fleprocess
 
 /*
 Copyright © 2020 Jean-Marc Meessen, ON4KJM <on4kjm@gmail.com>
@@ -18,48 +18,16 @@ limitations under the License.
 
 import (
 	"fmt"
-	"github.com/spf13/cobra"
-	//	"log"
-	//"strings"
 )
 
-var outputFilename string
-var isWWFFcli bool
-var isSOTAcli bool
-var isOverwrite bool
-
-// adifCmd is executed when choosing the adif option (load and generate adif file)
-var adifCmd = &cobra.Command{
-	Use:   "adif",
-	Short: "Generates an ADIF file based on a FLE type shorthand logfile.",
-	// 	Long: `A longer description that spans multiple lines and likely contains examples
-	// and usage of using your command. For example:
-
-	Run: func(cmd *cobra.Command, args []string) {
-		processAdifCommand()
-	},
-}
-
-func init() {
-	rootCmd.AddCommand(adifCmd)
-
-	adifCmd.PersistentFlags().StringVarP(&inputFilename, "input", "i", "", "FLE formatted input file (mandatory)")
-	adifCmd.MarkPersistentFlagRequired("input")
-	adifCmd.PersistentFlags().BoolVarP(&isInterpolateTime, "interpolate", "", false, "Interpolates the missing time entries.")
-
-	adifCmd.PersistentFlags().BoolVarP(&isWWFFcli, "wwff", "w", false, "Generates a WWFF ready ADIF file.")
-	adifCmd.PersistentFlags().BoolVarP(&isSOTAcli, "sota", "s", false, "Generates a SOTA ready ADIF file.")
-	adifCmd.PersistentFlags().BoolVarP(&isOverwrite, "overwrite", "", false, "Overwrites the output file if it exisits")
-	adifCmd.PersistentFlags().StringVarP(&outputFilename, "output", "o", "", "Output filename")
-}
-
-func processAdifCommand() {
+//ProcessAdifCommand FIXME
+func ProcessAdifCommand(inputFilename, outputFilename string, isInterpolateTime, isWWFFcli, isSOTAcli, isOverwrite bool) {
 
 	verifiedOutputFilename, filenameWasOK := buildOutputFilename(outputFilename, inputFilename, isOverwrite, ".adi")
 
 	// if the output file could not be parsed correctly do noting
 	if filenameWasOK {
-		loadedLogFile, isLoadedOK := loadFile()
+		loadedLogFile, isLoadedOK := LoadFile(inputFilename,isInterpolateTime)
 
 		//TODO: move this in a function so that it can be more easily tested
 		if isLoadedOK {
@@ -87,7 +55,7 @@ func processAdifCommand() {
 				}
 			}
 
-			outputAdif(verifiedOutputFilename, loadedLogFile, isWWFFcli, isSOTAcli)
+			OutputAdif(verifiedOutputFilename, loadedLogFile, isWWFFcli, isSOTAcli)
 		}
 	}
 }

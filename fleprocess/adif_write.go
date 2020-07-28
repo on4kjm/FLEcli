@@ -1,4 +1,4 @@
-package cmd
+package fleprocess
 
 /*
 Copyright © 2020 Jean-Marc Meessen, ON4KJM <on4kjm@gmail.com>
@@ -24,8 +24,8 @@ import (
 	"time"
 )
 
-// outputAdif generates and writes data in ADIF format
-func outputAdif(outputFile string, fullLog []LogLine, isWWFF bool, isSOTA bool) {
+// OutputAdif generates and writes data in ADIF format
+func OutputAdif(outputFile string, fullLog []LogLine, isWWFF bool, isSOTA bool) {
 
 	//convert the log data to an in-memory ADIF file
 	adifData := buildAdif(fullLog, isWWFF, isSOTA)
@@ -56,10 +56,10 @@ func buildAdif(fullLog []LogLine, isWWFF bool, isSOTA bool) (adifList []string) 
 		adifLine.WriteString(adifElement("RST_SENT", logLine.RSTsent))
 		adifLine.WriteString(adifElement("RST_RCVD", logLine.RSTrcvd))
 		if logLine.Comment != "" {
-			adifLine.WriteString(adifElement("COMMENT", logLine.Comment))		
+			adifLine.WriteString(adifElement("COMMENT", logLine.Comment))
 		}
 		if logLine.OMname != "" {
-			adifLine.WriteString(adifElement("NAME", logLine.OMname))		
+			adifLine.WriteString(adifElement("NAME", logLine.OMname))
 		}
 		if logLine.QSLmsg != "" {
 			adifLine.WriteString(adifElement("QSLMSG", logLine.QSLmsg))

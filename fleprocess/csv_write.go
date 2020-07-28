@@ -1,4 +1,4 @@
-package cmd
+package fleprocess
 
 /*
 Copyright © 2020 Jean-Marc Meessen, ON4KJM <on4kjm@gmail.com>
@@ -48,14 +48,14 @@ func buildCsv(fullLog []LogLine) (csvList []string) {
 		csvLine.WriteString(fmt.Sprintf(",%s", logLine.Time))
 		//TODO: Should we test the result
 		_, _, _, sotaBand := IsBand(logLine.Band)
-		csvLine.WriteString(fmt.Sprintf(",%s",sotaBand ))
-		csvLine.WriteString(fmt.Sprintf(",%s",logLine.Mode))
+		csvLine.WriteString(fmt.Sprintf(",%s", sotaBand))
+		csvLine.WriteString(fmt.Sprintf(",%s", logLine.Mode))
 		csvLine.WriteString(fmt.Sprintf(",%s", logLine.Call))
 		if logLine.SOTA != "" {
-			csvLine.WriteString(fmt.Sprintf(",%s", logLine.SOTA))		
+			csvLine.WriteString(fmt.Sprintf(",%s", logLine.SOTA))
 		} else {
 			if logLine.Comment != "" {
-				csvLine.WriteString(",")	
+				csvLine.WriteString(",")
 			}
 		}
 		if logLine.Comment != "" {
@@ -66,7 +66,6 @@ func buildCsv(fullLog []LogLine) (csvList []string) {
 	}
 	return csvList
 }
-
 
 //adifDate converts a date in YYYY-MM-DD format to YYYYMMDD
 func csvDate(inputDate string) (outputDate string) {

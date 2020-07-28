@@ -21,7 +21,9 @@ THE SOFTWARE.
 */
 package main
 
-import "FLEcli/cmd"
+import "github.com/spf13/cobra/cobra/cmd"
+
+import "FLEcli/flecmd"
 
 func main() {
 	cmd.Execute()
