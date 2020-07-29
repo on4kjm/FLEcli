@@ -1,4 +1,4 @@
-package cmd
+package fleprocess
 
 /*
 Copyright © 2020 Jean-Marc Meessen, ON4KJM <on4kjm@gmail.com>
@@ -17,16 +17,12 @@ limitations under the License.
 */
 
 import (
-	"os"
 	"fmt"
+	"os"
 	"path/filepath"
 )
 
-// does the target file exist?
-// is the file defined
-//	remove the extention
-
-//returning "" is considered as invalid
+//buildOutputFilname will try to figure out an output filename (for the case none was provided)
 func buildOutputFilename(output string, input string, overwrite bool, newExtension string) (outputFilename string, wasOK bool) {
 	outputFilename = ""
 

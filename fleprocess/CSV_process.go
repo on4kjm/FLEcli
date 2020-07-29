@@ -1,4 +1,4 @@
-package cmd
+package fleprocess
 
 /*
 Copyright © 2020 Jean-Marc Meessen, ON4KJM <on4kjm@gmail.com>
@@ -16,46 +16,20 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-//Documentation of SOTA CSV format: https://www.sotadata.org.uk/en/upload/activator/csv/info 
+//Documentation of SOTA CSV format: https://www.sotadata.org.uk/en/upload/activator/csv/info
 
 import (
 	"fmt"
-	"github.com/spf13/cobra"
 )
 
-var outputCsvFilename string
-var isOverwriteCsv bool
-
-// csvCmd is executed when choosing the csv option (load FLE file and generate csv file)
-var csvCmd = &cobra.Command{
-	Use:   "csv",
-	Short: "Generates a SOTA .csv file based on a FLE type shorthand logfile.",
-	// 	Long: `A longer description that spans multiple lines and likely contains examples
-	// and usage of using your command. For example:
-
-	Run: func(cmd *cobra.Command, args []string) {
-		processCsvCommand()
-	},
-}
-
-func init() {
-	rootCmd.AddCommand(csvCmd)
-
-	csvCmd.PersistentFlags().StringVarP(&inputFilename, "input", "i", "", "FLE formatted input file (mandatory)")
-	csvCmd.MarkPersistentFlagRequired("input")
-	csvCmd.PersistentFlags().BoolVarP(&isInterpolateTime, "interpolate", "", false, "Interpolates the missing time entries.")
-
-	csvCmd.PersistentFlags().BoolVarP(&isOverwriteCsv, "overwrite", "", false, "Overwrites the output file if it exisits")
-	csvCmd.PersistentFlags().StringVarP(&outputCsvFilename, "output", "o", "", "Output filename")
-}
-
-func processCsvCommand() {
+//ProcessCsvCommand loads an FLE input to produce a SOTA CSV
+func ProcessCsvCommand(inputFilename, outputCsvFilename string, isInterpolateTime, isOverwriteCsv bool) {
 
 	verifiedOutputFilename, filenameWasOK := buildOutputFilename(outputCsvFilename, inputFilename, isOverwriteCsv, ".csv")
 
 	// if the output file could not be parsed correctly do noting
 	if filenameWasOK {
-		loadedLogFile, isLoadedOK := loadFile()
+		loadedLogFile, isLoadedOK := LoadFile(inputFilename, isInterpolateTime)
 
 		//TODO: move this in a function so that it can be more easily tested
 		if isLoadedOK {

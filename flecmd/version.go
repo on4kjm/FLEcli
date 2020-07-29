@@ -1,4 +1,4 @@
-package cmd
+package flecmd
 
 /*
 Copyright © 2020 Jean-Marc Meessen, ON4KJM <on4kjm@gmail.com>
@@ -24,16 +24,16 @@ THE SOFTWARE.
 
 import (
 	"fmt"
-	"time"
 	"github.com/spf13/cobra"
+	"time"
 )
 
 var (
-	detailed = false
-	version  = "private build"
-	commit   = "none"
-	date     = "unknown"
-	builtBy  = ""
+	detailed   = false
+	version    = "private build"
+	commit     = "none"
+	date       = "unknown"
+	builtBy    = ""
 	versionCmd = &cobra.Command{
 		Use:   "version",
 		Short: "\"version\" will output the current build information",

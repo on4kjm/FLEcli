@@ -1,4 +1,4 @@
-package cmd
+package fleprocess
 
 /*
 Copyright © 2020 Jean-Marc Meessen, ON4KJM <on4kjm@gmail.com>
@@ -23,53 +23,11 @@ import (
 	"os"
 	"regexp"
 	"time"
-
-	//"time"
-
-	"github.com/spf13/cobra"
-	//"strings"
 )
 
-// loadCmd represents the load command
-var loadCmd = &cobra.Command{
-	Use:   "load",
-	Short: "Loads and validates a FLE type shorthand logfile",
-	// 	Long: `A longer description that spans multiple lines and likely contains examples
-	// and usage of using your command. For example:
-
-	// Cobra is a CLI library for Go that empowers applications.
-	// This application is a tool to generate the needed files
-	// to quickly create a Cobra application.`,
-	Run: func(cmd *cobra.Command, args []string) {
-		//fmt.Println("load called")
-		//fmt.Println("Inputfile: ",inputFilename)
-		loadFile()
-	},
-}
-
-func init() {
-	rootCmd.AddCommand(loadCmd)
-
-	loadCmd.PersistentFlags().StringVarP(&inputFilename, "input", "i", "", "FLE formatted input file (mandatory)")
-	loadCmd.MarkPersistentFlagRequired("input")
-
-	loadCmd.PersistentFlags().BoolVarP(&isInterpolateTime, "interpolate", "", false, "Interpolates the missing time entries.")
-
-	// rootCmd.PersistentFlags().StringVarP(&inputFilename, "input", "i", "", "FLE formatted input file (mandatory)")
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// loadCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// loadCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-}
-
+//LoadFile FIXME
 //returns nill if failure to process
-func loadFile() (filleFullLog []LogLine, isProcessedOK bool) {
+func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogLine, isProcessedOK bool) {
 	file, err := os.Open(inputFilename)
 
 	if err != nil {
