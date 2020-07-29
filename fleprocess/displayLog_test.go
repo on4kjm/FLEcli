@@ -33,6 +33,7 @@ func TestSprintHeaderValues(t *testing.T) {
 	}
 }
 
+//https://blog.golang.org/examples
 func TestSprintColumnTitles(t *testing.T) {
 	type args struct {
 		logLine LogLine
