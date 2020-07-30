@@ -77,6 +77,11 @@ func TestParseLine(t *testing.T) {
 			LogLine{Band: "20m", BandLowerLimit: 14.0, BandUpperLimit: 14.35, Call: "ON4KJM", Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "Frequency [14.453] is invalid for 20m band.",
 		},
 		{
+			"Parse frequency out of limit with no band defined",
+			args{inputStr: "14.453 on4kjm", previousLine: LogLine{Mode: "SSB"}},
+			LogLine{Call: "ON4KJM", Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "Unable to load frequency [14.453]: no band defined for that frequency.",
+		},
+		{
 			"parse partial RST (sent) - CW",
 			args{inputStr: "1230 on4kjm 5", previousLine: LogLine{Mode: "CW", ModeType: "CW"}},
 			LogLine{Call: "ON4KJM", Time: "1230", ActualTime: "1230", RSTsent: "559", RSTrcvd: "599", Mode: "CW", ModeType: "CW"}, "",

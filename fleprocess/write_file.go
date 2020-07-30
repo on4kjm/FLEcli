@@ -23,7 +23,7 @@ limitations under the License.
 */
 
 // writeFile writes the in-memory data (lines) to a file
-func writeFile(outputFile string, adifData []string) {
+func writeFile(outputFile string, dataArray []string) {
 
 	//TODO: check access rights
 	f, err := os.Create(outputFile)
@@ -34,7 +34,7 @@ func writeFile(outputFile string, adifData []string) {
 	w := bufio.NewWriter(f)
 
 	lineCount := 0
-	for _, adifLine := range adifData {
+	for _, adifLine := range dataArray {
 		_, err := w.WriteString(adifLine + "\n")
 		checkFileError(err)
 
@@ -43,4 +43,11 @@ func writeFile(outputFile string, adifData []string) {
 		lineCount++
 	}
 	fmt.Printf("\nSuccessfully wrote %d lines to file \"%s\"\n", lineCount, outputFile)
+}
+
+// checkFileError handles file related errors
+func checkFileError(e error) {
+	if e != nil {
+		panic(e)
+	}
 }
