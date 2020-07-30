@@ -316,7 +316,7 @@ func displayLogSimple(fullLog []LogLine) {
 	for _, filledLogLine := range fullLog {
 		if firstLine {
 			fmt.Println(SprintHeaderValues(filledLogLine))
-			fmt.Print(SprintColumnTitles(filledLogLine))
+			fmt.Print(SprintColumnTitles())
 			firstLine = false
 		}
 		fmt.Print(SprintLogInColumn(filledLogLine))
