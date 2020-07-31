@@ -1,6 +1,7 @@
 package fleprocess
 
 import (
+	"bufio"
 	"os"
 	"testing"
 )
@@ -16,7 +17,33 @@ func Test_writeFile(t *testing.T) {
 
 	writeFile(writeFileTestFname, dataArray)
 
-	//TODO: check that the file contains what we want
+	//Open and read the file we have just created
+	file, err := os.Open(writeFileTestFname)
+
+	if err != nil {
+		t.Error(err)
+	}
+
+	scanner := bufio.NewScanner(file)
+	scanner.Split(bufio.ScanLines)
+	var readLines []string
+	for scanner.Scan() {
+		readLines = append(readLines, scanner.Text())
+	}
+	if error := scanner.Err(); error != nil {
+		t.Error(error)
+	}
+	file.Close()
+
+	//Compare with what we have got
+	if len(dataArray) != len(readLines) {
+        t.Error("The number of lines read doesn't match the lines written")
+	}
+	for i, v := range readLines {
+        if v != dataArray[i] {
+            t.Error("Didn't read the expected data")
+        }
+    }
 
 	// //detete test file
 	os.Remove(writeFileTestFname)
