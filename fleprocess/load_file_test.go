@@ -23,7 +23,7 @@ import (
 	"testing"
 )
 
-func TestLoadFile_header_happyCase(t *testing.T) {
+func TestLoadFile_happyCase(t *testing.T) {
 
 	//Given
 	dataArray := make([]string, 0)
@@ -32,7 +32,7 @@ func TestLoadFile_header_happyCase(t *testing.T) {
 	dataArray = append(dataArray, "  - Data item1")
 	dataArray = append(dataArray, "  - Data item2")
 	dataArray = append(dataArray, "  }")
-	dataArray = append(dataArray, "{ offset one liner comment }")
+	dataArray = append(dataArray, "{ one liner comment }")
 	dataArray = append(dataArray, "  { offset one liner comment }")
 	dataArray = append(dataArray, " ")
 	dataArray = append(dataArray, "# Header")
@@ -46,6 +46,8 @@ func TestLoadFile_header_happyCase(t *testing.T) {
 	dataArray = append(dataArray, " #Log")
 	dataArray = append(dataArray, "date 2020-05-23")
 	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
+	dataArray = append(dataArray, "on6zq")
+	dataArray = append(dataArray, "0954 on4do")
 
 	temporaryDataFileName := createTestFile(dataArray)
 
@@ -64,7 +66,7 @@ func TestLoadFile_header_happyCase(t *testing.T) {
 	if loadedLogFile[0].MyCall != expectedValue {
 		t.Errorf("Not the expected MyCall value: %s (expecting %s)", loadedLogFile[0].MyCall, expectedValue)
 	}
-		expectedValue = "ON4KJM"
+	expectedValue = "ON4KJM"
 	if loadedLogFile[0].Operator != expectedValue {
 		t.Errorf("Not the expected Operator value: %s (expecting %s)", loadedLogFile[0].Operator, expectedValue)
 	}
@@ -83,6 +85,114 @@ func TestLoadFile_header_happyCase(t *testing.T) {
 	expectedValue = "This is a QSL message"
 	if loadedLogFile[0].QSLmsg != expectedValue {
 		t.Errorf("Not the expected QSL Message from Header value: %s (expecting %s)", loadedLogFile[0].QSLmsg, expectedValue)
+	}
+	expectedValue = "IK5ZVE/5"
+	if loadedLogFile[0].Call != expectedValue {
+		t.Errorf("Not the expected Call[0] value: %s (expecting %s)", loadedLogFile[0].Call, expectedValue)
+	}
+	expectedValue = "0950"
+	if loadedLogFile[0].Time != expectedValue {
+		t.Errorf("Not the expected Time[0] value: %s (expecting %s)", loadedLogFile[0].Time, expectedValue)
+	}
+	expectedValue = "2020-05-23"
+	if loadedLogFile[0].Date != expectedValue {
+		t.Errorf("Not the expected Date[0] value: %s (expecting %s)", loadedLogFile[0].Date, expectedValue)
+	}
+	expectedValue = "ON6ZQ"
+	if loadedLogFile[1].Call != expectedValue {
+		t.Errorf("Not the expected Call[1] value: %s (expecting %s)", loadedLogFile[1].Call, expectedValue)
+	}
+	expectedValue = "0952"
+	if loadedLogFile[1].Time != expectedValue {
+		t.Errorf("Not the expected Time[1] value: %s (expecting %s)", loadedLogFile[1].Time, expectedValue)
+	}
+	expectedValue = "ON4DO"
+	if loadedLogFile[2].Call != expectedValue {
+		t.Errorf("Not the expected Call[2] value: %s (expecting %s)", loadedLogFile[2].Call, expectedValue)
+	}
+	expectedValue = "0954"
+	if loadedLogFile[2].Time != expectedValue {
+		t.Errorf("Not the expected Time[2] value: %s (expecting %s)", loadedLogFile[2].Time, expectedValue)
+	}
+	//Clean Up
+	os.Remove(temporaryDataFileName)
+}
+
+//TODO: dangling comments
+
+func TestLoadFile_wrongHeader(t *testing.T) {
+
+	//Given
+	dataArray := make([]string, 0)
+	dataArray = append(dataArray, "# Header")
+	dataArray = append(dataArray, "myCall fooBar")
+	dataArray = append(dataArray, "operator")
+	dataArray = append(dataArray, "myWwff foobar")
+	dataArray = append(dataArray, "mySota  ")
+	dataArray = append(dataArray, " ")
+	dataArray = append(dataArray, " #Log")
+	dataArray = append(dataArray, "date 2020-05-23")
+	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
+	dataArray = append(dataArray, "on6zq")
+	dataArray = append(dataArray, "0954 on4do")
+
+	temporaryDataFileName := createTestFile(dataArray)
+
+	//When
+	loadedLogFile, isLoadedOK := LoadFile(temporaryDataFileName, true)
+
+	//Then
+	if isLoadedOK {
+		t.Error("Test file processing should return with aerror")
+	}
+	if len(loadedLogFile) == 0 {
+		t.Error("No data loaded")
+	}
+
+	expectedValue := "*FOOBAR"
+	if loadedLogFile[0].MyCall != expectedValue {
+		t.Errorf("Not the expected MyCall value: %s (expecting %s)", loadedLogFile[0].MyCall, expectedValue)
+	}
+	expectedValue = ""
+	if loadedLogFile[0].Operator != expectedValue {
+		t.Errorf("Not the expected Operator value: %s (expecting %s)", loadedLogFile[0].Operator, expectedValue)
+	}
+	expectedValue = "*FOOBAR"
+	if loadedLogFile[0].MyWWFF != expectedValue {
+		t.Errorf("Not the expected MyWWFF value: %s (expecting %s)", loadedLogFile[0].MyWWFF, expectedValue)
+	}
+	expectedValue = ""
+	if loadedLogFile[0].MySOTA != expectedValue {
+		t.Errorf("Not the expected MySOTA value: %s (expecting %s)", loadedLogFile[0].MySOTA, expectedValue)
+	}
+
+	expectedValue = "IK5ZVE/5"
+	if loadedLogFile[0].Call != expectedValue {
+		t.Errorf("Not the expected Call[0] value: %s (expecting %s)", loadedLogFile[0].Call, expectedValue)
+	}
+	expectedValue = "0950"
+	if loadedLogFile[0].Time != expectedValue {
+		t.Errorf("Not the expected Time[0] value: %s (expecting %s)", loadedLogFile[0].Time, expectedValue)
+	}
+	expectedValue = "2020-05-23"
+	if loadedLogFile[0].Date != expectedValue {
+		t.Errorf("Not the expected Date[0] value: %s (expecting %s)", loadedLogFile[0].Date, expectedValue)
+	}
+	expectedValue = "ON6ZQ"
+	if loadedLogFile[1].Call != expectedValue {
+		t.Errorf("Not the expected Call[1] value: %s (expecting %s)", loadedLogFile[1].Call, expectedValue)
+	}
+	expectedValue = "0952"
+	if loadedLogFile[1].Time != expectedValue {
+		t.Errorf("Not the expected Time[1] value: %s (expecting %s)", loadedLogFile[1].Time, expectedValue)
+	}
+	expectedValue = "ON4DO"
+	if loadedLogFile[2].Call != expectedValue {
+		t.Errorf("Not the expected Call[2] value: %s (expecting %s)", loadedLogFile[2].Call, expectedValue)
+	}
+	expectedValue = "0954"
+	if loadedLogFile[2].Time != expectedValue {
+		t.Errorf("Not the expected Time[2] value: %s (expecting %s)", loadedLogFile[2].Time, expectedValue)
 	}
 	//Clean Up
 	os.Remove(temporaryDataFileName)
