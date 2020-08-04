@@ -48,10 +48,10 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 
 	file.Close()
 
-	regexpLineComment, _ := regexp.Compile("^#")
+	regexpLineComment, _ := regexp.Compile("^[[:blank:]]*#")
 	regexpOnlySpaces, _ := regexp.Compile("^\\s+$")
-	regexpSingleMultiLineComment, _ := regexp.Compile("^{.+}$")
-	regexpStartMultiLineComment, _ := regexp.Compile("^{")
+	regexpSingleMultiLineComment, _ := regexp.Compile("^[[:blank:]]*{.+}$")
+	regexpStartMultiLineComment, _ := regexp.Compile("^[[:blank:]]*{")
 	regexpEndMultiLineComment, _ := regexp.Compile("}$")
 	regexpHeaderMyCall, _ := regexp.Compile("(?i)^mycall ")
 	regexpHeaderOperator, _ := regexp.Compile("(?i)^operator ")

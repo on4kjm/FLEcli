@@ -23,11 +23,27 @@ import (
 	"testing"
 )
 
-func TestLoadFile_happyCase(t *testing.T) {
+func TestLoadFile_header_happyCase(t *testing.T) {
 
 	//Given
 	dataArray := make([]string, 0)
+	dataArray = append(dataArray, "{ Sample multi-line comment")
+	dataArray = append(dataArray, "	( with quotes) Check: Logging > \"Contest Logging\"")
+	dataArray = append(dataArray, "  - Data item1")
+	dataArray = append(dataArray, "  - Data item2")
+	dataArray = append(dataArray, "  }")
+	dataArray = append(dataArray, "{ offset one liner comment }")
+	dataArray = append(dataArray, "  { offset one liner comment }")
+	dataArray = append(dataArray, " ")
+	dataArray = append(dataArray, "# Header")
 	dataArray = append(dataArray, "myCall on4kjm/p")
+	dataArray = append(dataArray, "operator on4kjm")
+	dataArray = append(dataArray, "nickname Portable")
+	dataArray = append(dataArray, "myWwff onff-0258")
+	dataArray = append(dataArray, "mySota on/on-001")
+	dataArray = append(dataArray, "QslMsg This is a QSL message")
+	dataArray = append(dataArray, " ")
+	dataArray = append(dataArray, " #Log")
 	dataArray = append(dataArray, "date 2020-05-23")
 	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
 
@@ -46,15 +62,34 @@ func TestLoadFile_happyCase(t *testing.T) {
 
 	expectedValue := "ON4KJM/P"
 	if loadedLogFile[0].MyCall != expectedValue {
-		t.Errorf("Not the expected value: %s (expecting %s)", loadedLogFile[0].MyCall, expectedValue)
+		t.Errorf("Not the expected MyCall value: %s (expecting %s)", loadedLogFile[0].MyCall, expectedValue)
 	}
-
+		expectedValue = "ON4KJM"
+	if loadedLogFile[0].Operator != expectedValue {
+		t.Errorf("Not the expected Operator value: %s (expecting %s)", loadedLogFile[0].Operator, expectedValue)
+	}
+	expectedValue = "Portable"
+	if loadedLogFile[0].Nickname != expectedValue {
+		t.Errorf("Not the expected eQsl Nickname value: %s (expecting %s)", loadedLogFile[0].Nickname, expectedValue)
+	}
+	expectedValue = "ONFF-0258"
+	if loadedLogFile[0].MyWWFF != expectedValue {
+		t.Errorf("Not the expected MyWWFF value: %s (expecting %s)", loadedLogFile[0].MyWWFF, expectedValue)
+	}
+	expectedValue = "ON/ON-001"
+	if loadedLogFile[0].MySOTA != expectedValue {
+		t.Errorf("Not the expected MySOTA value: %s (expecting %s)", loadedLogFile[0].MySOTA, expectedValue)
+	}
+	expectedValue = "This is a QSL message"
+	if loadedLogFile[0].QSLmsg != expectedValue {
+		t.Errorf("Not the expected QSL Message from Header value: %s (expecting %s)", loadedLogFile[0].QSLmsg, expectedValue)
+	}
 	//Clean Up
 	os.Remove(temporaryDataFileName)
 }
 
-//createTestFile creates and populates a test FLE input file. 
-//Returns the created temporary filename. 
+//createTestFile creates and populates a test FLE input file.
+//Returns the created temporary filename.
 func createTestFile(dataArray []string) (tempFileName string) {
 	//create random file name
 	tmpfile, err := ioutil.TempFile("", "*.txt")
