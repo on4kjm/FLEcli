@@ -126,7 +126,7 @@ func TestSprintLogInColumn(t *testing.T) {
 		{
 			"Full Option",
 			args{logLine: LogLine{
-				Date: "date",
+				Date:             "date",
 				MyCall:           "myCall",
 				Operator:         "operator",
 				MyWWFF:           "myWwff",
@@ -148,14 +148,14 @@ func TestSprintLogInColumn(t *testing.T) {
 				RSTsent:          "rstSent",
 				RSTrcvd:          "rstRcvd",
 				SOTA:             "sota",
-				WWFF:             "wwff",},
+				WWFF:             "wwff"},
 			},
 			"date       time band mode call       rstSent rstRcvd QRG: frequency [comment] [qslMessage] omName gridLoc wwff sota \n",
 		},
 		{
 			"Minimal",
 			args{logLine: LogLine{
-				Date: "date",
+				Date:             "date",
 				MyCall:           "myCall",
 				Operator:         "operator",
 				MyWWFF:           "myWwff",
@@ -170,7 +170,7 @@ func TestSprintLogInColumn(t *testing.T) {
 				Time:             "time",
 				Call:             "call",
 				RSTsent:          "rstSent",
-				RSTrcvd:          "rstRcvd",},
+				RSTrcvd:          "rstRcvd"},
 			},
 			"date       time band mode call       rstSent rstRcvd \n",
 		},

@@ -53,17 +53,15 @@ func Test_writeFile(t *testing.T) {
 
 	//Compare with what we have got
 	if len(dataArray) != len(readLines) {
-        t.Error("The number of lines read doesn't match the lines written")
+		t.Error("The number of lines read doesn't match the lines written")
 	}
 	for i, v := range readLines {
-        if v != dataArray[i] {
-            t.Error("Didn't read the expected data")
-        }
-    }
+		if v != dataArray[i] {
+			t.Error("Didn't read the expected data")
+		}
+	}
 
 	// //detete test file
 	os.Remove(writeFileTestFname)
 
 }
-
-

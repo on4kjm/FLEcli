@@ -85,7 +85,6 @@ func buildAdif(fullLog []LogLine, isWWFF bool, isSOTA bool) (adifList []string) 
 	return adifList
 }
 
-
 // adifElement generated the ADIF sub-element
 func adifElement(elementName, elementValue string) (element string) {
 	return fmt.Sprintf("<%s:%d>%s ", strings.ToUpper(elementName), len(elementValue), elementValue)

@@ -37,10 +37,10 @@ var loadCmd = &cobra.Command{
 		//if args is empty, throw an error
 		if len(args) == 0 {
 			//TODO: fix this ugly statement (because I am lazy)
-			return fmt.Errorf("Missing input file %s","")
+			return fmt.Errorf("Missing input file %s", "")
 		}
 		if len(args) > 1 {
-			return fmt.Errorf("Too many arguments.%s","")
+			return fmt.Errorf("Too many arguments.%s", "")
 		}
 		inputFilename = args[0]
 		fleprocess.LoadFile(inputFilename, isInterpolateTime)
@@ -53,5 +53,3 @@ func init() {
 
 	loadCmd.PersistentFlags().BoolVarP(&isInterpolateTime, "interpolate", "i", false, "Interpolates the missing time entries.")
 }
-
-
