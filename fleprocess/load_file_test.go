@@ -118,8 +118,6 @@ func TestLoadFile_happyCase(t *testing.T) {
 	os.Remove(temporaryDataFileName)
 }
 
-//TODO: dangling comments
-
 func TestLoadFile_wrongHeader(t *testing.T) {
 
 	//Given
