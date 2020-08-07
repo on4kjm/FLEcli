@@ -34,8 +34,8 @@ func writeFile(outputFile string, dataArray []string) {
 	w := bufio.NewWriter(f)
 
 	lineCount := 0
-	for _, adifLine := range dataArray {
-		_, err := w.WriteString(adifLine + "\n")
+	for _, dataLine := range dataArray {
+		_, err := w.WriteString(dataLine + "\n")
 		checkFileError(err)
 
 		w.Flush()

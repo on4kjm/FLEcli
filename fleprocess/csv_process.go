@@ -25,26 +25,40 @@ import (
 //ProcessCsvCommand loads an FLE input to produce a SOTA CSV
 func ProcessCsvCommand(inputFilename, outputCsvFilename string, isInterpolateTime, isOverwriteCsv bool) {
 
-	verifiedOutputFilename, filenameWasOK := buildOutputFilename(outputCsvFilename, inputFilename, isOverwriteCsv, ".csv")
-
-	// if the output file could not be parsed correctly do noting
-	if filenameWasOK {
-		loadedLogFile, isLoadedOK := LoadFile(inputFilename, isInterpolateTime)
-
-		//TODO: move this in a function so that it can be more easily tested
-		if isLoadedOK {
-			if len(loadedLogFile) == 0 {
-				fmt.Println("No useful data read. Aborting...")
-				return
+	if verifiedOutputFilename, filenameWasOK := buildOutputFilename(outputCsvFilename, inputFilename, isOverwriteCsv, ".csv"); filenameWasOK == true {
+		if loadedLogFile, isLoadedOK := LoadFile(inputFilename, isInterpolateTime); isLoadedOK == true {
+			if validateDataForSotaCsv(loadedLogFile) {
+				outputCsv(verifiedOutputFilename, loadedLogFile)
+			} else {
+				//TODO: failed to validate
 			}
-
-			//check if we have the necessary information for the type
-			if loadedLogFile[0].MySOTA == "" {
-				fmt.Println("Missing MY-SOTA reference. Aborting...")
-				return
-			}
-
-			outputCsv(verifiedOutputFilename, loadedLogFile)
+		} else {
+			//TODO: Parsing errors, aborting....
 		}
 	}
+}
+
+func validateDataForSotaCsv(loadedLogFile []LogLine) bool {
+	if len(loadedLogFile) == 0 {
+		fmt.Println("No useful data read. Aborting...")
+		return false
+	}
+
+	for i := 0; i < len(loadedLogFile); i++ {
+		if loadedLogFile[0].MySOTA == "" {
+			fmt.Println("Missing MY-SOTA reference. Aborting...")
+			return false
+		}
+	}
+	// csvLine.WriteString(fmt.Sprintf("%s", logLine.MyCall))
+	// csvLine.WriteString(fmt.Sprintf(",%s", logLine.MySOTA))
+	// csvLine.WriteString(fmt.Sprintf(",%s", csvDate(logLine.Date)))
+	// csvLine.WriteString(fmt.Sprintf(",%s", logLine.Time))
+	// csvLine.WriteString(fmt.Sprintf(",%s", sotaBand))
+	// csvLine.WriteString(fmt.Sprintf(",%s", logLine.Mode))
+	// csvLine.WriteString(fmt.Sprintf(",%s", logLine.Call))
+
+	//check if we have the necessary information for the type
+
+	return true
 }
