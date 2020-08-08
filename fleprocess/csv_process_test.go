@@ -53,8 +53,8 @@ func Test_validateDataForSotaCsv(t *testing.T) {
 					t.Errorf("validateDataForSotaCsv() = %v, want %v", nil, tt.want)
 				}
 			} else {
-				if got != tt.want {
-					t.Errorf("validateDataForSotaCsv() = %v, want %v", got.Error(), tt.want.Error())
+				if got.Error() != tt.want.Error() {
+					t.Errorf("validateDataForSotaCsv() = %v, want %v", got, tt.want)
 				}
 			}
 		})
