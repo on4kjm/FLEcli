@@ -276,7 +276,6 @@ func TestLoadFile_wrongData(t *testing.T) {
 	os.Remove(temporaryDataFileName)
 }
 
-
 func TestLoadFile_firstCallWrong(t *testing.T) {
 
 	//Given

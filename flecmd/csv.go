@@ -47,9 +47,7 @@ var csvCmd = &cobra.Command{
 			return fmt.Errorf("Too many arguments.%s", "")
 		}
 
-		//TODO: should return an error
-		fleprocess.ProcessCsvCommand(inputFilename, outputCsvFilename, isInterpolateTime, isOverwriteCsv)
-		return nil
+		return fleprocess.ProcessCsvCommand(inputFilename, outputCsvFilename, isInterpolateTime, isOverwriteCsv)
 	},
 }
 

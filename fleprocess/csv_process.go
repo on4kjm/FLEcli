@@ -20,45 +20,65 @@ limitations under the License.
 
 import (
 	"fmt"
+	"strings"
 )
 
 //ProcessCsvCommand loads an FLE input to produce a SOTA CSV
-func ProcessCsvCommand(inputFilename, outputCsvFilename string, isInterpolateTime, isOverwriteCsv bool) {
+func ProcessCsvCommand(inputFilename, outputCsvFilename string, isInterpolateTime, isOverwriteCsv bool) error {
 
 	if verifiedOutputFilename, filenameWasOK := buildOutputFilename(outputCsvFilename, inputFilename, isOverwriteCsv, ".csv"); filenameWasOK == true {
 		if loadedLogFile, isLoadedOK := LoadFile(inputFilename, isInterpolateTime); isLoadedOK == true {
-			if validateDataForSotaCsv(loadedLogFile) {
-				outputCsv(verifiedOutputFilename, loadedLogFile)
-			} else {
-				//TODO: failed to validate
+			if err := validateDataForSotaCsv(loadedLogFile); err != nil {
+				return err
 			}
-		} else {
-			//TODO: Parsing errors, aborting....
+			outputCsv(verifiedOutputFilename, loadedLogFile)
+			return nil
 		}
+		return fmt.Errorf("There were input file parsing errors. Could not generate CSV file")
 	}
+	//TODO: we need something more explicit here
+	return fmt.Errorf("Failed to compute or validate output file name")
 }
 
-func validateDataForSotaCsv(loadedLogFile []LogLine) bool {
+//TODO: change return boolean to full err
+func validateDataForSotaCsv(loadedLogFile []LogLine) error {
 	if len(loadedLogFile) == 0 {
-		fmt.Println("No useful data read. Aborting...")
-		return false
+		return fmt.Errorf("No useful data read")
 	}
 
+	//MySOTA is a header value. If missing on the first line, it will be missing at every line
+	if loadedLogFile[0].MySOTA == "" {
+		return fmt.Errorf("Missing MY-SOTA reference")
+	}
+
+	var errorsBuffer strings.Builder
+	//We accumulate the errors messages
 	for i := 0; i < len(loadedLogFile); i++ {
-		if loadedLogFile[0].MySOTA == "" {
-			fmt.Println("Missing MY-SOTA reference. Aborting...")
-			return false
+
+		var errorLocation string
+		if loadedLogFile[i].Time == "" {
+			errorLocation = fmt.Sprintf("for log entry #%d", i+1)
+		} else {
+			errorLocation = fmt.Sprintf("for log entry at %s (#%d)", loadedLogFile[i].Time, i+1)
+		}
+		if loadedLogFile[i].MyCall == "" {
+			errorsBuffer.WriteString(fmt.Sprintf("Missing MyCall %s\n", errorLocation))
+		}
+		if loadedLogFile[i].Date == "" {
+			errorsBuffer.WriteString(fmt.Sprintf("Missing date %s\n", errorLocation))
+		}
+		if loadedLogFile[i].Band == "" {
+			errorsBuffer.WriteString(fmt.Sprintf("Missing band %s\n", errorLocation))
+		}
+		if loadedLogFile[i].Mode == "" {
+			errorsBuffer.WriteString(fmt.Sprintf("Missing mode %s\n", errorLocation))
+		}
+		if loadedLogFile[i].Call == "" {
+			errorsBuffer.WriteString(fmt.Sprintf("Missing call %s\n", errorLocation))
 		}
 	}
-	// csvLine.WriteString(fmt.Sprintf("%s", logLine.MyCall))
-	// csvLine.WriteString(fmt.Sprintf(",%s", logLine.MySOTA))
-	// csvLine.WriteString(fmt.Sprintf(",%s", csvDate(logLine.Date)))
-	// csvLine.WriteString(fmt.Sprintf(",%s", logLine.Time))
-	// csvLine.WriteString(fmt.Sprintf(",%s", sotaBand))
-	// csvLine.WriteString(fmt.Sprintf(",%s", logLine.Mode))
-	// csvLine.WriteString(fmt.Sprintf(",%s", logLine.Call))
-
-	//check if we have the necessary information for the type
-
-	return true
+	if errorsBuffer.String() != "" {
+		return fmt.Errorf(errorsBuffer.String())
+	}
+	return nil
 }
