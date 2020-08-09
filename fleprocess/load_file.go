@@ -22,6 +22,7 @@ import (
 	"log"
 	"os"
 	"regexp"
+	"strings"
 	"time"
 )
 
@@ -48,10 +49,10 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 
 	file.Close()
 
-	regexpLineComment, _ := regexp.Compile("^#")
+	regexpLineComment, _ := regexp.Compile("^[[:blank:]]*#")
 	regexpOnlySpaces, _ := regexp.Compile("^\\s+$")
-	regexpSingleMultiLineComment, _ := regexp.Compile("^{.+}$")
-	regexpStartMultiLineComment, _ := regexp.Compile("^{")
+	regexpSingleMultiLineComment, _ := regexp.Compile("^[[:blank:]]*{.+}$")
+	regexpStartMultiLineComment, _ := regexp.Compile("^[[:blank:]]*{")
 	regexpEndMultiLineComment, _ := regexp.Compile("}$")
 	regexpHeaderMyCall, _ := regexp.Compile("(?i)^mycall ")
 	regexpHeaderOperator, _ := regexp.Compile("(?i)^operator ")
@@ -121,8 +122,8 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		if regexpHeaderMyCall.MatchString(eachline) {
 			errorMsg := ""
 			myCallList := regexpHeaderMyCall.Split(eachline, -1)
-			if len(myCallList[1]) > 0 {
-				headerMyCall, errorMsg = ValidateCall(myCallList[1])
+			if len(strings.TrimSpace(myCallList[1])) > 0 {
+				headerMyCall, errorMsg = ValidateCall(strings.TrimSpace(myCallList[1]))
 				cleanedInput = append(cleanedInput, fmt.Sprintf("My call: %s", headerMyCall))
 				if len(errorMsg) != 0 {
 					errorLog = append(errorLog, fmt.Sprintf("Invalid myCall at line %d: %s (%s)", lineCount, myCallList[1], errorMsg))
@@ -136,8 +137,8 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		if regexpHeaderOperator.MatchString(eachline) {
 			errorMsg := ""
 			myOperatorList := regexpHeaderOperator.Split(eachline, -1)
-			if len(myOperatorList[1]) > 0 {
-				headerOperator, errorMsg = ValidateCall(myOperatorList[1])
+			if len(strings.TrimSpace(myOperatorList[1])) > 0 {
+				headerOperator, errorMsg = ValidateCall(strings.TrimSpace(myOperatorList[1]))
 				cleanedInput = append(cleanedInput, fmt.Sprintf("Operator: %s", headerOperator))
 				if len(errorMsg) != 0 {
 					errorLog = append(errorLog, fmt.Sprintf("Invalid Operator at line %d: %s (%s)", lineCount, myOperatorList[1], errorMsg))
@@ -151,8 +152,8 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		if regexpHeaderMyWwff.MatchString(eachline) {
 			errorMsg := ""
 			myWwffList := regexpHeaderMyWwff.Split(eachline, -1)
-			if len(myWwffList[1]) > 0 {
-				headerMyWWFF, errorMsg = ValidateWwff(myWwffList[1])
+			if len(strings.TrimSpace(myWwffList[1])) > 0 {
+				headerMyWWFF, errorMsg = ValidateWwff(strings.TrimSpace(myWwffList[1]))
 				cleanedInput = append(cleanedInput, fmt.Sprintf("My WWFF: %s", headerMyWWFF))
 				if len(errorMsg) != 0 {
 					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My WWFF\" at line %d: %s (%s)", lineCount, myWwffList[1], errorMsg))
@@ -166,8 +167,8 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		if regexpHeaderMySota.MatchString(eachline) {
 			errorMsg := ""
 			mySotaList := regexpHeaderMySota.Split(eachline, -1)
-			if len(mySotaList[1]) > 0 {
-				headerMySOTA, errorMsg = ValidateSota(mySotaList[1])
+			if len(strings.TrimSpace(mySotaList[1])) > 0 {
+				headerMySOTA, errorMsg = ValidateSota(strings.TrimSpace(mySotaList[1]))
 				cleanedInput = append(cleanedInput, fmt.Sprintf("My Sota: %s", headerMySOTA))
 				if len(errorMsg) != 0 {
 					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My SOTA\" at line %d: %s (%s)", lineCount, mySotaList[1], errorMsg))
@@ -191,8 +192,8 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		//Nickname
 		if regexpHeaderNickname.MatchString(eachline) {
 			myNicknameList := regexpHeaderNickname.Split(eachline, -1)
-			if len(myNicknameList[1]) > 0 {
-				headerNickname = myNicknameList[1]
+			if len(strings.TrimSpace(myNicknameList[1])) > 0 {
+				headerNickname = strings.TrimSpace(myNicknameList[1])
 				cleanedInput = append(cleanedInput, fmt.Sprintf("eQSL Nickmane: %s", headerNickname))
 			}
 			//If there is no data after the marker, we just skip the data.
@@ -316,7 +317,7 @@ func displayLogSimple(fullLog []LogLine) {
 	for _, filledLogLine := range fullLog {
 		if firstLine {
 			fmt.Println(SprintHeaderValues(filledLogLine))
-			fmt.Print(SprintColumnTitles(filledLogLine))
+			fmt.Print(SprintColumnTitles())
 			firstLine = false
 		}
 		fmt.Print(SprintLogInColumn(filledLogLine))

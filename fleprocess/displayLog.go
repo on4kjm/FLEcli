@@ -73,10 +73,10 @@ func SprintHeaderValues(logLine LogLine) string {
 }
 
 // Date, Time, band, mode, call, report sent, report rcvd, Notes
-var logLineFormat = "%-10s %-4s %-4s %-4s %-10s %-4s %-4s %s \n"
+var logLineFormat = "%-10s %-4s %-4s %-4s %-10s %-4s %-4s %s\n"
 
 // SprintColumnTitles displays the column titles for a log line
-func SprintColumnTitles(logLine LogLine) string {
+func SprintColumnTitles() string {
 	var output strings.Builder
 	output.WriteString(fmt.Sprintf(logLineFormat, "Date", "Time", "Band", "Mode", "Call", "Sent", "Rcvd", "Notes"))
 	output.WriteString(fmt.Sprintf(logLineFormat, "----", "----", "----", "----", "----", "----", "----", "----"))

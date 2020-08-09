@@ -1,0 +1,11 @@
+date 2020-07-19
+mycall  ON6ZQ/P
+mysota  ON/ON-018
+
+#mode is missing
+30m
+1150
+
+55 ix1ihr
+cw f8dgf
+56 ea2dt

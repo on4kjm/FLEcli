@@ -27,7 +27,7 @@ func ProcessAdifCommand(inputFilename, outputFilename string, isInterpolateTime,
 
 	// if the output file could not be parsed correctly do noting
 	if filenameWasOK {
-		loadedLogFile, isLoadedOK := LoadFile(inputFilename,isInterpolateTime)
+		loadedLogFile, isLoadedOK := LoadFile(inputFilename, isInterpolateTime)
 
 		if isLoadedOK {
 			if len(loadedLogFile) == 0 {

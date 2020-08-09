@@ -25,8 +25,6 @@ import (
 // outputAdif generates and writes data in ADIF format
 func outputCsv(outputFile string, fullLog []LogLine) {
 
-	//TODO: validate input data for combination
-
 	//convert the log data to an in-memory ADIF file
 	csvData := buildCsv(fullLog)
 

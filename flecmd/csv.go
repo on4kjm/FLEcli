@@ -19,6 +19,7 @@ limitations under the License.
 import (
 	"FLEcli/fleprocess"
 	"fmt"
+	"os"
 
 	"github.com/spf13/cobra"
 )
@@ -34,7 +35,7 @@ var csvCmd = &cobra.Command{
 	// and usage of using your command. For example:
 
 	RunE: func(cmd *cobra.Command, args []string) error {
-		//if args is empty, throw an error
+		//if args is empty, throw an error (Cobra will display the )
 		if len(args) == 0 {
 			//TODO: fix this ugly statement (because I am lazy)
 			return fmt.Errorf("Missing input file %s", "")
@@ -47,9 +48,11 @@ var csvCmd = &cobra.Command{
 			return fmt.Errorf("Too many arguments.%s", "")
 		}
 
-
-		//TODO: should return an error
-		fleprocess.ProcessCsvCommand(inputFilename, outputCsvFilename, isInterpolateTime, isOverwriteCsv)
+		if err := fleprocess.ProcessCsvCommand(inputFilename, outputCsvFilename, isInterpolateTime, isOverwriteCsv); err != nil {
+			fmt.Println("\nUnable to generate CSV file:")
+			fmt.Println(err)
+			os.Exit(1)
+		}
 		return nil
 	},
 }
@@ -61,4 +64,3 @@ func init() {
 
 	csvCmd.PersistentFlags().BoolVarP(&isOverwriteCsv, "overwrite", "o", false, "Overwrites the output file if it exisits")
 }
-

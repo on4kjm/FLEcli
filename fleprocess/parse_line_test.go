@@ -1,5 +1,21 @@
 package fleprocess
 
+/*
+Copyright © 2020 Jean-Marc Meessen, ON4KJM <on4kjm@gmail.com>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
 import (
 	"reflect"
 	"testing"
@@ -75,6 +91,11 @@ func TestParseLine(t *testing.T) {
 			"Parse frequency out of limit",
 			args{inputStr: "14.453 on4kjm", previousLine: LogLine{Mode: "SSB", Band: "20m", BandLowerLimit: 14.0, BandUpperLimit: 14.35}},
 			LogLine{Band: "20m", BandLowerLimit: 14.0, BandUpperLimit: 14.35, Call: "ON4KJM", Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "Frequency [14.453] is invalid for 20m band.",
+		},
+		{
+			"Parse frequency out of limit with no band defined",
+			args{inputStr: "14.453 on4kjm", previousLine: LogLine{Mode: "SSB"}},
+			LogLine{Call: "ON4KJM", Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "Unable to load frequency [14.453]: no band defined for that frequency.",
 		},
 		{
 			"parse partial RST (sent) - CW",

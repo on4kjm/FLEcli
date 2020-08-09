@@ -17,9 +17,7 @@ limitations under the License.
 */
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 	"strings"
 	"time"
 )
@@ -87,39 +85,9 @@ func buildAdif(fullLog []LogLine, isWWFF bool, isSOTA bool) (adifList []string) 
 	return adifList
 }
 
-// writeFile writes the in-memory data (lines) to a file
-func writeFile(outputFile string, adifData []string) {
-
-	//TODO: check access rights
-	f, err := os.Create(outputFile)
-	checkFileError(err)
-
-	defer f.Close()
-
-	w := bufio.NewWriter(f)
-
-	lineCount := 0
-	for _, adifLine := range adifData {
-		_, err := w.WriteString(adifLine + "\n")
-		checkFileError(err)
-
-		w.Flush()
-		checkFileError(err)
-		lineCount++
-	}
-	fmt.Printf("\nSuccessfully wrote %d lines to file \"%s\"\n", lineCount, outputFile)
-}
-
 // adifElement generated the ADIF sub-element
 func adifElement(elementName, elementValue string) (element string) {
 	return fmt.Sprintf("<%s:%d>%s ", strings.ToUpper(elementName), len(elementValue), elementValue)
-}
-
-// checkFileError handles file related errors
-func checkFileError(e error) {
-	if e != nil {
-		panic(e)
-	}
 }
 
 //adifDate converts a date in YYYY-MM-DD format to YYYYMMDD
