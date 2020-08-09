@@ -26,18 +26,33 @@ import (
 //ProcessCsvCommand loads an FLE input to produce a SOTA CSV
 func ProcessCsvCommand(inputFilename, outputCsvFilename string, isInterpolateTime, isOverwriteCsv bool) error {
 
-	if verifiedOutputFilename, filenameWasOK := buildOutputFilename(outputCsvFilename, inputFilename, isOverwriteCsv, ".csv"); filenameWasOK == true {
-		if loadedLogFile, isLoadedOK := LoadFile(inputFilename, isInterpolateTime); isLoadedOK == true {
-			if err := validateDataForSotaCsv(loadedLogFile); err != nil {
-				return err
-			}
-			outputCsv(verifiedOutputFilename, loadedLogFile)
-			return nil
-		}
+	//Validate of build the output filenaem
+	var verifiedOutputFilename string
+	var err error
+
+	if verifiedOutputFilename, err = buildOutputFilename(outputCsvFilename, inputFilename, isOverwriteCsv, ".csv"); err != nil {
+		return err
+	}
+
+	//Load the input file
+	var loadedLogFile []LogLine
+	var isLoadedOK bool
+
+	if loadedLogFile, isLoadedOK = LoadFile(inputFilename, isInterpolateTime); isLoadedOK == false {
 		return fmt.Errorf("There were input file parsing errors. Could not generate CSV file")
 	}
-	//TODO: we need something more explicit here
-	return fmt.Errorf("Failed to compute or validate output file name")
+
+	//Check if we have all the necessary data
+	if err := validateDataForSotaCsv(loadedLogFile); err != nil {
+		return err
+	}
+
+	outputCsv(verifiedOutputFilename, loadedLogFile)
+
+	return nil
+		
+
+	
 }
 
 func validateDataForSotaCsv(loadedLogFile []LogLine) error {

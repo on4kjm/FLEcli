@@ -17,6 +17,7 @@ limitations under the License.
 */
 
 import (
+	"errors"
 	"os"
 	"testing"
 )
@@ -52,42 +53,47 @@ func Test_buildOutputFilename(t *testing.T) {
 		name               string
 		args               args
 		wantOutputFilename string
-		wantWasOK          bool
+		wantError          error
 	}{
 		{
 			"input file not provided",
 			args{input: "", output: "xxx", overwrite: false, extension: ".adi"},
-			"", false,
+			"", errors.New("Unexepected error: no input file provided"),
 		},
 		{
 			"Output file does not exist",
 			args{input: "a file", output: "output.adi", overwrite: false, extension: ".adi"},
-			"output.adi", true,
+			"output.adi", nil,
 		},
 		{
 			"Output name is a directory",
 			args{input: "a file", output: testDir, overwrite: false, extension: ".adi"},
-			"", false,
+			"", errors.New("Error: specified output exists and is a directory"),
 		},
 		{
 			"Output exist but no overwrite",
 			args{input: "a file", output: testFile, overwrite: false, extension: ".adi"},
-			"", false,
+			"", errors.New("File already exists. Use --overwrite flag if necessary"),
+		},
+		{
+			"Output exist but user wants to overwrite",
+			args{input: "a file", output: testFile, overwrite: true, extension: ".adi"},
+			"test.adi", nil,
 		},
 		{
 			"no output, input provided with extention",
 			args{input: "/test/data/file.txt", output: "", overwrite: false, extension: ".adi"},
-			"/test/data/file.adi", true,
+			"/test/data/file.adi", nil,
 		},
 		{
 			"no output, input provided without extention",
 			args{input: "/test/data/file", output: "", overwrite: false, extension: ".adi"},
-			"/test/data/file.adi", true,
+			"/test/data/file.adi", nil,
 		},
 		{
 			"no output, input provided, enfing with a point",
 			args{input: "/test/data/file.", output: "", overwrite: false, extension: ".adi"},
-			"/test/data/file.adi", true,
+			"/test/data/file.adi", nil,
 		},
 	}
 
@@ -96,12 +102,18 @@ func Test_buildOutputFilename(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			gotOutputFilename, gotWasOK := buildOutputFilename(tt.args.output, tt.args.input, tt.args.overwrite, tt.args.extension)
+			gotOutputFilename, gotErr := buildOutputFilename(tt.args.output, tt.args.input, tt.args.overwrite, tt.args.extension)
 			if gotOutputFilename != tt.wantOutputFilename {
 				t.Errorf("buildOutputFilename() gotOutputFilename = %v, want %v", gotOutputFilename, tt.wantOutputFilename)
 			}
-			if gotWasOK != tt.wantWasOK {
-				t.Errorf("buildOutputFilename() gotWasOK = %v, want %v", gotWasOK, tt.wantWasOK)
+			if gotErr != nil && tt.wantError != nil {
+				if gotErr.Error() != tt.wantError.Error() {
+					t.Errorf("buildOutputFilename() error = %v, want %v", gotErr, tt.wantError)
+				}
+			} else {
+				if!(gotErr == nil && tt.wantError == nil) {
+					t.Errorf("buildOutputFilename() error = %v, want %v", gotErr, tt.wantError)
+				}
 			}
 		})
 	}

@@ -57,6 +57,17 @@ func Test_buildCsv(t *testing.T) {
 		"V2,ON4KJM/P,ON/ON-001,24/05/20,1312,14MHz,CW,ON4LY",
 	}
 
+	sampleFilledLog2 := []LogLine{
+		{MyCall: "ON4KJM/P", Call: "S57LC", Date: "2020-05-24", Time: "1310", Band: "20m", Frequency: "14.045", Mode: "CW", RSTsent: "599", RSTrcvd: "599", MySOTA: "ON/ON-001", Operator: "ON4KJM", Nickname: "ONFF-0259-1", SOTA: "ON/ON-002"},
+		{MyCall: "ON4KJM/P", Call: "ON4LY", Date: "2020-05-24", Time: "1312", Band: "20m", Mode: "CW", RSTsent: "559", RSTrcvd: "599", MySOTA: "ON/ON-001", Operator: "ON4KJM", Comment: "QSL Message"},
+	}
+	//add case with no SOTA and with or no comment
+
+	expectedOutput2 := []string{
+		"V2,ON4KJM/P,ON/ON-001,24/05/20,1310,14MHz,CW,S57LC,ON/ON-002",
+		"V2,ON4KJM/P,ON/ON-001,24/05/20,1312,14MHz,CW,ON4LY,,QSL Message",
+	}
+
 	type args struct {
 		fullLog []LogLine
 	}
@@ -69,6 +80,11 @@ func Test_buildCsv(t *testing.T) {
 			"Happy case",
 			args{fullLog: sampleFilledLog1},
 			expectedOutput1,
+		},
+		{
+			"Second happy case",
+			args{fullLog: sampleFilledLog2},
+			expectedOutput2,
 		},
 	}
 	for _, tt := range tests {
