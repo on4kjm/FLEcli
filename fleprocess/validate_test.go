@@ -230,6 +230,11 @@ func TestValidateCall(t *testing.T) {
 			"*XYZ4/ON4KJM", "[XYZ4] is an invalid prefix",
 		},
 		{
+			"invalid prefix (when suffix is supplied)",
+			args{sign: "xyz4/on4kjm/p"},
+			"*XYZ4/ON4KJM/P", "[XYZ4] is an invalid prefix",
+		},
+		{
 			"Too many /",
 			args{sign: "F/on4kjm/p/x"},
 			"*F/ON4KJM/P/X", "[F/ON4KJM/P/X] is invalid: too many '/'",
@@ -316,8 +321,8 @@ func TestIsBand(t *testing.T) {
 		},
 		{
 			"valid band but uppercase",
-			args{inputStr: "40M"},
-			true, 7.0, 7.3, "7MHz",
+			args{inputStr: "60M"},
+			true, 5.06, 5.45, "5MHz",
 		},
 	}
 	for _, tt := range tests {
