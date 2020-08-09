@@ -40,41 +40,60 @@ func ProcessCsvCommand(inputFilename, outputCsvFilename string, isInterpolateTim
 	return fmt.Errorf("Failed to compute or validate output file name")
 }
 
-//TODO: change return boolean to full err
 func validateDataForSotaCsv(loadedLogFile []LogLine) error {
 	if len(loadedLogFile) == 0 {
-		return fmt.Errorf("No useful data read")
+		return fmt.Errorf("No QSO found")
 	}
 
-	//MySOTA is a header value. If missing on the first line, it will be missing at every line
+	//MySOTA and MyCall are header values. If missing on the first line, it will be missing at every line
 	if loadedLogFile[0].MySOTA == "" {
 		return fmt.Errorf("Missing MY-SOTA reference")
+	}
+	if loadedLogFile[0].MyCall == "" {
+		return fmt.Errorf("Missing MyCall")
 	}
 
 	var errorsBuffer strings.Builder
 	//We accumulate the errors messages
 	for i := 0; i < len(loadedLogFile); i++ {
 
+		//Compute the error location for a meaning full error
 		var errorLocation string
 		if loadedLogFile[i].Time == "" {
 			errorLocation = fmt.Sprintf("for log entry #%d", i+1)
 		} else {
 			errorLocation = fmt.Sprintf("for log entry at %s (#%d)", loadedLogFile[i].Time, i+1)
 		}
-		if loadedLogFile[i].MyCall == "" {
-			errorsBuffer.WriteString(fmt.Sprintf("Missing MyCall %s\n", errorLocation))
-		}
+
 		if loadedLogFile[i].Date == "" {
-			errorsBuffer.WriteString(fmt.Sprintf("Missing date %s\n", errorLocation))
+			if errorsBuffer.String() != "" {
+				errorsBuffer.WriteString(fmt.Sprintf(", "))
+			}
+			errorsBuffer.WriteString(fmt.Sprintf("missing date %s", errorLocation))
 		}
 		if loadedLogFile[i].Band == "" {
-			errorsBuffer.WriteString(fmt.Sprintf("Missing band %s\n", errorLocation))
+			if errorsBuffer.String() != "" {
+				errorsBuffer.WriteString(fmt.Sprintf(", "))
+			}
+			errorsBuffer.WriteString(fmt.Sprintf("missing band %s", errorLocation))
 		}
 		if loadedLogFile[i].Mode == "" {
-			errorsBuffer.WriteString(fmt.Sprintf("Missing mode %s\n", errorLocation))
+			if errorsBuffer.String() != "" {
+				errorsBuffer.WriteString(fmt.Sprintf(", "))
+			}
+			errorsBuffer.WriteString(fmt.Sprintf("missing mode %s", errorLocation))
 		}
 		if loadedLogFile[i].Call == "" {
-			errorsBuffer.WriteString(fmt.Sprintf("Missing call %s\n", errorLocation))
+			if errorsBuffer.String() != "" {
+				errorsBuffer.WriteString(fmt.Sprintf(", "))
+			}
+			errorsBuffer.WriteString(fmt.Sprintf("missing call %s", errorLocation))
+		}
+		if loadedLogFile[i].Time == "" {
+			if errorsBuffer.String() != "" {
+				errorsBuffer.WriteString(fmt.Sprintf(", "))
+			}
+			errorsBuffer.WriteString(fmt.Sprintf("missing QSO time %s", errorLocation))
 		}
 	}
 	if errorsBuffer.String() != "" {

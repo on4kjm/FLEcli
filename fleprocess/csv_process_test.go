@@ -30,7 +30,7 @@ func Test_validateDataForSotaCsv(t *testing.T) {
 				{Date: "", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:02", Call: "call"},
 				{Date: "", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:03", Call: "call"}},
 			},
-			fmt.Errorf("Missing date for log entry at 12:02 (#2)\nMissing date for log entry at 12:03 (#3)\n"),
+			fmt.Errorf("missing date for log entry at 12:02 (#2), missing date for log entry at 12:03 (#3)"),
 		},
 		{
 			"Missing MyCall",
@@ -39,7 +39,25 @@ func Test_validateDataForSotaCsv(t *testing.T) {
 				{Date: "date", MyCall: "", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:02", Call: "call"},
 				{Date: "date", MyCall: "", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:03", Call: "call"}},
 			},
-			nil,
+			fmt.Errorf("Missing MyCall"),
+		},
+		{
+			"Missing MySota",
+			args{loadedLogFile: []LogLine{
+				{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
+				{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
+				{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "time", Call: "call"}},
+			},
+			fmt.Errorf("Missing MY-SOTA reference"),
+		},
+		{
+			"Misc. missing data (Band, Time, Mode, Call)",
+			args{loadedLogFile: []LogLine{
+				{Date: "date", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "", Time: "", Call: "call"},
+				{Date: "date", MyCall: "myCall", MySOTA: "mySota", Mode: "", Band: "band", Time: "12:02", Call: "call"},
+				{Date: "date", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:03", Call: ""}},
+			},
+			fmt.Errorf("missing band for log entry #1, missing QSO time for log entry #1, missing mode for log entry at 12:02 (#2), missing call for log entry at 12:03 (#3)"),
 		},
 	}
 	for _, tt := range tests {
