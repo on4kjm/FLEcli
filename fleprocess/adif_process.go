@@ -23,10 +23,10 @@ import (
 //ProcessAdifCommand FIXME
 func ProcessAdifCommand(inputFilename, outputFilename string, isInterpolateTime, isWWFFcli, isSOTAcli, isOverwrite bool) {
 
-	verifiedOutputFilename, filenameWasOK := buildOutputFilename(outputFilename, inputFilename, isOverwrite, ".adi")
+	verifiedOutputFilename, err := buildOutputFilename(outputFilename, inputFilename, isOverwrite, ".adi")
 
 	// if the output file could not be parsed correctly do noting
-	if filenameWasOK {
+	if err == nil {
 		loadedLogFile, isLoadedOK := LoadFile(inputFilename, isInterpolateTime)
 
 		if isLoadedOK {

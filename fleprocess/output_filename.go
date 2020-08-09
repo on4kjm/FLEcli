@@ -23,12 +23,11 @@ import (
 )
 
 //buildOutputFilname will try to figure out an output filename (for the case none was provided)
-func buildOutputFilename(output string, input string, overwrite bool, newExtension string) (outputFilename string, wasOK bool) {
-	outputFilename = ""
+func buildOutputFilename(output string, input string, overwrite bool, newExtension string) (string, error) {
 
 	//validate that input is populated (should never happen if properly called)
 	if input == "" {
-		return "", false
+		return "", fmt.Errorf("Unexepected error: no input file provided")
 	}
 
 	//No output was provided, let's create one from the input file
@@ -39,36 +38,21 @@ func buildOutputFilename(output string, input string, overwrite bool, newExtensi
 		fmt.Println("No output provided, defaulting to \"" + output + "\"")
 	}
 
-	//an output was provided by the user
-	if output != "" {
-		info, err := os.Stat(output)
-		if os.IsNotExist(err) {
-			//File doesn't exist, so we're good
-			return output, true
-		}
-		//It exisits but is a directory
-		if info.IsDir() {
-			fmt.Println("Error: specified output exists and is a directory")
-			return "", false
-		}
-		if overwrite {
-			//user accepted to overwrite the file
-			return output, true
-		}
-
-		fmt.Println("File already exists. Use --overwrite flag if necessary.")
-		return "", false
-	}
-
-	return outputFilename, true
-}
-
-// fileExists checks if a file exists and is not a directory before we
-// try using it to prevent further errors.
-func fileExists(filename string) bool {
-	info, err := os.Stat(filename)
+	//process the computed or user-provided output filename
+	info, err := os.Stat(output)
 	if os.IsNotExist(err) {
-		return false
+		//File doesn't exist, so we're good
+		return output, nil
 	}
-	return !info.IsDir()
+	//It exisits but is a directory
+	if info.IsDir() {
+		return "", fmt.Errorf("Error: specified output exists and is a directory")
+	}
+	if overwrite {
+		//user accepted to overwrite the file
+		return output, nil
+	}
+
+	return "", fmt.Errorf("File already exists. Use --overwrite flag if necessary")
 }
+
