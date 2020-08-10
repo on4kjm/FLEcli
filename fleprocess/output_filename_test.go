@@ -103,15 +103,18 @@ func Test_buildOutputFilename(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			gotOutputFilename, gotErr := buildOutputFilename(tt.args.output, tt.args.input, tt.args.overwrite, tt.args.extension)
+
 			if gotOutputFilename != tt.wantOutputFilename {
 				t.Errorf("buildOutputFilename() gotOutputFilename = %v, want %v", gotOutputFilename, tt.wantOutputFilename)
 			}
+
+			//test the error message, if any
 			if gotErr != nil && tt.wantError != nil {
 				if gotErr.Error() != tt.wantError.Error() {
 					t.Errorf("buildOutputFilename() error = %v, want %v", gotErr, tt.wantError)
 				}
 			} else {
-				if!(gotErr == nil && tt.wantError == nil) {
+				if !(gotErr == nil && tt.wantError == nil) {
 					t.Errorf("buildOutputFilename() error = %v, want %v", gotErr, tt.wantError)
 				}
 			}
