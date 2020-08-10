@@ -63,17 +63,39 @@ func Test_validateDataForSotaCsv(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			got := validateDataForSotaCsv(tt.args.loadedLogFile)
-			if tt.want == nil || got == nil {
-				if tt.want == nil && got != nil {
-					t.Errorf("validateDataForSotaCsv() = %v, want %v", got, nil)
-				}
-				if tt.want != nil && got == nil {
-					t.Errorf("validateDataForSotaCsv() = %v, want %v", nil, tt.want)
-				}
-			} else {
+
+			//Test the error message, if any
+			if got != nil && tt.want != nil {
 				if got.Error() != tt.want.Error() {
 					t.Errorf("validateDataForSotaCsv() = %v, want %v", got, tt.want)
 				}
+			} else {
+				if!(got == nil && tt.want == nil) {
+					t.Errorf("validateDataForSotaCsv() = %v, want %v", got, tt.want)
+				}
+			}
+		})
+	}
+}
+
+func TestProcessCsvCommand(t *testing.T) {
+	type args struct {
+		inputFilename     string
+		outputCsvFilename string
+		isInterpolateTime bool
+		isOverwriteCsv    bool
+	}
+	tests := []struct {
+		name    string
+		args    args
+		wantErr bool
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if err := ProcessCsvCommand(tt.args.inputFilename, tt.args.outputCsvFilename, tt.args.isInterpolateTime, tt.args.isOverwriteCsv); (err != nil) != tt.wantErr {
+				t.Errorf("ProcessCsvCommand() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
 	}
