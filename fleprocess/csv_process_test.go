@@ -70,7 +70,7 @@ func Test_validateDataForSotaCsv(t *testing.T) {
 					t.Errorf("validateDataForSotaCsv() = %v, want %v", got, tt.want)
 				}
 			} else {
-				if!(got == nil && tt.want == nil) {
+				if !(got == nil && tt.want == nil) {
 					t.Errorf("validateDataForSotaCsv() = %v, want %v", got, tt.want)
 				}
 			}
@@ -92,17 +92,17 @@ func TestProcessCsvCommand(t *testing.T) {
 	}{
 		{
 			"Bad output filename (directory)",
-			args{inputFilename: "../test/data/fle-4-no-qso.txt",outputCsvFilename: "../test/data",isInterpolateTime: false, isOverwriteCsv: false},
+			args{inputFilename: "../test/data/fle-4-no-qso.txt", outputCsvFilename: "../test/data", isInterpolateTime: false, isOverwriteCsv: false},
 			true,
 		},
 		{
 			"input file parsing errors",
-			args{inputFilename: "../test/data/fle-3-error.txt",outputCsvFilename: "",isInterpolateTime: false, isOverwriteCsv: false},
+			args{inputFilename: "../test/data/fle-3-error.txt", outputCsvFilename: "", isInterpolateTime: false, isOverwriteCsv: false},
 			true,
 		},
 		{
 			"No QSO in loaded file",
-			args{inputFilename: "../test/data/fle-4-no-qso.txt",outputCsvFilename: "",isInterpolateTime: false, isOverwriteCsv: false},
+			args{inputFilename: "../test/data/fle-4-no-qso.txt", outputCsvFilename: "", isInterpolateTime: false, isOverwriteCsv: false},
 			true,
 		},
 	}

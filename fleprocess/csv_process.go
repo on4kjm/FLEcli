@@ -50,9 +50,7 @@ func ProcessCsvCommand(inputFilename, outputFilename string, isInterpolateTime, 
 	outputCsv(verifiedOutputFilename, loadedLogFile)
 
 	return nil
-		
 
-	
 }
 
 //validateDataForSotaCsv checks whether all the requiered data is present in the supplied data

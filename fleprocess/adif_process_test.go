@@ -102,3 +102,67 @@ func Test_validateDataforAdif(t *testing.T) {
 		})
 	}
 }
+
+func TestProcessAdifCommand2(t *testing.T) {
+	type args struct {
+		inputFilename     string
+		outputFilename    string
+		isInterpolateTime bool
+		isWWFFcli         bool
+		isSOTAcli         bool
+		isOverwrite       bool
+	}
+	tests := []struct {
+		name    string
+		args    args
+		wantErr bool
+	}{
+		{
+			"Bad output filename (directory)",
+			args{inputFilename: "../test/data/fle-4-no-qso.txt", outputFilename: "../test/data", isInterpolateTime: false, isOverwrite: false},
+			true,
+		},
+		{
+			"input file parsing errors",
+			args{inputFilename: "../test/data/fle-3-error.txt", outputFilename: "", isInterpolateTime: false, isOverwrite: false},
+			true,
+		},
+		{
+			"No QSO in loaded file",
+			args{inputFilename: "../test/data/fle-4-no-qso.txt", outputFilename: "", isInterpolateTime: false, isOverwrite: false},
+			true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if err := ProcessCsvCommand(tt.args.inputFilename, tt.args.outputFilename, tt.args.isInterpolateTime, tt.args.isOverwrite); (err != nil) != tt.wantErr {
+				t.Errorf("ProcessCsvCommand() error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+}
+
+func TestProcessAdifCommand(t *testing.T) {
+	type args struct {
+		inputFilename     string
+		outputFilename    string
+		isInterpolateTime bool
+		isWWFFcli         bool
+		isSOTAcli         bool
+		isOverwrite       bool
+	}
+	tests := []struct {
+		name    string
+		args    args
+		wantErr bool
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if err := ProcessAdifCommand(tt.args.inputFilename, tt.args.outputFilename, tt.args.isInterpolateTime, tt.args.isWWFFcli, tt.args.isSOTAcli, tt.args.isOverwrite); (err != nil) != tt.wantErr {
+				t.Errorf("ProcessAdifCommand() error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+}

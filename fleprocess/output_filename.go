@@ -55,4 +55,3 @@ func buildOutputFilename(output string, input string, overwrite bool, newExtensi
 
 	return "", fmt.Errorf("File already exists. Use --overwrite flag if necessary")
 }
-

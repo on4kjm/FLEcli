@@ -19,6 +19,7 @@ limitations under the License.
 import (
 	"FLEcli/fleprocess"
 	"fmt"
+	"os"
 
 	"github.com/spf13/cobra"
 )
@@ -49,13 +50,18 @@ var adifCmd = &cobra.Command{
 			return fmt.Errorf("Too many arguments.%s", "")
 		}
 
-		fleprocess.ProcessAdifCommand(
+		err := fleprocess.ProcessAdifCommand(
 			inputFilename,
 			outputFilename,
 			isInterpolateTime,
 			isWWFFcli,
 			isSOTAcli,
 			isOverwrite)
+		if err != nil {
+			fmt.Println("\nUnable to generate ADIF file:")
+			fmt.Println(err)
+			os.Exit(1)
+		}
 
 		return nil
 	},
