@@ -24,13 +24,13 @@ import (
 )
 
 //ProcessCsvCommand loads an FLE input to produce a SOTA CSV
-func ProcessCsvCommand(inputFilename, outputCsvFilename string, isInterpolateTime, isOverwriteCsv bool) error {
+func ProcessCsvCommand(inputFilename, outputFilename string, isInterpolateTime, isOverwriteCsv bool) error {
 
 	//Validate of build the output filenaem
 	var verifiedOutputFilename string
 	var err error
 
-	if verifiedOutputFilename, err = buildOutputFilename(outputCsvFilename, inputFilename, isOverwriteCsv, ".csv"); err != nil {
+	if verifiedOutputFilename, err = buildOutputFilename(outputFilename, inputFilename, isOverwriteCsv, ".csv"); err != nil {
 		return err
 	}
 
@@ -55,6 +55,7 @@ func ProcessCsvCommand(inputFilename, outputCsvFilename string, isInterpolateTim
 	
 }
 
+//validateDataForSotaCsv checks whether all the requiered data is present in the supplied data
 func validateDataForSotaCsv(loadedLogFile []LogLine) error {
 	if len(loadedLogFile) == 0 {
 		return fmt.Errorf("No QSO found")
