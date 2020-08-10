@@ -90,7 +90,21 @@ func TestProcessCsvCommand(t *testing.T) {
 		args    args
 		wantErr bool
 	}{
-		// TODO: Add test cases.
+		{
+			"Bad output filename (directory)",
+			args{inputFilename: "../test/data/fle-4-no-qso.txt",outputCsvFilename: "../test/data",isInterpolateTime: false, isOverwriteCsv: false},
+			true,
+		},
+		{
+			"input file parsing errors",
+			args{inputFilename: "../test/data/fle-3-error.txt",outputCsvFilename: "",isInterpolateTime: false, isOverwriteCsv: false},
+			true,
+		},
+		{
+			"No QSO in loaded file",
+			args{inputFilename: "../test/data/fle-4-no-qso.txt",outputCsvFilename: "",isInterpolateTime: false, isOverwriteCsv: false},
+			true,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
