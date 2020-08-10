@@ -21,7 +21,7 @@ import (
 	"strings"
 )
 
-//ProcessAdifCommand FIXME
+//ProcessAdifCommand loads an FLE input to produce an adif file (eventually in WWFF format). It is called from the COBRA interface
 func ProcessAdifCommand(inputFilename, outputFilename string, isInterpolateTime, isWWFFcli, isSOTAcli, isOverwrite bool) error {
 
 	//Validate of build the output filenaem
