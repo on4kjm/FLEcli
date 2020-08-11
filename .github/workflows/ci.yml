@@ -24,8 +24,10 @@ jobs:
 
       - name: Lint Go Code
         run: |
-          go get -u golang.org/x/lint/golint 
-          golint -set_exit_status ./...
+          make lint
+      - name: Vet Go Code
+        run: |
+          make vet
 
   test:
     name: Test
@@ -41,8 +43,7 @@ jobs:
 
       - name: Run Unit tests.
         run: |
-          go test -short -coverprofile cover.out -covermode=atomic ./... 
-          cat cover.out >> coverage.txt
+          make test-coverage
       
       - name: Upload Coverage report to CodeCov
         uses: codecov/codecov-action@v1.0.0

@@ -64,8 +64,8 @@ To generate a WWFF-ready ADIF file:
 ```
 ./FLEcli adif -i --wwff ON4KJM@ONFF-025920200524.txt 
 ```
-The `--wwff` indicates the adif flavour to produce.
-You can use the `--sota` switch to generate an ADIF file containing SOTA details.
+The `--wwff` (or `-w` in the short form) indicates the adif flavour to produce.
+You can also use the `--sota` switch to generate an ADIF file containing SOTA details.
 The switch can be used together with `--wwff`
 
 As we didn't provide an output filename, the default output, `ON4KJM@ONFF-025920200524.adi` will be used.  
