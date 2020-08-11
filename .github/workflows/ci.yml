@@ -72,4 +72,6 @@ jobs:
         args: release --snapshot --skip-publish --rm-dist
     - name: test container
       run: docker run on4kjm/flecli:latest version -d
+    - name: Run End-To_end testing with the docker container
+      run: bats test/bats-scripts
 
