@@ -59,6 +59,14 @@ archives:
     format: zip
   files:
       - README.md
+      - doc/whats_new.md
+      - doc/usage.md
+      - doc/install.md
+      - doc/install_mac.md
+      - doc/pictures/Error_1.png
+      - doc/pictures/Error_2.png
+      - doc/pictures/security_setting.png
+      - doc/pictures/System_preference.png
 
 checksum:
   name_template: 'checksums.txt'

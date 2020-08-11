@@ -19,6 +19,6 @@ jobs:
     - name: Release via goreleaser
       uses: goreleaser/goreleaser-action@master
       with:
-        args: release
+        args: release --release-notes=doc/whats_new.md
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
