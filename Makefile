@@ -5,7 +5,7 @@
 
 ## GITHUB_ACTIONS is set when running as a Github Action
  
-.PHONY: all lint vet test test-coverage build clean
+.PHONY: all lint vet test full-test test-coverage build clean
  
 all: build
 
@@ -21,6 +21,9 @@ vet: ## Run go vet
 
 test: ## Run unit tests
 	@go test ./...
+
+full-test: build ## Run the full end-to-end tests
+	@bats test/bats-scripts
 
 test-coverage: ## Run tests with coverage
 	@go test -short -coverprofile cover.out -covermode=atomic ./... 
