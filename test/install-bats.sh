@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -eu -o pipefail
 
 CURRENT_DIR="$(cd "$(dirname "$0")" && pwd -P)"
