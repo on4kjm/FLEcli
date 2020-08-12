@@ -75,5 +75,5 @@ jobs:
     - name: Setup BATS
       run: test/install-bats.sh
     - name: Run End-To_end testing with the docker container
-      run: bats test/bats-scripts
+      run: bats/bin/bats test/bats-scripts
 
