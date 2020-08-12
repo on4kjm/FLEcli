@@ -72,9 +72,9 @@ jobs:
         args: release --snapshot --skip-publish --rm-dist
     - name: retrieve Linux exe 
       run : |
-        cp dist/FLEcli_linux_arm64/FLEcli ./coverage.txt
+        cp ./dist/FLEcli_linux_arm64/FLEcli .
         chmod +x FLEcli 
-        
+
     - name: Setup BATS
       run: test/install-bats.sh
     - name: Run End-To_end testing with the docker container
