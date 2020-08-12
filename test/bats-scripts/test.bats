@@ -37,7 +37,7 @@
 }
 
 @test "Processing a FLE file with no QSO must fail" {
-    output=$(test/docker-FLEcli.sh csv -o -i test/data/fle-4-no-qso.txt)
+    run test/docker-FLEcli.sh csv -o -i test/data/fle-4-no-qso.txt
     [ "$status" -eq 1 ]
 }
 
