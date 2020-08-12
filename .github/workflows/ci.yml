@@ -70,8 +70,11 @@ jobs:
       uses: goreleaser/goreleaser-action@master
       with:
         args: release --snapshot --skip-publish --rm-dist
-    - name: test container
-      run: docker run on4kjm/flecli:latest version -d
+    - name: retrieve Linux exe 
+      run : |
+        cp dist/FLEcli_linux_arm64/FLEcli ./coverage.txt
+        chmod +x FLEcli 
+        
     - name: Setup BATS
       run: test/install-bats.sh
     - name: Run End-To_end testing with the docker container
