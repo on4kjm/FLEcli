@@ -73,9 +73,7 @@ jobs:
     - name: test container
       run: docker run on4kjm/flecli:latest version -d
     - name: Setup BATS
-      uses: mig4/setup-bats@master
-      with:
-        bats-version: 1.1.0
+      run: test/install-bats.sh
     - name: Run End-To_end testing with the docker container
       run: bats test/bats-scripts
 
