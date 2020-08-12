@@ -72,7 +72,7 @@ jobs:
         args: release --snapshot --skip-publish --rm-dist
     - name: retrieve Linux exe 
       run : |
-        cp ./dist/FLEcli_linux_arm64/FLEcli .
+        cp ./dist/FLEcli_linux_amd64/FLEcli .
         chmod +x FLEcli 
 
     - name: Setup BATS
