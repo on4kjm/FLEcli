@@ -6,3 +6,6 @@
 
 * `./FLEcli -i test/data/ON4KJM@ONFF-025920200524.txt --interpolate adif --wwff --overwrite`
 * `./FLEcli adif -i=test/data/ON4KJM@ONFF-025920200524.txt --interpolate --wwff --overwrite`
+
+
+Install Bats: `brew install bats-core`

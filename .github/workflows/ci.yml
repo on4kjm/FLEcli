@@ -70,6 +70,8 @@ jobs:
       uses: goreleaser/goreleaser-action@master
       with:
         args: release --snapshot --skip-publish --rm-dist
-    - name: test container
-      run: docker run on4kjm/flecli:latest version -d
+    - name: Setup BATS
+      run: test/install-bats.sh
+    - name: Run End-To_end testing with the docker container
+      run: test/bats/bin/bats test/bats-scripts
 
