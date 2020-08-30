@@ -256,7 +256,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 					wrkTimeBlock = InferTimeBlock{}
 
 					//Store this record in the new block as a new gap might be following
-					//no error or endOfGap processing as it has already been succesfully processed
+					//no error or endOfGap processing as it has already been successfully processed
 					wrkTimeBlock.storeTimeGap(logline, len(fullLog))
 				}
 			}
@@ -303,7 +303,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		}
 		isProcessedOK = false
 	} else {
-		fmt.Println("\nSuccesfuly parsed ", lineCount, " lines.")
+		fmt.Println("\nSuccessfully parsed ", lineCount, " lines.")
 		isProcessedOK = true
 	}
 
