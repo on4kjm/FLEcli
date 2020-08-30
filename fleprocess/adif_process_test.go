@@ -137,7 +137,6 @@ func TestProcessAdifCommand(t *testing.T) {
 			args{inputFilename: "../test/data/fle-4-no-qso.txt", outputFilename: "", isInterpolateTime: false, isOverwrite: false},
 			true,
 		},
-		
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

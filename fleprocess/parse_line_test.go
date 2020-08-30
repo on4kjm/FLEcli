@@ -132,6 +132,21 @@ func TestParseLine(t *testing.T) {
 			args{inputStr: "1230 oe6cud/p sota oe/st-309", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
 			LogLine{Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", SOTA: "OE/ST-309"}, "",
 		},
+		{
+			"implied SOTA keywork ",
+			args{inputStr: "1230 oe6cud/p oe/st-309", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
+			LogLine{Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", SOTA: "OE/ST-309"}, "",
+		},
+		{
+			"WWFF keywork ",
+			args{inputStr: "1230 oe6cud/p wwff onff-0258", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
+			LogLine{Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", WWFF: "ONFF-0258"}, "",
+		},
+		{
+			"implied WWFF keywork ",
+			args{inputStr: "1230 oe6cud/p onff-0258", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
+			LogLine{Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", WWFF: "ONFF-0258"}, "",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
