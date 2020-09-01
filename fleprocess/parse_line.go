@@ -24,7 +24,6 @@ import (
 	//"fmt"
 )
 
-//TODO: validate a record for minimal values
 
 // LogLine is used to store all the data of a single log line
 type LogLine struct {
@@ -185,6 +184,7 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 
 		// Is it the Grid Locator (starting with "#")
 		if regexpIsGridLoc.MatchString(element) {
+			//TODO: test Grid format
 			logLine.GridLoc = strings.TrimLeft(element, "#")
 			continue
 		}

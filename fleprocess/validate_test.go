@@ -1,21 +1,5 @@
 package fleprocess
 
-/*
-Copyright © 2020 Jean-Marc Meessen, ON4KJM <on4kjm@gmail.com>
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
 import (
 	"testing"
 )
@@ -339,6 +323,60 @@ func TestIsBand(t *testing.T) {
 			}
 			if gotAltBandName != tt.wantAltBandName {
 				t.Errorf("IsBand() gotAltBandName = %v, want %v", gotAltBandName, tt.wantAltBandName)
+			}
+		})
+	}
+}
+
+func TestValidateGridLocator(t *testing.T) {
+	type args struct {
+		grid string
+	}
+	tests := []struct {
+		name              string
+		args              args
+		wantProcessedGrid string
+		wantErrorMsg      string
+	}{
+		{
+			"invalid grid",
+			args{grid: "zzzz"},
+			"*zzzz", "[zzzz] is an invalid grid reference",
+		},
+		{
+			"Valid 4 pos grid",
+			args{grid: "JO20"},
+			"JO20", "",
+		},
+		{
+			"Valid 4 pos grid (mixed case)",
+			args{grid: "Jo20"},
+			"JO20", "",
+		},
+		{
+			"Valid 6 pos grid",
+			args{grid: "JO20ec"},
+			"JO20ec", "",
+		},
+		{
+			"Valid 6 pos grid (mixed case)",
+			args{grid: "Jo20Ec"},
+			"JO20ec", "",
+		},
+		{
+			"Valid grid but over 6 pos",
+			args{grid: "JO20ec16"},
+			"*JO20ec16", "[JO20ec16] is an invalid grid reference",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			gotProcessedGrid, gotErrorMsg := ValidateGridLocator(tt.args.grid)
+			if gotProcessedGrid != tt.wantProcessedGrid {
+				t.Errorf("ValidateGridLocator() gotProcessedGrid = %v, want %v", gotProcessedGrid, tt.wantProcessedGrid)
+			}
+			if gotErrorMsg != tt.wantErrorMsg {
+				t.Errorf("ValidateGridLocator() gotErrorMsg = %v, want %v", gotErrorMsg, tt.wantErrorMsg)
 			}
 		})
 	}
