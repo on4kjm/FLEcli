@@ -59,7 +59,22 @@ var validGridRegexp = regexp.MustCompile("(?i)^[a-z]{2}[0-9]{2}([a-z]{2})?$")
 // is prefixed with a * and an erroMsg is genrated.
 func ValidateGridLocator(grid string) (processedGrid, errorMsg string) {
 	if validGridRegexp.MatchString(grid) {
-		return grid, ""
+		var output strings.Builder
+		for i, c := range grid {
+			//The first pair of characters to be forced uppercase
+			if (i == 0) || (i == 1) {
+				output.WriteString(strings.ToUpper(string(c)))
+			}
+			//The second pair (numbers) are left alone
+			if (i == 2) || (i == 3) {
+				output.WriteString(string(c))
+			}
+			//The third pair of characters to be forced lowercase
+			if (i == 4) || (i == 5) {
+				output.WriteString(strings.ToLower(string(c)))
+			}
+		}
+		return output.String(), ""
 	} else {
 		processedGrid = "*" + grid
 		errorMsg = "[" + grid + "] is an invalid grid reference"
