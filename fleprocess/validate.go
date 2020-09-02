@@ -75,12 +75,11 @@ func ValidateGridLocator(grid string) (processedGrid, errorMsg string) {
 			}
 		}
 		return output.String(), ""
-	} else {
-		processedGrid = "*" + grid
-		errorMsg = "[" + grid + "] is an invalid grid reference"
-		return processedGrid, errorMsg
 	}
 
+	processedGrid = "*" + grid
+	errorMsg = "[" + grid + "] is an invalid grid reference"
+	return processedGrid, errorMsg
 }
 
 var validCallRegexp = regexp.MustCompile(`[\d]{0,1}[A-Z]{1,2}\d([A-Z]{1,4}|\d{3,3}|\d{1,3}[A-Z])[A-Z]{0,5}`)

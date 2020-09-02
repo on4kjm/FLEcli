@@ -24,7 +24,6 @@ import (
 	//"fmt"
 )
 
-
 // LogLine is used to store all the data of a single log line
 type LogLine struct {
 	Date             string
