@@ -59,6 +59,9 @@ func buildAdif(fullLog []LogLine, isWWFF bool, isSOTA bool) (adifList []string) 
 		if logLine.OMname != "" {
 			adifLine.WriteString(adifElement("NAME", logLine.OMname))
 		}
+		if logLine.MyGrid != "" {
+			adifLine.WriteString(adifElement("MY_GRIDSQUARE", logLine.MyGrid))
+		}
 		if logLine.GridLoc != "" {
 			adifLine.WriteString(adifElement("GRIDSQUARE", logLine.GridLoc))
 		}
