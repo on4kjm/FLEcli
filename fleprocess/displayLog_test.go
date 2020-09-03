@@ -40,6 +40,11 @@ func TestSprintHeaderValues(t *testing.T) {
 			args{logLine: LogLine{MyCall: "on4kjm/p"}},
 			"MyCall    on4kjm/p\n",
 		},
+		{
+			"Full Option with MyGrid",
+			args{logLine: LogLine{MyCall: "on4kjm/p", Operator: "on4kjm", MyWWFF: "wwff", MySOTA: "sota", MyGrid: "grid"}},
+			"MyCall    on4kjm/p (on4kjm)\nMyWWFF    wwff\nMySOTA    sota\nMyGrid    grid\n",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -65,6 +70,7 @@ func ExampleSprintLogRecord() {
 		Operator:         "operator",
 		MyWWFF:           "myWwff",
 		MySOTA:           "mySota",
+		MyGrid:           "myGrid",
 		QslMsgFromHeader: "QslMsgFromHeader",
 		Nickname:         "nickname",
 		Mode:             "mode",
@@ -93,6 +99,7 @@ func ExampleSprintLogRecord() {
 	//Operator  operator
 	//MyWWFF    myWwff
 	//MySOTA    mySota
+	//MyGrid    myGrid
 	//QslMsg    QslMsgFromHeader
 	//Nickname  nickname
 	//Mode      mode
@@ -131,6 +138,7 @@ func TestSprintLogInColumn(t *testing.T) {
 				Operator:         "operator",
 				MyWWFF:           "myWwff",
 				MySOTA:           "mySota",
+				MyGrid:           "myGrid",
 				QslMsgFromHeader: "QslMsgFromHeader",
 				Nickname:         "nickname",
 				Mode:             "mode",

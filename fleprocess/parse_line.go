@@ -31,6 +31,7 @@ type LogLine struct {
 	Operator         string
 	MyWWFF           string
 	MySOTA           string
+	MyGrid           string
 	QslMsgFromHeader string
 	Nickname         string
 	Mode             string
