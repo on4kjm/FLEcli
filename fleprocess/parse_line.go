@@ -184,7 +184,6 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 		// Is it the Grid Locator (starting with "#")
 		if regexpIsGridLoc.MatchString(element) {
 			grid := strings.TrimLeft(element, "#")
-			fmt.Println("Grid => " + grid)
 			cleanGrid, callErrorMsg := ValidateGridLocator(grid)
 			logLine.GridLoc = cleanGrid
 			errorMsg = errorMsg + callErrorMsg
