@@ -74,13 +74,18 @@ func TestParseLine(t *testing.T) {
 		},
 		{
 			"Parse OM name",
-			args{inputStr: "@Jean", previousLine: LogLine{Mode: "SSB"}},
-			LogLine{OMname: "Jean", Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "",
+			args{inputStr: "1314 g3noh @Jean", previousLine: LogLine{Mode: "SSB"}},
+			LogLine{Time: "1314", ActualTime: "1314", Call: "G3NOH", OMname: "Jean", Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "",
 		},
 		{
-			"Parse Grid locator",
+			"Parse Grid locator OK",
+			args{inputStr: "1314 g3noh #jo50eJ", previousLine: LogLine{Mode: "SSB"}},
+			LogLine{Time: "1314", ActualTime: "1314", Call: "G3NOH", GridLoc: "JO50ej", Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "",
+		},
+		{
+			"Parse Grid locator NOK",
 			args{inputStr: "#grid", previousLine: LogLine{Mode: "SSB"}},
-			LogLine{GridLoc: "grid", Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "",
+			LogLine{GridLoc: "*grid", Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "[grid] is an invalid grid reference",
 		},
 		{
 			"Parse frequency",

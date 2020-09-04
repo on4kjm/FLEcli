@@ -51,7 +51,38 @@ func ValidateWwff(inputStr string) (ref, errorMsg string) {
 	return wrongInputStr, errorMsg
 }
 
-var validCallRegexp = regexp.MustCompile(`[\d]{0,1}[A-Z]{1,2}\d([A-Z]{1,4}|\d{3,3}|\d{1,3}[A-Z])[A-Z]{0,5}`)
+var validGridRegexp = regexp.MustCompile("(?i)^[a-z]{2}[0-9]{2}([a-z]{2})?$")
+
+// ValidateGridLocator verifies that the supplied is a valid Maidenhead locator reference
+// (either in 4 or 6 position). The returned grid case is normalized (first two letters
+// in uppercase, last pair in lowercase). If the grid is not valid, the supicious string
+// is prefixed with a * and an erroMsg is genrated.
+func ValidateGridLocator(grid string) (processedGrid, errorMsg string) {
+	if validGridRegexp.MatchString(grid) {
+		var output strings.Builder
+		for i, c := range grid {
+			//The first pair of characters to be forced uppercase
+			if (i == 0) || (i == 1) {
+				output.WriteString(strings.ToUpper(string(c)))
+			}
+			//The second pair (numbers) are left alone
+			if (i == 2) || (i == 3) {
+				output.WriteString(string(c))
+			}
+			//The third pair of characters to be forced lowercase
+			if (i == 4) || (i == 5) {
+				output.WriteString(strings.ToLower(string(c)))
+			}
+		}
+		return output.String(), ""
+	}
+
+	processedGrid = "*" + grid
+	errorMsg = "[" + grid + "] is an invalid grid reference"
+	return processedGrid, errorMsg
+}
+
+var validCallRegexp = regexp.MustCompile(`^[\d]{0,1}[A-Z]{1,2}\d([A-Z]{1,4}|\d{3,3}|\d{1,3}[A-Z])[A-Z]{0,5}`)
 var validPrefixRegexp = regexp.MustCompile(`\A[a-zA-Z0-9]{1,3}$`)
 
 // ValidateCall verifies whether the supplied string is a valid callsign.

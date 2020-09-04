@@ -1,0 +1,44 @@
+# Header 
+mysota on/on-002
+mycall on4kjm/p
+operator on4kjm
+mywwff onff-0258
+qslmsg ONFF-058 (Moeraske)
+nickname portable
+
+# Log 
+date 2020-06-01
+20m cw
+14.060 
+1328 ea2dtv 5 44
+33 sp8dt 5 9
+34 om1ax 5 5 
+35 dk3abm
+37 iv4aoz
+41 ha0lg 4 5
+42 9a4fm 7 9
+45 ut5pi 5 5
+46 dl2jqt
+48 oh4bsl
+50 f8azk
+52 oh7jha
+
+30m 10.116
+1403 dl6kw/p 5 5 #jo50
+08 dl8ng/qrp 44 5
+10 g3vqo
+20 oe/dg8rcn/p 44 9
+23 oe3chc 5 44
+24 oe5wll 5 46
+25 pa7ra
+dl1lqr
+ik1gpg 5 5
+35 sp1mvg 5
+on4ea
+37 ik2ecc
+39 g4gjv
+pa0nbb 44
+45 dl5fbb 
+45 f4gym
+46 g4gjv
+50 dl7upr/p 44 57

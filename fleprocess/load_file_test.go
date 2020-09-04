@@ -41,6 +41,7 @@ func TestLoadFile_happyCase(t *testing.T) {
 	dataArray = append(dataArray, "nickname Portable")
 	dataArray = append(dataArray, "myWwff onff-0258")
 	dataArray = append(dataArray, "mySota on/on-001")
+	dataArray = append(dataArray, "myGrid jo50")
 	dataArray = append(dataArray, "QslMsg This is a QSL message")
 	dataArray = append(dataArray, " ")
 	dataArray = append(dataArray, " #Log")
@@ -207,6 +208,7 @@ func TestLoadFile_wrongData(t *testing.T) {
 	dataArray = append(dataArray, "operator foobar")
 	dataArray = append(dataArray, "myWwff  foobar")
 	dataArray = append(dataArray, "mySota foobar")
+	dataArray = append(dataArray, "myGrid foobar")
 	dataArray = append(dataArray, " ")
 	dataArray = append(dataArray, " #Log")
 	dataArray = append(dataArray, "date 2020-05-23")
@@ -242,6 +244,10 @@ func TestLoadFile_wrongData(t *testing.T) {
 	expectedValue = "*FOOBAR"
 	if loadedLogFile[0].MySOTA != expectedValue {
 		t.Errorf("Not the expected MySOTA value: %s (expecting %s)", loadedLogFile[0].MySOTA, expectedValue)
+	}
+	expectedValue = "*foobar"
+	if loadedLogFile[0].MyGrid != expectedValue {
+		t.Errorf("Not the expected MyGrid value: %s (expecting %s)", loadedLogFile[0].MyGrid, expectedValue)
 	}
 
 	expectedValue = "IK5ZVE"

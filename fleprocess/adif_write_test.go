@@ -66,6 +66,21 @@ func Test_buildAdif(t *testing.T) {
 		"<STATION_CALLSIGN:8>ON4KJM/P <CALL:5>ON4LY <QSO_DATE:8>20200524 <TIME_ON:4>1312 <BAND:3>20m <MODE:2>CW <RST_SENT:3>559 <RST_RCVD:3>599 <MY_SIG:4>WWFF <MY_SIG_INFO:9>ONFF-0259 <OPERATOR:6>ON4KJM <EOR>",
 	}
 
+	sampleFilledLog2 := []LogLine{
+		{MyCall: "ON4KJM/P", Call: "S57LC", Date: "2020-05-24", MyGrid: "JO40eu", Time: "1310", Band: "20m", Frequency: "14.045", Mode: "CW", RSTsent: "599", RSTrcvd: "599", GridLoc: "JO50", MyWWFF: "ONFF-0259", Operator: "ON4KJM", Nickname: "ONFF-0259-1"},
+		{MyCall: "ON4KJM/P", Call: "ON4LY", Date: "2020-05-24", MyGrid: "JO40eu", Time: "1312", Band: "20m", Mode: "CW", RSTsent: "559", RSTrcvd: "599", MyWWFF: "ONFF-0259", Operator: "ON4KJM"},
+	}
+
+	expectedOutput2 := []string{
+		"ADIF Export for Fast Log Entry by DF3CB",
+		"<PROGRAMID:3>FLE",
+		"<ADIF_VER:5>3.1.0",
+		"<EOH>",
+		"<STATION_CALLSIGN:8>ON4KJM/P <CALL:5>S57LC <QSO_DATE:8>20200524 <TIME_ON:4>1310 <BAND:3>20m <MODE:2>CW <FREQ:6>14.045 <RST_SENT:3>599 <RST_RCVD:3>599 <GRIDSQUARE:4>JO50 <MY_SIG:4>WWFF <MY_SIG_INFO:9>ONFF-0259 <OPERATOR:6>ON4KJM <MY_GRIDSQUARE:6>JO40eu <APP_EQSL_QTH_NICKNAME:11>ONFF-0259-1 <EOR>",
+		"<STATION_CALLSIGN:8>ON4KJM/P <CALL:5>ON4LY <QSO_DATE:8>20200524 <TIME_ON:4>1312 <BAND:3>20m <MODE:2>CW <RST_SENT:3>559 <RST_RCVD:3>599 <MY_SIG:4>WWFF <MY_SIG_INFO:9>ONFF-0259 <OPERATOR:6>ON4KJM <MY_GRIDSQUARE:6>JO40eu <EOR>",
+	}
+
+
 	type args struct {
 		fullLog []LogLine
 		isWWFF  bool
@@ -80,6 +95,11 @@ func Test_buildAdif(t *testing.T) {
 			"Happy case-WWFF",
 			args{fullLog: sampleFilledLog1, isWWFF: true, isSOTA: false},
 			expectedOutput1,
+		},
+		{
+			"Happy case-Grid",
+			args{fullLog: sampleFilledLog2, isWWFF: true, isSOTA: false},
+			expectedOutput2,
 		},
 	}
 	for _, tt := range tests {

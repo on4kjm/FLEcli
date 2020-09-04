@@ -58,6 +58,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	regexpHeaderOperator, _ := regexp.Compile("(?i)^operator ")
 	regexpHeaderMyWwff, _ := regexp.Compile("(?i)^mywwff ")
 	regexpHeaderMySota, _ := regexp.Compile("(?i)^mysota ")
+	regexpHeaderMyGrid, _ := regexp.Compile("(?i)^mygrid ")
 	regexpHeaderQslMsg, _ := regexp.Compile("(?i)^qslmsg ")
 	regexpHeaderNickname, _ := regexp.Compile("(?i)^nickname ")
 	regexpHeaderDate, _ := regexp.Compile("(?i)^date ")
@@ -66,6 +67,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	headerOperator := ""
 	headerMyWWFF := ""
 	headerMySOTA := ""
+	headerMyGrid := ""
 	headerQslMsg := ""
 	headerNickname := ""
 	headerDate := ""
@@ -178,6 +180,21 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			continue
 		}
 
+		//My Grid
+		if regexpHeaderMyGrid.MatchString(eachline) {
+			errorMsg := ""
+			myGridList := regexpHeaderMyGrid.Split(eachline, -1)
+			if len(strings.TrimSpace(myGridList[1])) > 0 {
+				headerMyGrid, errorMsg = ValidateGridLocator(strings.TrimSpace(myGridList[1]))
+				cleanedInput = append(cleanedInput, fmt.Sprintf("My Grid: %s", headerMyGrid))
+				if len(errorMsg) != 0 {
+					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My Grid\" at line %d: %s (%s)", lineCount, myGridList[1], errorMsg))
+				}
+			}
+			//If there is no data after the marker, we just skip the data.
+			continue
+		}
+
 		//QSL Message
 		if regexpHeaderQslMsg.MatchString(eachline) {
 			myQslMsgList := regexpHeaderQslMsg.Split(eachline, -1)
@@ -223,6 +240,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		previousLogLine.Operator = headerOperator
 		previousLogLine.MyWWFF = headerMyWWFF
 		previousLogLine.MySOTA = headerMySOTA
+		previousLogLine.MyGrid = headerMyGrid
 		previousLogLine.QSLmsg = headerQslMsg //previousLogLine.QslMsg is redundant
 		previousLogLine.Nickname = headerNickname
 		previousLogLine.Date = headerDate
