@@ -59,9 +59,6 @@ func buildAdif(fullLog []LogLine, isWWFF bool, isSOTA bool) (adifList []string) 
 		if logLine.OMname != "" {
 			adifLine.WriteString(adifElement("NAME", logLine.OMname))
 		}
-		if logLine.MyGrid != "" {
-			adifLine.WriteString(adifElement("MY_GRIDSQUARE", logLine.MyGrid))
-		}
 		if logLine.GridLoc != "" {
 			adifLine.WriteString(adifElement("GRIDSQUARE", logLine.GridLoc))
 		}
@@ -78,7 +75,12 @@ func buildAdif(fullLog []LogLine, isWWFF bool, isSOTA bool) (adifList []string) 
 				adifLine.WriteString(adifElement("SOTA_REF", logLine.SOTA))
 			}
 		}
+		if logLine.Operator != "" {
 		adifLine.WriteString(adifElement("OPERATOR", logLine.Operator))
+		}
+		if logLine.MyGrid != "" {
+			adifLine.WriteString(adifElement("MY_GRIDSQUARE", logLine.MyGrid))
+		}
 		if logLine.Nickname != "" {
 			adifLine.WriteString(adifElement("APP_EQSL_QTH_NICKNAME", logLine.Nickname))
 		}
