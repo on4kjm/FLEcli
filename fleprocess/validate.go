@@ -137,9 +137,8 @@ func NormalizeDate(inputStr string) (date, errorMsg string) {
 	s := splitDateRegexp.Split(inputStr, 4)
 
 	//we should have three and only three elements
-	if len(s) != 3 {
-		//TODO: display the found number of elements
-		errorMsg = "Bad date format: expecting 3 elements"
+	if i := len(s); i != 3 {
+		errorMsg = fmt.Sprintf("Bad date format: found %d elements while expecting 3.", i)
 		return "*" + inputStr, errorMsg
 	}
 

@@ -225,27 +225,32 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			if len(myDateList[1]) > 0 {
 				normalizedDate := ""
 				normalizedDate, errorMsg = NormalizeDate(myDateList[1])
-				//TODO: proper error handling
-				headerDate, errorMsg = ValidateDate(normalizedDate)
 				if len(errorMsg) != 0 {
-					errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, myDateList[1], errorMsg))
+					errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, eachline, errorMsg))
+				} else {
+					headerDate, errorMsg = ValidateDate(normalizedDate)
+					if len(errorMsg) != 0 {
+						errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, myDateList[1], errorMsg))
+					}
 				}
 			}
 			//If there is no data after the marker, we just skip the data.
 			continue
 		}
-		//TODO: FIXME: WIP
+
 		//Date, apparently alone on a line?
-		//FIXME: remove blanks before or after
 		if regexpDatePattern.MatchString(eachline) {
 			//We probably have a date, let's normalize it
 			errorMsg := ""
 			normalizedDate := ""
 			normalizedDate, errorMsg = NormalizeDate(eachline)
-			//TODO: proper error handling
-			headerDate, errorMsg = ValidateDate(normalizedDate)
 			if len(errorMsg) != 0 {
 				errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, eachline, errorMsg))
+			} else {
+				headerDate, errorMsg = ValidateDate(normalizedDate)
+				if len(errorMsg) != 0 {
+					errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, eachline, errorMsg))
+				}
 			}
 			continue
 		}
@@ -275,6 +280,10 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			if isInterpolateTime {
 				var isEndOfGap bool
 				if isEndOfGap, err = wrkTimeBlock.storeTimeGap(logline, len(fullLog)); err != nil {
+					fmt.Println("\nProcessing errors:")
+					for _, errorLogLine := range errorLog {
+						fmt.Println(errorLogLine)
+					}
 					log.Println("Fatal error: ", err)
 					os.Exit(1)
 				}
@@ -282,6 +291,10 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 				if isEndOfGap {
 					if err := wrkTimeBlock.finalizeTimeGap(); err != nil {
 						//If an error occured it is a fatal error
+						fmt.Println("\nProcessing errors:")
+						for _, errorLogLine := range errorLog {
+							fmt.Println(errorLogLine)
+						}
 						log.Println("Fatal error: ", err)
 						os.Exit(1)
 					}
