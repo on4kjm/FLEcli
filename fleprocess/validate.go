@@ -144,6 +144,7 @@ func NormalizeDate(inputStr string) (date, errorMsg string) {
 		return "*" + inputStr, errorMsg
 	}
 	//complete the numbers if shorter than expected ("20" for the first and "0" for the two next)
+
 	//TODO: refactor this => similar code repetition
 	year := s[0]
 	if len(year) == 2 {
@@ -156,13 +157,12 @@ func NormalizeDate(inputStr string) (date, errorMsg string) {
 	}
 
 	month := s[1]
-	fmt.Println("Month: " + month + "!")
-	if len(s) == 1 {
+	if len(month) == 1 {
 		month = "0" + month
 	}
 
 	day := s[2]
-	if len(s) == 1 {
+	if len(day) == 1 {
 		day = "0" + day
 	}
 

@@ -218,14 +218,15 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			continue
 		}
 
-
 		// Date with keyword
 		if regexpHeaderDateMarker.MatchString(eachline) {
 			errorMsg := ""
 			myDateList := regexpHeaderDateMarker.Split(eachline, -1)
 			if len(myDateList[1]) > 0 {
-				//TODO: normalize
-				headerDate, errorMsg = ValidateDate(myDateList[1])
+				normalizedDate := ""
+				normalizedDate, errorMsg = NormalizeDate(myDateList[1])
+				//TODO: proper error handling
+				headerDate, errorMsg = ValidateDate(normalizedDate)
 				if len(errorMsg) != 0 {
 					errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, myDateList[1], errorMsg))
 				}
@@ -236,9 +237,17 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		//TODO: FIXME: WIP
 		//Date, apparently alone on a line?
 		//FIXME: remove blanks before or after
-		if regexpDatePattern.MatchString(eachline){
+		if regexpDatePattern.MatchString(eachline) {
 			//We probably have a date, let's normalize it
-
+			errorMsg := ""
+			normalizedDate := ""
+			normalizedDate, errorMsg = NormalizeDate(eachline)
+			//TODO: proper error handling
+			headerDate, errorMsg = ValidateDate(normalizedDate)
+			if len(errorMsg) != 0 {
+				errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, eachline, errorMsg))
+			}
+			continue
 		}
 
 		// ****
