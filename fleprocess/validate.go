@@ -129,6 +129,17 @@ func ValidateCall(sign string) (call, errorMsg string) {
 	return wrongSign, "[" + sign + "] is invalid: too many '/'"
 }
 
+
+//FIXME: WIP
+var splitDateRegexp = regexp.MustCompile(`[-/ .]`)
+//NormalizeDate takes what looks like a date and normalises it to "YYYY-MM-DD"
+func NormalizeDate(inputStr string) (date, errorMsg string) {
+	//Try to split the string
+	s:=splitDateRegexp.Split(inputStr,4)
+	fmt.Println(s)
+	return inputStr, ""
+}
+
 // ValidateDate verifies whether the string is a valid date (YYYY-MM-DD).
 func ValidateDate(inputStr string) (ref, errorMsg string) {
 

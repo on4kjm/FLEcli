@@ -381,3 +381,62 @@ func TestValidateGridLocator(t *testing.T) {
 		})
 	}
 }
+
+func TestNormalizeDate(t *testing.T) {
+	type args struct {
+		inputStr string
+	}
+	tests := []struct {
+		name         string
+		args         args
+		wantDate     string
+		wantErrorMsg string
+	}{
+		{
+			"happy case",
+			args{inputStr: "2020-09-04"},
+			"2020-09-04", "",
+		},
+		{
+			"alternate delimiter 1",
+			args{inputStr: "2020/09/04"},
+			"2020-09-04", "",
+		},
+		{
+			"alternate delimiter 2",
+			args{inputStr: "2020.09.04"},
+			"2020-09-04", "",
+		},
+		{
+			"alternate delimiter 3",
+			args{inputStr: "2020 09 04"},
+			"2020-09-04", "",
+		},
+		{
+			"shortened date 1",
+			args{inputStr: "20/09/04"},
+			"2020-09-04", "",
+		},
+		{
+			"shortened date 1",
+			args{inputStr: "2020.9.4"},
+			"2020-09-04", "",
+		},
+		{
+			"Bad date",
+			args{inputStr: "202009.04"},
+			"*202009.04", "error",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			gotDate, gotErrorMsg := NormalizeDate(tt.args.inputStr)
+			if gotDate != tt.wantDate {
+				t.Errorf("NormalizeDate() gotDate = %v, want %v", gotDate, tt.wantDate)
+			}
+			if gotErrorMsg != tt.wantErrorMsg {
+				t.Errorf("NormalizeDate() gotErrorMsg = %v, want %v", gotErrorMsg, tt.wantErrorMsg)
+			}
+		})
+	}
+}
