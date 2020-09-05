@@ -425,7 +425,12 @@ func TestNormalizeDate(t *testing.T) {
 		{
 			"Bad date",
 			args{inputStr: "202009.04"},
-			"*202009.04", "error",
+			"*202009.04", "Bad date format: expecting 3 elements",
+		},
+		{
+			"Bad year length",
+			args{inputStr: "202009.09.15"},
+			"*202009.09.15", "Bad date format: first part doesn't look like a year",
 		},
 	}
 	for _, tt := range tests {

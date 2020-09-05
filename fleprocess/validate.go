@@ -129,15 +129,47 @@ func ValidateCall(sign string) (call, errorMsg string) {
 	return wrongSign, "[" + sign + "] is invalid: too many '/'"
 }
 
-
 //FIXME: WIP
 var splitDateRegexp = regexp.MustCompile(`[-/ .]`)
+
 //NormalizeDate takes what looks like a date and normalises it to "YYYY-MM-DD"
 func NormalizeDate(inputStr string) (date, errorMsg string) {
 	//Try to split the string
-	s:=splitDateRegexp.Split(inputStr,4)
-	fmt.Println(s)
-	return inputStr, ""
+	s := splitDateRegexp.Split(inputStr, 4)
+
+	//we should have three and only three elements
+	if len(s) != 3 {
+		//TODO: display the found number of elements
+		errorMsg = "Bad date format: expecting 3 elements"
+		return "*" + inputStr, errorMsg
+	}
+	//complete the numbers if shorter than expected ("20" for the first and "0" for the two next)
+	//TODO: refactor this => similar code repetition
+	year := s[0]
+	if len(year) == 2 {
+		year = "20" + year
+	}
+	//This test is not really necessary, but rather belt and suspenders
+	if len(year) != 4 {
+		errorMsg = "Bad date format: first part doesn't look like a year"
+		return "*" + inputStr, errorMsg
+	}
+
+	month := s[1]
+	fmt.Println("Month: " + month + "!")
+	if len(s) == 1 {
+		month = "0" + month
+	}
+
+	day := s[2]
+	if len(s) == 1 {
+		day = "0" + day
+	}
+
+	//re-assemble the string with the correct delimiter
+	date = year + "-" + month + "-" + day
+
+	return date, ""
 }
 
 // ValidateDate verifies whether the string is a valid date (YYYY-MM-DD).
