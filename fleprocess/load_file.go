@@ -49,19 +49,20 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 
 	file.Close()
 
-	regexpLineComment, _ := regexp.Compile("^[[:blank:]]*#")
-	regexpOnlySpaces, _ := regexp.Compile("^\\s+$")
-	regexpSingleMultiLineComment, _ := regexp.Compile("^[[:blank:]]*{.+}$")
-	regexpStartMultiLineComment, _ := regexp.Compile("^[[:blank:]]*{")
-	regexpEndMultiLineComment, _ := regexp.Compile("}$")
-	regexpHeaderMyCall, _ := regexp.Compile("(?i)^mycall ")
-	regexpHeaderOperator, _ := regexp.Compile("(?i)^operator ")
-	regexpHeaderMyWwff, _ := regexp.Compile("(?i)^mywwff ")
-	regexpHeaderMySota, _ := regexp.Compile("(?i)^mysota ")
-	regexpHeaderMyGrid, _ := regexp.Compile("(?i)^mygrid ")
-	regexpHeaderQslMsg, _ := regexp.Compile("(?i)^qslmsg ")
-	regexpHeaderNickname, _ := regexp.Compile("(?i)^nickname ")
-	regexpHeaderDate, _ := regexp.Compile("(?i)^date ")
+	regexpLineComment := regexp.MustCompile("^[[:blank:]]*#")
+	regexpOnlySpaces := regexp.MustCompile("^\\s+$")
+	regexpSingleMultiLineComment := regexp.MustCompile("^[[:blank:]]*{.+}$")
+	regexpStartMultiLineComment := regexp.MustCompile("^[[:blank:]]*{")
+	regexpEndMultiLineComment := regexp.MustCompile("}$")
+	regexpHeaderMyCall := regexp.MustCompile("(?i)^mycall ")
+	regexpHeaderOperator := regexp.MustCompile("(?i)^operator ")
+	regexpHeaderMyWwff := regexp.MustCompile("(?i)^mywwff ")
+	regexpHeaderMySota := regexp.MustCompile("(?i)^mysota ")
+	regexpHeaderMyGrid := regexp.MustCompile("(?i)^mygrid ")
+	regexpHeaderQslMsg := regexp.MustCompile("(?i)^qslmsg ")
+	regexpHeaderNickname := regexp.MustCompile("(?i)^nickname ")
+	regexpHeaderDateMarker := regexp.MustCompile("(?i)^date ")
+	regexpDatePattern := regexp.MustCompile("^(\\d{2}|\\d{4})[-/ .]\\d{1,2}[-/ .]\\d{1,2}$")
 
 	headerMyCall := ""
 	headerOperator := ""
@@ -217,17 +218,40 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			continue
 		}
 
-		// Date
-		if regexpHeaderDate.MatchString(eachline) {
+		// Date with keyword
+		if regexpHeaderDateMarker.MatchString(eachline) {
 			errorMsg := ""
-			myDateList := regexpHeaderDate.Split(eachline, -1)
+			myDateList := regexpHeaderDateMarker.Split(eachline, -1)
 			if len(myDateList[1]) > 0 {
-				headerDate, errorMsg = ValidateDate(myDateList[1])
+				normalizedDate := ""
+				normalizedDate, errorMsg = NormalizeDate(myDateList[1])
 				if len(errorMsg) != 0 {
-					errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, myDateList[1], errorMsg))
+					errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, eachline, errorMsg))
+				} else {
+					headerDate, errorMsg = ValidateDate(normalizedDate)
+					if len(errorMsg) != 0 {
+						errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, myDateList[1], errorMsg))
+					}
 				}
 			}
 			//If there is no data after the marker, we just skip the data.
+			continue
+		}
+
+		//Date, apparently alone on a line?
+		if regexpDatePattern.MatchString(eachline) {
+			//We probably have a date, let's normalize it
+			errorMsg := ""
+			normalizedDate := ""
+			normalizedDate, errorMsg = NormalizeDate(eachline)
+			if len(errorMsg) != 0 {
+				errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, eachline, errorMsg))
+			} else {
+				headerDate, errorMsg = ValidateDate(normalizedDate)
+				if len(errorMsg) != 0 {
+					errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, eachline, errorMsg))
+				}
+			}
 			continue
 		}
 
@@ -256,6 +280,10 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			if isInterpolateTime {
 				var isEndOfGap bool
 				if isEndOfGap, err = wrkTimeBlock.storeTimeGap(logline, len(fullLog)); err != nil {
+					fmt.Println("\nProcessing errors:")
+					for _, errorLogLine := range errorLog {
+						fmt.Println(errorLogLine)
+					}
 					log.Println("Fatal error: ", err)
 					os.Exit(1)
 				}
@@ -263,6 +291,10 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 				if isEndOfGap {
 					if err := wrkTimeBlock.finalizeTimeGap(); err != nil {
 						//If an error occured it is a fatal error
+						fmt.Println("\nProcessing errors:")
+						for _, errorLogLine := range errorLog {
+							fmt.Println(errorLogLine)
+						}
 						log.Println("Fatal error: ", err)
 						os.Exit(1)
 					}

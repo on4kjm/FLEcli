@@ -96,8 +96,12 @@ func (tb *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool, err
 	if logline.ActualTime != "" {
 		//Are we starting a new block
 		if tb.noTimeCount == 0 {
+			//File is bad: date not found or badly formated
+			if logline.Date == "" {
+				return false, errors.New("Date not defined or badly formated")
+			}
 			if tb.lastRecordedTime, err = time.Parse(ADIFdateTimeFormat, logline.Date+" "+logline.ActualTime); err != nil {
-				log.Println("Fatal error during internal date concersion: ", err)
+				log.Println("Fatal error during internal date conversion: ", err)
 				os.Exit(1)
 			}
 			tb.logFilePosition = position
@@ -107,7 +111,7 @@ func (tb *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool, err
 				return false, errors.New("Gap start time is empty")
 			}
 			if tb.nextValidTime, err = time.Parse(ADIFdateTimeFormat, logline.Date+" "+logline.ActualTime); err != nil {
-				log.Println("Fatal error during internal date concersion: ", err)
+				log.Println("Fatal error during internal date conversion: ", err)
 				os.Exit(1)
 			}
 			return true, nil
