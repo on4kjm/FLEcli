@@ -70,7 +70,7 @@ func TestParseLine(t *testing.T) {
 		{
 			"Wrong mode",
 			args{inputStr: "cww", previousLine: LogLine{Mode: "SSB"}},
-			LogLine{Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "Unable to make sense of [cww].",
+			LogLine{Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "Unable to make sense of [cww]. ",
 		},
 		{
 			"Parse OM name",
@@ -152,10 +152,21 @@ func TestParseLine(t *testing.T) {
 			args{inputStr: "1230 oe6cud/p onff-0258", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
 			LogLine{Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", WWFF: "ONFF-0258"}, "",
 		},
-		//TODO: test date
-		//TODO: test date with DATE marker
-		//TODO: Test with normalisation error
-		//TODO: Test with invalid date
+		{
+			"date processing",
+			args{inputStr: "20.09.7 1230 oe6cud/p onff-0258", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
+			LogLine{Date: "2020-09-07", Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", WWFF: "ONFF-0258"}, "",
+		},
+		{
+			"date processing (with keyword)",
+			args{inputStr: "Date 20.09.7 1230 oe6cud/p onff-0258", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
+			LogLine{Date: "2020-09-07", Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", WWFF: "ONFF-0258"}, "",
+		},
+		{
+			"date processing - validation error",
+			args{inputStr: "20.09.34 1230 oe6cud/p onff-0258", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
+			LogLine{Date: "*2020-09-34", Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", WWFF: "ONFF-0258"}, "Error parsing time \"2020-09-34\": day out of range",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

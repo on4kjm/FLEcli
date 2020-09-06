@@ -124,15 +124,16 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 		//Date?
 		if regexpDatePattern.MatchString(element) {
 			//We probably have a date, let's normalize it
-			errorMsg := ""
+			errorTxt := ""
 			normalizedDate := ""
-			normalizedDate, errorMsg = NormalizeDate(element)
-			if len(errorMsg) != 0 {
-				errorMsg = errorMsg + fmt.Sprintf("Invalid Date: %s (%s)", element, errorMsg)
+			normalizedDate, errorTxt = NormalizeDate(element)
+			if len(errorTxt) != 0 {
+				logLine.Date = normalizedDate
+				errorMsg = errorMsg + fmt.Sprintf("Invalid Date: %s (%s)", element, errorTxt)
 			} else {
-				logLine.Date, errorMsg = ValidateDate(normalizedDate)
-				if len(errorMsg) != 0 {
-					errorMsg = errorMsg + fmt.Sprintf("Invalid Date: %s (%s)", element, errorMsg)
+				logLine.Date, errorTxt = ValidateDate(normalizedDate)
+				if len(errorTxt) != 0 {
+					errorMsg = errorMsg + fmt.Sprintf("Error %s", errorTxt)
 				}
 			}
 			continue
