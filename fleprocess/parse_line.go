@@ -61,6 +61,8 @@ var regexpIsRst = regexp.MustCompile("^[\\d]{1,3}$")
 var regexpIsFreq = regexp.MustCompile("^[\\d]+\\.[\\d]+$")
 var regexpIsSotaKeyWord = regexp.MustCompile("(?i)^sota")
 var regexpIsWwffKeyWord = regexp.MustCompile("(?i)^wwff")
+var regexpDatePattern = regexp.MustCompile("^(\\d{2}|\\d{4})[-/ .]\\d{1,2}[-/ .]\\d{1,2}$")
+var regexpIsDateKeyWord = regexp.MustCompile("(?i)^date")
 
 // ParseLine cuts a FLE line into useful bits
 func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg string) {
@@ -116,6 +118,28 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 			} else {
 				errorMsg = errorMsg + "Double definitiion of RST"
 			}
+			continue
+		}
+
+		//Date?
+		if regexpDatePattern.MatchString(element) {
+			//We probably have a date, let's normalize it
+			errorMsg := ""
+			normalizedDate := ""
+			normalizedDate, errorMsg = NormalizeDate(element)
+			if len(errorMsg) != 0 {
+				errorMsg = errorMsg + fmt.Sprintf("Invalid Date: %s (%s)", element, errorMsg)
+			} else {
+				logLine.Date, errorMsg = ValidateDate(normalizedDate)
+				if len(errorMsg) != 0 {
+					errorMsg = errorMsg + fmt.Sprintf("Invalid Date: %s (%s)", element, errorMsg)
+				}
+			}
+			continue
+		}
+
+		// The date keyword is not really useful, skip it
+		if regexpIsDateKeyWord.MatchString(element) {
 			continue
 		}
 
@@ -257,7 +281,7 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 		}
 
 		//If we come here, we could not make sense of what we found
-		errorMsg = errorMsg + "Unable to make sense of [" + element + "]."
+		errorMsg = errorMsg + "Unable to make sense of [" + element + "]. "
 
 	}
 

@@ -61,8 +61,8 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	regexpHeaderMyGrid := regexp.MustCompile("(?i)^mygrid ")
 	regexpHeaderQslMsg := regexp.MustCompile("(?i)^qslmsg ")
 	regexpHeaderNickname := regexp.MustCompile("(?i)^nickname ")
-	regexpHeaderDateMarker := regexp.MustCompile("(?i)^date ")
-	regexpDatePattern := regexp.MustCompile("^(\\d{2}|\\d{4})[-/ .]\\d{1,2}[-/ .]\\d{1,2}$")
+	
+	
 
 	headerMyCall := ""
 	headerOperator := ""
@@ -71,7 +71,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	headerMyGrid := ""
 	headerQslMsg := ""
 	headerNickname := ""
-	headerDate := ""
+	//headerDate := ""
 	lineCount := 0
 
 	wrkTimeBlock := InferTimeBlock{}
@@ -218,42 +218,42 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			continue
 		}
 
-		// Date with keyword
-		if regexpHeaderDateMarker.MatchString(eachline) {
-			errorMsg := ""
-			myDateList := regexpHeaderDateMarker.Split(eachline, -1)
-			if len(myDateList[1]) > 0 {
-				normalizedDate := ""
-				normalizedDate, errorMsg = NormalizeDate(myDateList[1])
-				if len(errorMsg) != 0 {
-					errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, eachline, errorMsg))
-				} else {
-					headerDate, errorMsg = ValidateDate(normalizedDate)
-					if len(errorMsg) != 0 {
-						errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, myDateList[1], errorMsg))
-					}
-				}
-			}
-			//If there is no data after the marker, we just skip the data.
-			continue
-		}
+		// // Date with keyword
+		// if regexpHeaderDateMarker.MatchString(eachline) {
+		// 	errorMsg := ""
+		// 	myDateList := regexpHeaderDateMarker.Split(eachline, -1)
+		// 	if len(myDateList[1]) > 0 {
+		// 		normalizedDate := ""
+		// 		normalizedDate, errorMsg = NormalizeDate(myDateList[1])
+		// 		if len(errorMsg) != 0 {
+		// 			errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, eachline, errorMsg))
+		// 		} else {
+		// 			headerDate, errorMsg = ValidateDate(normalizedDate)
+		// 			if len(errorMsg) != 0 {
+		// 				errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, myDateList[1], errorMsg))
+		// 			}
+		// 		}
+		// 	}
+		// 	//If there is no data after the marker, we just skip the data.
+		// 	continue
+		// }
 
-		//Date, apparently alone on a line?
-		if regexpDatePattern.MatchString(eachline) {
-			//We probably have a date, let's normalize it
-			errorMsg := ""
-			normalizedDate := ""
-			normalizedDate, errorMsg = NormalizeDate(eachline)
-			if len(errorMsg) != 0 {
-				errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, eachline, errorMsg))
-			} else {
-				headerDate, errorMsg = ValidateDate(normalizedDate)
-				if len(errorMsg) != 0 {
-					errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, eachline, errorMsg))
-				}
-			}
-			continue
-		}
+		// //Date, apparently alone on a line?
+		// if regexpDatePattern.MatchString(eachline) {
+		// 	//We probably have a date, let's normalize it
+		// 	errorMsg := ""
+		// 	normalizedDate := ""
+		// 	normalizedDate, errorMsg = NormalizeDate(eachline)
+		// 	if len(errorMsg) != 0 {
+		// 		errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, eachline, errorMsg))
+		// 	} else {
+		// 		headerDate, errorMsg = ValidateDate(normalizedDate)
+		// 		if len(errorMsg) != 0 {
+		// 			errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, eachline, errorMsg))
+		// 		}
+		// 	}
+		// 	continue
+		// }
 
 		// ****
 		// ** Process the data block
@@ -267,7 +267,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		previousLogLine.MyGrid = headerMyGrid
 		previousLogLine.QSLmsg = headerQslMsg //previousLogLine.QslMsg is redundant
 		previousLogLine.Nickname = headerNickname
-		previousLogLine.Date = headerDate
+		//previousLogLine.Date = headerDate
 
 		//parse a line
 		logline, errorLine := ParseLine(eachline, previousLogLine)

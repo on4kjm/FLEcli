@@ -152,6 +152,10 @@ func TestParseLine(t *testing.T) {
 			args{inputStr: "1230 oe6cud/p onff-0258", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
 			LogLine{Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", WWFF: "ONFF-0258"}, "",
 		},
+		//TODO: test date
+		//TODO: test date with DATE marker
+		//TODO: Test with normalisation error
+		//TODO: Test with invalid date
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
