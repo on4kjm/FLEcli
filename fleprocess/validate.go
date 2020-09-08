@@ -142,7 +142,6 @@ func NormalizeDate(inputStr string) (date, errorMsg string) {
 		return "*" + inputStr, errorMsg
 	}
 
-
 	//complete the numbers if shorter than expected ("20" for the first and "0" for the two next)
 	year := s[0]
 	if len(year) == 2 {
@@ -192,6 +191,23 @@ func ValidateDate(inputStr string) (ref, errorMsg string) {
 	}
 
 	return wrongInputStr, fmt.Sprint(err)
+}
+
+//IncrementDate will increment the supplied date by the specified increment. It returns the new date.
+func IncrementDate(date string, increment int) (newdate string, err string) {
+	if date == "" {
+		return "", "No date to increment"
+	}
+	if increment < 1 {
+		return "*" + date, "Invalid increment, expecting greater or equal to 1"
+	}
+	if 10 < increment {
+		return "*" + date, "Invalid increment, expecting smaller or equal to 10"
+	}
+
+	//FIXME:
+
+	return date, ""
 }
 
 //IsBand retuns true if the passed input string is a valid string

@@ -167,6 +167,11 @@ func TestParseLine(t *testing.T) {
 			args{inputStr: "20.09.34 1230 oe6cud/p onff-0258", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
 			LogLine{Date: "*2020-09-34", Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", WWFF: "ONFF-0258"}, "Error parsing time \"2020-09-34\": day out of range",
 		},
+		{
+			"date processing - day ",
+			args{inputStr: "day ++ 1230 oe6cud/p ", previousLine: LogLine{Date: "2020-09-05", Mode: "FM", ModeType: "PHONE"}},
+			LogLine{Date: "2020-09-07", Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE"}, "",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
