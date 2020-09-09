@@ -61,8 +61,6 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	regexpHeaderMyGrid := regexp.MustCompile("(?i)^mygrid ")
 	regexpHeaderQslMsg := regexp.MustCompile("(?i)^qslmsg ")
 	regexpHeaderNickname := regexp.MustCompile("(?i)^nickname ")
-	
-	
 
 	headerMyCall := ""
 	headerOperator := ""

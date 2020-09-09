@@ -80,7 +80,6 @@ func Test_buildAdif(t *testing.T) {
 		"<STATION_CALLSIGN:8>ON4KJM/P <CALL:5>ON4LY <QSO_DATE:8>20200524 <TIME_ON:4>1312 <BAND:3>20m <MODE:2>CW <RST_SENT:3>559 <RST_RCVD:3>599 <MY_SIG:4>WWFF <MY_SIG_INFO:9>ONFF-0259 <OPERATOR:6>ON4KJM <MY_GRIDSQUARE:6>JO40eu <EOR>",
 	}
 
-
 	type args struct {
 		fullLog []LogLine
 		isWWFF  bool

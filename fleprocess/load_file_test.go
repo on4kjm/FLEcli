@@ -381,8 +381,6 @@ func TestLoadFile_happyCase_day(t *testing.T) {
 	os.Remove(temporaryDataFileName)
 }
 
-
-
 func TestLoadFile_bad_date(t *testing.T) {
 
 	//Given
@@ -463,7 +461,6 @@ func TestLoadFile_bad_date(t *testing.T) {
 	//Clean Up
 	os.Remove(temporaryDataFileName)
 }
-
 
 func TestLoadFile_wrongHeader(t *testing.T) {
 

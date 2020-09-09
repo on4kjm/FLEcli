@@ -205,9 +205,15 @@ func IncrementDate(date string, increment int) (newdate string, err string) {
 		return "*" + date, "Invalid increment, expecting smaller or equal to 10"
 	}
 
-	//FIXME:
+	const RFC3339FullDate = "2006-01-02"
+	convertedTime, timeErr := time.Parse(RFC3339FullDate, date)
+	if timeErr != nil {
+		return "*" + date, "(Internal error) error " + fmt.Sprint(timeErr)
+	}
+	// the number of days specified in increment
+	newDate := convertedTime.AddDate(0, 0, increment)
 
-	return date, ""
+	return newDate.Format(RFC3339FullDate), ""
 }
 
 //IsBand retuns true if the passed input string is a valid string

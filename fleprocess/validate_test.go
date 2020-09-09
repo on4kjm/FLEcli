@@ -483,6 +483,11 @@ func TestIncrementDate(t *testing.T) {
 			"*2020-09-05", "Invalid increment, expecting smaller or equal to 10",
 		},
 		{
+			"Invalid date",
+			args{date: "2020-09-32", increment: 2},
+			"*2020-09-32", "(Internal error) error parsing time \"2020-09-32\": day out of range",
+		},
+		{
 			"happy case",
 			args{date: "2020-09-05", increment: 2},
 			"2020-09-07", "",

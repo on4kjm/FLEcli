@@ -146,17 +146,22 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 			continue
 		}
 
-		//FIXME:
-
 		//Skip the "day" keyword
 		if regexpIsDayKeyword.MatchString(element) {
 			continue
 		}
 
-		//TODO: scan the +
-		if regexpDayIncrementPattern.MatchString(element){
+		//Scan the + part
+		if regexpDayIncrementPattern.MatchString(element) {
 			increment := len(element)
-			fmt.Println(increment)
+			fmt.Println(logLine.Date)
+			newDate, dateError := IncrementDate(logLine.Date, increment)
+			if dateError != "" {
+				fmt.Println(dateError)
+				//FIXME:
+			}
+			logLine.Date = newDate
+			continue
 		}
 
 		// Is it a band?
