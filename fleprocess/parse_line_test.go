@@ -175,7 +175,7 @@ func TestParseLine(t *testing.T) {
 		{
 			"date processing - day (error) ",
 			args{inputStr: "day +++++++++++ 1230 oe6cud/p ", previousLine: LogLine{Date: "2020-09-05", Mode: "FM", ModeType: "PHONE"}},
-			LogLine{Date: "*2020-09-05", Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE"}, "Error",
+			LogLine{Date: "*2020-09-05", Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE"}, "Invalid day increment, expecting smaller or equal to 10",
 		},
 		{
 			"date band and mode on the same line)",

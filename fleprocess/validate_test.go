@@ -475,12 +475,12 @@ func TestIncrementDate(t *testing.T) {
 		{
 			"increment below 0",
 			args{date: "2020-09-05", increment: 0},
-			"*2020-09-05", "Invalid increment, expecting greater or equal to 1",
+			"*2020-09-05", "Invalid day increment, expecting greater or equal to 1",
 		},
 		{
 			"increment above 10",
 			args{date: "2020-09-05", increment: 11},
-			"*2020-09-05", "Invalid increment, expecting smaller or equal to 10",
+			"*2020-09-05", "Invalid day increment, expecting smaller or equal to 10",
 		},
 		{
 			"Invalid date",

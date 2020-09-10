@@ -157,8 +157,7 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 			fmt.Println(logLine.Date)
 			newDate, dateError := IncrementDate(logLine.Date, increment)
 			if dateError != "" {
-				fmt.Println(dateError)
-				//FIXME:
+				errorMsg = errorMsg + fmt.Sprintf(dateError)
 			}
 			logLine.Date = newDate
 			continue

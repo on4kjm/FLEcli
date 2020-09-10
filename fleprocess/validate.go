@@ -199,10 +199,10 @@ func IncrementDate(date string, increment int) (newdate string, err string) {
 		return "", "No date to increment"
 	}
 	if increment < 1 {
-		return "*" + date, "Invalid increment, expecting greater or equal to 1"
+		return "*" + date, "Invalid day increment, expecting greater or equal to 1"
 	}
 	if 10 < increment {
-		return "*" + date, "Invalid increment, expecting smaller or equal to 10"
+		return "*" + date, "Invalid day increment, expecting smaller or equal to 10"
 	}
 
 	const RFC3339FullDate = "2006-01-02"
