@@ -142,7 +142,6 @@ func NormalizeDate(inputStr string) (date, errorMsg string) {
 		return "*" + inputStr, errorMsg
 	}
 
-
 	//complete the numbers if shorter than expected ("20" for the first and "0" for the two next)
 	year := s[0]
 	if len(year) == 2 {
@@ -192,6 +191,29 @@ func ValidateDate(inputStr string) (ref, errorMsg string) {
 	}
 
 	return wrongInputStr, fmt.Sprint(err)
+}
+
+//IncrementDate will increment the supplied date by the specified increment. It returns the new date.
+func IncrementDate(date string, increment int) (newdate string, err string) {
+	if date == "" {
+		return "", "No date to increment"
+	}
+	if increment < 1 {
+		return "*" + date, "Invalid day increment, expecting greater or equal to 1"
+	}
+	if 10 < increment {
+		return "*" + date, "Invalid day increment, expecting smaller or equal to 10"
+	}
+
+	const RFC3339FullDate = "2006-01-02"
+	convertedTime, timeErr := time.Parse(RFC3339FullDate, date)
+	if timeErr != nil {
+		return "*" + date, "(Internal error) error " + fmt.Sprint(timeErr)
+	}
+	// the number of days specified in increment
+	newDate := convertedTime.AddDate(0, 0, increment)
+
+	return newDate.Format(RFC3339FullDate), ""
 }
 
 //IsBand retuns true if the passed input string is a valid string

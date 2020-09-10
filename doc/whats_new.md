@@ -2,7 +2,12 @@
 
 ## v0.1.2
 
-* Correctly process of optional WWFF keyword(issue #38)
+* DATE keyword is now optional
+* Date can have several delimiter ("-", "/", ".", or " ")
+* Partial dates can be entered ("20-9-6" => "2020-09-06")
+* The new (FLE v3) "DAY" keyword is now supported (increment is 10 max)
+* Date, band, and mode can be specified on a same line, even with a QSO
+* Correctly process of optional WWFF keyword
 * Correct some typos
 
 ## Previous releases

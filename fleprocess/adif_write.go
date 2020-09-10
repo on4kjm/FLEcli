@@ -76,7 +76,7 @@ func buildAdif(fullLog []LogLine, isWWFF bool, isSOTA bool) (adifList []string) 
 			}
 		}
 		if logLine.Operator != "" {
-		adifLine.WriteString(adifElement("OPERATOR", logLine.Operator))
+			adifLine.WriteString(adifElement("OPERATOR", logLine.Operator))
 		}
 		if logLine.MyGrid != "" {
 			adifLine.WriteString(adifElement("MY_GRIDSQUARE", logLine.MyGrid))

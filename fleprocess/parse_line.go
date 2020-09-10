@@ -59,8 +59,12 @@ var regexpIsOMname = regexp.MustCompile("^@")
 var regexpIsGridLoc = regexp.MustCompile("^#")
 var regexpIsRst = regexp.MustCompile("^[\\d]{1,3}$")
 var regexpIsFreq = regexp.MustCompile("^[\\d]+\\.[\\d]+$")
-var regexpIsSotaKeyWord = regexp.MustCompile("(?i)^sota")
-var regexpIsWwffKeyWord = regexp.MustCompile("(?i)^wwff")
+var regexpIsSotaKeyWord = regexp.MustCompile("(?i)^sota$")
+var regexpIsWwffKeyWord = regexp.MustCompile("(?i)^wwff$")
+var regexpDatePattern = regexp.MustCompile("^(\\d{2}|\\d{4})[-/ .]\\d{1,2}[-/ .]\\d{1,2}$")
+var regexpIsDateKeyWord = regexp.MustCompile("(?i)^date$")
+var regexpDayIncrementPattern = regexp.MustCompile("^\\+*$")
+var regexpIsDayKeyword = regexp.MustCompile("(?i)^day$")
 
 // ParseLine cuts a FLE line into useful bits
 func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg string) {
@@ -116,6 +120,46 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 			} else {
 				errorMsg = errorMsg + "Double definitiion of RST"
 			}
+			continue
+		}
+
+		//Date?
+		if regexpDatePattern.MatchString(element) {
+			//We probably have a date, let's normalize it
+			errorTxt := ""
+			normalizedDate := ""
+			normalizedDate, errorTxt = NormalizeDate(element)
+			if len(errorTxt) != 0 {
+				logLine.Date = normalizedDate
+				errorMsg = errorMsg + fmt.Sprintf("Invalid Date: %s (%s)", element, errorTxt)
+			} else {
+				logLine.Date, errorTxt = ValidateDate(normalizedDate)
+				if len(errorTxt) != 0 {
+					errorMsg = errorMsg + fmt.Sprintf("Error %s", errorTxt)
+				}
+			}
+			continue
+		}
+
+		// The date keyword is not really useful, skip it
+		if regexpIsDateKeyWord.MatchString(element) {
+			continue
+		}
+
+		//Skip the "day" keyword
+		if regexpIsDayKeyword.MatchString(element) {
+			continue
+		}
+
+		//Scan the + part
+		if regexpDayIncrementPattern.MatchString(element) {
+			increment := len(element)
+			fmt.Println(logLine.Date)
+			newDate, dateError := IncrementDate(logLine.Date, increment)
+			if dateError != "" {
+				errorMsg = errorMsg + fmt.Sprintf(dateError)
+			}
+			logLine.Date = newDate
 			continue
 		}
 
@@ -257,7 +301,7 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 		}
 
 		//If we come here, we could not make sense of what we found
-		errorMsg = errorMsg + "Unable to make sense of [" + element + "]."
+		errorMsg = errorMsg + "Unable to make sense of [" + element + "]. "
 
 	}
 

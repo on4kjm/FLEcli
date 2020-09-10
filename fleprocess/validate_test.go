@@ -455,3 +455,53 @@ func TestNormalizeDate(t *testing.T) {
 		})
 	}
 }
+
+func TestIncrementDate(t *testing.T) {
+	type args struct {
+		date      string
+		increment int
+	}
+	tests := []struct {
+		name        string
+		args        args
+		wantNewdate string
+		wantErr     string
+	}{
+		{
+			"No date",
+			args{date: "", increment: 2},
+			"", "No date to increment",
+		},
+		{
+			"increment below 0",
+			args{date: "2020-09-05", increment: 0},
+			"*2020-09-05", "Invalid day increment, expecting greater or equal to 1",
+		},
+		{
+			"increment above 10",
+			args{date: "2020-09-05", increment: 11},
+			"*2020-09-05", "Invalid day increment, expecting smaller or equal to 10",
+		},
+		{
+			"Invalid date",
+			args{date: "2020-09-32", increment: 2},
+			"*2020-09-32", "(Internal error) error parsing time \"2020-09-32\": day out of range",
+		},
+		{
+			"happy case",
+			args{date: "2020-09-05", increment: 2},
+			"2020-09-07", "",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			gotNewdate, gotErr := IncrementDate(tt.args.date, tt.args.increment)
+			if gotNewdate != tt.wantNewdate {
+				t.Errorf("IncrementDate() gotNewdate = %v, want %v", gotNewdate, tt.wantNewdate)
+			}
+			if gotErr != tt.wantErr {
+				t.Errorf("IncrementDate() gotErr = %v, want %v", gotErr, tt.wantErr)
+			}
+		})
+	}
+}

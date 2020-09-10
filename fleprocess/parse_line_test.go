@@ -70,7 +70,7 @@ func TestParseLine(t *testing.T) {
 		{
 			"Wrong mode",
 			args{inputStr: "cww", previousLine: LogLine{Mode: "SSB"}},
-			LogLine{Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "Unable to make sense of [cww].",
+			LogLine{Mode: "SSB", RSTsent: "59", RSTrcvd: "59"}, "Unable to make sense of [cww]. ",
 		},
 		{
 			"Parse OM name",
@@ -151,6 +151,36 @@ func TestParseLine(t *testing.T) {
 			"implied WWFF keywork ",
 			args{inputStr: "1230 oe6cud/p onff-0258", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
 			LogLine{Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", WWFF: "ONFF-0258"}, "",
+		},
+		{
+			"date processing",
+			args{inputStr: "20.09.7 1230 oe6cud/p onff-0258", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
+			LogLine{Date: "2020-09-07", Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", WWFF: "ONFF-0258"}, "",
+		},
+		{
+			"date processing (with keyword)",
+			args{inputStr: "Date 20.09.7 1230 oe6cud/p onff-0258", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
+			LogLine{Date: "2020-09-07", Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", WWFF: "ONFF-0258"}, "",
+		},
+		{
+			"date processing - validation error",
+			args{inputStr: "20.09.34 1230 oe6cud/p onff-0258", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
+			LogLine{Date: "*2020-09-34", Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", WWFF: "ONFF-0258"}, "Error parsing time \"2020-09-34\": day out of range",
+		},
+		{
+			"date processing - day ",
+			args{inputStr: "day ++ 1230 oe6cud/p ", previousLine: LogLine{Date: "2020-09-05", Mode: "FM", ModeType: "PHONE"}},
+			LogLine{Date: "2020-09-07", Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE"}, "",
+		},
+		{
+			"date processing - day (error) ",
+			args{inputStr: "day +++++++++++ 1230 oe6cud/p ", previousLine: LogLine{Date: "2020-09-05", Mode: "FM", ModeType: "PHONE"}},
+			LogLine{Date: "*2020-09-05", Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE"}, "Invalid day increment, expecting smaller or equal to 10",
+		},
+		{
+			"date band and mode on the same line)",
+			args{inputStr: "Date 20.09.7 40m cw 1230 oe6cud/p onff-0258", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
+			LogLine{Date: "2020-09-07", Mode: "CW", Band: "40m", BandLowerLimit: 7.0, BandUpperLimit: 7.3, Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "599", RSTrcvd: "599", ModeType: "CW", WWFF: "ONFF-0258"}, "",
 		},
 	}
 	for _, tt := range tests {

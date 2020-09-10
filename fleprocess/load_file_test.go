@@ -199,6 +199,188 @@ func TestLoadFile_happyCase_date(t *testing.T) {
 	os.Remove(temporaryDataFileName)
 }
 
+func TestLoadFile_happyCase_date2(t *testing.T) {
+
+	//Given
+	dataArray := make([]string, 0)
+	dataArray = append(dataArray, "# Header")
+	dataArray = append(dataArray, "myCall on4kjm/p")
+	dataArray = append(dataArray, "operator on4kjm")
+	dataArray = append(dataArray, "nickname Portable")
+	dataArray = append(dataArray, " ")
+	dataArray = append(dataArray, " #Log")
+	dataArray = append(dataArray, "20/5/23")
+	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
+	dataArray = append(dataArray, "on6zq")
+	dataArray = append(dataArray, "0954 on4do")
+	dataArray = append(dataArray, "20-05-25 20m ssb 1000 on4up")
+
+	temporaryDataFileName := createTestFile(dataArray)
+
+	//When
+	loadedLogFile, isLoadedOK := LoadFile(temporaryDataFileName, true)
+
+	//Then
+	if !isLoadedOK {
+		t.Error("Test file could not be correctly processed")
+	}
+	if len(loadedLogFile) == 0 {
+		t.Error("No data loaded")
+	}
+
+	expectedValue := "ON4KJM/P"
+	if loadedLogFile[0].MyCall != expectedValue {
+		t.Errorf("Not the expected MyCall value: %s (expecting %s)", loadedLogFile[0].MyCall, expectedValue)
+	}
+	expectedValue = "ON4KJM"
+	if loadedLogFile[0].Operator != expectedValue {
+		t.Errorf("Not the expected Operator value: %s (expecting %s)", loadedLogFile[0].Operator, expectedValue)
+	}
+	expectedValue = "Portable"
+	if loadedLogFile[0].Nickname != expectedValue {
+		t.Errorf("Not the expected eQsl Nickname value: %s (expecting %s)", loadedLogFile[0].Nickname, expectedValue)
+	}
+	expectedValue = "IK5ZVE/5"
+	if loadedLogFile[0].Call != expectedValue {
+		t.Errorf("Not the expected Call[0] value: %s (expecting %s)", loadedLogFile[0].Call, expectedValue)
+	}
+	expectedValue = "0950"
+	if loadedLogFile[0].Time != expectedValue {
+		t.Errorf("Not the expected Time[0] value: %s (expecting %s)", loadedLogFile[0].Time, expectedValue)
+	}
+	expectedValue = "2020-05-23"
+	if loadedLogFile[0].Date != expectedValue {
+		t.Errorf("Not the expected Date[0] value: %s (expecting %s)", loadedLogFile[0].Date, expectedValue)
+	}
+	expectedValue = "ON6ZQ"
+	if loadedLogFile[1].Call != expectedValue {
+		t.Errorf("Not the expected Call[1] value: %s (expecting %s)", loadedLogFile[1].Call, expectedValue)
+	}
+	expectedValue = "0952"
+	if loadedLogFile[1].Time != expectedValue {
+		t.Errorf("Not the expected Time[1] value: %s (expecting %s)", loadedLogFile[1].Time, expectedValue)
+	}
+	expectedValue = "ON4DO"
+	if loadedLogFile[2].Call != expectedValue {
+		t.Errorf("Not the expected Call[2] value: %s (expecting %s)", loadedLogFile[2].Call, expectedValue)
+	}
+	expectedValue = "0954"
+	if loadedLogFile[2].Time != expectedValue {
+		t.Errorf("Not the expected Time[2] value: %s (expecting %s)", loadedLogFile[2].Time, expectedValue)
+	}
+
+	//	 "20-05-25 20m 1000 on4up")
+	expectedValue = "2020-05-25"
+	if loadedLogFile[3].Date != expectedValue {
+		t.Errorf("Not the expected Date[3] value: %s (expecting %s)", loadedLogFile[3].Time, expectedValue)
+	}
+	expectedValue = "1000"
+	if loadedLogFile[3].Time != expectedValue {
+		t.Errorf("Not the expected Time[3] value: %s (expecting %s)", loadedLogFile[3].Time, expectedValue)
+	}
+	expectedValue = "20m"
+	if loadedLogFile[3].Band != expectedValue {
+		t.Errorf("Not the expected Band[3] value: %s (expecting %s)", loadedLogFile[3].Band, expectedValue)
+	}
+	expectedValue = "ON4UP"
+	if loadedLogFile[3].Call != expectedValue {
+		t.Errorf("Not the expected Call[3] value: %s (expecting %s)", loadedLogFile[3].Call, expectedValue)
+	}
+	//Clean Up
+	os.Remove(temporaryDataFileName)
+}
+
+func TestLoadFile_happyCase_day(t *testing.T) {
+
+	//Given
+	dataArray := make([]string, 0)
+	dataArray = append(dataArray, "# Header")
+	dataArray = append(dataArray, "myCall on4kjm/p")
+	dataArray = append(dataArray, "operator on4kjm")
+	dataArray = append(dataArray, "nickname Portable")
+	dataArray = append(dataArray, " ")
+	dataArray = append(dataArray, " #Log")
+	dataArray = append(dataArray, "20/5/23")
+	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
+	dataArray = append(dataArray, "on6zq")
+	dataArray = append(dataArray, "0954 on4do")
+	dataArray = append(dataArray, "day ++ 20m 1000 on4up")
+
+	temporaryDataFileName := createTestFile(dataArray)
+
+	//When
+	loadedLogFile, isLoadedOK := LoadFile(temporaryDataFileName, true)
+
+	//Then
+	if !isLoadedOK {
+		t.Error("Test file could not be correctly processed")
+	}
+	if len(loadedLogFile) == 0 {
+		t.Error("No data loaded")
+	}
+
+	expectedValue := "ON4KJM/P"
+	if loadedLogFile[0].MyCall != expectedValue {
+		t.Errorf("Not the expected MyCall value: %s (expecting %s)", loadedLogFile[0].MyCall, expectedValue)
+	}
+	expectedValue = "ON4KJM"
+	if loadedLogFile[0].Operator != expectedValue {
+		t.Errorf("Not the expected Operator value: %s (expecting %s)", loadedLogFile[0].Operator, expectedValue)
+	}
+	expectedValue = "Portable"
+	if loadedLogFile[0].Nickname != expectedValue {
+		t.Errorf("Not the expected eQsl Nickname value: %s (expecting %s)", loadedLogFile[0].Nickname, expectedValue)
+	}
+	expectedValue = "IK5ZVE/5"
+	if loadedLogFile[0].Call != expectedValue {
+		t.Errorf("Not the expected Call[0] value: %s (expecting %s)", loadedLogFile[0].Call, expectedValue)
+	}
+	expectedValue = "0950"
+	if loadedLogFile[0].Time != expectedValue {
+		t.Errorf("Not the expected Time[0] value: %s (expecting %s)", loadedLogFile[0].Time, expectedValue)
+	}
+	expectedValue = "2020-05-23"
+	if loadedLogFile[0].Date != expectedValue {
+		t.Errorf("Not the expected Date[0] value: %s (expecting %s)", loadedLogFile[0].Date, expectedValue)
+	}
+	expectedValue = "ON6ZQ"
+	if loadedLogFile[1].Call != expectedValue {
+		t.Errorf("Not the expected Call[1] value: %s (expecting %s)", loadedLogFile[1].Call, expectedValue)
+	}
+	expectedValue = "0952"
+	if loadedLogFile[1].Time != expectedValue {
+		t.Errorf("Not the expected Time[1] value: %s (expecting %s)", loadedLogFile[1].Time, expectedValue)
+	}
+	expectedValue = "ON4DO"
+	if loadedLogFile[2].Call != expectedValue {
+		t.Errorf("Not the expected Call[2] value: %s (expecting %s)", loadedLogFile[2].Call, expectedValue)
+	}
+	expectedValue = "0954"
+	if loadedLogFile[2].Time != expectedValue {
+		t.Errorf("Not the expected Time[2] value: %s (expecting %s)", loadedLogFile[2].Time, expectedValue)
+	}
+
+	//	 "20-05-25 20m 1000 on4up")
+	expectedValue = "2020-05-25"
+	if loadedLogFile[3].Date != expectedValue {
+		t.Errorf("Not the expected Date[3] value: %s (expecting %s)", loadedLogFile[3].Time, expectedValue)
+	}
+	expectedValue = "1000"
+	if loadedLogFile[3].Time != expectedValue {
+		t.Errorf("Not the expected Time[3] value: %s (expecting %s)", loadedLogFile[3].Time, expectedValue)
+	}
+	expectedValue = "20m"
+	if loadedLogFile[3].Band != expectedValue {
+		t.Errorf("Not the expected Band[3] value: %s (expecting %s)", loadedLogFile[3].Band, expectedValue)
+	}
+	expectedValue = "ON4UP"
+	if loadedLogFile[3].Call != expectedValue {
+		t.Errorf("Not the expected Call[3] value: %s (expecting %s)", loadedLogFile[3].Call, expectedValue)
+	}
+	//Clean Up
+	os.Remove(temporaryDataFileName)
+}
+
 func TestLoadFile_bad_date(t *testing.T) {
 
 	//Given
@@ -279,7 +461,6 @@ func TestLoadFile_bad_date(t *testing.T) {
 	//Clean Up
 	os.Remove(temporaryDataFileName)
 }
-
 
 func TestLoadFile_wrongHeader(t *testing.T) {
 
