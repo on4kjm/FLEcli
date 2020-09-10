@@ -213,7 +213,7 @@ func TestLoadFile_happyCase_date2(t *testing.T) {
 	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
 	dataArray = append(dataArray, "on6zq")
 	dataArray = append(dataArray, "0954 on4do")
-	dataArray = append(dataArray, "20-05-25 20m 1000 on4up")
+	dataArray = append(dataArray, "20-05-25 20m ssb 1000 on4up")
 
 	temporaryDataFileName := createTestFile(dataArray)
 
