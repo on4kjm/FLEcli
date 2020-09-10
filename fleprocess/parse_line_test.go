@@ -172,6 +172,11 @@ func TestParseLine(t *testing.T) {
 			args{inputStr: "day ++ 1230 oe6cud/p ", previousLine: LogLine{Date: "2020-09-05", Mode: "FM", ModeType: "PHONE"}},
 			LogLine{Date: "2020-09-07", Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE"}, "",
 		},
+		{
+			"date band and mode on the same line)",
+			args{inputStr: "Date 20.09.7 40m cw 1230 oe6cud/p onff-0258", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
+			LogLine{Date: "2020-09-07", Mode: "CW", Band: "40m", Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", ModeType: "CW", WWFF: "ONFF-0258"}, "",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
