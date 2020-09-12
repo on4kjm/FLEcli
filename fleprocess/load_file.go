@@ -141,6 +141,11 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 
 		//Operator
 		if regexpHeaderOperator.MatchString(eachline) {
+			//Attempt to redefine value
+			if headerOperator != "" {
+				errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine Operator at line %d", lineCount))
+				continue
+			}
 			errorMsg := ""
 			myOperatorList := regexpHeaderOperator.Split(eachline, -1)
 			if len(strings.TrimSpace(myOperatorList[1])) > 0 {
@@ -156,6 +161,11 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 
 		// My WWFF
 		if regexpHeaderMyWwff.MatchString(eachline) {
+			//Attempt to redefine value
+			if headerMyWWFF != "" {
+				errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine MyWWFF at line %d", lineCount))
+				continue
+			}
 			errorMsg := ""
 			myWwffList := regexpHeaderMyWwff.Split(eachline, -1)
 			if len(strings.TrimSpace(myWwffList[1])) > 0 {
@@ -171,6 +181,11 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 
 		//My Sota
 		if regexpHeaderMySota.MatchString(eachline) {
+			//Attempt to redefine value
+			if headerMySOTA != "" {
+				errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine MySOTA at line %d", lineCount))
+				continue
+			}
 			errorMsg := ""
 			mySotaList := regexpHeaderMySota.Split(eachline, -1)
 			if len(strings.TrimSpace(mySotaList[1])) > 0 {
@@ -186,6 +201,11 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 
 		//My Grid
 		if regexpHeaderMyGrid.MatchString(eachline) {
+			//Attempt to redefine value
+			if headerMyGrid != "" {
+				errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine MyGrid at line %d", lineCount))
+				continue
+			}
 			errorMsg := ""
 			myGridList := regexpHeaderMyGrid.Split(eachline, -1)
 			if len(strings.TrimSpace(myGridList[1])) > 0 {
@@ -212,6 +232,11 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 
 		//Nickname
 		if regexpHeaderNickname.MatchString(eachline) {
+			//Attempt to redefine value
+			if headerNickname != "" {
+				errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine eQSL Nickname at line %d", lineCount))
+				continue
+			}
 			myNicknameList := regexpHeaderNickname.Split(eachline, -1)
 			if len(strings.TrimSpace(myNicknameList[1])) > 0 {
 				headerNickname = strings.TrimSpace(myNicknameList[1])
@@ -220,43 +245,6 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			//If there is no data after the marker, we just skip the data.
 			continue
 		}
-
-		// // Date with keyword
-		// if regexpHeaderDateMarker.MatchString(eachline) {
-		// 	errorMsg := ""
-		// 	myDateList := regexpHeaderDateMarker.Split(eachline, -1)
-		// 	if len(myDateList[1]) > 0 {
-		// 		normalizedDate := ""
-		// 		normalizedDate, errorMsg = NormalizeDate(myDateList[1])
-		// 		if len(errorMsg) != 0 {
-		// 			errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, eachline, errorMsg))
-		// 		} else {
-		// 			headerDate, errorMsg = ValidateDate(normalizedDate)
-		// 			if len(errorMsg) != 0 {
-		// 				errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, myDateList[1], errorMsg))
-		// 			}
-		// 		}
-		// 	}
-		// 	//If there is no data after the marker, we just skip the data.
-		// 	continue
-		// }
-
-		// //Date, apparently alone on a line?
-		// if regexpDatePattern.MatchString(eachline) {
-		// 	//We probably have a date, let's normalize it
-		// 	errorMsg := ""
-		// 	normalizedDate := ""
-		// 	normalizedDate, errorMsg = NormalizeDate(eachline)
-		// 	if len(errorMsg) != 0 {
-		// 		errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, eachline, errorMsg))
-		// 	} else {
-		// 		headerDate, errorMsg = ValidateDate(normalizedDate)
-		// 		if len(errorMsg) != 0 {
-		// 			errorLog = append(errorLog, fmt.Sprintf("Invalid Date at line %d: %s (%s)", lineCount, eachline, errorMsg))
-		// 		}
-		// 	}
-		// 	continue
-		// }
 
 		// ****
 		// ** Process the data block

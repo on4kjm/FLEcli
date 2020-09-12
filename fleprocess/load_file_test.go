@@ -419,8 +419,89 @@ func TestLoadFile_redefining_myCall_must_fail(t *testing.T) {
 	os.Remove(temporaryDataFileName)
 }
 
+func TestLoadFile_redefining_myWWFF_must_fail(t *testing.T) {
+
+	//Given
+	dataArray := make([]string, 0)
+	dataArray = append(dataArray, "# Header")
+	dataArray = append(dataArray, "myCall on4kjm/p")
+	dataArray = append(dataArray, "operator on4kjm")
+	dataArray = append(dataArray, "nickname Portable")
+	dataArray = append(dataArray, "myWwff onff-0258")
+	dataArray = append(dataArray, "mySota on/on-001")
+	dataArray = append(dataArray, " ")
+	dataArray = append(dataArray, " #Log")
+	dataArray = append(dataArray, "20/5/23")
+	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
+	dataArray = append(dataArray, "myWWFF onff-0001")
 
 
+
+	temporaryDataFileName := createTestFile(dataArray)
+
+	//When
+	loadedLogFile, isLoadedOK := LoadFile(temporaryDataFileName, true)
+
+	//Then
+	if isLoadedOK {
+		t.Error("Test file processing should return with an error")
+	}
+	if len(loadedLogFile) == 0 {
+		t.Error("No data loaded")
+	}
+
+	expectedValue := "ONFF-0258"
+	if loadedLogFile[0].MyWWFF != expectedValue {
+		t.Errorf("Not the expected MyWWFF value: %s (expecting %s)", loadedLogFile[0].MyWWFF, expectedValue)
+	}
+
+	//Clean Up
+	os.Remove(temporaryDataFileName)
+}
+
+func TestLoadFile_redefining_mySOTA_must_fail(t *testing.T) {
+
+	//Given
+	dataArray := make([]string, 0)
+	dataArray = append(dataArray, "# Header")
+	dataArray = append(dataArray, "myCall on4kjm/p")
+	dataArray = append(dataArray, "operator on4kjm")
+	dataArray = append(dataArray, "nickname Portable")
+	dataArray = append(dataArray, "myWwff onff-0258")
+	dataArray = append(dataArray, "mySota on/on-001")
+	dataArray = append(dataArray, " ")
+	dataArray = append(dataArray, " #Log")
+	dataArray = append(dataArray, "20/5/23")
+	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
+	dataArray = append(dataArray, "mySota on/on-111")
+
+
+
+	temporaryDataFileName := createTestFile(dataArray)
+
+	//When
+	loadedLogFile, isLoadedOK := LoadFile(temporaryDataFileName, true)
+
+	//Then
+	if isLoadedOK {
+		t.Error("Test file processing should return with an error")
+	}
+	if len(loadedLogFile) == 0 {
+		t.Error("No data loaded")
+	}
+
+	expectedValue := "ON/ON-001"
+	if loadedLogFile[0].MySOTA != expectedValue {
+		t.Errorf("Not the expected MySOTA value: %s (expecting %s)", loadedLogFile[0].MySOTA, expectedValue)
+	}
+
+	//Clean Up
+	os.Remove(temporaryDataFileName)
+}
+
+//TODO: MyGrid
+//TODO: Operator
+//TODO: Nickname
 
 
 func TestLoadFile_bad_date(t *testing.T) {
