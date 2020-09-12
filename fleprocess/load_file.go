@@ -121,6 +121,11 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 
 		//My Call
 		if regexpHeaderMyCall.MatchString(eachline) {
+			//Attempt to redefine value
+			if headerMyCall != "" {
+				errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine MyCall at line %d", lineCount))
+				continue
+			}
 			errorMsg := ""
 			myCallList := regexpHeaderMyCall.Split(eachline, -1)
 			if len(strings.TrimSpace(myCallList[1])) > 0 {
