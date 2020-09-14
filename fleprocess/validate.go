@@ -82,7 +82,7 @@ func ValidateGridLocator(grid string) (processedGrid, errorMsg string) {
 	return processedGrid, errorMsg
 }
 
-var validCallRegexp = regexp.MustCompile(`^[\d]{0,1}[A-Z]{1,2}\d([A-Z]{1,4}|\d{3,3}|\d{1,3}[A-Z])[A-Z]{0,5}`)
+var validCallRegexp = regexp.MustCompile(`[\d]{0,1}[A-Z]{1,2}\d([A-Z]{1,4}|\d{3,3}|\d{1,3}[A-Z])[A-Z]{0,5}`)
 var validPrefixRegexp = regexp.MustCompile(`\A[a-zA-Z0-9]{1,3}$`)
 
 // ValidateCall verifies whether the supplied string is a valid callsign.

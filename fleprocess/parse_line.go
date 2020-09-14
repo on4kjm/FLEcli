@@ -190,12 +190,16 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 		}
 
 		// Is it a call sign ?
+		//FIXME:
 		if validCallRegexp.MatchString(strings.ToUpper(element)) {
-			callErrorMsg := ""
-			logLine.Call, callErrorMsg = ValidateCall(element)
-			errorMsg = errorMsg + callErrorMsg
-			isRightOfCall = true
-			continue
+			//If it starts with "#",it is a grid definition and not a call
+			if element[0] != '#' {
+				callErrorMsg := ""
+				logLine.Call, callErrorMsg = ValidateCall(element)
+				errorMsg = errorMsg + callErrorMsg
+				isRightOfCall = true
+				continue
+			}
 		}
 
 		// Is it a "full" time ?

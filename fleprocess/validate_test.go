@@ -183,6 +183,16 @@ func TestValidateCall(t *testing.T) {
 			"DL/ON4KJM/QRPP", "",
 		},
 		{
+			"Valid call from activation",
+			args{sign: "sm1/dl6jz/p"},
+			"SM1/DL6JZ/P", "",
+		},
+		{
+			"Valid call from activation (case 2)",
+			args{sign: "Sm/dl8mf"},
+			"SM/DL8MF", "",
+		},		
+		{
 			"Valid prefix (issue #2)",
 			args{sign: "e7/z35m/p"},
 			"E7/Z35M/P", "",
