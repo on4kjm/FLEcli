@@ -69,6 +69,7 @@ func buildAdif(fullLog []LogLine, isWWFF bool, isSOTA bool) (adifList []string) 
 			adifLine.WriteString(adifElement("MY_SIG", "WWFF"))
 			adifLine.WriteString(adifElement("MY_SIG_INFO", logLine.MyWWFF))
 			if logLine.WWFF != "" {
+				adifLine.WriteString(adifElement("SIG", "WWFF"))
 				adifLine.WriteString(adifElement("SIG_INFO",logLine.WWFF))
 			}
 		}
