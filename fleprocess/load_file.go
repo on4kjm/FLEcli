@@ -26,7 +26,7 @@ import (
 	"time"
 )
 
-//LoadFile FIXME
+//LoadFile FIXME:
 //returns nill if failure to process
 func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogLine, isProcessedOK bool) {
 	file, err := os.Open(inputFilename)
@@ -48,6 +48,9 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	}
 
 	file.Close()
+
+	//isInferTimeFatalError is set to true is something bad happened while storing time gaps.
+	var bool isInferTimeFatalError = false
 
 	regexpLineComment := regexp.MustCompile("^[[:blank:]]*#")
 	regexpOnlySpaces := regexp.MustCompile("^\\s+$")
@@ -258,7 +261,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		previousLogLine.MyGrid = headerMyGrid
 		previousLogLine.QSLmsg = headerQslMsg //previousLogLine.QslMsg is redundant
 		previousLogLine.Nickname = headerNickname
-		//previousLogLine.Date = headerDate
+		
 
 		//parse a line
 		logline, errorLine := ParseLine(eachline, previousLogLine)
@@ -271,12 +274,13 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			if isInterpolateTime {
 				var isEndOfGap bool
 				if isEndOfGap, err = wrkTimeBlock.storeTimeGap(logline, len(fullLog)); err != nil {
-					fmt.Println("\nProcessing errors:")
-					for _, errorLogLine := range errorLog {
-						fmt.Println(errorLogLine)
-					}
-					log.Println("Fatal error: ", err)
-					os.Exit(1)
+					errorLog = append(errorLog, fmt.Sprintf("Fatal error at line %d: %s", lineCount, err))
+					// fmt.Println("\nProcessing errors:")
+					// for _, errorLogLine := range errorLog {
+					// 	fmt.Println(errorLogLine)
+					// }
+					// log.Println("Fatal error: ", err)
+					// os.Exit(1)
 				}
 				//If we reached the end of the time gap, we make the necessary checks and make our gap calculation
 				if isEndOfGap {
@@ -325,7 +329,6 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 				position := timeBlock.logFilePosition + i
 				pLogLine := &fullLog[position]
 
-				// durationOffset := time.Second * time.Duration(timeBlock.deltatime*(i+1))
 				durationOffset := timeBlock.deltatime * time.Duration(i+1)
 				newTime := timeBlock.lastRecordedTime.Add(durationOffset)
 				updatedTimeString := newTime.Format("1504")
