@@ -782,7 +782,7 @@ func TestLoadFile_wrongHeader(t *testing.T) {
 	os.Remove(temporaryDataFileName)
 }
 
-//FIXME: if the first call is wrong the infertime doesn't work
+//if the first call is wrong the infertime doesn't work
 func TestLoadFile_InferTime_missingStartTime(t *testing.T) {
 
 	//Given
@@ -828,7 +828,7 @@ func TestLoadFile_InferTime_missingStartTime(t *testing.T) {
 	if loadedLogFile[0].Call != expectedValue {
 		t.Errorf("Not the expected Call[0] value: %s (expecting %s)", loadedLogFile[0].Call, expectedValue)
 	}
-	expectedValue = "0950"
+	expectedValue = ""
 	if loadedLogFile[0].Time != expectedValue {
 		t.Errorf("Not the expected Time[0] value: %s (expecting %s)", loadedLogFile[0].Time, expectedValue)
 	}
@@ -840,7 +840,7 @@ func TestLoadFile_InferTime_missingStartTime(t *testing.T) {
 	if loadedLogFile[1].Call != expectedValue {
 		t.Errorf("Not the expected Call[1] value: %s (expecting %s)", loadedLogFile[1].Call, expectedValue)
 	}
-	expectedValue = "0952"
+	expectedValue = ""
 	if loadedLogFile[1].Time != expectedValue {
 		t.Errorf("Not the expected Time[1] value: %s (expecting %s)", loadedLogFile[1].Time, expectedValue)
 	}
@@ -929,6 +929,82 @@ func TestLoadFile_InferTime_missingEndTime(t *testing.T) {
 	//Clean Up
 	os.Remove(temporaryDataFileName)
 }
+
+//FIXME: same time
+func TestLoadFile_2_QSO_same_time(t *testing.T) {
+
+	//Given
+	dataArray := make([]string, 0)
+	dataArray = append(dataArray, "# Header")
+	dataArray = append(dataArray, "myCall on4kjm/p")
+	dataArray = append(dataArray, "operator on4kjm")
+	dataArray = append(dataArray, "myWwff  onff-0001")
+	dataArray = append(dataArray, " ")
+	dataArray = append(dataArray, " #Log")
+	dataArray = append(dataArray, "date 2020-05-23")
+	dataArray = append(dataArray, "40m cw 0950 ik5zve 9 5")
+	dataArray = append(dataArray, "0951 on6zq")
+	dataArray = append(dataArray, "0951 on4do")
+	dataArray = append(dataArray, "0952 on4bb")
+
+	temporaryDataFileName := createTestFile(dataArray)
+
+	//When
+	loadedLogFile, isLoadedOK := LoadFile(temporaryDataFileName, true)
+
+	//Then
+	if isLoadedOK {
+		t.Error("Test file processing should return with an error")
+	}
+	if len(loadedLogFile) == 0 {
+		t.Error("No data loaded")
+	}
+
+	expectedValue := "ON4KJM/P"
+	if loadedLogFile[0].MyCall != expectedValue {
+		t.Errorf("Not the expected MyCall value: %s (expecting %s)", loadedLogFile[0].MyCall, expectedValue)
+	}
+	expectedValue = "ON4KJM"
+	if loadedLogFile[0].Operator != expectedValue {
+		t.Errorf("Not the expected Operator value: %s (expecting %s)", loadedLogFile[0].Operator, expectedValue)
+	}
+	expectedValue = "ONFF-0001"
+	if loadedLogFile[0].MyWWFF != expectedValue {
+		t.Errorf("Not the expected MyWWFF value: %s (expecting %s)", loadedLogFile[0].MyWWFF, expectedValue)
+	}
+	
+	expectedValue = "IK5ZVE"
+	if loadedLogFile[0].Call != expectedValue {
+		t.Errorf("Not the expected Call[0] value: %s (expecting %s)", loadedLogFile[0].Call, expectedValue)
+	}
+	expectedValue = "0950"
+	if loadedLogFile[0].Time != expectedValue {
+		t.Errorf("Not the expected Time[0] value: %s (expecting %s)", loadedLogFile[0].Time, expectedValue)
+	}
+	expectedValue = "2020-05-23"
+	if loadedLogFile[0].Date != expectedValue {
+		t.Errorf("Not the expected Date[0] value: %s (expecting %s)", loadedLogFile[0].Date, expectedValue)
+	}
+	expectedValue = "ON6ZQ"
+	if loadedLogFile[1].Call != expectedValue {
+		t.Errorf("Not the expected Call[1] value: %s (expecting %s)", loadedLogFile[1].Call, expectedValue)
+	}
+	expectedValue = "0952"
+	if loadedLogFile[1].Time != expectedValue {
+		t.Errorf("Not the expected Time[1] value: %s (expecting %s)", loadedLogFile[1].Time, expectedValue)
+	}
+	expectedValue = "ON4DO"
+	if loadedLogFile[2].Call != expectedValue {
+		t.Errorf("Not the expected Call[2] value: %s (expecting %s)", loadedLogFile[2].Call, expectedValue)
+	}
+	expectedValue = "0954"
+	if loadedLogFile[2].Time != expectedValue {
+		t.Errorf("Not the expected Time[2] value: %s (expecting %s)", loadedLogFile[2].Time, expectedValue)
+	}
+	//Clean Up
+	os.Remove(temporaryDataFileName)
+}
+
 
 
 func TestLoadFile_wrongData(t *testing.T) {

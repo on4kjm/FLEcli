@@ -50,7 +50,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	file.Close()
 
 	//isInferTimeFatalError is set to true is something bad happened while storing time gaps.
-	var bool isInferTimeFatalError = false
+	isInferTimeFatalError := false
 
 	regexpLineComment := regexp.MustCompile("^[[:blank:]]*#")
 	regexpOnlySpaces := regexp.MustCompile("^\\s+$")
@@ -270,29 +270,24 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		if logline.Call != "" {
 			fullLog = append(fullLog, logline)
 
+			//FIXME:
+
 			//store time inference data
-			if isInterpolateTime {
+			if isInterpolateTime && !isInferTimeFatalError {
 				var isEndOfGap bool
 				if isEndOfGap, err = wrkTimeBlock.storeTimeGap(logline, len(fullLog)); err != nil {
 					errorLog = append(errorLog, fmt.Sprintf("Fatal error at line %d: %s", lineCount, err))
-					// fmt.Println("\nProcessing errors:")
-					// for _, errorLogLine := range errorLog {
-					// 	fmt.Println(errorLogLine)
-					// }
-					// log.Println("Fatal error: ", err)
-					// os.Exit(1)
+					isInferTimeFatalError = true
 				}
 				//If we reached the end of the time gap, we make the necessary checks and make our gap calculation
 				if isEndOfGap {
 					if err := wrkTimeBlock.finalizeTimeGap(); err != nil {
 						//If an error occured it is a fatal error
-						fmt.Println("\nProcessing errors:")
-						for _, errorLogLine := range errorLog {
-							fmt.Println(errorLogLine)
-						}
-						log.Println("Fatal error: ", err)
-						os.Exit(1)
+						errorLog = append(errorLog, fmt.Sprintf("Fatal error at line %d: %s", lineCount, err))
+						isInferTimeFatalError = true
 					}
+
+					if isInferTimeFatalError { break }
 
 					//add it to the gap collection
 					missingTimeBlockList = append(missingTimeBlockList, wrkTimeBlock)
