@@ -944,6 +944,7 @@ func TestLoadFile_2_QSO_same_time(t *testing.T) {
 	dataArray = append(dataArray, "date 2020-05-23")
 	dataArray = append(dataArray, "40m cw 0950 ik5zve 9 5")
 	dataArray = append(dataArray, "0951 on6zq")
+	dataArray = append(dataArray, "f6AA")
 	dataArray = append(dataArray, "0951 on4do")
 	dataArray = append(dataArray, "0952 on4bb")
 
