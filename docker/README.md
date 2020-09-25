@@ -11,9 +11,18 @@
 
 ## Running the container
 
-To start and execute the `<FLEcli command>` use : `docker run --rm -i --user $(id -u):$(id -g) -v $(pwd):/FLEcli_data on4kjm/flecli <FLEcli command>`. If no command is specified, help is displayed.
+To start and execute the `<FLEcli command>` use : `docker run --rm -i --user $(id -u):$(id -g) -v "$(pwd)":/FLEcli_data on4kjm/flecli <FLEcli command>`. If no command is specified, help is displayed.
 
-This little command will create an alias that avoids typing the whole command: `alias FLEcli="docker run --rm  --user $(id -u):$(id -g) -v $(pwd):/FLEcli_data on4kjm/flecli"`. To use it, type `FLEcli version` for example.
+This bash script (MAC OS or Linux) will do the trick:
+
+````
+#!/bin/bash
+
+CURRENT_UID=$(id -u):$(id -g)
+docker run --rm -t --user ${CURRENT_UID} -v "$(pwd)":/FLEcli_data on4kjm/flecli:latest "$@"
+````
+
+By creating an alias like here after, this command can be called from everywhere. `alias FLEcli="~/myDir/docker-FLEcli.sh"`. To use it, type `FLEcli version` for example.
 
 Important note: when specifying the path of a file (input or output), it must be relative to the directory the container was started in.
 
