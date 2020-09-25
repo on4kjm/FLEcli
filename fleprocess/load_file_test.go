@@ -953,8 +953,8 @@ func TestLoadFile_2_QSO_same_time(t *testing.T) {
 	loadedLogFile, isLoadedOK := LoadFile(temporaryDataFileName, true)
 
 	//Then
-	if isLoadedOK {
-		t.Error("Test file processing should return with an error")
+	if !isLoadedOK {
+		t.Error("Test file should not return with an error")
 	}
 	if len(loadedLogFile) == 0 {
 		t.Error("No data loaded")
@@ -989,17 +989,33 @@ func TestLoadFile_2_QSO_same_time(t *testing.T) {
 	if loadedLogFile[1].Call != expectedValue {
 		t.Errorf("Not the expected Call[1] value: %s (expecting %s)", loadedLogFile[1].Call, expectedValue)
 	}
-	expectedValue = "0952"
+	expectedValue = "0951"
 	if loadedLogFile[1].Time != expectedValue {
 		t.Errorf("Not the expected Time[1] value: %s (expecting %s)", loadedLogFile[1].Time, expectedValue)
 	}
-	expectedValue = "ON4DO"
+	expectedValue = "F6AA"
 	if loadedLogFile[2].Call != expectedValue {
 		t.Errorf("Not the expected Call[2] value: %s (expecting %s)", loadedLogFile[2].Call, expectedValue)
 	}
-	expectedValue = "0954"
+	expectedValue = "0951"
 	if loadedLogFile[2].Time != expectedValue {
 		t.Errorf("Not the expected Time[2] value: %s (expecting %s)", loadedLogFile[2].Time, expectedValue)
+	}
+	expectedValue = "ON4DO"
+	if loadedLogFile[3].Call != expectedValue {
+		t.Errorf("Not the expected Call[3] value: %s (expecting %s)", loadedLogFile[3].Call, expectedValue)
+	}
+	expectedValue = "0951"
+	if loadedLogFile[3].Time != expectedValue {
+		t.Errorf("Not the expected Time[3] value: %s (expecting %s)", loadedLogFile[3].Time, expectedValue)
+	}
+	expectedValue = "ON4BB"
+	if loadedLogFile[4].Call != expectedValue {
+		t.Errorf("Not the expected Call[4] value: %s (expecting %s)", loadedLogFile[4].Call, expectedValue)
+	}
+	expectedValue = "0952"
+	if loadedLogFile[4].Time != expectedValue {
+		t.Errorf("Not the expected Time[4] value: %s (expecting %s)", loadedLogFile[4].Time, expectedValue)
 	}
 	//Clean Up
 	os.Remove(temporaryDataFileName)

@@ -58,24 +58,6 @@ func (tb *InferTimeBlock) finalizeTimeGap() error {
 		return err
 	}
 
-	// //Check that lastRecordedTime and nextValidTime are not null
-	// if tb.lastRecordedTime.IsZero() {
-	// 	return errors.New("Gap start time is empty")
-	// }
-	// if tb.nextValidTime.IsZero() {
-	// 	return errors.New("Gap end time is empty")
-	// }
-
-	// //FIXME: now it is valid.
-	// //Are the two times equal?
-	// if tb.nextValidTime == tb.lastRecordedTime {
-	// 	return errors.New("The start and end gap times are equal")
-	// }
-
-	// //Fail if we have a negative time difference
-	// if tb.nextValidTime.Before(tb.lastRecordedTime) {
-	// 	return errors.New("Gap start time is later than the Gap end time")
-	// }
 
 	//Compute the gap
 	diff := tb.nextValidTime.Sub(tb.lastRecordedTime)

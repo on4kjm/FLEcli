@@ -269,8 +269,6 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		if logline.Call != "" {
 			fullLog = append(fullLog, logline)
 
-			//FIXME:
-
 			//store time inference data
 			if isInterpolateTime && !isInferTimeFatalError {
 				var isEndOfGap bool
