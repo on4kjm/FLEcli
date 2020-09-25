@@ -168,6 +168,7 @@ func TestInferTimeBlock_computeGaps_noDifference(t *testing.T) {
 	tb := InferTimeBlock{}
 	tb.lastRecordedTime = time.Date(2020, time.May, 24, 14, 00, 0, 0, time.UTC)
 	tb.nextValidTime = time.Date(2020, time.May, 24, 14, 00, 00, 0, time.UTC)
+	tb.noTimeCount = 2
 
 	//When
 	err := tb.finalizeTimeGap()
