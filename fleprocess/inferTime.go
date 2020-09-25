@@ -87,6 +87,23 @@ func (tb *InferTimeBlock) finalizeTimeGap() error {
 	return nil
 }
 
+//validateTimeGap checks some important assumptions
+func (tb *InferTimeBlock) validateTimeGap() error{
+	//Check that lastRecordedTime and nextValidTime are not null
+	if tb.lastRecordedTime.IsZero() {
+		return errors.New("Gap start time is empty")
+	}
+	if tb.nextValidTime.IsZero() {
+		return errors.New("Gap end time is empty")
+	}
+
+	//Fail if we have a negative time difference
+	if tb.nextValidTime.Before(tb.lastRecordedTime) {
+		return errors.New("Gap start time is later than the Gap end time")
+	}
+	return nil
+}
+
 //storeTimeGap updates an InferTimeBLock (last valid time, nbr of records without time). It returns true if we reached the end of the time gap.
 func (tb *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool, error) {
 	var err error

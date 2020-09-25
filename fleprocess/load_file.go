@@ -319,6 +319,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 
 	//if asked to infer the date, lets update the loaded logfile accordingly
 	if isInterpolateTime {
+		//FIXME: validate that the list is ok
 		for _, timeBlock := range missingTimeBlockList {
 			for i := 0; i < timeBlock.noTimeCount; i++ {
 				position := timeBlock.logFilePosition + i
