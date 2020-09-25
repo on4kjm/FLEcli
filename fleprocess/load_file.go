@@ -261,7 +261,6 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		previousLogLine.MyGrid = headerMyGrid
 		previousLogLine.QSLmsg = headerQslMsg //previousLogLine.QslMsg is redundant
 		previousLogLine.Nickname = headerNickname
-		
 
 		//parse a line
 		logline, errorLine := ParseLine(eachline, previousLogLine)
@@ -287,7 +286,9 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 						isInferTimeFatalError = true
 					}
 
-					if isInferTimeFatalError { break }
+					if isInferTimeFatalError {
+						break
+					}
 
 					//add it to the gap collection
 					missingTimeBlockList = append(missingTimeBlockList, wrkTimeBlock)
@@ -319,16 +320,24 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 
 	//if asked to infer the date, lets update the loaded logfile accordingly
 	if isInterpolateTime {
-		//FIXME: validate that the list is ok
-		for _, timeBlock := range missingTimeBlockList {
-			for i := 0; i < timeBlock.noTimeCount; i++ {
-				position := timeBlock.logFilePosition + i
-				pLogLine := &fullLog[position]
+		//Do we have an open timeBlok that has not been closed.
+		if (wrkTimeBlock.noTimeCount > 0) && (wrkTimeBlock.nextValidTime.IsZero()) {
+			errorLog = append(errorLog, fmt.Sprint("Fatal error: missing new time to infer time"))
+		} else {
+			for _, timeBlock := range missingTimeBlockList {
+				if err := timeBlock.validateTimeGap(); err != nil {
+					errorLog = append(errorLog, fmt.Sprintf("Fatal error: %s", err))
+					break
+				}
+				for i := 0; i < timeBlock.noTimeCount; i++ {
+					position := timeBlock.logFilePosition + i
+					pLogLine := &fullLog[position]
 
-				durationOffset := timeBlock.deltatime * time.Duration(i+1)
-				newTime := timeBlock.lastRecordedTime.Add(durationOffset)
-				updatedTimeString := newTime.Format("1504")
-				pLogLine.Time = updatedTimeString
+					durationOffset := timeBlock.deltatime * time.Duration(i+1)
+					newTime := timeBlock.lastRecordedTime.Add(durationOffset)
+					updatedTimeString := newTime.Format("1504")
+					pLogLine.Time = updatedTimeString
+				}
 			}
 		}
 	}

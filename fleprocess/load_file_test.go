@@ -856,7 +856,6 @@ func TestLoadFile_InferTime_missingStartTime(t *testing.T) {
 	os.Remove(temporaryDataFileName)
 }
 
-//FIXME: missing end block
 func TestLoadFile_InferTime_missingEndTime(t *testing.T) {
 
 	//Given
@@ -914,7 +913,7 @@ func TestLoadFile_InferTime_missingEndTime(t *testing.T) {
 	if loadedLogFile[1].Call != expectedValue {
 		t.Errorf("Not the expected Call[1] value: %s (expecting %s)", loadedLogFile[1].Call, expectedValue)
 	}
-	expectedValue = "0952"
+	expectedValue = "0950"
 	if loadedLogFile[1].Time != expectedValue {
 		t.Errorf("Not the expected Time[1] value: %s (expecting %s)", loadedLogFile[1].Time, expectedValue)
 	}
@@ -922,7 +921,7 @@ func TestLoadFile_InferTime_missingEndTime(t *testing.T) {
 	if loadedLogFile[2].Call != expectedValue {
 		t.Errorf("Not the expected Call[2] value: %s (expecting %s)", loadedLogFile[2].Call, expectedValue)
 	}
-	expectedValue = "0954"
+	expectedValue = "0950"
 	if loadedLogFile[2].Time != expectedValue {
 		t.Errorf("Not the expected Time[2] value: %s (expecting %s)", loadedLogFile[2].Time, expectedValue)
 	}
