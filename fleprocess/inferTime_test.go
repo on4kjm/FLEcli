@@ -173,11 +173,8 @@ func TestInferTimeBlock_computeGaps_noDifference(t *testing.T) {
 	err := tb.finalizeTimeGap()
 
 	//Then
-	if err == nil {
-		t.Error("Should have failed with an error")
-	}
-	if err.Error() != "The start and end gap times are equal" {
-		t.Errorf("Did not not fail with the expected error. Failed with %s", err)
+	if err != nil {
+		t.Errorf("Should not have failed with an error (%s)", err)
 	}
 }
 

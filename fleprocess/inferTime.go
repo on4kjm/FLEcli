@@ -62,6 +62,7 @@ func (tb *InferTimeBlock) finalizeTimeGap() error {
 		return errors.New("Gap end time is empty")
 	}
 
+	//FIXME: now it is valid.
 	//Are the two times equal?
 	if tb.nextValidTime == tb.lastRecordedTime {
 		return errors.New("The start and end gap times are equal")
