@@ -59,8 +59,8 @@ func ExampleSprintColumnTitles() {
 	out := SprintColumnTitles()
 	fmt.Print(out)
 	//Output:
-	//Date       Time Band Mode Call       Sent Rcvd Notes
-	//----       ---- ---- ---- ----       ---- ---- ----
+	//Date       Time Band Mode Call         Sent Rcvd Notes
+	//----       ---- ---- ---- ----         ---- ---- ----
 }
 
 func ExampleSprintLogRecord() {
@@ -158,7 +158,7 @@ func TestSprintLogInColumn(t *testing.T) {
 				SOTA:             "sota",
 				WWFF:             "wwff"},
 			},
-			"date       time band mode call       rstSent rstRcvd QRG: frequency [comment] [qslMessage] omName gridLoc wwff sota \n",
+			"date       time band mode call         rstSent rstRcvd QRG: frequency [comment] [qslMessage] omName gridLoc wwff sota \n",
 		},
 		{
 			"Minimal",
@@ -180,7 +180,7 @@ func TestSprintLogInColumn(t *testing.T) {
 				RSTsent:          "rstSent",
 				RSTrcvd:          "rstRcvd"},
 			},
-			"date       time band mode call       rstSent rstRcvd \n",
+			"date       time band mode call         rstSent rstRcvd \n",
 		},
 	}
 	for _, tt := range tests {
