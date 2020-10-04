@@ -111,6 +111,7 @@ func validateDataForSotaCsv(loadedLogFile []LogLine) error {
 			}
 			errorsBuffer.WriteString(fmt.Sprintf("missing QSO time %s", errorLocation))
 		}
+		//FIXME: if isNoMySota and MySota defined means that it was defined later in the log file
 		if (isNoMySota && loadedLogFile[i].SOTA == "") {
 			if errorsBuffer.String() != "" {
 				errorsBuffer.WriteString(fmt.Sprintf(", "))
