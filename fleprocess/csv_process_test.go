@@ -53,11 +53,20 @@ func Test_validateDataForSotaCsv(t *testing.T) {
 		{
 			"Neither Activator nor Chaser",
 			args{loadedLogFile: []LogLine{
-				{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
-				{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
-				{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "time", Call: "call"}},
+				{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "12:01", Call: "call"},
+				{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "12:02", Call: "call"},
+				{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "12:03", Call: "call"}},
 			},
-			fmt.Errorf("Missing MY-SOTA reference"),
+			fmt.Errorf("missing SOTA reference while attempting to process chaser log for log entry at 12:01 (#1), missing SOTA reference while attempting to process chaser log for log entry at 12:02 (#2), missing SOTA reference while attempting to process chaser log for log entry at 12:03 (#3)"),
+		},
+		{
+			"SOTA Chaser log with one reference missing",
+			args{loadedLogFile: []LogLine{
+				{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "12:01", Call: "call", SOTA: "Sota1"},
+				{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "12:02", Call: "call"},
+				{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "12:03", Call: "call", SOTA: "Sota3"}},
+			},
+			fmt.Errorf("missing SOTA reference while attempting to process chaser log for log entry at 12:02 (#2)"),
 		},
 		{
 			"Misc. missing data (Band, Time, Mode, Call)",

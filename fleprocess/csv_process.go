@@ -59,9 +59,11 @@ func validateDataForSotaCsv(loadedLogFile []LogLine) error {
 		return fmt.Errorf("No QSO found")
 	}
 
+	isNoMySota := false
 	//MySOTA and MyCall are header values. If missing on the first line, it will be missing at every line
 	if loadedLogFile[0].MySOTA == "" {
-		return fmt.Errorf("Missing MY-SOTA reference")
+		//if not set, we might be dealing with a chaser log
+		isNoMySota = true
 	}
 	if loadedLogFile[0].MyCall == "" {
 		return fmt.Errorf("Missing MyCall")
@@ -108,6 +110,12 @@ func validateDataForSotaCsv(loadedLogFile []LogLine) error {
 				errorsBuffer.WriteString(fmt.Sprintf(", "))
 			}
 			errorsBuffer.WriteString(fmt.Sprintf("missing QSO time %s", errorLocation))
+		}
+		if (isNoMySota && loadedLogFile[i].SOTA == "") {
+			if errorsBuffer.String() != "" {
+				errorsBuffer.WriteString(fmt.Sprintf(", "))
+			}
+			errorsBuffer.WriteString(fmt.Sprintf("missing SOTA reference while attempting to process chaser log %s", errorLocation))	
 		}
 	}
 	if errorsBuffer.String() != "" {
