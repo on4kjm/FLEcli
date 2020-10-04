@@ -1,6 +1,13 @@
 # What's new?
 
-## v0.1.2
+## v0.1.3
+
+* Enable FLEcli to be used to generate CSV chaser logs
+* Fix the display for longer calls (issue #61)
+
+## Previous releases
+
+### v0.1.2
 
 * DATE keyword is now optional
 * Date can have several delimiter ("-", "/", ".", or " ")
@@ -10,8 +17,6 @@
 * Correct processing of optional WWFF keyword
 * Time is now correctly inferred when start and end of gap is in the same minute 
 * Correct some typos and bugs
-
-## Previous releases
 
 ### v0.1.1
 * Improved test coverage
