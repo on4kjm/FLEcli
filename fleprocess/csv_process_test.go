@@ -15,11 +15,20 @@ func Test_validateDataForSotaCsv(t *testing.T) {
 		want error
 	}{
 		{
-			"Happy Case",
+			"Happy Case (activator)",
 			args{loadedLogFile: []LogLine{
 				{Date: "date", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "time", Call: "call"},
 				{Date: "date", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "time", Call: "call"},
 				{Date: "date", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "time", Call: "call"}},
+			},
+			nil,
+		},
+		{
+			"Happy Case (chaser)",
+			args{loadedLogFile: []LogLine{
+				{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "time", Call: "call", SOTA: "Sota1"},
+				{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "time", Call: "call", SOTA: "Sota2"},
+				{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "time", Call: "call", SOTA: "Sota3"}},
 			},
 			nil,
 		},
@@ -42,7 +51,7 @@ func Test_validateDataForSotaCsv(t *testing.T) {
 			fmt.Errorf("Missing MyCall"),
 		},
 		{
-			"Missing MySota",
+			"Neither Activator nor Chaser",
 			args{loadedLogFile: []LogLine{
 				{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
 				{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
