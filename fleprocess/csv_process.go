@@ -111,7 +111,15 @@ func validateDataForSotaCsv(loadedLogFile []LogLine) error {
 			}
 			errorsBuffer.WriteString(fmt.Sprintf("missing QSO time %s", errorLocation))
 		}
-		//FIXME: if isNoMySota and MySota defined means that it was defined later in the log file
+		//FIXME: if isNoMySota and MySota defined means that it was defined later in the log file 
+		if (isNoMySota && loadedLogFile[i].MySOTA != "") {
+			if errorsBuffer.String() != "" {
+				errorsBuffer.WriteString(fmt.Sprintf(", "))
+			}
+			errorsBuffer.WriteString(fmt.Sprintf("encountered an unexpexted MySota reference while processing what should be a chaser log %s", errorLocation))	
+		}
+
+
 		if (isNoMySota && loadedLogFile[i].SOTA == "") {
 			if errorsBuffer.String() != "" {
 				errorsBuffer.WriteString(fmt.Sprintf(", "))
