@@ -18,6 +18,8 @@ limitations under the License.
 
 import (
 	"bytes"
+	"fmt"
+	"runtime"
 	"strings"
 
 	"io/ioutil"
@@ -92,4 +94,45 @@ func Test_ExecuteCommand_happyCase(t *testing.T) {
 	if string(out) != "" {
 		t.Fatalf("No output at this level was expected. Got %s", string(out))
 	}
+}
+
+func Test_ExecuteCommand_bigFile(t *testing.T) {
+	cmd := loadCmdConstructor()
+	b := bytes.NewBufferString("")
+	cmd.SetOut(b)
+	
+	cmd.SetArgs([]string{"../test/data/fle-6-bigFile.txt"})
+	isInterpolateTime = true
+
+	PrintMemUsage()
+	cmdErr := cmd.Execute()
+	if cmdErr != nil {
+		t.Fatalf("Unexpected error executing command: %s",cmdErr)
+	}
+	PrintMemUsage()
+
+	out, err := ioutil.ReadAll(b)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if string(out) != "" {
+		t.Fatalf("No output at this level was expected. Got %s", string(out))
+	}
+
+}
+
+// PrintMemUsage outputs the current, total and OS memory being used. As well as the number 
+// of garage collection cycles completed.
+func PrintMemUsage() {
+	var m runtime.MemStats
+	runtime.ReadMemStats(&m)
+	// For info on each, see: https://golang.org/pkg/runtime/#MemStats
+	fmt.Printf("Alloc = %v MiB", bToMb(m.Alloc))
+	fmt.Printf("\tTotalAlloc = %v MiB", bToMb(m.TotalAlloc))
+	fmt.Printf("\tSys = %v MiB", bToMb(m.Sys))
+	fmt.Printf("\tNumGC = %v\n", m.NumGC)
+}
+
+func bToMb(b uint64) uint64 {
+    return b / 1024 / 1024
 }

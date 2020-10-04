@@ -179,6 +179,11 @@ func TestParseLine(t *testing.T) {
 			LogLine{Date: "2020-09-07", Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE"}, "",
 		},
 		{
+			"date processing - day single line",
+			args{inputStr: "day ++", previousLine: LogLine{Date: "2020-09-05", Mode: "FM", ModeType: "PHONE"}},
+			LogLine{Date: "2020-09-07", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE"}, "",
+		},
+		{
 			"date processing - day (error) ",
 			args{inputStr: "day +++++++++++ 1230 oe6cud/p ", previousLine: LogLine{Date: "2020-09-05", Mode: "FM", ModeType: "PHONE"}},
 			LogLine{Date: "*2020-09-05", Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE"}, "Invalid day increment, expecting smaller or equal to 10",

@@ -154,7 +154,6 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 		//Scan the + part
 		if regexpDayIncrementPattern.MatchString(element) {
 			increment := len(element)
-			fmt.Println(logLine.Date)
 			newDate, dateError := IncrementDate(logLine.Date, increment)
 			if dateError != "" {
 				errorMsg = errorMsg + fmt.Sprintf(dateError)
