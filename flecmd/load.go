@@ -19,36 +19,38 @@ limitations under the License.
 import (
 	"FLEcli/fleprocess"
 	"fmt"
-
 	"github.com/spf13/cobra"
 )
 
 // loadCmd represents the load command
-var loadCmd = &cobra.Command{
-	Use:   "load [flags] inputFile",
-	Short: "Loads and validates a FLE type shorthand logfile",
-	// 	Long: `A longer description that spans multiple lines and likely contains examples
-	// and usage of using your command. For example:
+func loadCmdConstructor() *cobra.Command {
+	return &cobra.Command{
+		Use:   "load [flags] inputFile",
+		Short: "Loads and validates a FLE type shorthand logfile",
+		// 	Long: `A longer description that spans multiple lines and likely contains examples
+		// and usage of using your command. For example:
 
-	// Cobra is a CLI library for Go that empowers applications.
-	// This application is a tool to generate the needed files
-	// to quickly create a Cobra application.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		//if args is empty, throw an error
-		if len(args) == 0 {
-			//TODO: fix this ugly statement (because I am lazy)
-			return fmt.Errorf("Missing input file %s", "")
-		}
-		if len(args) > 1 {
-			return fmt.Errorf("Too many arguments.%s", "")
-		}
-		inputFilename = args[0]
-		fleprocess.LoadFile(inputFilename, isInterpolateTime)
-		return nil
-	},
+		// Cobra is a CLI library for Go that empowers applications.
+		// This application is a tool to generate the needed files
+		// to quickly create a Cobra application.`,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			//if args is empty, throw an error
+			if len(args) == 0 {
+				//TODO: fix this ugly statement (because I am lazy)
+				return fmt.Errorf("Missing input file %s", "")
+			}
+			if len(args) > 1 {
+				return fmt.Errorf("Too many arguments.%s", "")
+			}
+			inputFilename = args[0]
+			fleprocess.LoadFile(inputFilename, isInterpolateTime)
+			return nil
+		},
+	}
 }
 
 func init() {
+	var loadCmd = loadCmdConstructor()
 	rootCmd.AddCommand(loadCmd)
 
 	loadCmd.PersistentFlags().BoolVarP(&isInterpolateTime, "interpolate", "i", false, "Interpolates the missing time entries.")
