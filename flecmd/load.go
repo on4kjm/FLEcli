@@ -35,8 +35,8 @@ func loadCmdConstructor() *cobra.Command {
 		// to quickly create a Cobra application.`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			//if args is empty, throw an error
-			if len(args) == 0 {
-				//TODO: fix this ugly statement (because I am lazy)
+			if len(args) < 1 {
+				//FIXME: Doesn't work as expected
 				return fmt.Errorf("Missing input file %s", "")
 			}
 			if len(args) > 1 {

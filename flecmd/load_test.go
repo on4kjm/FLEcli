@@ -18,12 +18,13 @@ limitations under the License.
 
 import (
 	"bytes"
-	//"fmt"
+	"strings"
+
 	"io/ioutil"
 	"testing"
 )
 
-func Test_ExecuteCommand(t *testing.T) {
+func Test_ExecuteCommand_help(t *testing.T) {
 	cmd := loadCmdConstructor()
 	b := bytes.NewBufferString("")
 	cmd.SetOut(b)
@@ -35,6 +36,60 @@ func Test_ExecuteCommand(t *testing.T) {
 	}
 	expectedOutput := "Loads and validates a FLE type shorthand logfile\n\nUsage:\n  load [flags] inputFile\n\nFlags:\n  -h, --help   help for load\n"
 	if string(out) != expectedOutput {
-		t.Fatalf("expected \"%s\" got \"%s\"", "hi", string(out))
+		t.Fatalf("expected \"%s\" got \"%s\"", expectedOutput, string(out))
+	}
+}
+
+func Test_ExecuteCommand_noArgs(t *testing.T) {
+	cmd := loadCmdConstructor()
+	b := bytes.NewBufferString("")
+	cmd.SetOut(b)
+	//cmd.SetArgs([]string{""})
+	cmd.Execute()
+	out, err := ioutil.ReadAll(b)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	//FIXME: doesn't work as espected
+	expectedOutputStart := "Error: Missing input file \nUsage:"
+	if !strings.HasPrefix(string(out), expectedOutputStart){
+		t.Fatalf("expected to start with \"%s\" got \"%s\"", expectedOutputStart, string(out))
+	}
+}
+
+func Test_ExecuteCommand_toManyArgs(t *testing.T) {
+	cmd := loadCmdConstructor()
+	b := bytes.NewBufferString("")
+	cmd.SetOut(b)
+	cmd.SetArgs([]string{"blaah", "blaah", "blaah"})
+	cmd.Execute()
+	out, err := ioutil.ReadAll(b)
+	if err != nil {
+		t.Fatal(err)
+	}
+	
+	expectedOutputStart := "Error: Too many arguments.\nUsage"
+	if !strings.HasPrefix(string(out), expectedOutputStart){
+		t.Fatalf("expected to start with \"%s\" got \"%s\"", expectedOutputStart, string(out))
+	}
+}
+
+func Test_ExecuteCommand_happyCase(t *testing.T) {
+	cmd := loadCmdConstructor()
+	b := bytes.NewBufferString("")
+	cmd.SetOut(b)
+	
+	cmd.SetArgs([]string{"../test/data/fle-1.txt"})
+	cmdErr := cmd.Execute()
+	if cmdErr != nil {
+		t.Fatalf("Unexpected error executing command: %s",cmdErr)
+	}
+	out, err := ioutil.ReadAll(b)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if string(out) != "" {
+		t.Fatalf("No output at this level was expected. Got %s", string(out))
 	}
 }
