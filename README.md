@@ -16,7 +16,7 @@ But is also the alibi to learn and explore GO.
 ## Installing
 The tool is installed by downloading and unpacking the archive for your operating system.
 
-A version is available for Windows, MacOS, Linux and ARM (RaspeberyPi). 
+A version is available for Windows, MacOS, Linux and ARM (RaspberryPi). 
 Most of them are available as 32 or 64 bit applications.
 A docker version is also available.
 
@@ -29,11 +29,11 @@ Detailed installation instructions can be found [at this page](doc/install.md).
 
 Detailed explanations can be found [on this page](doc/usage.md).
 
-Most comon use cases are described hereafter as examples.
+Most common use cases are described hereafter as examples.
 
 ### Example: validate the FLE syntax of a file
 
-To load and validate the FLE formated file (`myActivation.txt`:
+To load and validate the FLE formatted file (`myActivation.txt`):
 
 ```
 ./FLEcli load myActivation.txt
