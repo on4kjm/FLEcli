@@ -17,9 +17,10 @@ limitations under the License.
 */
 
 import (
+	"FLEcli/fleprocess"
 	"bytes"
 	"fmt"
-	"runtime"
+	"os"
 	"strings"
 
 	"io/ioutil"
@@ -55,7 +56,7 @@ func Test_ExecuteCommand_noArgs(t *testing.T) {
 
 	//FIXME: doesn't work as espected
 	expectedOutputStart := "Error: Missing input file \nUsage:"
-	if !strings.HasPrefix(string(out), expectedOutputStart){
+	if !strings.HasPrefix(string(out), expectedOutputStart) {
 		t.Fatalf("expected to start with \"%s\" got \"%s\"", expectedOutputStart, string(out))
 	}
 }
@@ -70,69 +71,41 @@ func Test_ExecuteCommand_toManyArgs(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	
+
 	expectedOutputStart := "Error: Too many arguments.\nUsage"
-	if !strings.HasPrefix(string(out), expectedOutputStart){
+	if !strings.HasPrefix(string(out), expectedOutputStart) {
 		t.Fatalf("expected to start with \"%s\" got \"%s\"", expectedOutputStart, string(out))
 	}
 }
 
 func Test_ExecuteCommand_happyCase(t *testing.T) {
+	processLoadFile = mockLoadFile
+
+	//Capture output
+	rescueStdout := os.Stdout
+    r, w, _ := os.Pipe()
+    os.Stdout = w
+
 	cmd := loadCmdConstructor()
-	b := bytes.NewBufferString("")
-	cmd.SetOut(b)
-	
-	cmd.SetArgs([]string{"../test/data/fle-1.txt"})
+
+	cmd.SetArgs([]string{"data.txt"})
 	cmdErr := cmd.Execute()
+
+	//Close the capture and get the data
+	w.Close()
+    out, _ := ioutil.ReadAll(r)
+    os.Stdout = rescueStdout
+
 	if cmdErr != nil {
-		t.Fatalf("Unexpected error executing command: %s",cmdErr)
+		t.Fatalf("Unexpected error executing command: %s", cmdErr)
 	}
-	out, err := ioutil.ReadAll(b)
-	if err != nil {
-		t.Fatal(err)
-	}
-	if string(out) != "" {
-		t.Fatalf("No output at this level was expected. Got %s", string(out))
+
+	if string(out) != "fileLoad via mock" {
+		t.Fatalf("Expected \"fileLoad via mock\". Got \"%s\"", string(out))
 	}
 }
 
-func Test_ExecuteCommand_bigFile(t *testing.T) {
-	cmd := loadCmdConstructor()
-	b := bytes.NewBufferString("")
-	cmd.SetOut(b)
-	
-	cmd.SetArgs([]string{"../test/data/fle-6-bigFile.txt"})
-	isInterpolateTime = true
-
-	PrintMemUsage()
-	cmdErr := cmd.Execute()
-	if cmdErr != nil {
-		t.Fatalf("Unexpected error executing command: %s",cmdErr)
-	}
-	PrintMemUsage()
-
-	out, err := ioutil.ReadAll(b)
-	if err != nil {
-		t.Fatal(err)
-	}
-	if string(out) != "" {
-		t.Fatalf("No output at this level was expected. Got %s", string(out))
-	}
-
-}
-
-// PrintMemUsage outputs the current, total and OS memory being used. As well as the number 
-// of garage collection cycles completed.
-func PrintMemUsage() {
-	var m runtime.MemStats
-	runtime.ReadMemStats(&m)
-	// For info on each, see: https://golang.org/pkg/runtime/#MemStats
-	fmt.Printf("Alloc = %v MiB", bToMb(m.Alloc))
-	fmt.Printf("\tTotalAlloc = %v MiB", bToMb(m.TotalAlloc))
-	fmt.Printf("\tSys = %v MiB", bToMb(m.Sys))
-	fmt.Printf("\tNumGC = %v\n", m.NumGC)
-}
-
-func bToMb(b uint64) uint64 {
-    return b / 1024 / 1024
+func mockLoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []fleprocess.LogLine, isProcessedOK bool) {
+	fmt.Print("fileLoad via mock")
+	return nil, true
 }
