@@ -27,34 +27,39 @@ import (
 var outputCsvFilename string
 var isOverwriteCsv bool
 
+var processCsvCommand = fleprocess.ProcessCsvCommand
+var csvCmd = csvCmdConstructor()
+
 // csvCmd is executed when choosing the csv option (load FLE file and generate csv file)
-var csvCmd = &cobra.Command{
-	Use:   "csv [flags] inputFile [outputFile]",
-	Short: "Generates a SOTA .csv file based on a FLE type shorthand logfile.",
-	// 	Long: `A longer description that spans multiple lines and likely contains examples
-	// and usage of using your command. For example:
+func csvCmdConstructor() *cobra.Command {
+	return &cobra.Command{
+		Use:   "csv [flags] inputFile [outputFile]",
+		Short: "Generates a SOTA .csv file based on a FLE type shorthand logfile.",
+		// 	Long: `A longer description that spans multiple lines and likely contains examples
+		// and usage of using your command. For example:
 
-	RunE: func(cmd *cobra.Command, args []string) error {
-		//if args is empty, throw an error (Cobra will display the )
-		if len(args) == 0 {
-			//TODO: fix this ugly statement (because I am lazy)
-			return fmt.Errorf("Missing input file %s", "")
-		}
-		inputFilename = args[0]
-		if len(args) == 2 {
-			outputCsvFilename = args[1]
-		}
-		if len(args) > 2 {
-			return fmt.Errorf("Too many arguments.%s", "")
-		}
+		RunE: func(cmd *cobra.Command, args []string) error {
+			//if args is empty, throw an error (Cobra will display the )
+			if len(args) == 0 {
+				//TODO: fix this ugly statement (because I am lazy)
+				return fmt.Errorf("Missing input file %s", "")
+			}
+			inputFilename = args[0]
+			if len(args) == 2 {
+				outputCsvFilename = args[1]
+			}
+			if len(args) > 2 {
+				return fmt.Errorf("Too many arguments.%s", "")
+			}
 
-		if err := fleprocess.ProcessCsvCommand(inputFilename, outputCsvFilename, isInterpolateTime, isOverwriteCsv); err != nil {
-			fmt.Println("\nUnable to generate CSV file:")
-			fmt.Println(err)
-			os.Exit(1)
-		}
-		return nil
-	},
+			if err := fleprocess.ProcessCsvCommand(inputFilename, outputCsvFilename, isInterpolateTime, isOverwriteCsv); err != nil {
+				fmt.Println("\nUnable to generate CSV file:")
+				fmt.Println(err)
+				os.Exit(1)
+			}
+			return nil
+		},
+	}
 }
 
 func init() {

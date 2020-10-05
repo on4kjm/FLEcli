@@ -23,6 +23,7 @@ import (
 )
 
 var processLoadFile = fleprocess.LoadFile
+var loadCmd = loadCmdConstructor()
 
 // loadCmd represents the load command
 func loadCmdConstructor() *cobra.Command {
@@ -49,7 +50,6 @@ func loadCmdConstructor() *cobra.Command {
 }
 
 func init() {
-	var loadCmd = loadCmdConstructor()
 	rootCmd.AddCommand(loadCmd)
 
 	loadCmd.PersistentFlags().BoolVarP(&isInterpolateTime, "interpolate", "i", false, "Interpolates the missing time entries.")
