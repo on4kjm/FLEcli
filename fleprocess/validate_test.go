@@ -191,7 +191,7 @@ func TestValidateCall(t *testing.T) {
 			"Valid call from activation (case 2)",
 			args{sign: "Sm/dl8mf"},
 			"SM/DL8MF", "",
-		},		
+		},
 		{
 			"Valid prefix (issue #2)",
 			args{sign: "e7/z35m/p"},

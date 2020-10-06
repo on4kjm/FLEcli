@@ -54,10 +54,9 @@ func (tb *InferTimeBlock) String() string {
 //finalizeTimeGap makes the necessary checks and computation
 func (tb *InferTimeBlock) finalizeTimeGap() error {
 
-	if err :=tb.validateTimeGap(); err != nil {
+	if err := tb.validateTimeGap(); err != nil {
 		return err
 	}
-
 
 	//Compute the gap
 	diff := tb.nextValidTime.Sub(tb.lastRecordedTime)
@@ -74,7 +73,7 @@ func (tb *InferTimeBlock) finalizeTimeGap() error {
 }
 
 //validateTimeGap checks some important assumptions
-func (tb *InferTimeBlock) validateTimeGap() error{
+func (tb *InferTimeBlock) validateTimeGap() error {
 	//Check that lastRecordedTime and nextValidTime are not null
 	if tb.lastRecordedTime.IsZero() {
 		return errors.New("Gap start time is empty")

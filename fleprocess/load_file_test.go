@@ -395,8 +395,6 @@ func TestLoadFile_redefining_myCall_must_fail(t *testing.T) {
 	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
 	dataArray = append(dataArray, "myCall on4do")
 
-
-
 	temporaryDataFileName := createTestFile(dataArray)
 
 	//When
@@ -435,8 +433,6 @@ func TestLoadFile_redefining_myWWFF_must_fail(t *testing.T) {
 	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
 	dataArray = append(dataArray, "myWWFF onff-0001")
 
-
-
 	temporaryDataFileName := createTestFile(dataArray)
 
 	//When
@@ -474,8 +470,6 @@ func TestLoadFile_redefining_mySOTA_must_fail(t *testing.T) {
 	dataArray = append(dataArray, "20/5/23")
 	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
 	dataArray = append(dataArray, "mySota on/on-111")
-
-
 
 	temporaryDataFileName := createTestFile(dataArray)
 
@@ -516,8 +510,6 @@ func TestLoadFile_redefining_myGRID_must_fail(t *testing.T) {
 	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
 	dataArray = append(dataArray, "myGrid ZZ99")
 
-
-
 	temporaryDataFileName := createTestFile(dataArray)
 
 	//When
@@ -540,8 +532,6 @@ func TestLoadFile_redefining_myGRID_must_fail(t *testing.T) {
 	os.Remove(temporaryDataFileName)
 }
 
-
-
 func TestLoadFile_redefining_operator_must_fail(t *testing.T) {
 
 	//Given
@@ -557,8 +547,6 @@ func TestLoadFile_redefining_operator_must_fail(t *testing.T) {
 	dataArray = append(dataArray, "20/5/23")
 	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
 	dataArray = append(dataArray, "operator blahh")
-
-
 
 	temporaryDataFileName := createTestFile(dataArray)
 
@@ -582,7 +570,6 @@ func TestLoadFile_redefining_operator_must_fail(t *testing.T) {
 	os.Remove(temporaryDataFileName)
 }
 
-
 func TestLoadFile_redefining_nickname_must_fail(t *testing.T) {
 
 	//Given
@@ -598,8 +585,6 @@ func TestLoadFile_redefining_nickname_must_fail(t *testing.T) {
 	dataArray = append(dataArray, "20/5/23")
 	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
 	dataArray = append(dataArray, "nickname blaaahh")
-
-
 
 	temporaryDataFileName := createTestFile(dataArray)
 
@@ -823,7 +808,7 @@ func TestLoadFile_InferTime_missingStartTime(t *testing.T) {
 	if loadedLogFile[0].MyWWFF != expectedValue {
 		t.Errorf("Not the expected MyWWFF value: %s (expecting %s)", loadedLogFile[0].MyWWFF, expectedValue)
 	}
-	
+
 	expectedValue = "IK5ZVE"
 	if loadedLogFile[0].Call != expectedValue {
 		t.Errorf("Not the expected Call[0] value: %s (expecting %s)", loadedLogFile[0].Call, expectedValue)
@@ -896,7 +881,7 @@ func TestLoadFile_InferTime_missingEndTime(t *testing.T) {
 	if loadedLogFile[0].MyWWFF != expectedValue {
 		t.Errorf("Not the expected MyWWFF value: %s (expecting %s)", loadedLogFile[0].MyWWFF, expectedValue)
 	}
-	
+
 	expectedValue = "IK5ZVE"
 	if loadedLogFile[0].Call != expectedValue {
 		t.Errorf("Not the expected Call[0] value: %s (expecting %s)", loadedLogFile[0].Call, expectedValue)
@@ -972,7 +957,7 @@ func TestLoadFile_2_QSO_same_time(t *testing.T) {
 	if loadedLogFile[0].MyWWFF != expectedValue {
 		t.Errorf("Not the expected MyWWFF value: %s (expecting %s)", loadedLogFile[0].MyWWFF, expectedValue)
 	}
-	
+
 	expectedValue = "IK5ZVE"
 	if loadedLogFile[0].Call != expectedValue {
 		t.Errorf("Not the expected Call[0] value: %s (expecting %s)", loadedLogFile[0].Call, expectedValue)
@@ -1020,8 +1005,6 @@ func TestLoadFile_2_QSO_same_time(t *testing.T) {
 	//Clean Up
 	os.Remove(temporaryDataFileName)
 }
-
-
 
 func TestLoadFile_wrongData(t *testing.T) {
 

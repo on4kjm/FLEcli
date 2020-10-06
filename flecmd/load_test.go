@@ -83,8 +83,8 @@ func Test_ExecuteCommand_happyCase(t *testing.T) {
 
 	//Capture output
 	rescueStdout := os.Stdout
-    r, w, _ := os.Pipe()
-    os.Stdout = w
+	r, w, _ := os.Pipe()
+	os.Stdout = w
 
 	cmd := loadCmdConstructor()
 
@@ -93,8 +93,8 @@ func Test_ExecuteCommand_happyCase(t *testing.T) {
 
 	//Close the capture and get the data
 	w.Close()
-    out, _ := ioutil.ReadAll(r)
-    os.Stdout = rescueStdout
+	out, _ := ioutil.ReadAll(r)
+	os.Stdout = rescueStdout
 
 	if cmdErr != nil {
 		t.Fatalf("Unexpected error executing command: %s", cmdErr)

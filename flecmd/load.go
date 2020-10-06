@@ -31,7 +31,6 @@ func loadCmdConstructor() *cobra.Command {
 		Use:   "load [flags] inputFile",
 		Short: "Loads and validates a FLE type shorthand logfile",
 
-		
 		RunE: func(cmd *cobra.Command, args []string) error {
 			//if args is empty, throw an error
 			if len(args) < 1 {

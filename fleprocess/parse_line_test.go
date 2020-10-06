@@ -57,7 +57,7 @@ func TestParseLine(t *testing.T) {
 			"Parse suspecious line",
 			args{inputStr: "1029 Sm/dl8mf 559 579", previousLine: LogLine{Time: "1200", Mode: "CW", ModeType: "CW"}},
 			LogLine{Time: "1029", ActualTime: "1029", Call: "SM/DL8MF", Mode: "CW", ModeType: "CW", RSTsent: "559", RSTrcvd: "579"}, "",
-		},		
+		},
 		{
 			"Parse partial time - 3",
 			args{inputStr: "4 g3noh", previousLine: LogLine{Time: "1200", Mode: "SSB"}},
