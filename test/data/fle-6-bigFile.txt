@@ -1,0 +1,6124 @@
+# Header 
+mycall on4kjm/p
+operator on4kjm
+mySota on/on-001
+myWwff onff-0511
+nickname Portable
+QslMsg This is a QSL message
+
+# Log 
+date 2020-05-23
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5
+
+day +
+40m cw
+7.018 0950 ik5zve/5 9 5
+7.025 0958 iz2bzt 9 5
+7.037 1012 on6zq 9 449 onff-0513
+on4do
+dl1gbz
+1020 dk5zx 9 7
+on4aaa on/on-002
+on4bbb
+dl2aaa onff-0512
+dl2bbb on/on-003
+1038 dl2ccc
+
+30m cw
+10.120 1040 ol901ab 9 42
+
+20m 
+1055 ly2nk 9 9
+1120 ve3exy 9 5

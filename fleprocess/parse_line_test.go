@@ -57,7 +57,7 @@ func TestParseLine(t *testing.T) {
 			"Parse suspecious line",
 			args{inputStr: "1029 Sm/dl8mf 559 579", previousLine: LogLine{Time: "1200", Mode: "CW", ModeType: "CW"}},
 			LogLine{Time: "1029", ActualTime: "1029", Call: "SM/DL8MF", Mode: "CW", ModeType: "CW", RSTsent: "559", RSTrcvd: "579"}, "",
-		},		
+		},
 		{
 			"Parse partial time - 3",
 			args{inputStr: "4 g3noh", previousLine: LogLine{Time: "1200", Mode: "SSB"}},
@@ -177,6 +177,11 @@ func TestParseLine(t *testing.T) {
 			"date processing - day ",
 			args{inputStr: "day ++ 1230 oe6cud/p ", previousLine: LogLine{Date: "2020-09-05", Mode: "FM", ModeType: "PHONE"}},
 			LogLine{Date: "2020-09-07", Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE"}, "",
+		},
+		{
+			"date processing - day single line",
+			args{inputStr: "day ++", previousLine: LogLine{Date: "2020-09-05", Mode: "FM", ModeType: "PHONE"}},
+			LogLine{Date: "2020-09-07", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE"}, "",
 		},
 		{
 			"date processing - day (error) ",
