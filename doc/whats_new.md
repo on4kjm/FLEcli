@@ -2,7 +2,7 @@
 
 ## v0.1.3
 
-* Enable FLEcli to be used to generate CSV chaser logs
+* Enable FLEcli to generate CSV chaser logs
 * Fix the display for longer calls (issue #61)
 
 ## Previous releases
