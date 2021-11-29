@@ -23,17 +23,17 @@ import (
 )
 
 // OutputAdif generates and writes data in ADIF format
-func OutputAdif(outputFile string, fullLog []LogLine, isWWFF bool, isSOTA bool) {
+func OutputAdif(outputFile string, fullLog []LogLine, adifParams AdifParams) {
 
 	//convert the log data to an in-memory ADIF file
-	adifData := buildAdif(fullLog, isWWFF, isSOTA)
+	adifData := buildAdif(fullLog, adifParams)
 
 	//write to a file
 	writeFile(outputFile, adifData)
 }
 
 // buildAdif creates the adif file in memory ready to be printed
-func buildAdif(fullLog []LogLine, isWWFF bool, isSOTA bool) (adifList []string) {
+func buildAdif(fullLog []LogLine, adifParams AdifParams) (adifList []string) {
 	//Print the fixed header
 	adifList = append(adifList, "ADIF Export for Fast Log Entry by DF3CB")
 	adifList = append(adifList, "<PROGRAMID:3>FLE")
@@ -65,7 +65,7 @@ func buildAdif(fullLog []LogLine, isWWFF bool, isSOTA bool) (adifList []string) 
 		if logLine.QSLmsg != "" {
 			adifLine.WriteString(adifElement("QSLMSG", logLine.QSLmsg))
 		}
-		if isWWFF {
+		if adifParams.IsWWFF {
 			adifLine.WriteString(adifElement("MY_SIG", "WWFF"))
 			adifLine.WriteString(adifElement("MY_SIG_INFO", logLine.MyWWFF))
 			if logLine.WWFF != "" {
@@ -73,7 +73,15 @@ func buildAdif(fullLog []LogLine, isWWFF bool, isSOTA bool) (adifList []string) 
 				adifLine.WriteString(adifElement("SIG_INFO", logLine.WWFF))
 			}
 		}
-		if isSOTA {
+		if adifParams.IsPOTA {
+			adifLine.WriteString(adifElement("MY_SIG", "POTA"))
+			adifLine.WriteString(adifElement("MY_SIG_INFO", logLine.MyPOTA))
+			if logLine.POTA != "" {
+				adifLine.WriteString(adifElement("SIG", "POTA"))
+				adifLine.WriteString(adifElement("SIG_INFO", logLine.POTA))
+			}
+		}
+		if adifParams.IsSOTA {
 			adifLine.WriteString(adifElement("MY_SOTA_REF", logLine.MySOTA))
 			if logLine.SOTA != "" {
 				adifLine.WriteString(adifElement("SOTA_REF", logLine.SOTA))

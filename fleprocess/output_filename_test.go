@@ -58,7 +58,7 @@ func Test_buildOutputFilename(t *testing.T) {
 		{
 			"input file not provided",
 			args{input: "", output: "xxx", overwrite: false, extension: ".adi"},
-			"", errors.New("Unexepected error: no input file provided"),
+			"", errors.New("unexepected error: no input file provided"),
 		},
 		{
 			"Output file does not exist",
@@ -68,12 +68,12 @@ func Test_buildOutputFilename(t *testing.T) {
 		{
 			"Output name is a directory",
 			args{input: "a file", output: testDir, overwrite: false, extension: ".adi"},
-			"", errors.New("Error: specified output exists and is a directory"),
+			"", errors.New("error: specified output exists and is a directory"),
 		},
 		{
 			"Output exist but no overwrite",
 			args{input: "a file", output: testFile, overwrite: false, extension: ".adi"},
-			"", errors.New("File already exists. Use --overwrite flag if necessary"),
+			"", errors.New("file already exists. Use --overwrite flag if necessary"),
 		},
 		{
 			"Output exist but user wants to overwrite",

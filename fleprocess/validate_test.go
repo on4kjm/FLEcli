@@ -63,6 +63,65 @@ func TestValidateWwff(t *testing.T) {
 	}
 }
 
+func TestValidatePota(t *testing.T) {
+	type args struct {
+		inputStr string
+	}
+	tests := []struct {
+		name         string
+		args         args
+		wantRef      string
+		wantErrorMsg string
+	}{
+		{
+			"Good ref (simple)",
+			args{inputStr: "on-0258"},
+			"ON-0258", "",
+		},
+		{
+			"Good ref (single digit country)",
+			args{inputStr: "f-0258"},
+			"F-0258", "",
+		},
+		{
+			"Good ref (Numerical country)",
+			args{inputStr: "4x-0258"},
+			"4X-0258", "",
+		},
+		{
+			"Bad ref (no country prefix)",
+			args{inputStr: "-0258"},
+			"*-0258", "[-0258] is an invalid POTA reference",
+		},
+		{
+			"Bad ref (wrong separator)",
+			args{inputStr: "g/0258"},
+			"*G/0258", "[G/0258] is an invalid POTA reference",
+		},
+		{
+			"Bad ref (reference too short)",
+			args{inputStr: "on-258"},
+			"*ON-258", "[ON-258] is an invalid POTA reference",
+		},
+		{
+			"Bad ref (no country prefix)",
+			args{inputStr: "on-02589"},
+			"*ON-02589", "[ON-02589] is an invalid POTA reference",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			gotRef, gotErrorMsg := ValidatePota(tt.args.inputStr)
+			if gotRef != tt.wantRef {
+				t.Errorf("ValidatePota() gotRef = %v, want %v", gotRef, tt.wantRef)
+			}
+			if gotErrorMsg != tt.wantErrorMsg {
+				t.Errorf("ValidatePota() gotErrorMsg = %v, want %v", gotErrorMsg, tt.wantErrorMsg)
+			}
+		})
+	}
+}
+
 func TestValidateSota(t *testing.T) {
 	type args struct {
 		inputStr string

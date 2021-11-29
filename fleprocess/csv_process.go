@@ -38,8 +38,8 @@ func ProcessCsvCommand(inputFilename, outputFilename string, isInterpolateTime, 
 	var loadedLogFile []LogLine
 	var isLoadedOK bool
 
-	if loadedLogFile, isLoadedOK = LoadFile(inputFilename, isInterpolateTime); isLoadedOK == false {
-		return fmt.Errorf("There were input file parsing errors. Could not generate CSV file")
+	if loadedLogFile, isLoadedOK = LoadFile(inputFilename, isInterpolateTime); !isLoadedOK {
+		return fmt.Errorf("there were input file parsing errors. Could not generate CSV file")
 	}
 
 	//Check if we have all the necessary data
@@ -56,7 +56,7 @@ func ProcessCsvCommand(inputFilename, outputFilename string, isInterpolateTime, 
 //validateDataForSotaCsv checks whether all the requiered data is present in the supplied data
 func validateDataForSotaCsv(loadedLogFile []LogLine) error {
 	if len(loadedLogFile) == 0 {
-		return fmt.Errorf("No QSO found")
+		return fmt.Errorf("no QSO found")
 	}
 
 	isNoMySota := false
@@ -66,7 +66,7 @@ func validateDataForSotaCsv(loadedLogFile []LogLine) error {
 		isNoMySota = true
 	}
 	if loadedLogFile[0].MyCall == "" {
-		return fmt.Errorf("Missing MyCall")
+		return fmt.Errorf("missing MyCall")
 	}
 
 	var errorsBuffer strings.Builder
@@ -83,45 +83,45 @@ func validateDataForSotaCsv(loadedLogFile []LogLine) error {
 
 		if loadedLogFile[i].Date == "" {
 			if errorsBuffer.String() != "" {
-				errorsBuffer.WriteString(fmt.Sprintf(", "))
+				errorsBuffer.WriteString(", ")
 			}
 			errorsBuffer.WriteString(fmt.Sprintf("missing date %s", errorLocation))
 		}
 		if loadedLogFile[i].Band == "" {
 			if errorsBuffer.String() != "" {
-				errorsBuffer.WriteString(fmt.Sprintf(", "))
+				errorsBuffer.WriteString(", ")
 			}
 			errorsBuffer.WriteString(fmt.Sprintf("missing band %s", errorLocation))
 		}
 		if loadedLogFile[i].Mode == "" {
 			if errorsBuffer.String() != "" {
-				errorsBuffer.WriteString(fmt.Sprintf(", "))
+				errorsBuffer.WriteString(", ")
 			}
 			errorsBuffer.WriteString(fmt.Sprintf("missing mode %s", errorLocation))
 		}
 		if loadedLogFile[i].Call == "" {
 			if errorsBuffer.String() != "" {
-				errorsBuffer.WriteString(fmt.Sprintf(", "))
+				errorsBuffer.WriteString(", ")
 			}
 			errorsBuffer.WriteString(fmt.Sprintf("missing call %s", errorLocation))
 		}
 		if loadedLogFile[i].Time == "" {
 			if errorsBuffer.String() != "" {
-				errorsBuffer.WriteString(fmt.Sprintf(", "))
+				errorsBuffer.WriteString(", ")
 			}
 			errorsBuffer.WriteString(fmt.Sprintf("missing QSO time %s", errorLocation))
 		}
 		//FIXME: if isNoMySota and MySota defined means that it was defined later in the log file
 		if isNoMySota && loadedLogFile[i].MySOTA != "" {
 			if errorsBuffer.String() != "" {
-				errorsBuffer.WriteString(fmt.Sprintf(", "))
+				errorsBuffer.WriteString(", ")
 			}
 			errorsBuffer.WriteString(fmt.Sprintf("encountered an unexpexted MySota reference while processing what should be a chaser log %s", errorLocation))
 		}
 
 		if isNoMySota && loadedLogFile[i].SOTA == "" {
 			if errorsBuffer.String() != "" {
-				errorsBuffer.WriteString(fmt.Sprintf(", "))
+				errorsBuffer.WriteString(", ")
 			}
 			errorsBuffer.WriteString(fmt.Sprintf("missing SOTA reference while attempting to process chaser log %s", errorLocation))
 		}

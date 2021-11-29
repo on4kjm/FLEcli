@@ -30,7 +30,10 @@ type LogLine struct {
 	MyCall           string
 	Operator         string
 	MyWWFF           string
+	MyPOTA           string
 	MySOTA           string
+	MyPota           string
+	MySota           string
 	MyGrid           string
 	QslMsgFromHeader string
 	Nickname         string
@@ -50,21 +53,23 @@ type LogLine struct {
 	RSTsent          string
 	RSTrcvd          string
 	WWFF             string
+	POTA             string
 	SOTA             string
 }
 
-var regexpIsFullTime = regexp.MustCompile("^[0-2]{1}[0-9]{3}$")
-var regexpIsTimePart = regexp.MustCompile("^[0-5]{1}[0-9]{1}$|^[1-9]{1}$")
-var regexpIsOMname = regexp.MustCompile("^@")
-var regexpIsGridLoc = regexp.MustCompile("^#")
-var regexpIsRst = regexp.MustCompile("^[\\d]{1,3}$")
-var regexpIsFreq = regexp.MustCompile("^[\\d]+\\.[\\d]+$")
-var regexpIsSotaKeyWord = regexp.MustCompile("(?i)^sota$")
-var regexpIsWwffKeyWord = regexp.MustCompile("(?i)^wwff$")
-var regexpDatePattern = regexp.MustCompile("^(\\d{2}|\\d{4})[-/ .]\\d{1,2}[-/ .]\\d{1,2}$")
-var regexpIsDateKeyWord = regexp.MustCompile("(?i)^date$")
-var regexpDayIncrementPattern = regexp.MustCompile("^\\+*$")
-var regexpIsDayKeyword = regexp.MustCompile("(?i)^day$")
+var regexpIsFullTime = regexp.MustCompile(`^[0-2]{1}[0-9]{3}$`)
+var regexpIsTimePart = regexp.MustCompile(`^[0-5]{1}[0-9]{1}$|^[1-9]{1}$`)
+var regexpIsOMname = regexp.MustCompile(`^@`)
+var regexpIsGridLoc = regexp.MustCompile(`^#`)
+var regexpIsRst = regexp.MustCompile(`^[\d]{1,3}$`)
+var regexpIsFreq = regexp.MustCompile(`^[\d]+\.[\d]+$`)
+var regexpIsSotaKeyWord = regexp.MustCompile(`(?i)^sota$`)
+var regexpIsWwffKeyWord = regexp.MustCompile(`(?i)^wwff$`)
+var regexpIsPotaKeyWord = regexp.MustCompile(`(?i)^pota$`)
+var regexpDatePattern = regexp.MustCompile(`^(\d{2}|\d{4})[-/ .]\d{1,2}[-/ .]\d{1,2}$`)
+var regexpIsDateKeyWord = regexp.MustCompile(`(?i)^date$`)
+var regexpDayIncrementPattern = regexp.MustCompile(`^\+*$`)
+var regexpIsDayKeyword = regexp.MustCompile(`(?i)^day$`)
 
 // ParseLine cuts a FLE line into useful bits
 func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg string) {
@@ -82,6 +87,7 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 	previousLine.RSTsent = ""
 	previousLine.RSTrcvd = ""
 	previousLine.SOTA = ""
+	previousLine.POTA = ""
 	previousLine.WWFF = ""
 	previousLine.OMname = ""
 	previousLine.GridLoc = ""
@@ -156,7 +162,7 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 			increment := len(element)
 			newDate, dateError := IncrementDate(logLine.Date, increment)
 			if dateError != "" {
-				errorMsg = errorMsg + fmt.Sprintf(dateError)
+				errorMsg = errorMsg + dateError
 			}
 			logLine.Date = newDate
 			continue
@@ -177,6 +183,7 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 			qrg, _ = strconv.ParseFloat(element, 32)
 			if (logLine.BandLowerLimit != 0.0) && (logLine.BandUpperLimit != 0.0) {
 				if (qrg >= logLine.BandLowerLimit) && (qrg <= logLine.BandUpperLimit) {
+					//TODO: print 3f or more is available
 					logLine.Frequency = fmt.Sprintf("%.3f", qrg)
 				} else {
 					logLine.Frequency = ""
@@ -202,7 +209,7 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 		}
 
 		// Is it a "full" time ?
-		if isRightOfCall == false {
+		if !isRightOfCall {
 			if regexpIsFullTime.MatchString(element) {
 				logLine.Time = element
 				logLine.ActualTime = element
@@ -286,6 +293,19 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 			workRef, wwffErr := ValidateWwff(element)
 			if wwffErr == "" {
 				logLine.WWFF = workRef
+				continue
+			}
+
+			// If the "pota" keyword is used, skip it
+			if regexpIsPotaKeyWord.MatchString(element) {
+				// this keyword is not requiered anymore with FLE 3 and doesn't add any value
+				continue
+			}
+
+			// Is it a "POTA to POTA" reference?
+			workRef, potaErr := ValidatePota(element)
+			if potaErr == "" {
+				logLine.POTA = workRef
 				continue
 			}
 

@@ -1,31 +1,14 @@
 package fleprocess
 
-/*
-Copyright © 2020 Jean-Marc Meessen, ON4KJM <on4kjm@gmail.com>
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
 import (
 	"fmt"
 	"testing"
 )
 
-func Test_validateDataforAdif(t *testing.T) {
+func Test_validateDataforAdif2(t *testing.T) {
 	type args struct {
 		loadedLogFile []LogLine
-		isWWFFcli     bool
-		isSOTAcli     bool
+		adifParams    AdifParams
 	}
 	tests := []struct {
 		name string
@@ -33,77 +16,125 @@ func Test_validateDataforAdif(t *testing.T) {
 		want error
 	}{
 		{
-			"Happy Case (no sota or wwff)",
-			args{isWWFFcli: false, isSOTAcli: false, loadedLogFile: []LogLine{
-				{Date: "date", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "time", Call: "call"},
-				{Date: "date", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "time", Call: "call"},
-				{Date: "date", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "time", Call: "call"}},
+			"Happy Case (no sota, pota or wwff)",
+			args{
+				adifParams: AdifParams{IsWWFF: false, IsSOTA: false, IsPOTA: false},
+				loadedLogFile: []LogLine{
+					{Date: "date", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "time", Call: "call"},
+					{Date: "date", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "time", Call: "call"},
+					{Date: "date", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "time", Call: "call"},
+				},
 			},
 			nil,
 		},
 		{
 			"No data",
-			args{isWWFFcli: false, isSOTAcli: false, loadedLogFile: []LogLine{}},
-			fmt.Errorf("No QSO found"),
+			args{
+				adifParams:    AdifParams{IsWWFF: false, IsSOTA: false, IsPOTA: false},
+				loadedLogFile: []LogLine{},
+			},
+			fmt.Errorf("no QSO found"),
 		},
 		{
 			"Missing Date",
-			args{isWWFFcli: false, isSOTAcli: false, loadedLogFile: []LogLine{
-				{Date: "date", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:01", Call: "call"},
-				{Date: "", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:02", Call: "call"},
-				{Date: "", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:03", Call: "call"}},
+			args{
+				adifParams: AdifParams{IsWWFF: false, IsSOTA: false, IsPOTA: false},
+				loadedLogFile: []LogLine{
+					{Date: "date", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:01", Call: "call"},
+					{Date: "", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:02", Call: "call"},
+					{Date: "", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:03", Call: "call"},
+				},
 			},
 			fmt.Errorf("missing date for log entry at 12:02 (#2), missing date for log entry at 12:03 (#3)"),
 		},
 		{
 			"Missing MyCall",
-			args{isWWFFcli: true, isSOTAcli: true, loadedLogFile: []LogLine{
-				{Date: "date", MyCall: "", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:01", Call: "call"},
-				{Date: "date", MyCall: "", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:02", Call: "call"},
-				{Date: "date", MyCall: "", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:03", Call: "call"}},
+			args{
+				adifParams: AdifParams{IsWWFF: true, IsSOTA: true, IsPOTA: true},
+				loadedLogFile: []LogLine{
+					{Date: "date", MyCall: "", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:01", Call: "call"},
+					{Date: "date", MyCall: "", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:02", Call: "call"},
+					{Date: "date", MyCall: "", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:03", Call: "call"},
+				},
 			},
-			fmt.Errorf("Missing MyCall"),
+			fmt.Errorf("missing MyCall"),
 		},
 		{
-			"Missing MySota",
-			args{isWWFFcli: false, isSOTAcli: true, loadedLogFile: []LogLine{
-				{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
-				{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
-				{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "time", Call: "call"}},
+			"Missing MyCall (POTA)",
+			args{
+				adifParams: AdifParams{IsWWFF: false, IsSOTA: false, IsPOTA: true},
+				loadedLogFile: []LogLine{
+					{Date: "date", MyCall: "", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:01", Call: "call"},
+					{Date: "date", MyCall: "", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:02", Call: "call"},
+					{Date: "date", MyCall: "", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:03", Call: "call"},
+				},
 			},
-			fmt.Errorf("Missing MY-SOTA reference"),
+			fmt.Errorf("missing MyCall"),
+		},		
+		{
+			"Missing MySota",
+			args{
+				adifParams: AdifParams{IsWWFF: false, IsSOTA: true, IsPOTA: false},
+				loadedLogFile: []LogLine{
+					{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
+					{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
+					{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
+				},
+			},
+			fmt.Errorf("missing MY-SOTA reference"),
+		},
+		{
+			"Missing MyPota",
+			args{
+				adifParams: AdifParams{IsWWFF: false, IsSOTA: false, IsPOTA: true},
+				loadedLogFile: []LogLine{
+					{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
+					{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
+					{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
+				},
+			},
+			fmt.Errorf("missing MY-POTA reference"),
 		},
 		{
 			"Misc. missing data (Band, Time, Mode, Call)",
-			args{isWWFFcli: false, isSOTAcli: false, loadedLogFile: []LogLine{
-				{Date: "date", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "", Time: "", Call: "call"},
-				{Date: "date", MyCall: "myCall", MySOTA: "mySota", Mode: "", Band: "band", Time: "12:02", Call: "call"},
-				{Date: "date", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:03", Call: ""}},
+			args{
+				adifParams: AdifParams{IsWWFF: false, IsSOTA: false, IsPOTA: false},
+				loadedLogFile: []LogLine{
+					{Date: "date", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "", Time: "", Call: "call"},
+					{Date: "date", MyCall: "myCall", MySOTA: "mySota", Mode: "", Band: "band", Time: "12:02", Call: "call"},
+					{Date: "date", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:03", Call: ""},
+				},
 			},
 			fmt.Errorf("missing band for log entry #1, missing QSO time for log entry #1, missing mode for log entry at 12:02 (#2), missing call for log entry at 12:03 (#3)"),
 		},
 		{
 			"Missing MY-WWFF",
-			args{isWWFFcli: true, isSOTAcli: false, loadedLogFile: []LogLine{
-				{Date: "date", MyCall: "myCall", MySOTA: "mySota", MyWWFF: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
-				{Date: "date", MyCall: "myCall", MySOTA: "mySota", MyWWFF: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
-				{Date: "date", MyCall: "myCall", MySOTA: "mySota", MyWWFF: "", Mode: "mode", Band: "band", Time: "time", Call: "call"}},
+			args{
+				adifParams: AdifParams{IsWWFF: true, IsSOTA: false, IsPOTA: false},
+				loadedLogFile: []LogLine{
+					{Date: "date", MyCall: "myCall", MySOTA: "mySota", MyWWFF: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
+					{Date: "date", MyCall: "myCall", MySOTA: "mySota", MyWWFF: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
+					{Date: "date", MyCall: "myCall", MySOTA: "mySota", MyWWFF: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
+				},
 			},
-			fmt.Errorf("Missing MY-WWFF reference"),
+			fmt.Errorf("missing MY-WWFF reference"),
 		},
 		{
-			"Missing MY-WWFF",
-			args{isWWFFcli: true, isSOTAcli: false, loadedLogFile: []LogLine{
-				{Date: "date", MyCall: "myCall", MyWWFF: "myWwff", Operator: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
-				{Date: "date", MyCall: "myCall", MyWWFF: "myWwff", Operator: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
-				{Date: "date", MyCall: "myCall", MyWWFF: "myWwff", Operator: "", Mode: "mode", Band: "band", Time: "time", Call: "call"}},
+			"Missing Operator with isWWFF",
+			args{
+				adifParams: AdifParams{IsWWFF: true, IsSOTA: false, IsPOTA: false},
+				loadedLogFile: []LogLine{
+					{Date: "date", MyCall: "myCall", MyWWFF: "myWwff", Operator: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
+					{Date: "date", MyCall: "myCall", MyWWFF: "myWwff", Operator: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
+					{Date: "date", MyCall: "myCall", MyWWFF: "myWwff", Operator: "", Mode: "mode", Band: "band", Time: "time", Call: "call"},
+				},
 			},
-			fmt.Errorf("Missing Operator call sign"),
+			fmt.Errorf("missing Operator call sign"),
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := validateDataforAdif(tt.args.loadedLogFile, tt.args.isWWFFcli, tt.args.isSOTAcli)
+			got := validateDataforAdif(tt.args.loadedLogFile, tt.args.adifParams)
 
 			//Test the error message, if any
 			if got != nil && tt.want != nil {
@@ -119,14 +150,10 @@ func Test_validateDataforAdif(t *testing.T) {
 	}
 }
 
+
 func TestProcessAdifCommand(t *testing.T) {
 	type args struct {
-		inputFilename     string
-		outputFilename    string
-		isInterpolateTime bool
-		isWWFFcli         bool
-		isSOTAcli         bool
-		isOverwrite       bool
+		adifParams AdifParams
 	}
 	tests := []struct {
 		name    string
@@ -135,29 +162,57 @@ func TestProcessAdifCommand(t *testing.T) {
 	}{
 		{
 			"Bad output filename (directory)",
-			args{inputFilename: "../test/data/fle-4-no-qso.txt", outputFilename: "../test/data", isInterpolateTime: false, isOverwrite: false},
+			args{
+				adifParams: AdifParams{
+					InputFilename: "../test/data/fle-4-no-qso.txt",
+					OutputFilename: "../test/data",
+					IsInterpolateTime: false,
+					IsOverwrite: false,
+				},
+			},
 			true,
 		},
 		{
 			"input file parsing errors (missing band)",
-			args{inputFilename: "../test/data/fle-3-error.txt", outputFilename: "", isInterpolateTime: false, isOverwrite: false},
+			args{
+				adifParams: AdifParams{
+					InputFilename: "../test/data/fle-3-error.txt",
+					OutputFilename: "",
+					IsInterpolateTime: false,
+					IsOverwrite: false,
+				},
+			},
 			true,
 		},
 		{
 			"input file parsing errors (wrong call)",
-			args{inputFilename: "../test/data/fle-5-wrong-call.txt", outputFilename: "", isInterpolateTime: false, isOverwrite: false},
+			args{
+				adifParams: AdifParams{
+					InputFilename: "../test/data/fle-5-wrong-call.txt",
+					OutputFilename: "",
+					IsInterpolateTime: false,
+					IsOverwrite: false,
+				},
+			},
 			true,
 		},
 		{
 			"No QSO in loaded file",
-			args{inputFilename: "../test/data/fle-4-no-qso.txt", outputFilename: "", isInterpolateTime: false, isOverwrite: false},
+			args{
+				adifParams: AdifParams{
+					InputFilename: "../test/data/fle-4-no-qso.txt",
+					OutputFilename: "",
+					IsInterpolateTime: false,
+					IsOverwrite: false,
+				},
+			},
 			true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if err := ProcessAdifCommand(tt.args.inputFilename, tt.args.outputFilename, tt.args.isInterpolateTime, tt.args.isWWFFcli, tt.args.isSOTAcli, tt.args.isOverwrite); (err != nil) != tt.wantErr {
-				t.Errorf("ProcessCsvCommand() error = %v, wantErr %v", err, tt.wantErr)
+			if err := ProcessAdifCommand(tt.args.adifParams); (err != nil) != tt.wantErr {
+				t.Errorf("ProcessAdifCommand() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
 	}

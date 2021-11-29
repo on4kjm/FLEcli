@@ -27,6 +27,7 @@ import (
 var outputFilename string
 var isWWFFcli bool
 var isSOTAcli bool
+var isPOTAcli bool
 var isOverwrite bool
 
 // adifCmd is executed when choosing the adif option (load and generate adif file)
@@ -37,10 +38,11 @@ var adifCmd = &cobra.Command{
 	// and usage of using your command. For example:
 
 	RunE: func(cmd *cobra.Command, args []string) error {
+
 		//if args is empty, throw an error
 		if len(args) == 0 {
 			//TODO: fix this ugly statement (because I am lazy)
-			return fmt.Errorf("Missing input file %s", "")
+			return fmt.Errorf("missing input file %s", "")
 		}
 		inputFilename = args[0]
 		if len(args) == 2 {
@@ -50,13 +52,16 @@ var adifCmd = &cobra.Command{
 			return fmt.Errorf("Too many arguments.%s", "")
 		}
 
-		err := fleprocess.ProcessAdifCommand(
-			inputFilename,
-			outputFilename,
-			isInterpolateTime,
-			isWWFFcli,
-			isSOTAcli,
-			isOverwrite)
+		var adifParam = new(fleprocess.AdifParams)
+		adifParam.InputFilename = inputFilename
+		adifParam.OutputFilename = outputFilename
+		adifParam.IsInterpolateTime = isInterpolateTime
+		adifParam.IsSOTA = isSOTAcli
+		adifParam.IsPOTA = isPOTAcli
+		adifParam.IsWWFF = isWWFFcli
+		adifParam.IsOverwrite = isOverwrite
+
+		err := fleprocess.ProcessAdifCommand(*adifParam)
 		if err != nil {
 			fmt.Println("\nUnable to generate ADIF file:")
 			fmt.Println(err)
@@ -73,5 +78,6 @@ func init() {
 	adifCmd.PersistentFlags().BoolVarP(&isInterpolateTime, "interpolate", "i", false, "Interpolates the missing time entries.")
 	adifCmd.PersistentFlags().BoolVarP(&isWWFFcli, "wwff", "w", false, "Generates a WWFF ready ADIF file.")
 	adifCmd.PersistentFlags().BoolVarP(&isSOTAcli, "sota", "s", false, "Generates a SOTA ready ADIF file.")
+	adifCmd.PersistentFlags().BoolVarP(&isPOTAcli, "pota", "p", false, "Generates a POTA ready ADIF file.")
 	adifCmd.PersistentFlags().BoolVarP(&isOverwrite, "overwrite", "o", false, "Overwrites the output file if it exisits")
 }

@@ -27,7 +27,7 @@ func buildOutputFilename(output string, input string, overwrite bool, newExtensi
 
 	//validate that input is populated (should never happen if properly called)
 	if input == "" {
-		return "", fmt.Errorf("Unexepected error: no input file provided")
+		return "", fmt.Errorf("unexepected error: no input file provided")
 	}
 
 	//No output was provided, let's create one from the input file
@@ -46,12 +46,12 @@ func buildOutputFilename(output string, input string, overwrite bool, newExtensi
 	}
 	//It exisits but is a directory
 	if info.IsDir() {
-		return "", fmt.Errorf("Error: specified output exists and is a directory")
+		return "", fmt.Errorf("error: specified output exists and is a directory")
 	}
 	if overwrite {
 		//user accepted to overwrite the file
 		return output, nil
 	}
 
-	return "", fmt.Errorf("File already exists. Use --overwrite flag if necessary")
+	return "", fmt.Errorf("file already exists. Use --overwrite flag if necessary")
 }

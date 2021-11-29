@@ -51,6 +51,20 @@ func ValidateWwff(inputStr string) (ref, errorMsg string) {
 	return wrongInputStr, errorMsg
 }
 
+var validPotaRegexp = regexp.MustCompile(`^[\d]{0,1}[A-Z]{1,2}-[\d]{4}$`)
+
+// ValidatePota verifies whether the supplied string is a valid POTA reference.
+// The syntax is: AA-CCCC: AA = national prefix, CCCC = 4-digit numeric code (e.g. ON-0001).
+func ValidatePota(inputStr string) (ref, errorMsg string) {
+	inputStr = strings.ToUpper(strings.TrimSpace(inputStr))
+	wrongInputStr := "*" + inputStr
+	if validPotaRegexp.MatchString(inputStr) {
+		return inputStr, ""
+	}
+	errorMsg = "[" + inputStr + "] is an invalid POTA reference"
+	return wrongInputStr, errorMsg
+}
+
 var validGridRegexp = regexp.MustCompile("(?i)^[a-z]{2}[0-9]{2}([a-z]{2})?$")
 
 // ValidateGridLocator verifies that the supplied is a valid Maidenhead locator reference

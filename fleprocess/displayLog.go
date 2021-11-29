@@ -29,6 +29,7 @@ func SprintLogRecord(logLine LogLine) string {
 	output.WriteString("Operator  " + logLine.Operator + "\n")
 	output.WriteString("MyWWFF    " + logLine.MyWWFF + "\n")
 	output.WriteString("MySOTA    " + logLine.MySOTA + "\n")
+	output.WriteString("MyPOTA    " + logLine.MyPOTA + "\n")
 	output.WriteString("MyGrid    " + logLine.MyGrid + "\n")
 	output.WriteString("QslMsg    " + logLine.QslMsgFromHeader + "\n")
 	output.WriteString("Nickname  " + logLine.Nickname + "\n")
@@ -68,6 +69,10 @@ func SprintHeaderValues(logLine LogLine) string {
 
 	if logLine.MySOTA != "" {
 		output.WriteString("MySOTA    " + logLine.MySOTA + "\n")
+	}
+
+	if logLine.MyPOTA != "" {
+		output.WriteString("MyPOTA    " + logLine.MyPOTA + "\n")
 	}
 
 	if logLine.MyGrid != "" {

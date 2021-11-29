@@ -41,6 +41,7 @@ func TestLoadFile_happyCase(t *testing.T) {
 	dataArray = append(dataArray, "nickname Portable")
 	dataArray = append(dataArray, "myWwff onff-0258")
 	dataArray = append(dataArray, "mySota on/on-001")
+	dataArray = append(dataArray, "myPota k-0802")
 	dataArray = append(dataArray, "myGrid jo50")
 	dataArray = append(dataArray, "QslMsg This is a QSL message")
 	dataArray = append(dataArray, " ")
