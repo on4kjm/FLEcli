@@ -94,12 +94,12 @@ func Test_buildAdif(t *testing.T) {
 		"<STATION_CALLSIGN:8>ON4KJM/P <CALL:5>ON4LY <QSO_DATE:8>20200524 <TIME_ON:4>1312 <BAND:3>20m <MODE:2>CW <RST_SENT:3>559 <RST_RCVD:3>599 <MY_SIG:4>WWFF <MY_SIG_INFO:9>ONFF-0259 <SIG:4>WWFF <SIG_INFO:9>DLFF-0001 <OPERATOR:6>ON4KJM <MY_GRIDSQUARE:6>JO40eu <EOR>",
 	}
 
-	sampleFilledLog_POTA := []LogLine{
+	sampleFilledLogPOTA := []LogLine{
 		{MyCall: "ON4KJM/P", Call: "S57LC", Date: "2020-05-24", Time: "1310", Band: "20m", Frequency: "14.045", Mode: "CW", RSTsent: "599", RSTrcvd: "599", MyPOTA: "ON-00259", Operator: "ON4KJM", Nickname: "ON-00259-1"},
 		{MyCall: "ON4KJM/P", Call: "ON4LY", Date: "2020-05-24", Time: "1312", Band: "20m", Mode: "CW", RSTsent: "559", RSTrcvd: "599", MyPOTA: "ON-00259", Operator: "ON4KJM"},
 	}
 
-	expectedOutput_POTA := []string{
+	expectedOutputPOTA := []string{
 		"ADIF Export for Fast Log Entry by DF3CB",
 		"<PROGRAMID:3>FLE",
 		"<ADIF_VER:5>3.1.0",
@@ -109,12 +109,12 @@ func Test_buildAdif(t *testing.T) {
 	}
 
 
-	sampleFilledLog_POTA2 := []LogLine{
+	sampleFilledLogPOTA2 := []LogLine{
 		{MyCall: "ON4KJM/P", Call: "S57LC", Date: "2020-05-24", MyGrid: "JO40eu", Time: "1310", Band: "20m", Frequency: "14.045", Mode: "CW", RSTsent: "599", RSTrcvd: "599", GridLoc: "JO50", MyPOTA: "ON-00259", Operator: "ON4KJM", Nickname: "ON-00259-1"},
 		{MyCall: "ON4KJM/P", Call: "ON4LY", Date: "2020-05-24", MyGrid: "JO40eu", Time: "1312", Band: "20m", Mode: "CW", RSTsent: "559", RSTrcvd: "599", MyPOTA: "ON-00259", Operator: "ON4KJM", POTA: "DL-00001"},
 	}
 
-	expectedOutput_POTA2 := []string{
+	expectedOutputPOTA2 := []string{
 		"ADIF Export for Fast Log Entry by DF3CB",
 		"<PROGRAMID:3>FLE",
 		"<ADIF_VER:5>3.1.0",
@@ -143,10 +143,10 @@ func Test_buildAdif(t *testing.T) {
 		{
 			"Happy case-POTA", 
 			args{
-				fullLog: sampleFilledLog_POTA, 
+				fullLog: sampleFilledLogPOTA, 
 				adifParams: AdifParams{IsPOTA: true},
 			},
-			expectedOutput_POTA,
+			expectedOutputPOTA,
 		},
 		{
 			"Happy case-Grid",
@@ -166,10 +166,10 @@ func Test_buildAdif(t *testing.T) {
 		{
 			"Happy case-POTA2POTA",
 			args{
-				fullLog: sampleFilledLog_POTA2, 
+				fullLog: sampleFilledLogPOTA2, 
 				adifParams: AdifParams{IsPOTA: true},
 			},
-			expectedOutput_POTA2,
+			expectedOutputPOTA2,
 		},
 	}
 	for _, tt := range tests {

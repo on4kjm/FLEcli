@@ -21,6 +21,7 @@ import (
 	"strings"
 )
 
+//AdifParams is holding all the parameters required to generate an ADIF file
 type AdifParams struct {
 	InputFilename     string
 	OutputFilename    string
