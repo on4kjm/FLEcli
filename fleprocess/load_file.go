@@ -58,14 +58,14 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	regexpStartMultiLineComment := regexp.MustCompile(`^[[:blank:]]*{`)
 	regexpEndMultiLineComment := regexp.MustCompile(`}$`)
 	//FIXME: fields can delimited with space or TAB ("(?i)^mywwff\s+")
-	regexpHeaderMyCall := regexp.MustCompile(`(?i)^mycall `)
-	regexpHeaderOperator := regexp.MustCompile(`(?i)^operator `)
-	regexpHeaderMyWwff := regexp.MustCompile(`(?i)^mywwff `)
-	regexpHeaderMySota := regexp.MustCompile(`(?i)^mysota `)
-	regexpHeaderMyPota := regexp.MustCompile(`(?i)^mypota `)
-	regexpHeaderMyGrid := regexp.MustCompile(`(?i)^mygrid `)
-	regexpHeaderQslMsg := regexp.MustCompile(`(?i)^qslmsg `)
-	regexpHeaderNickname := regexp.MustCompile(`(?i)^nickname `)
+	regexpHeaderMyCall := regexp.MustCompile(`(?i)^mycall\s+`)
+	regexpHeaderOperator := regexp.MustCompile(`(?i)^operator\s+`)
+	regexpHeaderMyWwff := regexp.MustCompile(`(?i)^mywwff\s+`)
+	regexpHeaderMySota := regexp.MustCompile(`(?i)^mysota\s+`)
+	regexpHeaderMyPota := regexp.MustCompile(`(?i)^mypota\s+`)
+	regexpHeaderMyGrid := regexp.MustCompile(`(?i)^mygrid\s+`)
+	regexpHeaderQslMsg := regexp.MustCompile(`(?i)^qslmsg\s+`)
+	regexpHeaderNickname := regexp.MustCompile(`(?i)^nickname\s+`)
 
 	headerMyCall := ""
 	headerOperator := ""
