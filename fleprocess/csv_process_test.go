@@ -48,7 +48,7 @@ func Test_validateDataForSotaCsv(t *testing.T) {
 				{Date: "date", MyCall: "", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:02", Call: "call"},
 				{Date: "date", MyCall: "", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:03", Call: "call"}},
 			},
-			fmt.Errorf("Missing MyCall"),
+			fmt.Errorf("missing MyCall"),
 		},
 		{
 			"Neither Activator nor Chaser",

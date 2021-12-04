@@ -123,7 +123,7 @@ func TestInferTimeBlock_computeGaps_invalidData(t *testing.T) {
 	if err == nil {
 		t.Error("Should have failed with an error")
 	}
-	if err.Error() != "Gap start time is empty" {
+	if err.Error() != "gap start time is empty" {
 		t.Error("Did not not fail with the expected error.")
 	}
 }
@@ -140,7 +140,7 @@ func TestInferTimeBlock_computeGaps_missingEnTime(t *testing.T) {
 	if err == nil {
 		t.Error("Should have failed with an error")
 	}
-	if err.Error() != "Gap end time is empty" {
+	if err.Error() != "gap end time is empty" {
 		t.Errorf("Did not not fail with the expected error. Failed with %s", err)
 	}
 }
@@ -158,7 +158,7 @@ func TestInferTimeBlock_computeGaps_negativeDifference(t *testing.T) {
 	if err == nil {
 		t.Error("Should have failed with an error")
 	}
-	if err.Error() != "Gap start time is later than the Gap end time" {
+	if err.Error() != "gap start time is later than the Gap end time" {
 		t.Errorf("Did not not fail with the expected error. Failed with %s", err)
 	}
 }
@@ -278,7 +278,7 @@ func TestInferTimeBlock_increment_missingLastTime(t *testing.T) {
 	isEndGap, err := tb.storeTimeGap(logLine, recordNbr)
 
 	// Then
-	if err.Error() != "Gap start time is empty" {
+	if err.Error() != "gap start time is empty" {
 		t.Errorf("Unexpected error: %s", err)
 	}
 	if isEndGap == true {
@@ -303,7 +303,7 @@ func TestInferTimeBlock_increment_alreadyDefinedNewTime(t *testing.T) {
 	isEndGap, err := tb.storeTimeGap(logLine, recordNbr)
 
 	// Then
-	if err.Error() != "Gap end time is not empty" {
+	if err.Error() != "gap end time is not empty" {
 		t.Errorf("Unexpected error: %s", err)
 	}
 	if isEndGap == true {

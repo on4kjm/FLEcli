@@ -21,14 +21,26 @@ import (
 	"strings"
 )
 
+//AdifParams is holding all the parameters required to generate an ADIF file
+type AdifParams struct {
+	InputFilename     string
+	OutputFilename    string
+	IsInterpolateTime bool
+	IsWWFF            bool
+	IsSOTA            bool
+	IsPOTA            bool
+	IsOverwrite       bool
+}
+
 //ProcessAdifCommand loads an FLE input to produce an adif file (eventually in WWFF format). It is called from the COBRA interface
-func ProcessAdifCommand(inputFilename, outputFilename string, isInterpolateTime, isWWFFcli, isSOTAcli, isOverwrite bool) error {
+//inputFilename, outputFilename string, isInterpolateTime, isWWFFcli, IsSOTA, isPOTAcli, isOverwrite bool
+func ProcessAdifCommand(adifParams AdifParams) error {
 
 	//Validate of build the output filenaem
 	var verifiedOutputFilename string
 	var err error
 
-	if verifiedOutputFilename, err = buildOutputFilename(outputFilename, inputFilename, isOverwrite, ".adi"); err != nil {
+	if verifiedOutputFilename, err = buildOutputFilename(adifParams.OutputFilename, adifParams.InputFilename, adifParams.IsOverwrite, ".adi"); err != nil {
 		return err
 	}
 
@@ -36,17 +48,17 @@ func ProcessAdifCommand(inputFilename, outputFilename string, isInterpolateTime,
 	var loadedLogFile []LogLine
 	var isLoadedOK bool
 
-	if loadedLogFile, isLoadedOK = LoadFile(inputFilename, isInterpolateTime); isLoadedOK == false {
-		return fmt.Errorf("There were input file parsing errors. Could not generate ADIF file")
+	if loadedLogFile, isLoadedOK = LoadFile(adifParams.InputFilename, adifParams.IsInterpolateTime); !isLoadedOK {
+		return fmt.Errorf("there were input file parsing errors. Could not generate ADIF file")
 	}
 
 	//Check if we have all the necessary data
-	if err := validateDataforAdif(loadedLogFile, isWWFFcli, isSOTAcli); err != nil {
+	if err := validateDataforAdif(loadedLogFile, adifParams); err != nil {
 		return err
 	}
 
 	//Write the output file with the checked data
-	OutputAdif(verifiedOutputFilename, loadedLogFile, isWWFFcli, isSOTAcli)
+	OutputAdif(verifiedOutputFilename, loadedLogFile, adifParams)
 
 	//If we reached this point, everything was processed OK and the file generated
 	return nil
@@ -54,31 +66,38 @@ func ProcessAdifCommand(inputFilename, outputFilename string, isInterpolateTime,
 
 //validateDataforAdif checks whether all the required data is present
 //The details of the mandatory files can be found at http://wwff.co/rules-faq/confirming-and-sending-log/
-func validateDataforAdif(loadedLogFile []LogLine, isWWFFcli, isSOTAcli bool) error {
+func validateDataforAdif(loadedLogFile []LogLine, adifParams AdifParams) error {
 
 	//do we have QSOs at all?
 	if len(loadedLogFile) == 0 {
-		return fmt.Errorf("No QSO found")
+		return fmt.Errorf("no QSO found")
 	}
 
-	//MySOTA, MyWWFF and MyCall are header values. If missing on the first line, it will be missing at every line
+	//MySOTA, MyWWFF, MyPOTA and MyCall are header values. If missing on the first line, it will be missing at every line
 	if loadedLogFile[0].MyCall == "" {
-		return fmt.Errorf("Missing MyCall")
+		return fmt.Errorf("missing MyCall")
 	}
-	if isSOTAcli {
+	if adifParams.IsSOTA {
 		if loadedLogFile[0].MySOTA == "" {
-			return fmt.Errorf("Missing MY-SOTA reference")
+			return fmt.Errorf("missing MY-SOTA reference")
 		}
 	}
-	if isWWFFcli {
+	if adifParams.IsWWFF {
 		if loadedLogFile[0].MyWWFF == "" {
-			return fmt.Errorf("Missing MY-WWFF reference")
+			return fmt.Errorf("missing MY-WWFF reference")
 		}
 		if loadedLogFile[0].Operator == "" {
-			return fmt.Errorf("Missing Operator call sign")
+			return fmt.Errorf("missing Operator call sign")
 		}
 	}
-
+	if adifParams.IsPOTA {
+		if loadedLogFile[0].MyPOTA == "" {
+			return fmt.Errorf("missing MY-POTA reference")
+		}
+		if loadedLogFile[0].Operator == "" {
+			return fmt.Errorf("missing Operator call sign")
+		}
+	}
 	var errorsBuffer strings.Builder
 	//We accumulate the errors messages
 	for i := 0; i < len(loadedLogFile); i++ {
@@ -93,31 +112,31 @@ func validateDataforAdif(loadedLogFile []LogLine, isWWFFcli, isSOTAcli bool) err
 
 		if loadedLogFile[i].Date == "" {
 			if errorsBuffer.String() != "" {
-				errorsBuffer.WriteString(fmt.Sprintf(", "))
+				errorsBuffer.WriteString(", ")
 			}
 			errorsBuffer.WriteString(fmt.Sprintf("missing date %s", errorLocation))
 		}
 		if loadedLogFile[i].Band == "" {
 			if errorsBuffer.String() != "" {
-				errorsBuffer.WriteString(fmt.Sprintf(", "))
+				errorsBuffer.WriteString(", ")
 			}
 			errorsBuffer.WriteString(fmt.Sprintf("missing band %s", errorLocation))
 		}
 		if loadedLogFile[i].Mode == "" {
 			if errorsBuffer.String() != "" {
-				errorsBuffer.WriteString(fmt.Sprintf(", "))
+				errorsBuffer.WriteString(", ")
 			}
 			errorsBuffer.WriteString(fmt.Sprintf("missing mode %s", errorLocation))
 		}
 		if loadedLogFile[i].Call == "" {
 			if errorsBuffer.String() != "" {
-				errorsBuffer.WriteString(fmt.Sprintf(", "))
+				errorsBuffer.WriteString(", ")
 			}
 			errorsBuffer.WriteString(fmt.Sprintf("missing call %s", errorLocation))
 		}
 		if loadedLogFile[i].Time == "" {
 			if errorsBuffer.String() != "" {
-				errorsBuffer.WriteString(fmt.Sprintf(", "))
+				errorsBuffer.WriteString(", ")
 			}
 			errorsBuffer.WriteString(fmt.Sprintf("missing QSO time %s", errorLocation))
 		}

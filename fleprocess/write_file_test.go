@@ -22,7 +22,7 @@ import (
 	"testing"
 )
 
-const writeFileTestDir string = "test2_dir"
+const WriteFileTestDir string = "test2_dir"
 const writeFileTestFname string = "testFile.txt"
 
 func Test_writeFile(t *testing.T) {

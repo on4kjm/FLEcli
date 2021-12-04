@@ -52,23 +52,26 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	//isInferTimeFatalError is set to true is something bad happened while storing time gaps.
 	isInferTimeFatalError := false
 
-	regexpLineComment := regexp.MustCompile("^[[:blank:]]*#")
-	regexpOnlySpaces := regexp.MustCompile("^\\s+$")
-	regexpSingleMultiLineComment := regexp.MustCompile("^[[:blank:]]*{.+}$")
-	regexpStartMultiLineComment := regexp.MustCompile("^[[:blank:]]*{")
-	regexpEndMultiLineComment := regexp.MustCompile("}$")
-	regexpHeaderMyCall := regexp.MustCompile("(?i)^mycall ")
-	regexpHeaderOperator := regexp.MustCompile("(?i)^operator ")
-	regexpHeaderMyWwff := regexp.MustCompile("(?i)^mywwff ")
-	regexpHeaderMySota := regexp.MustCompile("(?i)^mysota ")
-	regexpHeaderMyGrid := regexp.MustCompile("(?i)^mygrid ")
-	regexpHeaderQslMsg := regexp.MustCompile("(?i)^qslmsg ")
-	regexpHeaderNickname := regexp.MustCompile("(?i)^nickname ")
+	regexpLineComment := regexp.MustCompile(`^[[:blank:]]*#`)
+	regexpOnlySpaces := regexp.MustCompile(`^\s+$`)
+	regexpSingleMultiLineComment := regexp.MustCompile(`^[[:blank:]]*{.+}$`)
+	regexpStartMultiLineComment := regexp.MustCompile(`^[[:blank:]]*{`)
+	regexpEndMultiLineComment := regexp.MustCompile(`}$`)
+	//FIXME: fields can delimited with space or TAB ("(?i)^mywwff\s+")
+	regexpHeaderMyCall := regexp.MustCompile(`(?i)^mycall\s+`)
+	regexpHeaderOperator := regexp.MustCompile(`(?i)^operator\s+`)
+	regexpHeaderMyWwff := regexp.MustCompile(`(?i)^mywwff\s+`)
+	regexpHeaderMySota := regexp.MustCompile(`(?i)^mysota\s+`)
+	regexpHeaderMyPota := regexp.MustCompile(`(?i)^mypota\s+`)
+	regexpHeaderMyGrid := regexp.MustCompile(`(?i)^mygrid\s+`)
+	regexpHeaderQslMsg := regexp.MustCompile(`(?i)^qslmsg\s+`)
+	regexpHeaderNickname := regexp.MustCompile(`(?i)^nickname\s+`)
 
 	headerMyCall := ""
 	headerOperator := ""
 	headerMyWWFF := ""
 	headerMySOTA := ""
+	headerMyPOTA := ""
 	headerMyGrid := ""
 	headerQslMsg := ""
 	headerNickname := ""
@@ -182,6 +185,26 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			continue
 		}
 
+		//My Pota
+		if regexpHeaderMyPota.MatchString(eachline) {
+			//Attempt to redefine value
+			if headerMyPOTA != "" {
+				errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine MyPOTA at line %d", lineCount))
+				continue
+			}
+			errorMsg := ""
+			myPotaList := regexpHeaderMyPota.Split(eachline, -1)
+			if len(strings.TrimSpace(myPotaList[1])) > 0 {
+				headerMyPOTA, errorMsg = ValidatePota(strings.TrimSpace(myPotaList[1]))
+				cleanedInput = append(cleanedInput, fmt.Sprintf("My Pota: %s", headerMyPOTA))
+				if len(errorMsg) != 0 {
+					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My POTA\" at line %d: %s (%s)", lineCount, myPotaList[1], errorMsg))
+				}
+			}
+			//If there is no data after the marker, we just skip the data.
+			continue
+		}
+
 		//My Sota
 		if regexpHeaderMySota.MatchString(eachline) {
 			//Attempt to redefine value
@@ -257,6 +280,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		previousLogLine.MyCall = headerMyCall
 		previousLogLine.Operator = headerOperator
 		previousLogLine.MyWWFF = headerMyWWFF
+		previousLogLine.MyPOTA = headerMyPOTA
 		previousLogLine.MySOTA = headerMySOTA
 		previousLogLine.MyGrid = headerMyGrid
 		previousLogLine.QSLmsg = headerQslMsg //previousLogLine.QslMsg is redundant
@@ -320,7 +344,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	if isInterpolateTime {
 		//Do we have an open timeBlok that has not been closed.
 		if (wrkTimeBlock.noTimeCount > 0) && (wrkTimeBlock.nextValidTime.IsZero()) {
-			errorLog = append(errorLog, fmt.Sprint("Fatal error: missing new time to infer time"))
+			errorLog = append(errorLog, "Fatal error: missing new time to infer time")
 		} else {
 			for _, timeBlock := range missingTimeBlockList {
 				if err := timeBlock.validateTimeGap(); err != nil {

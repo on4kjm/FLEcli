@@ -22,7 +22,7 @@ import (
 	"time"
 )
 
-// outputAdif generates and writes data in ADIF format
+// outputCsv generates and writes data in csv format
 func outputCsv(outputFile string, fullLog []LogLine) {
 
 	//convert the log data to an in-memory ADIF file
@@ -40,7 +40,7 @@ func buildCsv(fullLog []LogLine) (csvList []string) {
 	for _, logLine := range fullLog {
 		var csvLine strings.Builder
 		csvLine.WriteString("V2,")
-		csvLine.WriteString(fmt.Sprintf("%s", logLine.MyCall))
+		csvLine.WriteString(logLine.MyCall)
 		csvLine.WriteString(fmt.Sprintf(",%s", logLine.MySOTA))
 		csvLine.WriteString(fmt.Sprintf(",%s", csvDate(logLine.Date)))
 		csvLine.WriteString(fmt.Sprintf(",%s", logLine.Time))
@@ -65,7 +65,7 @@ func buildCsv(fullLog []LogLine) (csvList []string) {
 	return csvList
 }
 
-//adifDate converts a date in YYYY-MM-DD format to YYYYMMDD
+//csvDate converts a date in YYYY-MM-DD format to YYYY/MM/DD
 func csvDate(inputDate string) (outputDate string) {
 	const FLEdateFormat = "2006-01-02"
 	date, err := time.Parse(FLEdateFormat, inputDate)

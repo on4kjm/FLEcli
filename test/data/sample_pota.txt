@@ -1,0 +1,22 @@
+{ Sample POTA log }
+# Header
+mycall g3wgv
+operator g3wgv
+myPota g-0014
+
+# Log
+date 2016-04-24
+40m cw
+1202 g4elz
+4 g3noh <PSE QSL Direct>
+2m fm
+1227 gw4gte <Dave>
+8 gw0tlk/m 
+
+date 2016-06-03
+40m cw
+1404 gm0aaa 3 7
+5 on4ck/p 2
+7 dl0dan/p
+20m
+10 yu7ls

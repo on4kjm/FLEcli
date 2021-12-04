@@ -159,6 +159,16 @@ func TestParseLine(t *testing.T) {
 			LogLine{Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", WWFF: "ONFF-0258"}, "",
 		},
 		{
+			"POTA keywork ",
+			args{inputStr: "1230 oe6cud/p pota on-0258", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
+			LogLine{Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", POTA: "ON-0258"}, "",
+		},
+		{
+			"implied POTA keywork ",
+			args{inputStr: "1230 oe6cud/p on-0258", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
+			LogLine{Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", POTA: "ON-0258"}, "",
+		},
+		{
 			"date processing",
 			args{inputStr: "20.09.7 1230 oe6cud/p onff-0258", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
 			LogLine{Date: "2020-09-07", Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", WWFF: "ONFF-0258"}, "",

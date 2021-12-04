@@ -64,7 +64,7 @@ func (tb *InferTimeBlock) finalizeTimeGap() error {
 
 	//Do we have a positive noTimeCount
 	if tb.noTimeCount < 1 {
-		return fmt.Errorf("Invalid number of records without time (%d)", tb.noTimeCount)
+		return fmt.Errorf("invalid number of records without time (%d)", tb.noTimeCount)
 	}
 
 	//TODO: What should we expect as logFilePosition?
@@ -76,15 +76,15 @@ func (tb *InferTimeBlock) finalizeTimeGap() error {
 func (tb *InferTimeBlock) validateTimeGap() error {
 	//Check that lastRecordedTime and nextValidTime are not null
 	if tb.lastRecordedTime.IsZero() {
-		return errors.New("Gap start time is empty")
+		return errors.New("gap start time is empty")
 	}
 	if tb.nextValidTime.IsZero() {
-		return errors.New("Gap end time is empty")
+		return errors.New("gap end time is empty")
 	}
 
 	//Fail if we have a negative time difference
 	if tb.nextValidTime.Before(tb.lastRecordedTime) {
-		return errors.New("Gap start time is later than the Gap end time")
+		return errors.New("gap start time is later than the Gap end time")
 	}
 	return nil
 }
@@ -101,20 +101,20 @@ func (tb *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool, err
 		if tb.noTimeCount == 0 {
 			//File is bad: date not found or badly formated
 			if logline.Date == "" {
-				return false, errors.New("Date not defined or badly formated")
+				return false, errors.New("date not defined or badly formated")
 			}
 			if tb.lastRecordedTime, err = time.Parse(ADIFdateTimeFormat, logline.Date+" "+logline.ActualTime); err != nil {
-				log.Println("Fatal error during internal date conversion: ", err)
+				log.Println("fatal error during internal date conversion: ", err)
 				os.Exit(1)
 			}
 			tb.logFilePosition = position
 		} else {
 			// We reached the end of the gap
 			if tb.lastRecordedTime.IsZero() {
-				return false, errors.New("Gap start time is empty")
+				return false, errors.New("gap start time is empty")
 			}
 			if tb.nextValidTime, err = time.Parse(ADIFdateTimeFormat, logline.Date+" "+logline.ActualTime); err != nil {
-				log.Println("Fatal error during internal date conversion: ", err)
+				log.Println("fatal error during internal date conversion: ", err)
 				os.Exit(1)
 			}
 			return true, nil
@@ -122,11 +122,11 @@ func (tb *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool, err
 	} else {
 		//Check the data is correct.
 		if tb.lastRecordedTime.IsZero() {
-			err = errors.New("Gap start time is empty")
+			err = errors.New("gap start time is empty")
 			//TODO:  this smells
 		}
 		if !tb.nextValidTime.IsZero() {
-			err = errors.New("Gap end time is not empty")
+			err = errors.New("gap end time is not empty")
 		}
 		tb.noTimeCount++
 	}

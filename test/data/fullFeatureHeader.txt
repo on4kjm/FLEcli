@@ -4,6 +4,7 @@ operator on4kjm
 nickname Portable
 myWwff onff-0258
 mySota on/on-001
+myPota on-0001
 QslMsg This is a QSL message
 date 2020-05-23
 

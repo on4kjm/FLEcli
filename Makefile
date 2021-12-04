@@ -13,7 +13,7 @@ dep: ## Get the dependencies
 	@go mod download
 
 lint: ## Lint Golang files
-	@go get -u golang.org/x/lint/golint 
+	@go install golang.org/x/lint/golint 
 	@golint -set_exit_status ./...
 
 vet: ## Run go vet

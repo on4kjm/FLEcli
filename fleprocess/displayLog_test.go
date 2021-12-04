@@ -32,8 +32,8 @@ func TestSprintHeaderValues(t *testing.T) {
 	}{
 		{
 			"Full Option",
-			args{logLine: LogLine{MyCall: "on4kjm/p", Operator: "on4kjm", MyWWFF: "wwff", MySOTA: "sota"}},
-			"MyCall    on4kjm/p (on4kjm)\nMyWWFF    wwff\nMySOTA    sota\n",
+			args{logLine: LogLine{MyCall: "on4kjm/p", Operator: "on4kjm", MyWWFF: "wwff", MySOTA: "sota", MyPOTA: "pota"}},
+			"MyCall    on4kjm/p (on4kjm)\nMyWWFF    wwff\nMySOTA    sota\nMyPOTA    pota\n",
 		},
 		{
 			"Minimal",
@@ -70,6 +70,7 @@ func ExampleSprintLogRecord() {
 		Operator:         "operator",
 		MyWWFF:           "myWwff",
 		MySOTA:           "mySota",
+		MyPOTA:           "myPota",
 		MyGrid:           "myGrid",
 		QslMsgFromHeader: "QslMsgFromHeader",
 		Nickname:         "nickname",
@@ -99,6 +100,7 @@ func ExampleSprintLogRecord() {
 	//Operator  operator
 	//MyWWFF    myWwff
 	//MySOTA    mySota
+	//MyPOTA    myPota
 	//MyGrid    myGrid
 	//QslMsg    QslMsgFromHeader
 	//Nickname  nickname
