@@ -4,11 +4,16 @@ Multi-platform "Fast Log Entry"(FLE) processing tool.
 ![Go Build & Test](https://github.com/jmMeessen/FLEcli/workflows/Go%20Build%20&%20Test/badge.svg)
 [![codecov](https://codecov.io/gh/on4kjm/FLEcli/branch/master/graph/badge.svg)](https://codecov.io/gh/on4kjm/FLEcli)
 
-["Fast Log Entry"](https://www.df3cb.com/fle/) is a nifty tool, written by DF3CB. It allows quick and efficient entry of radio amateur contacts made during DXpeditions, contests or SOTA/WWFF activation. It can export the listed contacts in ADIF format ready to be uploaded to eQSL/LOTW or submitted for SOTA and WWFF. The program is only available as a Windows executable which leaves the Mac or Linux users (like me) in the cold.
+["Fast Log Entry"](https://www.df3cb.com/fle/) is a nifty tool, written by DF3CB. It allows quick and efficient entry of radio amateur contacts made during DXpeditions, contests or SOTA/WWFF/POTA activation. It can export the listed contacts in ADIF format ready to be uploaded to eQSL/LOTW or submitted for SOTA, POTA, and WWFF. The original program is only available as a Windows executable which leaves the Mac or Linux users (like me) in the cold.
 
-This tool is intended to process FLE formatted files on other platform than Windows. The FLE file format is described on https://www.df3cb.com/fle/documentation/
+The original FLE format was extented with release V1.4 to support POTA log files.
 
-But is also the alibi to learn and explore GO.
+This tool is intended to process FLE formatted files on other platform than Windows. The FLE input file format is described on https://www.df3cb.com/fle/documentation/
+
+
+If you like what I did and want to keep me going, you can "buy me a coffee" via the link below. 
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/on4kjm) 
 
 ------
 
@@ -22,7 +27,11 @@ A docker version is also available.
 
 The releases can be downloaded from https://github.com/on4kjm/FLEcli/releases
 
+For MacOS users, `homebrew` is the easiest installation method.
+//TODO: Explain in details of the installation
+
 Detailed installation instructions can be found [at this page](doc/install.md).
+//TODO: repeat the instruction in the install documentation.
 
 
 ## Usage
@@ -69,6 +78,18 @@ You can also use the `--sota` switch to generate an ADIF file containing SOTA de
 The switch can be used together with `--wwff`
 
 As we didn't provide an output filename, the default output, `ON4KJM@ONFF-025920200524.adi` will be used.  
+
+### Example: generate an ADIF file for POTA upload
+
+To generate a POTA-ready ADIF file: 
+```
+./FLEcli adif -i --pota ON4KJM@ON-000120211224.txt 
+```
+The `--pota` (or `-p` in the short form) indicates the adif flavour to produce.
+
+As we didn't provide an output filename, the default output, `ON4KJM@ON-000120211224.adi` will be used.  
+
+A sample POTA FLE input file can be found in [the sample directory](test/data/sample_pota.txt).
 
 
 ### Example: generate a SOTA csv file

@@ -50,6 +50,7 @@ Flags:
   -h, --help          help for adif
   -i, --interpolate   Interpolates the missing time entries.
   -o, --overwrite     Overwrites the output file if it exisits
+  -p, --pota          Generates a POTA ready ADIF file.
   -s, --sota          Generates a SOTA ready ADIF file.
   -w, --wwff          Generates a WWFF ready ADIF file.
 
