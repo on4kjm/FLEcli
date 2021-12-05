@@ -29,10 +29,13 @@ A docker version is also available.
 The releases can be downloaded from https://github.com/on4kjm/FLEcli/releases
 
 For MacOS users, `homebrew` is the easiest installation method.
-//TODO: Explain in details of the installation
+
+* add the Homebrew tap with `brew tap on4kjm/tap`. 
+* install the application with `brew install flecli`.
+
 
 Detailed installation instructions can be found [at this page](doc/install.md).
-//TODO: repeat the instruction in the install documentation.
+
 
 
 ## Usage

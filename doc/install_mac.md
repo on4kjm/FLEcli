@@ -1,5 +1,14 @@
 # Installation on MacOS
 
+## Via Homebrew
+
+This is the easiest method.
+
+* add the Homebrew tap with `brew tap on4kjm/tap`. 
+* install the application with `brew install flecli`.
+
+## Manual installation
+
 At this stage, the MacOS FLEcli binary is not signed. It will fail to load on recent MacOS version.
 
 This procedure will guide you for adding FLEcli to the exception list.
