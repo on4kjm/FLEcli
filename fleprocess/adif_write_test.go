@@ -108,7 +108,6 @@ func Test_buildAdif(t *testing.T) {
 		"<STATION_CALLSIGN:8>ON4KJM/P <CALL:5>ON4LY <QSO_DATE:8>20200524 <TIME_ON:4>1312 <BAND:3>20m <MODE:2>CW <RST_SENT:3>559 <RST_RCVD:3>599 <MY_SIG:4>POTA <MY_SIG_INFO:8>ON-00259 <OPERATOR:6>ON4KJM <EOR>",
 	}
 
-
 	sampleFilledLogPOTA2 := []LogLine{
 		{MyCall: "ON4KJM/P", Call: "S57LC", Date: "2020-05-24", MyGrid: "JO40eu", Time: "1310", Band: "20m", Frequency: "14.045", Mode: "CW", RSTsent: "599", RSTrcvd: "599", GridLoc: "JO50", MyPOTA: "ON-00259", Operator: "ON4KJM", Nickname: "ON-00259-1"},
 		{MyCall: "ON4KJM/P", Call: "ON4LY", Date: "2020-05-24", MyGrid: "JO40eu", Time: "1312", Band: "20m", Mode: "CW", RSTsent: "559", RSTrcvd: "599", MyPOTA: "ON-00259", Operator: "ON4KJM", POTA: "DL-00001"},
@@ -124,7 +123,7 @@ func Test_buildAdif(t *testing.T) {
 	}
 
 	type args struct {
-		fullLog []LogLine
+		fullLog    []LogLine
 		adifParams AdifParams
 	}
 	tests := []struct {
@@ -135,30 +134,30 @@ func Test_buildAdif(t *testing.T) {
 		{
 			"Happy case-WWFF",
 			args{
-				fullLog: sampleFilledLog1, 
+				fullLog:    sampleFilledLog1,
 				adifParams: AdifParams{IsWWFF: true, IsSOTA: false},
 			},
 			expectedOutput1,
 		},
 		{
-			"Happy case-POTA", 
+			"Happy case-POTA",
 			args{
-				fullLog: sampleFilledLogPOTA, 
+				fullLog:    sampleFilledLogPOTA,
 				adifParams: AdifParams{IsPOTA: true},
 			},
 			expectedOutputPOTA,
 		},
 		{
 			"Happy case-Grid",
-			args{fullLog: sampleFilledLog2, 
-			adifParams: AdifParams{IsWWFF: true, IsSOTA: false},
+			args{fullLog: sampleFilledLog2,
+				adifParams: AdifParams{IsWWFF: true, IsSOTA: false},
 			},
 			expectedOutput2,
 		},
 		{
 			"Happy case-WWFF2WWFF",
 			args{
-				fullLog: sampleFilledLog3, 
+				fullLog:    sampleFilledLog3,
 				adifParams: AdifParams{IsWWFF: true},
 			},
 			expectedOutput3,
@@ -166,7 +165,7 @@ func Test_buildAdif(t *testing.T) {
 		{
 			"Happy case-POTA2POTA",
 			args{
-				fullLog: sampleFilledLogPOTA2, 
+				fullLog:    sampleFilledLogPOTA2,
 				adifParams: AdifParams{IsPOTA: true},
 			},
 			expectedOutputPOTA2,

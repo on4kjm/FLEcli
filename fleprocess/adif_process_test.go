@@ -70,7 +70,7 @@ func Test_validateDataforAdif2(t *testing.T) {
 				},
 			},
 			fmt.Errorf("missing MyCall"),
-		},		
+		},
 		{
 			"Missing MySota",
 			args{
@@ -150,7 +150,6 @@ func Test_validateDataforAdif2(t *testing.T) {
 	}
 }
 
-
 func TestProcessAdifCommand(t *testing.T) {
 	type args struct {
 		adifParams AdifParams
@@ -164,10 +163,10 @@ func TestProcessAdifCommand(t *testing.T) {
 			"Bad output filename (directory)",
 			args{
 				adifParams: AdifParams{
-					InputFilename: "../test/data/fle-4-no-qso.txt",
-					OutputFilename: "../test/data",
+					InputFilename:     "../test/data/fle-4-no-qso.txt",
+					OutputFilename:    "../test/data",
 					IsInterpolateTime: false,
-					IsOverwrite: false,
+					IsOverwrite:       false,
 				},
 			},
 			true,
@@ -176,10 +175,10 @@ func TestProcessAdifCommand(t *testing.T) {
 			"input file parsing errors (missing band)",
 			args{
 				adifParams: AdifParams{
-					InputFilename: "../test/data/fle-3-error.txt",
-					OutputFilename: "",
+					InputFilename:     "../test/data/fle-3-error.txt",
+					OutputFilename:    "",
 					IsInterpolateTime: false,
-					IsOverwrite: false,
+					IsOverwrite:       false,
 				},
 			},
 			true,
@@ -188,10 +187,10 @@ func TestProcessAdifCommand(t *testing.T) {
 			"input file parsing errors (wrong call)",
 			args{
 				adifParams: AdifParams{
-					InputFilename: "../test/data/fle-5-wrong-call.txt",
-					OutputFilename: "",
+					InputFilename:     "../test/data/fle-5-wrong-call.txt",
+					OutputFilename:    "",
 					IsInterpolateTime: false,
-					IsOverwrite: false,
+					IsOverwrite:       false,
 				},
 			},
 			true,
@@ -200,10 +199,10 @@ func TestProcessAdifCommand(t *testing.T) {
 			"No QSO in loaded file",
 			args{
 				adifParams: AdifParams{
-					InputFilename: "../test/data/fle-4-no-qso.txt",
-					OutputFilename: "",
+					InputFilename:     "../test/data/fle-4-no-qso.txt",
+					OutputFilename:    "",
 					IsInterpolateTime: false,
-					IsOverwrite: false,
+					IsOverwrite:       false,
 				},
 			},
 			true,
