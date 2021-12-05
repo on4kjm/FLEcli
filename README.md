@@ -10,6 +10,7 @@ The original FLE format was extented with release V1.4 to support POTA log files
 
 This tool is intended to process FLE formatted files on other platform than Windows. The FLE input file format is described on https://www.df3cb.com/fle/documentation/
 
+------
 
 If you like what I did and want to keep me going, you can "buy me a coffee" via the link below. 
 
