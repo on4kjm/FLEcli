@@ -21,7 +21,6 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
-	//"fmt"
 )
 
 // LogLine is used to store all the data of a single log line
@@ -70,6 +69,7 @@ var regexpDatePattern = regexp.MustCompile(`^(\d{2}|\d{4})[-/ .]\d{1,2}[-/ .]\d{
 var regexpIsDateKeyWord = regexp.MustCompile(`(?i)^date$`)
 var regexpDayIncrementPattern = regexp.MustCompile(`^\+*$`)
 var regexpIsDayKeyword = regexp.MustCompile(`(?i)^day$`)
+var regexpKhzPartOfQrg = regexp.MustCompile(`\.\d+`)
 
 // ParseLine cuts a FLE line into useful bits
 func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg string) {
@@ -174,17 +174,26 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 			logLine.Band = strings.ToLower(element)
 			logLine.BandLowerLimit = bandLowerLimit
 			logLine.BandUpperLimit = bandUpperLimit
+			//As a new band is defined, we reset the stored frequency (from previous lines)
+			// This assumes that the band is defined before frequency
+			logLine.Frequency = ""
 			continue
 		}
 
 		// Is it a Frequency?
 		if regexpIsFreq.MatchString(element) {
+			khzPart := regexpKhzPartOfQrg.FindStringSubmatch(element)
 			var qrg float64
 			qrg, _ = strconv.ParseFloat(element, 32)
 			if (logLine.BandLowerLimit != 0.0) && (logLine.BandUpperLimit != 0.0) {
 				if (qrg >= logLine.BandLowerLimit) && (qrg <= logLine.BandUpperLimit) {
-					//TODO: print 3f or more is available
-					logLine.Frequency = fmt.Sprintf("%.3f", qrg)
+					//Increase precision to half Khz if data is available
+					if len(khzPart[0]) > 4 { 
+						//The "." is part of the returned string
+						logLine.Frequency = fmt.Sprintf("%.4f", qrg)
+					} else {
+						logLine.Frequency = fmt.Sprintf("%.3f", qrg)
+					}
 				} else {
 					logLine.Frequency = ""
 					errorMsg = errorMsg + "Frequency [" + element + "] is invalid for " + logLine.Band + " band."
@@ -196,7 +205,7 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 		}
 
 		// Is it a call sign ?
-		//FIXME:
+		//FIXME: (don't remember what)
 		if validCallRegexp.MatchString(strings.ToUpper(element)) {
 			//If it starts with "#",it is a grid definition and not a call
 			if element[0] != '#' {

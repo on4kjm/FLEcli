@@ -14,7 +14,7 @@ date 2016-04-24
 8 gw0tlk/m 
 
 date 2016-06-03
-40m cw
+40m 7.0356 cw
 1404 gm0aaa 3 7
 5 on4ck/p 2
 7 dl0dan/p
