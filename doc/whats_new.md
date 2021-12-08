@@ -1,11 +1,20 @@
 # What's new?
 
-## v0.1.3
+## v0.1.4
+
+* Support POTA DIF output
+* Tabs can be used as delimiter in the header section (issue #70)
+* Frequency can now be specified up to 500Hz without truncation (issue #71)
+* Enabled Homebrew distribution
+
+
+
+## Previous releases
+
+### v0.1.3
 
 * Enable FLEcli to generate CSV chaser logs
 * Fix the display for longer calls (issue #61)
-
-## Previous releases
 
 ### v0.1.2
 
