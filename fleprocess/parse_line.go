@@ -205,10 +205,10 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 		}
 
 		// Is it a call sign ?
-		//FIXME: (don't remember what)
 		if validCallRegexp.MatchString(strings.ToUpper(element)) {
 			//If it starts with "#",it is a grid definition and not a call
-			if element[0] != '#' {
+			//If the potential callsign contains a dash, it is a Sota reference
+			if (element[0] != '#') && (!strings.Contains(element, "-")) {
 				callErrorMsg := ""
 				logLine.Call, callErrorMsg = ValidateCall(element)
 				errorMsg = errorMsg + callErrorMsg
