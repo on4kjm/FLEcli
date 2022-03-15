@@ -153,6 +153,11 @@ func TestValidateSota(t *testing.T) {
 			"W4Z/ON-001", "",
 		},
 		{
+			"Good ref (american style) - Issue 78",
+			args{inputStr: "W7A/YV-102"},
+			"W7A/YV-102", "",
+		},
+		{
 			"Bad ref (long prefix)",
 			args{inputStr: "xxxx/ON-001"},
 			"*XXXX/ON-001", "[XXXX/ON-001] is an invalid SOTA reference",

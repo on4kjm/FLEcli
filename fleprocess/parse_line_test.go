@@ -154,6 +154,16 @@ func TestParseLine(t *testing.T) {
 			LogLine{Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", SOTA: "OE/ST-309"}, "",
 		},
 		{
+			"SOTA keywork (american SOTA ref)",
+			args{inputStr: "1230 oe6cud/p sota W7A/YV-102", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
+			LogLine{Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", SOTA: "W7A/YV-102"}, "",
+		},
+		{
+			"implied SOTA keywork (american SOTA ref)",
+			args{inputStr: "1230 oe6cud/p W7A/YV-102", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
+			LogLine{Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", SOTA: "W7A/YV-102"}, "",
+		},
+		{
 			"WWFF keywork ",
 			args{inputStr: "1230 oe6cud/p wwff onff-0258", previousLine: LogLine{Mode: "FM", ModeType: "PHONE"}},
 			LogLine{Call: "OE6CUD/P", Time: "1230", ActualTime: "1230", RSTsent: "59", RSTrcvd: "59", Mode: "FM", ModeType: "PHONE", WWFF: "ONFF-0258"}, "",
