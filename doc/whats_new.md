@@ -4,7 +4,6 @@
 
 * Fix "S2S contacts not recognized properly" (issue #78)
 
-
 ## Previous releases
 
 ### v0.1.4
@@ -13,8 +12,6 @@
 * Tabs can be used as delimiter in the header section (issue #70)
 * Frequency can now be specified up to 500Hz without truncation (issue #71)
 * Enabled Homebrew distribution
-
-
 
 ### v0.1.3
 
@@ -33,12 +30,15 @@
 * Correct some typos and bugs
 
 ### v0.1.1
+
 * Improved test coverage
 * Improved build automation
 * Improved release notes publication
 
 ### v0.1.0
+
 * First public MVP (Minimal Viable Product relase). Supports only SOTA and WWFF type log files. Some header keywords are missing as well as date increments.
 
 ### v0.0.0
+
 * Initial release

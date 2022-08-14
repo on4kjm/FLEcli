@@ -1,8 +1,8 @@
 # Usage
- 
- 
+
 ## Overview
-```
+
+```text
 A Command Line "Fast Log Entry" (FLE) processor
 
 Usage:
@@ -21,10 +21,10 @@ Flags:
 
 Use "FLEcli [command] --help" for more information about a command.
 ```
- 
- 
+
 ## "LOAD" command
-```
+
+```text
 Loads and validates a FLE type shorthand logfile
 
 Usage:
@@ -37,10 +37,10 @@ Flags:
 Global Flags:
       --config string   config file (default is $HOME/.FLEcli.yaml)
 ```
- 
- 
+
 ## "ADIF" command
-```
+
+```text
 Generates an ADIF file based on a FLE type shorthand logfile.
 
 Usage:
@@ -57,10 +57,10 @@ Flags:
 Global Flags:
       --config string   config file (default is $HOME/.FLEcli.yaml)
 ```
- 
- 
+
 ## "CSV" command
-```
+
+```text
 Generates a SOTA .csv file based on a FLE type shorthand logfile.
 
 Usage:
@@ -74,10 +74,10 @@ Flags:
 Global Flags:
       --config string   config file (default is $HOME/.FLEcli.yaml)
 ```
- 
- 
+
 ## "VERSION" command
-```
+
+```text
 "version" will output the current build information
 
 Usage:
@@ -90,4 +90,5 @@ Flags:
 Global Flags:
       --config string   config file (default is $HOME/.FLEcli.yaml)
 ```
+
 The normal output looks like `FLEcli version: v0.1.2`. The detailled output gives additionaly the Git commit hash. the date and time of build and who built the release.
