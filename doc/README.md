@@ -1,4 +1,4 @@
-# Documentaiton
+# Documentation
 
 Project documentation
 
