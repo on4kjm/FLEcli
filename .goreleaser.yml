@@ -18,6 +18,10 @@ builds:
       goarch: '386'
     - goos: windows
       goarch: amd64
+    - goos: windows
+      goarch: arm64
+    - goos: windows
+      goarch: arm
 
   ldflags:
     - -s -w -X FLEcli/flecmd.version={{.Version}} -X FLEcli/flecmd.commit={{.Commit}} -X FLEcli/flecmd.date={{.Date}} -X=FLEcli/flecmd.builtBy=goReleaser
@@ -48,15 +52,18 @@ dockers:
   - "--label=org.opencontainers.image.version={{.Version}}"
 
 archives:
-- replacements:
-    amd64: 64-bit
-    386: 32-bit
-    darwin: macOS
-    linux: Linux
-  name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+- name_template: >-
+      {{ .ProjectName }}_
+      {{ .Version }}_
+      {{- if eq .Os "darwin"}}macOS
+      {{- else }}{{- .Os }}{{ end }}_
+      {{- if eq .Arch "amd64" }}64-bit
+      {{- else if eq .Arch "386" }}32-bit
+      {{- else }}{{ .Arch }}{{ end }}
   format_overrides:
   - goos: windows
     format: zip
+  rlcp: true
   files:
       - README.md
       - doc/whats_new.md
