@@ -234,11 +234,11 @@ func IncrementDate(date string, increment int) (newdate string, err string) {
 func IsBand(inputStr string) (result bool, lowerLimit, upperLimit float64, altBandName string) {
 	switch strings.ToLower(inputStr) {
 	case "2190m":
-		return true, 0.1357, 0.1378, "tbd"
+		return true, 0.1357, 0.1378, "VLF"
 	case "630m":
-		return true, 0.472, 0.479, "tbd"
+		return true, 0.472, 0.479, "VLF"
 	case "560m":
-		return true, 0.501, 0.504, "tbd"
+		return true, 0.501, 0.504, "VLF"
 	case "160m":
 		return true, 1.8, 2.0, "1.8MHz"
 	case "80m":
@@ -270,29 +270,29 @@ func IsBand(inputStr string) (result bool, lowerLimit, upperLimit float64, altBa
 	case "70cm":
 		return true, 420, 450, "432MHz"
 	case "33cm":
-		return true, 902, 928, "tbd"
+		return true, 902, 928, "900MHz"
 	case "23cm":
-		return true, 1240, 1300, "tbd"
+		return true, 1240, 1300, "1240MHz"
 	case "13cm":
-		return true, 2300, 2450, "tbd"
+		return true, 2300, 2450, "2.3GHz"
 	case "9cm":
-		return true, 3300, 3500, "tbd"
+		return true, 3300, 3500, "3.4GHz"
 	case "6cm":
-		return true, 5650, 5925, "tbd"
+		return true, 5650, 5925, "5.6GHz"
 	case "3cm":
-		return true, 10000, 10500, "tbd"
+		return true, 10000, 10500, "10GHz"
 	case "1.25cm":
-		return true, 24000, 24250, "tbd"
+		return true, 24000, 24250, "24GHz"
 	case "6mm":
-		return true, 47000, 47200, "tbd"
+		return true, 47000, 47200, "Microwave"
 	case "4mm":
-		return true, 75500, 81000, "tbd"
+		return true, 75500, 81000, "Microwave"
 	case "2.5mm":
-		return true, 119980, 120020, "tbd"
+		return true, 119980, 120020, "Microwave"
 	case "2mm":
-		return true, 142000, 149000, "tbd"
+		return true, 142000, 149000, "Microwave"
 	case "1mm":
-		return true, 241000, 250000, "tbd"
+		return true, 241000, 250000, "Microwave"
 	}
 	return false, 0, 0, ""
 }
