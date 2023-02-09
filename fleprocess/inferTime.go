@@ -25,7 +25,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-//InferTimeBlock contains the information describing a time gap
+// InferTimeBlock contains the information describing a time gap
 type InferTimeBlock struct {
 	lastRecordedTime time.Time
 	nextValidTime    time.Time
@@ -37,10 +37,10 @@ type InferTimeBlock struct {
 	deltatime time.Duration
 }
 
-//ADIFdateTimeFormat describes the ADIF date & time parsing and displaying format pattern
+// ADIFdateTimeFormat describes the ADIF date & time parsing and displaying format pattern
 const ADIFdateTimeFormat = "2006-01-02 1504"
 
-//displayTimeGapInfo will print the details stored in an InferTimeBlock
+// displayTimeGapInfo will print the details stored in an InferTimeBlock
 func (tb *InferTimeBlock) String() string {
 	var buffer strings.Builder
 	buffer.WriteString(fmt.Sprintf("Last Recorded Time:                 %s\n", tb.lastRecordedTime.Format(ADIFdateTimeFormat)))
@@ -51,7 +51,7 @@ func (tb *InferTimeBlock) String() string {
 	return buffer.String()
 }
 
-//finalizeTimeGap makes the necessary checks and computation
+// finalizeTimeGap makes the necessary checks and computation
 func (tb *InferTimeBlock) finalizeTimeGap() error {
 
 	if err := tb.validateTimeGap(); err != nil {
@@ -72,7 +72,7 @@ func (tb *InferTimeBlock) finalizeTimeGap() error {
 	return nil
 }
 
-//validateTimeGap checks some important assumptions
+// validateTimeGap checks some important assumptions
 func (tb *InferTimeBlock) validateTimeGap() error {
 	//Check that lastRecordedTime and nextValidTime are not null
 	if tb.lastRecordedTime.IsZero() {
@@ -89,7 +89,7 @@ func (tb *InferTimeBlock) validateTimeGap() error {
 	return nil
 }
 
-//storeTimeGap updates an InferTimeBLock (last valid time, nbr of records without time). It returns true if we reached the end of the time gap.
+// storeTimeGap updates an InferTimeBLock (last valid time, nbr of records without time). It returns true if we reached the end of the time gap.
 func (tb *InferTimeBlock) storeTimeGap(logline LogLine, position int) (bool, error) {
 	var err error
 

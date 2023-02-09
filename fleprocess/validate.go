@@ -145,7 +145,7 @@ func ValidateCall(sign string) (call, errorMsg string) {
 
 var splitDateRegexp = regexp.MustCompile(`[-/ .]`)
 
-//NormalizeDate takes what looks like a date and normalises it to "YYYY-MM-DD"
+// NormalizeDate takes what looks like a date and normalises it to "YYYY-MM-DD"
 func NormalizeDate(inputStr string) (date, errorMsg string) {
 	//Try to split the string
 	s := splitDateRegexp.Split(inputStr, 4)
@@ -207,7 +207,7 @@ func ValidateDate(inputStr string) (ref, errorMsg string) {
 	return wrongInputStr, fmt.Sprint(err)
 }
 
-//IncrementDate will increment the supplied date by the specified increment. It returns the new date.
+// IncrementDate will increment the supplied date by the specified increment. It returns the new date.
 func IncrementDate(date string, increment int) (newdate string, err string) {
 	if date == "" {
 		return "", "No date to increment"
@@ -230,7 +230,7 @@ func IncrementDate(date string, increment int) (newdate string, err string) {
 	return newDate.Format(RFC3339FullDate), ""
 }
 
-//IsBand retuns true if the passed input string is a valid string
+// IsBand retuns true if the passed input string is a valid string
 func IsBand(inputStr string) (result bool, lowerLimit, upperLimit float64, altBandName string) {
 	switch strings.ToLower(inputStr) {
 	case "2190m":

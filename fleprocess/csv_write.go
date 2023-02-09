@@ -65,7 +65,7 @@ func buildCsv(fullLog []LogLine) (csvList []string) {
 	return csvList
 }
 
-//csvDate converts a date in YYYY-MM-DD format to YYYY/MM/DD
+// csvDate converts a date in YYYY-MM-DD format to YYYY/MM/DD
 func csvDate(inputDate string) (outputDate string) {
 	const FLEdateFormat = "2006-01-02"
 	date, err := time.Parse(FLEdateFormat, inputDate)

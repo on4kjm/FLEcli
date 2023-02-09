@@ -26,8 +26,8 @@ import (
 	"time"
 )
 
-//LoadFile FIXME:
-//returns nill if failure to process
+// LoadFile FIXME:
+// returns nill if failure to process
 func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogLine, isProcessedOK bool) {
 	file, err := os.Open(inputFilename)
 
@@ -382,7 +382,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 
 }
 
-//displayLogSimple will print to stdout a simplified dump of a full log
+// displayLogSimple will print to stdout a simplified dump of a full log
 func displayLogSimple(fullLog []LogLine) {
 	firstLine := true
 	for _, filledLogLine := range fullLog {

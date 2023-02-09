@@ -18,7 +18,6 @@ limitations under the License.
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"testing"
 )
@@ -547,7 +546,7 @@ func TestLoadFile_redefining_operator_must_fail(t *testing.T) {
 	dataArray = append(dataArray, " #Log")
 	dataArray = append(dataArray, "20/5/23")
 	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
-	dataArray = append(dataArray, "operator blahh")
+	dataArray = append(dataArray, "operator blaaahh")
 
 	temporaryDataFileName := createTestFile(dataArray)
 
@@ -768,7 +767,7 @@ func TestLoadFile_wrongHeader(t *testing.T) {
 	os.Remove(temporaryDataFileName)
 }
 
-//if the first call is wrong the infertime doesn't work
+// if the first call is wrong the infertime doesn't work
 func TestLoadFile_InferTime_missingStartTime(t *testing.T) {
 
 	//Given
@@ -915,7 +914,7 @@ func TestLoadFile_InferTime_missingEndTime(t *testing.T) {
 	os.Remove(temporaryDataFileName)
 }
 
-//FIXME: same time
+// FIXME: same time
 func TestLoadFile_2_QSO_same_time(t *testing.T) {
 
 	//Given
@@ -1168,11 +1167,11 @@ func TestLoadFile_firstCallWrong(t *testing.T) {
 	os.Remove(temporaryDataFileName)
 }
 
-//createTestFile creates and populates a test FLE input file.
-//Returns the created temporary filename.
+// createTestFile creates and populates a test FLE input file.
+// Returns the created temporary filename.
 func createTestFile(dataArray []string) (tempFileName string) {
 	//create random file name
-	tmpfile, err := ioutil.TempFile("", "*.txt")
+	tmpfile, err := os.CreateTemp("", "*.txt")
 	if err != nil {
 		panic(err)
 	}
@@ -1182,6 +1181,6 @@ func createTestFile(dataArray []string) (tempFileName string) {
 	//Write the passed data to the file
 	writeFile(tmpfile.Name(), dataArray)
 
-	//Return the temporaty filename
+	//Return the temporary filename
 	return tmpfile.Name()
 }

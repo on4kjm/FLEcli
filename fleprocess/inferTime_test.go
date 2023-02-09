@@ -96,7 +96,9 @@ func TestInferTimeBlock_display_happyCase(t *testing.T) {
 	//When
 	buffer1 := tb.String()
 
-	tb.finalizeTimeGap()
+	if tb.finalizeTimeGap() != nil {
+		t.Error("Unexpected error")
+	}
 
 	buffer2 := tb.String()
 
@@ -216,7 +218,7 @@ func TestInferTimeBlock_startsNewBlock(t *testing.T) {
 		t.Errorf("Unexpected error: %s", err)
 	}
 	if isEndGap == true {
-		t.Errorf("Result is true while expectig false")
+		t.Errorf("Result is true while expecting false")
 	}
 	if tb.lastRecordedTime != time.Date(2020, time.May, 24, 14, 01, 0, 0, time.UTC) {
 		t.Errorf("Not the expected lastRecordedTime")
@@ -249,7 +251,7 @@ func TestInferTimeBlock_incrementCounter(t *testing.T) {
 		t.Errorf("Unexpected error: %s", err)
 	}
 	if isEndGap == true {
-		t.Errorf("Result is true while expectig false")
+		t.Errorf("Result is true while expecting false")
 	}
 	if tb.lastRecordedTime != time.Date(2020, time.May, 24, 14, 01, 0, 0, time.UTC) {
 		t.Errorf("Not the expected lastRecordedTime")
@@ -282,7 +284,7 @@ func TestInferTimeBlock_increment_missingLastTime(t *testing.T) {
 		t.Errorf("Unexpected error: %s", err)
 	}
 	if isEndGap == true {
-		t.Errorf("Result is true while expectig false")
+		t.Errorf("Result is true while expecting false")
 	}
 }
 
@@ -307,6 +309,6 @@ func TestInferTimeBlock_increment_alreadyDefinedNewTime(t *testing.T) {
 		t.Errorf("Unexpected error: %s", err)
 	}
 	if isEndGap == true {
-		t.Errorf("Result is true while expectig false")
+		t.Errorf("Result is true while expecting false")
 	}
 }
