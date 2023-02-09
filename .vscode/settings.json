@@ -5,6 +5,7 @@
         "eachline",
         "flecmd",
         "fleprocess",
+        "golangci",
         "infertime",
         "logfile",
         "logline",

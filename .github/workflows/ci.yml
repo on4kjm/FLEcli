@@ -22,9 +22,9 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Lint Go Code
-        run: |
-          make lint
+      - name: Lint Go Code with golangci-lint
+        uses: golangci/golangci-lint-action@v3
+        
       - name: Vet Go Code
         run: |
           make vet
