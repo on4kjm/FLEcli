@@ -20,10 +20,10 @@ import (
 	"FLEcli/fleprocess"
 	"bytes"
 	"fmt"
+	"io"
 	"os"
 	"strings"
 
-	"io/ioutil"
 	"testing"
 )
 
@@ -33,7 +33,7 @@ func Test_ExecuteCommand_help(t *testing.T) {
 	cmd.SetOut(b)
 	cmd.SetArgs([]string{"--help"})
 	cmd.Execute()
-	out, err := ioutil.ReadAll(b)
+	out, err := io.ReadAll(b)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -49,7 +49,7 @@ func Test_ExecuteCommand_noArgs(t *testing.T) {
 	cmd.SetOut(b)
 	//cmd.SetArgs([]string{""})
 	cmd.Execute()
-	out, err := ioutil.ReadAll(b)
+	out, err := io.ReadAll(b)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -67,7 +67,7 @@ func Test_ExecuteCommand_toManyArgs(t *testing.T) {
 	cmd.SetOut(b)
 	cmd.SetArgs([]string{"blaaahh", "blaaahh", "blaaahh"})
 	cmd.Execute()
-	out, err := ioutil.ReadAll(b)
+	out, err := io.ReadAll(b)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -93,7 +93,7 @@ func Test_ExecuteCommand_happyCase(t *testing.T) {
 
 	//Close the capture and get the data
 	w.Close()
-	out, _ := ioutil.ReadAll(r)
+	out, _ := io.ReadAll(r)
 	os.Stdout = rescueStdout
 
 	if cmdErr != nil {
