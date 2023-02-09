@@ -28,7 +28,9 @@ const testFile string = "test.adi"
 func setupTestCase(t *testing.T) func(t *testing.T) {
 	t.Log("setup test case")
 	//create test directory
-	os.Mkdir(testDir, os.FileMode(0522))
+	if os.Mkdir(testDir, os.FileMode(0522)) != nil {
+		t.Error("Unexpected error creating testDir")
+	}
 	//create test file
 	f, _ := os.OpenFile(testFile, os.O_WRONLY|os.O_CREATE, 0666)
 	defer f.Close()

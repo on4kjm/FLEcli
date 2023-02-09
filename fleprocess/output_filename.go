@@ -22,12 +22,12 @@ import (
 	"path/filepath"
 )
 
-// buildOutputFilname will try to figure out an output filename (for the case none was provided)
+// buildOutputFilename will try to figure out an output filename (for the case none was provided)
 func buildOutputFilename(output string, input string, overwrite bool, newExtension string) (string, error) {
 
 	//validate that input is populated (should never happen if properly called)
 	if input == "" {
-		return "", fmt.Errorf("unexepected error: no input file provided")
+		return "", fmt.Errorf("unexpected error: no input file provided")
 	}
 
 	//No output was provided, let's create one from the input file
@@ -44,7 +44,7 @@ func buildOutputFilename(output string, input string, overwrite bool, newExtensi
 		//File doesn't exist, so we're good
 		return output, nil
 	}
-	//It exisits but is a directory
+	//It exists but is a directory
 	if info.IsDir() {
 		return "", fmt.Errorf("error: specified output exists and is a directory")
 	}

@@ -93,7 +93,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		lineCount++
 
 		// ****
-		// ** Lets do some house keeping first by droping the unecessary lines
+		// ** Lets do some house keeping first by dropping the unnecessary lines
 		// ****
 
 		//Skip the line if it starts with "#"
@@ -107,7 +107,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 
 		// Process multi-line comments
 		if regexpStartMultiLineComment.MatchString(eachline) {
-			//Single-line "multi-line" coment
+			//Single-line "multi-line" comment
 			if regexpSingleMultiLineComment.MatchString(eachline) {
 				continue
 			}
@@ -303,7 +303,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 				//If we reached the end of the time gap, we make the necessary checks and make our gap calculation
 				if isEndOfGap {
 					if err := wrkTimeBlock.finalizeTimeGap(); err != nil {
-						//If an error occured it is a fatal error
+						//If an error occurred it is a fatal error
 						errorLog = append(errorLog, fmt.Sprintf("Fatal error at line %d: %s", lineCount, err))
 						isInferTimeFatalError = true
 					}
@@ -319,8 +319,12 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 					wrkTimeBlock = InferTimeBlock{}
 
 					//Store this record in the new block as a new gap might be following
-					//no error or endOfGap processing as it has already been successfully processed
-					wrkTimeBlock.storeTimeGap(logline, len(fullLog))
+					_, err := wrkTimeBlock.storeTimeGap(logline, len(fullLog))
+					//no real error or endOfGap processing as it has already been successfully processed
+					if err != nil {
+						errorLog = append(errorLog, fmt.Sprintf("Fatal error at line %d: %s", lineCount, err))
+						isInferTimeFatalError = true
+					}
 				}
 			}
 		}

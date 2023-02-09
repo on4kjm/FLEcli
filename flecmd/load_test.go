@@ -54,7 +54,7 @@ func Test_ExecuteCommand_noArgs(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	//FIXME: doesn't work as espected
+	//FIXME: doesn't work as expected
 	expectedOutputStart := "Error: Missing input file \nUsage:"
 	if !strings.HasPrefix(string(out), expectedOutputStart) {
 		t.Fatalf("expected to start with \"%s\" got \"%s\"", expectedOutputStart, string(out))
@@ -65,7 +65,7 @@ func Test_ExecuteCommand_toManyArgs(t *testing.T) {
 	cmd := loadCmdConstructor()
 	b := bytes.NewBufferString("")
 	cmd.SetOut(b)
-	cmd.SetArgs([]string{"blaah", "blaah", "blaah"})
+	cmd.SetArgs([]string{"blaaahh", "blaaahh", "blaaahh"})
 	cmd.Execute()
 	out, err := ioutil.ReadAll(b)
 	if err != nil {
