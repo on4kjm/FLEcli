@@ -70,8 +70,7 @@ func Test_ExecuteCommand_noArgs(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	//FIXME: doesn't work as expected
-	expectedOutputStart := "Error: Missing input file \nUsage:"
+	expectedOutputStart := "Usage:\n  load [flags] inputFile"
 	if !strings.HasPrefix(string(out), expectedOutputStart) {
 		t.Fatalf("expected to start with \"%s\" got \"%s\"", expectedOutputStart, string(out))
 	}
@@ -98,7 +97,7 @@ func Test_ExecuteCommand_toManyArgs(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	expectedOutputStart := "Error: Too many arguments.\nUsage"
+	expectedOutputStart := "Usage:\n  load [flags] inputFile"
 	if !strings.HasPrefix(string(out), expectedOutputStart) {
 		t.Fatalf("expected to start with \"%s\" got \"%s\"", expectedOutputStart, string(out))
 	}
