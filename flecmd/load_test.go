@@ -32,7 +32,12 @@ func Test_ExecuteCommand_help(t *testing.T) {
 	b := bytes.NewBufferString("")
 	cmd.SetOut(b)
 	cmd.SetArgs([]string{"--help"})
-	cmd.Execute()
+
+	cmdErr := cmd.Execute()
+	if cmdErr != nil {
+		t.Fatal(cmdErr)
+	}
+
 	out, err := io.ReadAll(b)
 	if err != nil {
 		t.Fatal(err)
@@ -48,7 +53,12 @@ func Test_ExecuteCommand_noArgs(t *testing.T) {
 	b := bytes.NewBufferString("")
 	cmd.SetOut(b)
 	//cmd.SetArgs([]string{""})
-	cmd.Execute()
+
+	cmdErr := cmd.Execute()
+	if cmdErr != nil {
+		t.Fatal(cmdErr)
+	}
+
 	out, err := io.ReadAll(b)
 	if err != nil {
 		t.Fatal(err)
@@ -66,7 +76,11 @@ func Test_ExecuteCommand_toManyArgs(t *testing.T) {
 	b := bytes.NewBufferString("")
 	cmd.SetOut(b)
 	cmd.SetArgs([]string{"blaaahh", "blaaahh", "blaaahh"})
-	cmd.Execute()
+
+	cmdErr := cmd.Execute()
+	if cmdErr != nil {
+		t.Fatal(cmdErr)
+	}
 	out, err := io.ReadAll(b)
 	if err != nil {
 		t.Fatal(err)
@@ -89,6 +103,7 @@ func Test_ExecuteCommand_happyCase(t *testing.T) {
 	cmd := loadCmdConstructor()
 
 	cmd.SetArgs([]string{"data.txt"})
+	
 	cmdErr := cmd.Execute()
 
 	//Close the capture and get the data
