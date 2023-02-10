@@ -28,7 +28,9 @@ const testFile string = "test.adi"
 func setupTestCase(t *testing.T) func(t *testing.T) {
 	t.Log("setup test case")
 	//create test directory
-	os.Mkdir(testDir, os.FileMode(0522))
+	if os.Mkdir(testDir, os.FileMode(0522)) != nil {
+		t.Error("Unexpected error creating testDir")
+	}
 	//create test file
 	f, _ := os.OpenFile(testFile, os.O_WRONLY|os.O_CREATE, 0666)
 	defer f.Close()
@@ -37,7 +39,7 @@ func setupTestCase(t *testing.T) func(t *testing.T) {
 		t.Log("teardown test case")
 		//delete test directory
 		os.Remove(testDir)
-		//detete test file
+		//delete test file
 		os.Remove(testFile)
 	}
 }
@@ -58,7 +60,7 @@ func Test_buildOutputFilename(t *testing.T) {
 		{
 			"input file not provided",
 			args{input: "", output: "xxx", overwrite: false, extension: ".adi"},
-			"", errors.New("unexepected error: no input file provided"),
+			"", errors.New("unexpected error: no input file provided"),
 		},
 		{
 			"Output file does not exist",
@@ -81,17 +83,17 @@ func Test_buildOutputFilename(t *testing.T) {
 			"test.adi", nil,
 		},
 		{
-			"no output, input provided with extention",
+			"no output, input provided with extension",
 			args{input: "/test/data/file.txt", output: "", overwrite: false, extension: ".adi"},
 			"/test/data/file.adi", nil,
 		},
 		{
-			"no output, input provided without extention",
+			"no output, input provided without extension",
 			args{input: "/test/data/file", output: "", overwrite: false, extension: ".adi"},
 			"/test/data/file.adi", nil,
 		},
 		{
-			"no output, input provided, enfing with a point",
+			"no output, input provided, ending with a point",
 			args{input: "/test/data/file.", output: "", overwrite: false, extension: ".adi"},
 			"/test/data/file.adi", nil,
 		},

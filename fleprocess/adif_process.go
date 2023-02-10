@@ -21,7 +21,7 @@ import (
 	"strings"
 )
 
-//AdifParams is holding all the parameters required to generate an ADIF file
+// AdifParams is holding all the parameters required to generate an ADIF file
 type AdifParams struct {
 	InputFilename     string
 	OutputFilename    string
@@ -32,8 +32,8 @@ type AdifParams struct {
 	IsOverwrite       bool
 }
 
-//ProcessAdifCommand loads an FLE input to produce an adif file (eventually in WWFF format). It is called from the COBRA interface
-//inputFilename, outputFilename string, isInterpolateTime, isWWFFcli, IsSOTA, isPOTAcli, isOverwrite bool
+// ProcessAdifCommand loads an FLE input to produce an adif file (eventually in WWFF format). It is called from the COBRA interface
+// inputFilename, outputFilename string, isInterpolateTime, isWWFFcli, IsSOTA, isPOTAcli, isOverwrite bool
 func ProcessAdifCommand(adifParams AdifParams) error {
 
 	//Validate of build the output filenaem
@@ -64,8 +64,8 @@ func ProcessAdifCommand(adifParams AdifParams) error {
 	return nil
 }
 
-//validateDataforAdif checks whether all the required data is present
-//The details of the mandatory files can be found at http://wwff.co/rules-faq/confirming-and-sending-log/
+// validateDataforAdif checks whether all the required data is present
+// The details of the mandatory files can be found at http://wwff.co/rules-faq/confirming-and-sending-log/
 func validateDataforAdif(loadedLogFile []LogLine, adifParams AdifParams) error {
 
 	//do we have QSOs at all?

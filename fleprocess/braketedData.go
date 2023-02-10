@@ -20,10 +20,10 @@ import (
 	"strings"
 )
 
-//The BraketType type is used to define the enumeration
+// The BraketType type is used to define the enumeration
 type BraketType int
 
-//Enumeration of the valid Bracket Types
+// Enumeration of the valid Bracket Types
 const (
 	COMMENT BraketType = iota
 	QSL

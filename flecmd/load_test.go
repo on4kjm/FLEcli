@@ -20,10 +20,10 @@ import (
 	"FLEcli/fleprocess"
 	"bytes"
 	"fmt"
+	"io"
 	"os"
 	"strings"
 
-	"io/ioutil"
 	"testing"
 )
 
@@ -32,8 +32,13 @@ func Test_ExecuteCommand_help(t *testing.T) {
 	b := bytes.NewBufferString("")
 	cmd.SetOut(b)
 	cmd.SetArgs([]string{"--help"})
-	cmd.Execute()
-	out, err := ioutil.ReadAll(b)
+
+	cmdErr := cmd.Execute()
+	if cmdErr != nil {
+		t.Fatal(cmdErr)
+	}
+
+	out, err := io.ReadAll(b)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -48,13 +53,24 @@ func Test_ExecuteCommand_noArgs(t *testing.T) {
 	b := bytes.NewBufferString("")
 	cmd.SetOut(b)
 	//cmd.SetArgs([]string{""})
-	cmd.Execute()
-	out, err := ioutil.ReadAll(b)
+
+	cmdErr := cmd.Execute()
+	if cmdErr != nil {
+		errString := cmdErr.Error()
+		if errString != "Missing input file " {
+			t.Fatal(cmdErr)
+		}
+
+	} else {
+		t.Fatalf("Call should have failed with an error")
+	}
+
+	out, err := io.ReadAll(b)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	//FIXME: doesn't work as espected
+	//FIXME: doesn't work as expected
 	expectedOutputStart := "Error: Missing input file \nUsage:"
 	if !strings.HasPrefix(string(out), expectedOutputStart) {
 		t.Fatalf("expected to start with \"%s\" got \"%s\"", expectedOutputStart, string(out))
@@ -65,9 +81,19 @@ func Test_ExecuteCommand_toManyArgs(t *testing.T) {
 	cmd := loadCmdConstructor()
 	b := bytes.NewBufferString("")
 	cmd.SetOut(b)
-	cmd.SetArgs([]string{"blaah", "blaah", "blaah"})
-	cmd.Execute()
-	out, err := ioutil.ReadAll(b)
+	cmd.SetArgs([]string{"blaaahh", "blaaahh", "blaaahh"})
+
+	cmdErr := cmd.Execute()
+	if cmdErr != nil {
+		errString := cmdErr.Error()
+		if errString != "Too many arguments." {
+			t.Fatal(cmdErr)
+		}
+
+	} else {
+		t.Fatalf("Call should have failed with an error")
+	}
+	out, err := io.ReadAll(b)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -89,11 +115,12 @@ func Test_ExecuteCommand_happyCase(t *testing.T) {
 	cmd := loadCmdConstructor()
 
 	cmd.SetArgs([]string{"data.txt"})
+
 	cmdErr := cmd.Execute()
 
 	//Close the capture and get the data
 	w.Close()
-	out, _ := ioutil.ReadAll(r)
+	out, _ := io.ReadAll(r)
 	os.Stdout = rescueStdout
 
 	if cmdErr != nil {

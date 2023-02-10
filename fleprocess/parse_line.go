@@ -188,7 +188,7 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 			if (logLine.BandLowerLimit != 0.0) && (logLine.BandUpperLimit != 0.0) {
 				if (qrg >= logLine.BandLowerLimit) && (qrg <= logLine.BandUpperLimit) {
 					//Increase precision to half Khz if data is available
-					if len(khzPart[0]) > 4 { 
+					if len(khzPart[0]) > 4 {
 						//The "." is part of the returned string
 						logLine.Frequency = fmt.Sprintf("%.4f", qrg)
 					} else {

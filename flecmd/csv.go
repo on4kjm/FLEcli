@@ -27,7 +27,6 @@ import (
 var outputCsvFilename string
 var isOverwriteCsv bool
 
-var processCsvCommand = fleprocess.ProcessCsvCommand
 var csvCmd = csvCmdConstructor()
 
 // csvCmd is executed when choosing the csv option (load FLE file and generate csv file)

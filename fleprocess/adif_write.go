@@ -110,7 +110,7 @@ func adifElement(elementName, elementValue string) (element string) {
 	return fmt.Sprintf("<%s:%d>%s ", strings.ToUpper(elementName), len(elementValue), elementValue)
 }
 
-//adifDate converts a date in YYYY-MM-DD format to YYYYMMDD
+// adifDate converts a date in YYYY-MM-DD format to YYYYMMDD
 func adifDate(inputDate string) (outputDate string) {
 	const FLEdateFormat = "2006-01-02"
 	date, err := time.Parse(FLEdateFormat, inputDate)
