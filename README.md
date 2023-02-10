@@ -2,7 +2,7 @@
 
 Multi-platform "Fast Log Entry"(FLE) processing tool.
 
-![Go Build & Test](https://github.com/jmMeessen/FLEcli/workflows/Go%20Build%20&%20Test/badge.svg)
+![Go Build & Test](https://github.com/on4kjm/FLEcli/actions/workflows/ci.yml/badge.svg)
 [![codecov](https://codecov.io/gh/on4kjm/FLEcli/branch/master/graph/badge.svg)](https://codecov.io/gh/on4kjm/FLEcli)
 
 ["Fast Log Entry"](https://www.df3cb.com/fle/) is a nifty tool, written by DF3CB. It allows quick and efficient entry of radio amateur contacts made during DXpeditions, contests or SOTA/WWFF/POTA activation. It can export the listed contacts in ADIF format ready to be uploaded to eQSL/LOTW or submitted for SOTA, POTA, and WWFF. The original program is only available as a Windows executable which leaves the Mac or Linux users (like me) in the cold.
