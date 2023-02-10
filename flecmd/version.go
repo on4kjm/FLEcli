@@ -56,7 +56,6 @@ var (
 			}
 
 			fmt.Printf("%+v", response)
-			return
 		},
 	}
 )
