@@ -82,7 +82,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	missingTimeBlockList := []InferTimeBlock{}
 
 	var isInMultiLine = false
-	var cleanedInput []string
+	// var cleanedInput []string
 	var errorLog []string
 
 	var previousLogLine LogLine
@@ -136,7 +136,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			myCallList := regexpHeaderMyCall.Split(eachline, -1)
 			if len(strings.TrimSpace(myCallList[1])) > 0 {
 				headerMyCall, errorMsg = ValidateCall(strings.TrimSpace(myCallList[1]))
-				cleanedInput = append(cleanedInput, fmt.Sprintf("My call: %s", headerMyCall))
+				// cleanedInput = append(cleanedInput, fmt.Sprintf("My call: %s", headerMyCall))
 				if len(errorMsg) != 0 {
 					errorLog = append(errorLog, fmt.Sprintf("Invalid myCall at line %d: %s (%s)", lineCount, myCallList[1], errorMsg))
 				}
@@ -156,7 +156,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			myOperatorList := regexpHeaderOperator.Split(eachline, -1)
 			if len(strings.TrimSpace(myOperatorList[1])) > 0 {
 				headerOperator, errorMsg = ValidateCall(strings.TrimSpace(myOperatorList[1]))
-				cleanedInput = append(cleanedInput, fmt.Sprintf("Operator: %s", headerOperator))
+				// cleanedInput = append(cleanedInput, fmt.Sprintf("Operator: %s", headerOperator))
 				if len(errorMsg) != 0 {
 					errorLog = append(errorLog, fmt.Sprintf("Invalid Operator at line %d: %s (%s)", lineCount, myOperatorList[1], errorMsg))
 				}
@@ -176,7 +176,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			myWwffList := regexpHeaderMyWwff.Split(eachline, -1)
 			if len(strings.TrimSpace(myWwffList[1])) > 0 {
 				headerMyWWFF, errorMsg = ValidateWwff(strings.TrimSpace(myWwffList[1]))
-				cleanedInput = append(cleanedInput, fmt.Sprintf("My WWFF: %s", headerMyWWFF))
+				// cleanedInput = append(cleanedInput, fmt.Sprintf("My WWFF: %s", headerMyWWFF))
 				if len(errorMsg) != 0 {
 					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My WWFF\" at line %d: %s (%s)", lineCount, myWwffList[1], errorMsg))
 				}
@@ -196,7 +196,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			myPotaList := regexpHeaderMyPota.Split(eachline, -1)
 			if len(strings.TrimSpace(myPotaList[1])) > 0 {
 				headerMyPOTA, errorMsg = ValidatePota(strings.TrimSpace(myPotaList[1]))
-				cleanedInput = append(cleanedInput, fmt.Sprintf("My Pota: %s", headerMyPOTA))
+				// cleanedInput = append(cleanedInput, fmt.Sprintf("My Pota: %s", headerMyPOTA))
 				if len(errorMsg) != 0 {
 					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My POTA\" at line %d: %s (%s)", lineCount, myPotaList[1], errorMsg))
 				}
@@ -216,7 +216,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			mySotaList := regexpHeaderMySota.Split(eachline, -1)
 			if len(strings.TrimSpace(mySotaList[1])) > 0 {
 				headerMySOTA, errorMsg = ValidateSota(strings.TrimSpace(mySotaList[1]))
-				cleanedInput = append(cleanedInput, fmt.Sprintf("My Sota: %s", headerMySOTA))
+				// cleanedInput = append(cleanedInput, fmt.Sprintf("My Sota: %s", headerMySOTA))
 				if len(errorMsg) != 0 {
 					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My SOTA\" at line %d: %s (%s)", lineCount, mySotaList[1], errorMsg))
 				}
@@ -236,7 +236,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			myGridList := regexpHeaderMyGrid.Split(eachline, -1)
 			if len(strings.TrimSpace(myGridList[1])) > 0 {
 				headerMyGrid, errorMsg = ValidateGridLocator(strings.TrimSpace(myGridList[1]))
-				cleanedInput = append(cleanedInput, fmt.Sprintf("My Grid: %s", headerMyGrid))
+				// cleanedInput = append(cleanedInput, fmt.Sprintf("My Grid: %s", headerMyGrid))
 				if len(errorMsg) != 0 {
 					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My Grid\" at line %d: %s (%s)", lineCount, myGridList[1], errorMsg))
 				}
@@ -250,7 +250,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			myQslMsgList := regexpHeaderQslMsg.Split(eachline, -1)
 			if len(myQslMsgList[1]) > 0 {
 				headerQslMsg = myQslMsgList[1]
-				cleanedInput = append(cleanedInput, fmt.Sprintf("QSL Message: %s", headerQslMsg))
+				// cleanedInput = append(cleanedInput, fmt.Sprintf("QSL Message: %s", headerQslMsg))
 			}
 			//If there is no data after the marker, we just skip the data.
 			continue
@@ -266,7 +266,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			myNicknameList := regexpHeaderNickname.Split(eachline, -1)
 			if len(strings.TrimSpace(myNicknameList[1])) > 0 {
 				headerNickname = strings.TrimSpace(myNicknameList[1])
-				cleanedInput = append(cleanedInput, fmt.Sprintf("eQSL Nickmane: %s", headerNickname))
+				// cleanedInput = append(cleanedInput, fmt.Sprintf("eQSL Nickmane: %s", headerNickname))
 			}
 			//If there is no data after the marker, we just skip the data.
 			continue
