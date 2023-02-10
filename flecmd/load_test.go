@@ -56,7 +56,13 @@ func Test_ExecuteCommand_noArgs(t *testing.T) {
 
 	cmdErr := cmd.Execute()
 	if cmdErr != nil {
-		t.Fatal(cmdErr)
+		errString := cmdErr.Error()
+		if errString != "Missing input file " {
+			t.Fatal(cmdErr)
+		}
+
+	} else {
+		t.Fatalf("Call should have failed with an error")
 	}
 
 	out, err := io.ReadAll(b)
@@ -79,7 +85,13 @@ func Test_ExecuteCommand_toManyArgs(t *testing.T) {
 
 	cmdErr := cmd.Execute()
 	if cmdErr != nil {
-		t.Fatal(cmdErr)
+		errString := cmdErr.Error()
+		if errString != "Too many arguments." {
+			t.Fatal(cmdErr)
+		}
+
+	} else {
+		t.Fatalf("Call should have failed with an error")
 	}
 	out, err := io.ReadAll(b)
 	if err != nil {
@@ -103,7 +115,7 @@ func Test_ExecuteCommand_happyCase(t *testing.T) {
 	cmd := loadCmdConstructor()
 
 	cmd.SetArgs([]string{"data.txt"})
-	
+
 	cmdErr := cmd.Execute()
 
 	//Close the capture and get the data
