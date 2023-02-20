@@ -1,3 +1,11 @@
+# Build Notes
+
+## Bootstrap
+
+Install [Cobra CLI tool](https://github.com/spf13/cobra) `go install github.com/spf13/cobra-cli@latest`
+
+* `go build && go install`
+
 ## to build with goreleaser
 
 * `goreleaser --snapshot --skip-publish --rm-dist`
