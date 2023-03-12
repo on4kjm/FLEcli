@@ -4,6 +4,8 @@
 
 Install [Cobra CLI tool](https://github.com/spf13/cobra) `go install github.com/spf13/cobra-cli@latest`
 
+[Install](https://goreleaser.com/install/) [goreleaser](https://goreleaser.com/)
+
 * `go build && go install`
 
 ## to build with goreleaser
