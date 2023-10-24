@@ -63,7 +63,6 @@ archives:
   format_overrides:
   - goos: windows
     format: zip
-  rlcp: true
   files:
       - README.md
       - doc/whats_new.md
@@ -111,7 +110,7 @@ brews:
     # same kind. We will probably unify this in the next major version like it is done with scoop.
 
     # GitHub/GitLab repository to push the formula to
-    tap:
+    repository:
       owner: on4kjm
       name: homebrew-tap
       # Optionally a branch can be provided. If the branch does not exist, it
