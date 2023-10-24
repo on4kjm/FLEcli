@@ -51,7 +51,7 @@ func ValidateWwff(inputStr string) (ref, errorMsg string) {
 	return wrongInputStr, errorMsg
 }
 
-var validPotaRegexp = regexp.MustCompile(`^[\d]{0,1}[A-Z]{1,2}-[\d]{4}$`)
+var validPotaRegexp = regexp.MustCompile(`^[\d]{0,1}[A-Z]{1,2}-[\d]{4,5}$`)
 
 // ValidatePota verifies whether the supplied string is a valid POTA reference.
 // The syntax is: AA-CCCC: AA = national prefix, CCCC = 4-digit numeric code (e.g. ON-0001).

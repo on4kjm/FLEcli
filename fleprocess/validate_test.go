@@ -89,6 +89,11 @@ func TestValidatePota(t *testing.T) {
 			"4X-0258", "",
 		},
 		{
+			"Good ref (5 digit park)",
+			args{inputStr: "k-10177"},
+			"K-10177", "",
+		},
+		{
 			"Bad ref (no country prefix)",
 			args{inputStr: "-0258"},
 			"*-0258", "[-0258] is an invalid POTA reference",
@@ -104,9 +109,9 @@ func TestValidatePota(t *testing.T) {
 			"*ON-258", "[ON-258] is an invalid POTA reference",
 		},
 		{
-			"Bad ref (no country prefix)",
-			args{inputStr: "on-02589"},
-			"*ON-02589", "[ON-02589] is an invalid POTA reference",
+			"Bad ref (park number too long)",
+			args{inputStr: "on-123456"},
+			"*ON-123456", "[ON-123456] is an invalid POTA reference",
 		},
 	}
 	for _, tt := range tests {
