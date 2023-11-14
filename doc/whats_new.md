@@ -1,10 +1,14 @@
 # What's new?
 
-## v0.1.5
+## v0.1.6
 
-* Fix "S2S contacts not recognized properly" (issue #78)
+* Support parsing 5-digit POTA reference numbers by @k0emt (issue #105).
 
 ## Previous releases
+
+### v0.1.5
+
+* Fix "S2S contacts not recognized properly" (issue #78)
 
 ### v0.1.4
 
@@ -37,7 +41,7 @@
 
 ### v0.1.0
 
-* First public MVP (Minimal Viable Product relase). Supports only SOTA and WWFF type log files. Some header keywords are missing as well as date increments.
+* First public MVP (Minimal Viable Product release). Supports only SOTA and WWFF type log files. Some header keywords are missing as well as date increments.
 
 ### v0.0.0
 
