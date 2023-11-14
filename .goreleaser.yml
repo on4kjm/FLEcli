@@ -53,13 +53,12 @@ dockers:
 
 archives:
 - name_template: >-
-      {{ .ProjectName }}_
-      {{ .Version }}_
-      {{- if eq .Os "darwin"}}macOS
-      {{- else }}{{- .Os }}{{ end }}_
-      {{- if eq .Arch "amd64" }}64-bit
-      {{- else if eq .Arch "386" }}32-bit
-      {{- else }}{{ .Arch }}{{ end }}
+    {{ .ProjectName }}_{{ .Version }}_
+    {{- if eq .Os "darwin"}}macOS
+    {{- else }}{{- .Os }}{{ end }}_
+    {{- if eq .Arch "amd64" }}64-bit
+    {{- else if eq .Arch "386" }}32-bit
+    {{- else }}{{ .Arch }}{{ end }}
   format_overrides:
   - goos: windows
     format: zip
