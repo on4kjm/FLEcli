@@ -63,12 +63,12 @@ jobs:
         go-version: '^1.19.5'
     - run: go mod download
     - name: Validates GO releaser config
-      uses: goreleaser/goreleaser-action@v4
+      uses: goreleaser/goreleaser-action@v5
       with:
         distribution: goreleaser
         args: check
     - name: Run GoReleaser
-      uses: goreleaser/goreleaser-action@v4
+      uses: goreleaser/goreleaser-action@v5
       with:
         distribution: goreleaser      
         args: release --snapshot --skip-publish --clean
