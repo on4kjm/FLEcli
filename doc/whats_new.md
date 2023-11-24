@@ -1,10 +1,14 @@
 # What's new?
 
-## v0.1.6
+## v0.1.7
 
-* Support parsing 5-digit POTA reference numbers by @k0emt (issue #105).
+* Fix POTA reference prefix validation (issue #108).
 
 ## Previous releases
+
+### v0.1.6
+
+* Support parsing 5-digit POTA reference numbers by @k0emt (issue #105).
 
 ### v0.1.5
 
