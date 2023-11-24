@@ -89,6 +89,16 @@ func TestValidatePota(t *testing.T) {
 			"4X-0258", "",
 		},
 		{
+			"Good ref (country ref containing a digit)",
+			args{inputStr: "HB0-0258"},
+			"HB0-0258", "",
+		},
+		{
+			"Good ref (country ref containing a digit)",
+			args{inputStr: "E7-0258"},
+			"E7-0258", "",
+		},		
+		{
 			"Good ref (5 digit park)",
 			args{inputStr: "k-10177"},
 			"K-10177", "",
