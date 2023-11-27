@@ -10,8 +10,7 @@
 all: build
 
 changelog: ## Generate the change log
-	docker run -it --rm -v "$(PWD)":/usr/local/src/your-app githubchangeloggenerator/github-changelog-generator -u on4kjm -p FLEcli --token "$(GITHUB_TOKEN)"
-	echo "$(PWD)"
+	@docker run -it --rm -v "$(PWD)":/usr/local/src/your-app githubchangeloggenerator/github-changelog-generator -u on4kjm -p FLEcli --token "$(GITHUB_TOKEN)"
 
 dep: ## Get the dependencies
 	@go mod download
