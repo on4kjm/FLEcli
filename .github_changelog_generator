@@ -1,0 +1,5 @@
+pull-requests=false
+compare-link=false
+unreleased=false
+since-tag=v0.0.1
+output=doc/whats_new.md
