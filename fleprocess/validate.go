@@ -53,6 +53,7 @@ func ValidateWwff(inputStr string) (ref, errorMsg string) {
 
 var validPotaRegexp = regexp.MustCompile(`^[\d]{0,1}[A-Z]{1,2}[\d]{0,1}-[\d]{4,5}$`)
 
+//FIXME: validate documentation after correction
 // ValidatePota verifies whether the supplied string is a valid POTA reference.
 // The syntax is: AA-CCCCC: AA = national prefix, CCCCC = 4 or 5-digit numeric code (e.g. ON-00001).
 // Note that the national prefix can start with a number, must have 1 or 2, and can end with a number
