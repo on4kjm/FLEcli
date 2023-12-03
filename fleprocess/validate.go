@@ -58,7 +58,7 @@ var validPotaRegexp = regexp.MustCompile(`^[0-9A-Z]{1,5}-[\d]{4,5}$`)
 // ValidatePota verifies whether the supplied string is a valid POTA reference. If valid, the error
 // message is empty.
 // The syntax is: AA-CCCCC: AA = national prefix, CCCCC = 4 or 5-digit numeric code (e.g. ON-00001).
-// The national prefix is composed of letters and figures of at least 1 char and at most 5 char length
+// The national prefix is composed of letters and digits and is of at least 1 char and at most 5 char length.
 func ValidatePota(inputStr string) (ref, errorMsg string) {
 	inputStr = strings.ToUpper(strings.TrimSpace(inputStr))
 	wrongInputStr := "*" + inputStr
