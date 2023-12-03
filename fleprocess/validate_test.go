@@ -2,7 +2,6 @@ package fleprocess
 
 import (
 	"testing"
-
 )
 
 func TestValidateWwff(t *testing.T) {
@@ -64,7 +63,6 @@ func TestValidateWwff(t *testing.T) {
 	}
 }
 
-
 var pota_prefixes_list = []string{
 	"YA", "ZA", "7X", "C3", "D2", "VP2E", "CE9", "V2", "AR", "EK", "P4", "VK", "OE", "4J", "CU", "C6",
 	"A9", "T33", "S2", "8P", "EV", "ON", "V3", "TY", "VP9", "A5", "CP", "T9", "A2", "PY", "V85", "LZ",
@@ -82,7 +80,7 @@ var pota_prefixes_list = []string{
 	"CV", "UI", "YJ8", "HV", "YV", "XV2", "GW", "S0", "7O", "9J2", "Z2",
 }
 
-// Explicit prefix test because of issue #111 and #108 
+// Explicit prefix test because of issue #111 and #108
 func Test_Pota_prefix(t *testing.T) {
 	test_failed := false
 	invalidRefs := ""
