@@ -2,6 +2,7 @@ package fleprocess
 
 import (
 	"testing"
+
 )
 
 func TestValidateWwff(t *testing.T) {
@@ -63,31 +64,37 @@ func TestValidateWwff(t *testing.T) {
 	}
 }
 
-var pota_ref_list = []string{
-	"K-0001", "CE9-0001", "VE-0001", "F-0001", "G-0001", "YB-0001", "VK-0001", "TI-0001", "I-0001",
-	"9M-0001", "ZL-0001", "GW-0001", "9V-0001", "XE-0001", "HL-0001", "PA-0001", "SV-0001", "SP-0001",
-	"DA-0001", "HS-0001", "CT-0001", "CU-0001", "HI-0001", "AR-0001", "9A-0001", "5B-0001", "HK-0001",
-	"GM-0001", "JA-0001", "HP-0001", "CA-0001", "BV-0001", "OE-0001", "EA-0001", "HB-0001", "EK-0001",
-	"V3-0001", "ZF-0001", "OA-0001", "LX-0001", "HR-0001", "TF-0001", "ON-0001", "OU-0001", "YV-0001",
-	"8P-0001", "OX-0001", "OY-0001", "YT-0001", "DU-0001", "P4-0001", "LA-0001", "PY-0001", "VU-0001",
-	"EI-0001", "6Y-0001", "LZ-0001", "TG-0001", "OH-0001", "HC-0001", "ZR-0001", "PZ-0001", "CV-0001",
-	"8R-0001", "Z2-0001", "A2-0001", "CP-0001", "CO-0001", "9Y-0001", "ZP-0001", "C9-0001", "SM-0001",
-	"4W-0001", "TA-0001", "V7-0001", "3D2-0001", "4X-0001", "S5-0001", "BY-0001", "P29-0001", "GI-0001",
-	"T7-0001", "YO-0001", "HA-0001", "A3-0001", "XV2-0001", "J8-0001", "VP5-0001", "V5-0001", "HB0-0001",
-	"YS-0001", "YJ8-0001", "UA-0001", "UR-0001", "V4-0001", "GD-0001", "V6-0001", "A6-0001", "Z3-0001",
-	"5W-0001", "9G1-0001", "OK-0001", "C6-0001", "J6-0001", "J7-0001", "J3-0001", "T9-0001", "4L-0001",
-	"7O-0001",
+
+var pota_prefixes_list = []string{
+	"YA", "ZA", "7X", "C3", "D2", "VP2E", "CE9", "V2", "AR", "EK", "P4", "VK", "OE", "4J", "CU", "C6",
+	"A9", "T33", "S2", "8P", "EV", "ON", "V3", "TY", "VP9", "A5", "CP", "T9", "A2", "PY", "V85", "LZ",
+	"XT", "9U5", "XU", "TJ", "VE", "D4", "ZF", "TL", "TT", "CA", "BY", "HK", "D6", "TI", "TU", "9A",
+	"CO", "PJ2", "5B", "OK", "P5", "OU", "J2", "J7", "HI", "HC", "SU", "YS", "G", "3C", "E3", "ES", "ET",
+	"VP8", "OY", "DA", "3D2", "OH", "F", "V6", "TR", "4L", "9G1", "SV", "OX", "J3", "TG", "GU", "3X",
+	"J5", "8R", "HH", "HR", "HA", "TF", "VU", "YB", "EP", "YI", "EI", "GD", "4X", "I", "6Y", "JA", "GJ",
+	"JY", "UL", "5Z4", "3DA", "T31", "9K2", "UM", "XW", "YL", "OD5", "7P8", "EL", "5A", "HB0", "LY",
+	"LX", "XX9", "5R", "7Q7", "9M", "8Q6", "TZ", "9H", "V7", "5T", "3B8", "XE", "UO", "JT", "4O", "VP2M",
+	"CN", "C9", "XZ2", "V5", "C2", "9N", "PA", "ZL", "YN", "5U", "5N", "E6", "Z3", "GI", "LA", "A4", "AP",
+	"T8", "ZC6", "HP", "P29", "ZP", "OA", "DU", "SP", "CT", "A7", "Z6", "TN", "YO", "RU", "9X5", "5W",
+	"T7", "S9", "HZ", "GM", "6W", "YT", "S79", "9L1", "9V", "PJ7", "OM", "S5", "H44", "T5", "ZR", "HL",
+	"ST0", "1A0KM", "EA", "4S7", "V4", "J6", "J8", "ST", "PZ", "SM", "HB", "YK", "EY", "BV", "5H3", "HS",
+	"C5", "4W", "5V", "A3", "9Y", "3V8", "TA", "EZ", "VP5", "T2", "5X", "UA", "A6", "4U1UN", "K", "K",
+	"CV", "UI", "YJ8", "HV", "YV", "XV2", "GW", "S0", "7O", "9J2", "Z2",
 }
 
+// Explicit prefix test because of issue #111 and #108 
 func Test_Pota_prefix(t *testing.T) {
 	test_failed := false
 	invalidRefs := ""
-	for _, pota_ref := range  pota_ref_list {
-		ref, _ := ValidatePota(pota_ref)
-		if ref == "" {
+	for _, pota_prefix := range pota_prefixes_list {
+		pota_ref := pota_prefix + "-0001"
+		_, errMsg := ValidatePota(pota_ref)
+
+		if errMsg != "" {
 			test_failed = true
 			invalidRefs = invalidRefs + pota_ref + " validation failed \n"
 		}
+
 	}
 	if test_failed {
 		t.Error(invalidRefs)
