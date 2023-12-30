@@ -1,0 +1,17 @@
+#Header
+mycall MW0PJE/P
+mysota GW/NW-001
+#Log
+2m FM
+1000 mw0abc
+01 mw0abd
+
+# New summit
+mysota GW/NW-002
+1200 mm0abe
+01 mm0abf
+
+# third summit
+mysota GW/NW-003
+1400 mi0abg
+01 mi0abh
