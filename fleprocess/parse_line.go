@@ -28,6 +28,7 @@ type LogLine struct {
 	Date             string
 	MyCall           string
 	Operator         string
+	isFirstLine      bool
 	MyWWFF           string
 	MyPOTA           string
 	MySOTA           string

@@ -1,7 +1,12 @@
 #Header
 mycall MW0PJE/P
-mysota GW/NW-001
+
+
 #Log
+
+#First summit
+mysota GW/NW-001
+date 2016-04-24
 2m FM
 1000 mw0abc
 01 mw0abd

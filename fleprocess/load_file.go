@@ -75,6 +75,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	headerMyGrid := ""
 	headerQslMsg := ""
 	headerNickname := ""
+	headerIsFirstLine := true
 	//headerDate := ""
 	lineCount := 0
 
@@ -207,11 +208,12 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 
 		//My Sota
 		if regexpHeaderMySota.MatchString(eachline) {
-			//Attempt to redefine value
-			if headerMySOTA != "" {
-				errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine MySOTA at line %d", lineCount))
-				continue
-			}
+			oldHeaderMySOTA := headerMySOTA
+			// //FIXME: enhancement for issue #101
+			// if headerMySOTA != "" {
+			// 	errorLog = append(errorLog, fmt.Sprintf("Warning: redefining MySOTA at line %d", lineCount))
+			// 	continue
+			// }
 			errorMsg := ""
 			mySotaList := regexpHeaderMySota.Split(eachline, -1)
 			if len(strings.TrimSpace(mySotaList[1])) > 0 {
@@ -220,6 +222,10 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 				if len(errorMsg) != 0 {
 					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My SOTA\" at line %d: %s (%s)", lineCount, mySotaList[1], errorMsg))
 				}
+			}
+			if oldHeaderMySOTA != headerMySOTA {
+				// New SOTA reference defined
+				headerIsFirstLine = true
 			}
 			//If there is no data after the marker, we just skip the data.
 			continue
@@ -279,6 +285,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		// Load the header values in the previousLogLine
 		previousLogLine.MyCall = headerMyCall
 		previousLogLine.Operator = headerOperator
+		previousLogLine.isFirstLine = headerIsFirstLine
 		previousLogLine.MyWWFF = headerMyWWFF
 		previousLogLine.MyPOTA = headerMyPOTA
 		previousLogLine.MySOTA = headerMySOTA
@@ -336,6 +343,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 
 		//store the current logline so that it can be used as a model when parsing the next line
 		previousLogLine = logline
+		//FIXME: we need to reset the first line
 
 		//We go back to the top to process the next loaded log line (Continue not necessary here)
 	}
@@ -388,12 +396,10 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 
 // displayLogSimple will print to stdout a simplified dump of a full log
 func displayLogSimple(fullLog []LogLine) {
-	firstLine := true
 	for _, filledLogLine := range fullLog {
-		if firstLine {
+		if filledLogLine.isFirstLine {
 			fmt.Println(SprintHeaderValues(filledLogLine))
 			fmt.Print(SprintColumnTitles())
-			firstLine = false
 		}
 		fmt.Print(SprintLogInColumn(filledLogLine))
 	}
