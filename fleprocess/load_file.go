@@ -338,7 +338,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		}
 
 		//store the current logline so that it can be used as a model when parsing the next line
-		// and reset the firstline flag
+		// and reset the FirstLine flag
 		previousLogLine = logline
 		headerIsFirstLine = false
 
