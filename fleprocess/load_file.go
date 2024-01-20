@@ -53,6 +53,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	isInferTimeFatalError := false
 
 	regexpLineComment := regexp.MustCompile(`^[[:blank:]]*#`)
+	regexpInLineComment := regexp.MustCompile(`.*#.*`)
 	regexpOnlySpaces := regexp.MustCompile(`^\s+$`)
 	regexpSingleMultiLineComment := regexp.MustCompile(`^[[:blank:]]*{.+}$`)
 	regexpStartMultiLineComment := regexp.MustCompile(`^[[:blank:]]*{`)
@@ -104,6 +105,10 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		//Skip if line is empty or blank
 		if (len(eachline) == 0) || (regexpOnlySpaces.MatchString(eachline)) {
 			continue
+		}
+		// a comment starts somewhere on the line, remove the comment
+		if regexpInLineComment.MatchString(eachline) {
+			eachline = strings.Split(eachline, "#")[0]
 		}
 
 		// Process multi-line comments
