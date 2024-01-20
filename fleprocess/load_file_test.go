@@ -491,6 +491,11 @@ func TestLoadFile_redefining_mySOTA(t *testing.T) {
 		t.Errorf("Not the expected MySOTA value: %s (expecting %s)", loadedLogFile[0].MySOTA, expectedValue)
 	}
 
+	expectedValue = "ON/ON-111"
+	if loadedLogFile[1].MySOTA != expectedValue {
+		t.Errorf("Not the expected MySOTA value: %s (expecting %s)", loadedLogFile[0].MySOTA, expectedValue)
+	}
+
 	//Clean Up
 	os.Remove(temporaryDataFileName)
 }
