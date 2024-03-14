@@ -42,6 +42,7 @@ func TestLoadFile_happyCase(t *testing.T) {
 	dataArray = append(dataArray, "mySota on/on-001")
 	dataArray = append(dataArray, "myPota k-0802")
 	dataArray = append(dataArray, "myGrid jo50")
+	dataArray = append(dataArray, "myCounty Ham County")
 	dataArray = append(dataArray, "QslMsg This is a QSL message")
 	dataArray = append(dataArray, " ")
 	dataArray = append(dataArray, " #Log")
@@ -87,6 +88,10 @@ func TestLoadFile_happyCase(t *testing.T) {
 	expectedValue = "This is a QSL message"
 	if loadedLogFile[0].QSLmsg != expectedValue {
 		t.Errorf("Not the expected QSL Message from Header value: %s (expecting %s)", loadedLogFile[0].QSLmsg, expectedValue)
+	}
+	expectedValue = "Ham County"
+	if loadedLogFile[0].MyCounty != expectedValue {
+		t.Errorf("Not the expected MyCounty from Header value: %s (expecting %s)", loadedLogFile[0].MyCounty, expectedValue)
 	}
 	expectedValue = "IK5ZVE/5"
 	if loadedLogFile[0].Call != expectedValue {

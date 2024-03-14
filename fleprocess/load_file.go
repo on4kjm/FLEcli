@@ -65,6 +65,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	regexpHeaderMySota := regexp.MustCompile(`(?i)^mysota\s+`)
 	regexpHeaderMyPota := regexp.MustCompile(`(?i)^mypota\s+`)
 	regexpHeaderMyGrid := regexp.MustCompile(`(?i)^mygrid\s+`)
+	regexpHeaderMyCounty := regexp.MustCompile(`(?i)^mycounty\s+`)
 	regexpHeaderQslMsg := regexp.MustCompile(`(?i)^qslmsg\s+`)
 	regexpHeaderNickname := regexp.MustCompile(`(?i)^nickname\s+`)
 
@@ -74,6 +75,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	headerMySOTA := ""
 	headerMyPOTA := ""
 	headerMyGrid := ""
+	headerMyCounty := ""
 	headerQslMsg := ""
 	headerNickname := ""
 	//headerDate := ""
@@ -250,6 +252,16 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			continue
 		}
 
+		//My County
+		if regexpHeaderMyCounty.MatchString(eachline) {
+			myMyCountyList := regexpHeaderMyCounty.Split(eachline, -1)
+			if len(myMyCountyList[1]) > 0 {
+				headerMyCounty = myMyCountyList[1]
+			}
+			//If there is no data after the marker, we just skip the data.
+			continue
+		}
+
 		//QSL Message
 		if regexpHeaderQslMsg.MatchString(eachline) {
 			myQslMsgList := regexpHeaderQslMsg.Split(eachline, -1)
@@ -288,6 +300,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		previousLogLine.MyPOTA = headerMyPOTA
 		previousLogLine.MySOTA = headerMySOTA
 		previousLogLine.MyGrid = headerMyGrid
+		previousLogLine.MyCounty = headerMyCounty
 		previousLogLine.QSLmsg = headerQslMsg //previousLogLine.QslMsg is redundant
 		previousLogLine.Nickname = headerNickname
 
