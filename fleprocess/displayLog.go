@@ -79,6 +79,10 @@ func SprintHeaderValues(logLine LogLine) string {
 		output.WriteString("MyGrid    " + logLine.MyGrid + "\n")
 	}
 
+	if logLine.MyCounty != "" {
+		output.WriteString("MyCounty  " + logLine.MyCounty + "\n")
+	}
+
 	return output.String()
 }
 

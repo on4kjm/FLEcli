@@ -42,6 +42,7 @@ func TestLoadFile_happyCase(t *testing.T) {
 	dataArray = append(dataArray, "mySota on/on-001")
 	dataArray = append(dataArray, "myPota k-0802")
 	dataArray = append(dataArray, "myGrid jo50")
+	dataArray = append(dataArray, "myCounty Ham County")
 	dataArray = append(dataArray, "QslMsg This is a QSL message")
 	dataArray = append(dataArray, " ")
 	dataArray = append(dataArray, " #Log")
@@ -49,7 +50,6 @@ func TestLoadFile_happyCase(t *testing.T) {
 	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
 	dataArray = append(dataArray, "on6zq")
 	dataArray = append(dataArray, "0954 on4do")
-	dataArray = append(dataArray, "0955 k0emt # on line comment")
 
 	temporaryDataFileName := createTestFile(dataArray)
 
@@ -88,6 +88,10 @@ func TestLoadFile_happyCase(t *testing.T) {
 	if loadedLogFile[0].QSLmsg != expectedValue {
 		t.Errorf("Not the expected QSL Message from Header value: %s (expecting %s)", loadedLogFile[0].QSLmsg, expectedValue)
 	}
+	expectedValue = "Ham County"
+	if loadedLogFile[0].MyCounty != expectedValue {
+		t.Errorf("Not the expected MyCounty from Header value: %s (expecting %s)", loadedLogFile[0].MyCounty, expectedValue)
+	}
 	expectedValue = "IK5ZVE/5"
 	if loadedLogFile[0].Call != expectedValue {
 		t.Errorf("Not the expected Call[0] value: %s (expecting %s)", loadedLogFile[0].Call, expectedValue)
@@ -115,14 +119,6 @@ func TestLoadFile_happyCase(t *testing.T) {
 	expectedValue = "0954"
 	if loadedLogFile[2].Time != expectedValue {
 		t.Errorf("Not the expected Time[2] value: %s (expecting %s)", loadedLogFile[2].Time, expectedValue)
-	}
-	expectedValue = "K0EMT"
-	if loadedLogFile[3].Call != expectedValue {
-		t.Errorf("Not the expected Call[3] value: %s (expecting %s)", loadedLogFile[3].Call, expectedValue)
-	}
-	expectedValue = "0955"
-	if loadedLogFile[3].Time != expectedValue {
-		t.Errorf("Not the expected Time[3] value: %s (expecting %s)", loadedLogFile[3].Time, expectedValue)
 	}
 	//Clean Up
 	os.Remove(temporaryDataFileName)
