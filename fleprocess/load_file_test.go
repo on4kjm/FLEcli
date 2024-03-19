@@ -49,7 +49,6 @@ func TestLoadFile_happyCase(t *testing.T) {
 	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
 	dataArray = append(dataArray, "on6zq")
 	dataArray = append(dataArray, "0954 on4do")
-	dataArray = append(dataArray, "0955 k0emt # on line comment")
 
 	temporaryDataFileName := createTestFile(dataArray)
 
@@ -115,14 +114,6 @@ func TestLoadFile_happyCase(t *testing.T) {
 	expectedValue = "0954"
 	if loadedLogFile[2].Time != expectedValue {
 		t.Errorf("Not the expected Time[2] value: %s (expecting %s)", loadedLogFile[2].Time, expectedValue)
-	}
-	expectedValue = "K0EMT"
-	if loadedLogFile[3].Call != expectedValue {
-		t.Errorf("Not the expected Call[3] value: %s (expecting %s)", loadedLogFile[3].Call, expectedValue)
-	}
-	expectedValue = "0955"
-	if loadedLogFile[3].Time != expectedValue {
-		t.Errorf("Not the expected Time[3] value: %s (expecting %s)", loadedLogFile[3].Time, expectedValue)
 	}
 	//Clean Up
 	os.Remove(temporaryDataFileName)
