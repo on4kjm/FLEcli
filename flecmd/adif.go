@@ -52,6 +52,11 @@ var adifCmd = &cobra.Command{
 			return fmt.Errorf("Too many arguments.%s", "")
 		}
 
+		// Verify given output directory exists. This check should be performed
+		// Before running any long process so as to not make the user wait and
+		// then be notified the file cannot be written.
+		CheckDir(outputFilename)
+
 		var adifParam = new(fleprocess.AdifParams)
 		adifParam.InputFilename = inputFilename
 		adifParam.OutputFilename = outputFilename
