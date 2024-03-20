@@ -96,7 +96,7 @@ func Test_buildAdif(t *testing.T) {
 
 	sampleFilledLogPOTA := []LogLine{
 		{MyCall: "ON4KJM/P", Call: "S57LC", Date: "2020-05-24", Time: "1310", Band: "20m", Frequency: "14.045", Mode: "CW", RSTsent: "599", RSTrcvd: "599", MyPOTA: "ON-00259", Operator: "ON4KJM", Nickname: "ON-00259-1"},
-		{MyCall: "ON4KJM/P", Call: "ON4LY", Date: "2020-05-24", Time: "1312", Band: "20m", Mode: "CW", RSTsent: "559", RSTrcvd: "599", MyPOTA: "ON-00259", Operator: "ON4KJM"},
+		{MyCall: "ON4KJM/P", Call: "ON4LY", Date: "2020-05-24", Time: "1312", Band: "20m", Mode: "CW", RSTsent: "559", RSTrcvd: "599", MyPOTA: "ON-00259", Operator: "ON4KJM", MyCounty: "Ham County"},
 	}
 
 	expectedOutputPOTA := []string{
@@ -105,7 +105,7 @@ func Test_buildAdif(t *testing.T) {
 		"<ADIF_VER:5>3.1.0",
 		"<EOH>",
 		"<STATION_CALLSIGN:8>ON4KJM/P <CALL:5>S57LC <QSO_DATE:8>20200524 <TIME_ON:4>1310 <BAND:3>20m <MODE:2>CW <FREQ:6>14.045 <RST_SENT:3>599 <RST_RCVD:3>599 <MY_SIG:4>POTA <MY_SIG_INFO:8>ON-00259 <OPERATOR:6>ON4KJM <APP_EQSL_QTH_NICKNAME:10>ON-00259-1 <EOR>",
-		"<STATION_CALLSIGN:8>ON4KJM/P <CALL:5>ON4LY <QSO_DATE:8>20200524 <TIME_ON:4>1312 <BAND:3>20m <MODE:2>CW <RST_SENT:3>559 <RST_RCVD:3>599 <MY_SIG:4>POTA <MY_SIG_INFO:8>ON-00259 <OPERATOR:6>ON4KJM <EOR>",
+		"<STATION_CALLSIGN:8>ON4KJM/P <CALL:5>ON4LY <QSO_DATE:8>20200524 <TIME_ON:4>1312 <BAND:3>20m <MODE:2>CW <RST_SENT:3>559 <RST_RCVD:3>599 <MY_SIG:4>POTA <MY_SIG_INFO:8>ON-00259 <OPERATOR:6>ON4KJM <MY_CNTY:10>Ham County <EOR>",
 	}
 
 	sampleFilledLogPOTA2 := []LogLine{

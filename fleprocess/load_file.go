@@ -53,7 +53,6 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	isInferTimeFatalError := false
 
 	regexpLineComment := regexp.MustCompile(`^[[:blank:]]*#`)
-	regexpInLineComment := regexp.MustCompile(`.*#.*`)
 	regexpOnlySpaces := regexp.MustCompile(`^\s+$`)
 	regexpSingleMultiLineComment := regexp.MustCompile(`^[[:blank:]]*{.+}$`)
 	regexpStartMultiLineComment := regexp.MustCompile(`^[[:blank:]]*{`)
@@ -67,6 +66,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	regexpHeaderMyGrid := regexp.MustCompile(`(?i)^mygrid\s+`)
 	regexpHeaderMyLat := regexp.MustCompile(`(?i)^mylat\s+`)
 	regexpHeaderMyLon := regexp.MustCompile(`(?i)^mylon\s+`)
+	regexpHeaderMyCounty := regexp.MustCompile(`(?i)^mycounty\s+`)
 	regexpHeaderQslMsg := regexp.MustCompile(`(?i)^qslmsg\s+`)
 	regexpHeaderNickname := regexp.MustCompile(`(?i)^nickname\s+`)
 
@@ -78,6 +78,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	headerMyGrid := ""
 	headerMyLat := ""
 	headerMyLon := ""
+	headerMyCounty := ""
 	headerQslMsg := ""
 	headerNickname := ""
 	//headerDate := ""
@@ -108,10 +109,6 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		//Skip if line is empty or blank
 		if (len(eachline) == 0) || (regexpOnlySpaces.MatchString(eachline)) {
 			continue
-		}
-		// a comment starts somewhere on the line, remove the comment
-		if regexpInLineComment.MatchString(eachline) {
-			eachline = strings.Split(eachline, "#")[0]
 		}
 
 		// Process multi-line comments
@@ -287,6 +284,16 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 				if len(errorMsg) != 0 {
 					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My Lon\" at line %d: %s (%s)", lineCount, myLonList[1], errorMsg))
 				}
+      }
+			//If there is no data after the marker, we just skip the data.
+			continue
+		}
+    
+		//My County
+		if regexpHeaderMyCounty.MatchString(eachline) {
+			myMyCountyList := regexpHeaderMyCounty.Split(eachline, -1)
+			if len(myMyCountyList[1]) > 0 {
+				headerMyCounty = myMyCountyList[1]
 			}
 			//If there is no data after the marker, we just skip the data.
 			continue
@@ -332,6 +339,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		previousLogLine.MyGrid = headerMyGrid
 		previousLogLine.MyLat = headerMyLat
 		previousLogLine.MyLon = headerMyLon
+		previousLogLine.MyCounty = headerMyCounty
 		previousLogLine.QSLmsg = headerQslMsg //previousLogLine.QslMsg is redundant
 		previousLogLine.Nickname = headerNickname
 
