@@ -19,9 +19,9 @@ limitations under the License.
 import (
 	"fmt"
 	"regexp"
+	"strconv"
 	"strings"
 	"time"
-	"strconv"
 )
 
 // ValidateLat checks if value is within range of +-90 degrees inclusive.

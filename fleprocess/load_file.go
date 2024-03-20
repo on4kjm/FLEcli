@@ -284,11 +284,11 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 				if len(errorMsg) != 0 {
 					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My Lon\" at line %d: %s (%s)", lineCount, myLonList[1], errorMsg))
 				}
-      }
+			}
 			//If there is no data after the marker, we just skip the data.
 			continue
 		}
-    
+
 		//My County
 		if regexpHeaderMyCounty.MatchString(eachline) {
 			myMyCountyList := regexpHeaderMyCounty.Split(eachline, -1)
