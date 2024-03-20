@@ -99,7 +99,7 @@ func buildAdif(fullLog []LogLine, adifParams AdifParams) (adifList []string) {
 		}
 		if logLine.MyLon != "" {
 			adifLine.WriteString(adifElement("MY_LON", logLine.MyLon))
-    }
+		}
 		if logLine.MyCounty != "" {
 			adifLine.WriteString(adifElement("MY_CNTY", logLine.MyCounty))
 		}
