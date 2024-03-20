@@ -21,7 +21,32 @@ import (
 	"regexp"
 	"strings"
 	"time"
+	"strconv"
 )
+
+// ValidateLat checks if value is within range of +-90 degrees inclusive.
+func ValidateLat(lat string) (ref, errorMsg string) {
+	if val, err := strconv.ParseFloat(lat, 64); err == nil {
+		if val <= float64(90.0) && val >= float64(-90.0) {
+			return lat, ""
+		}
+	}
+
+	errorMsg = "[" + lat + "] is an invalid lat"
+	return "*" + lat, errorMsg
+}
+
+// ValidateLon checks if value is within range of +-180 degrees inclusive.
+func ValidateLon(lon string) (ref, errorMsg string) {
+	if val, err := strconv.ParseFloat(lon, 64); err == nil {
+		if val <= float64(180.0) && val >= float64(-180.0) {
+			return lon, ""
+		}
+	}
+
+	errorMsg = "[" + lon + "] is an invalid lon"
+	return "*" + lon, errorMsg
+}
 
 // ValidateSota verifies whether the supplied string is a valid SOTA reference.
 // The syntax is: AA/NN-CCC: Association/Name-3-digit numeric Code (e.g. G/CE-001).
