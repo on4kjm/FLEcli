@@ -54,7 +54,10 @@ func csvCmdConstructor() *cobra.Command {
 			// Verify given output directory exists. This check should be performed
 			// Before running any long process so as to not make the user wait and
 			// then be notified the file cannot be written.
-			CheckDir(outputCsvFilename)
+			dirErr := CheckDir(outputCsvFilename)
+			if dirErr != nil {
+				return dirErr
+			}
 
 			if err := fleprocess.ProcessCsvCommand(inputFilename, outputCsvFilename, isInterpolateTime, isOverwriteCsv); err != nil {
 				fmt.Println("\nUnable to generate CSV file:")
