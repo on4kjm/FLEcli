@@ -22,6 +22,8 @@ import (
 	"testing"
 )
 
+//TODO: Add tests for POTA
+
 func TestLoadFile_happyCase(t *testing.T) {
 
 	//Given
@@ -422,7 +424,7 @@ func TestLoadFile_redefining_myCall_must_fail(t *testing.T) {
 	os.Remove(temporaryDataFileName)
 }
 
-func TestLoadFile_redefining_myWWFF_must_fail(t *testing.T) {
+func TestLoadFile_redefining_myWWFF(t *testing.T) {
 
 	//Given
 	dataArray := make([]string, 0)
@@ -437,6 +439,7 @@ func TestLoadFile_redefining_myWWFF_must_fail(t *testing.T) {
 	dataArray = append(dataArray, "20/5/23")
 	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
 	dataArray = append(dataArray, "myWWFF onff-0001")
+	dataArray = append(dataArray, "40m cw 0955 ik5zzz 9 5")
 
 	temporaryDataFileName := createTestFile(dataArray)
 
@@ -456,11 +459,15 @@ func TestLoadFile_redefining_myWWFF_must_fail(t *testing.T) {
 		t.Errorf("Not the expected MyWWFF value: %s (expecting %s)", loadedLogFile[0].MyWWFF, expectedValue)
 	}
 
+	expectedValue = "ONFF-0001"
+	if loadedLogFile[1].MyWWFF != expectedValue {
+		t.Errorf("Not the expected MyWWFF value: %s (expecting %s)", loadedLogFile[0].MyWWFF, expectedValue)
+	}
+
 	//Clean Up
 	os.Remove(temporaryDataFileName)
 }
 
-// FIXME: See issue #101
 func TestLoadFile_redefining_mySOTA(t *testing.T) {
 
 	//Given
