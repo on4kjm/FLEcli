@@ -55,7 +55,10 @@ var adifCmd = &cobra.Command{
 		// Verify given output directory exists. This check should be performed
 		// Before running any long process so as to not make the user wait and
 		// then be notified the file cannot be written.
-		CheckDir(outputFilename)
+		dirErr := CheckDir(outputFilename)
+		if dirErr != nil {
+			return dirErr
+		}
 
 		var adifParam = new(fleprocess.AdifParams)
 		adifParam.InputFilename = inputFilename

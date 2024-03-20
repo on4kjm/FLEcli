@@ -87,12 +87,12 @@ func initConfig() {
 
 // CheckDir verifies a given path/file string actually exists. If it does not
 // then exit with an error.
-func CheckDir(file string) {
+func CheckDir(file string) error {
 	path := filepath.Dir(file)
 	if _, err := os.Stat(path); err != nil {
 		if os.IsNotExist(err) {
-			fmt.Println("The given path does not exit: " + file)
-			os.Exit(1)
+			return fmt.Errorf("The directory of specified output file (%s) does not exist.", path)
 		}
 	}
+	return nil
 }
