@@ -64,6 +64,8 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	regexpHeaderMySota := regexp.MustCompile(`(?i)^mysota\s+`)
 	regexpHeaderMyPota := regexp.MustCompile(`(?i)^mypota\s+`)
 	regexpHeaderMyGrid := regexp.MustCompile(`(?i)^mygrid\s+`)
+	regexpHeaderMyLat := regexp.MustCompile(`(?i)^mylat\s+`)
+	regexpHeaderMyLon := regexp.MustCompile(`(?i)^mylon\s+`)
 	regexpHeaderMyCounty := regexp.MustCompile(`(?i)^mycounty\s+`)
 	regexpHeaderQslMsg := regexp.MustCompile(`(?i)^qslmsg\s+`)
 	regexpHeaderNickname := regexp.MustCompile(`(?i)^nickname\s+`)
@@ -74,6 +76,8 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	headerMySOTA := ""
 	headerMyPOTA := ""
 	headerMyGrid := ""
+	headerMyLat := ""
+	headerMyLon := ""
 	headerMyCounty := ""
 	headerQslMsg := ""
 	headerNickname := ""
@@ -247,6 +251,44 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			continue
 		}
 
+		//My Lat
+		if regexpHeaderMyLat.MatchString(eachline) {
+			//Attempt to redefine value
+			if headerMyLat != "" {
+				errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine MyLat at line %d", lineCount))
+				continue
+			}
+			errorMsg := ""
+			myLatList := regexpHeaderMyLat.Split(eachline, -1)
+			if len(strings.TrimSpace(myLatList[1])) > 0 {
+				headerMyLat, errorMsg = ValidateLat(strings.TrimSpace(myLatList[1]))
+				if len(errorMsg) != 0 {
+					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My Lat\" at line %d: %s (%s)", lineCount, myLatList[1], errorMsg))
+				}
+			}
+			//If there is no data after the marker, we just skip the data.
+			continue
+		}
+
+		//My Lon
+		if regexpHeaderMyLon.MatchString(eachline) {
+			//Attempt to redefine value
+			if headerMyLon != "" {
+				errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine MyLon at line %d", lineCount))
+				continue
+			}
+			errorMsg := ""
+			myLonList := regexpHeaderMyLon.Split(eachline, -1)
+			if len(strings.TrimSpace(myLonList[1])) > 0 {
+				headerMyLon, errorMsg = ValidateLon(strings.TrimSpace(myLonList[1]))
+				if len(errorMsg) != 0 {
+					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My Lon\" at line %d: %s (%s)", lineCount, myLonList[1], errorMsg))
+				}
+      }
+			//If there is no data after the marker, we just skip the data.
+			continue
+		}
+    
 		//My County
 		if regexpHeaderMyCounty.MatchString(eachline) {
 			myMyCountyList := regexpHeaderMyCounty.Split(eachline, -1)
@@ -295,6 +337,8 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		previousLogLine.MyPOTA = headerMyPOTA
 		previousLogLine.MySOTA = headerMySOTA
 		previousLogLine.MyGrid = headerMyGrid
+		previousLogLine.MyLat = headerMyLat
+		previousLogLine.MyLon = headerMyLon
 		previousLogLine.MyCounty = headerMyCounty
 		previousLogLine.QSLmsg = headerQslMsg //previousLogLine.QslMsg is redundant
 		previousLogLine.Nickname = headerNickname
