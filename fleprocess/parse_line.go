@@ -35,6 +35,8 @@ type LogLine struct {
 	MyPota           string
 	MySota           string
 	MyGrid           string
+	MyLat            string
+	MyLon            string
 	MyCounty         string
 	QslMsgFromHeader string
 	Nickname         string

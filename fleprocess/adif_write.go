@@ -93,6 +93,13 @@ func buildAdif(fullLog []LogLine, adifParams AdifParams) (adifList []string) {
 		if logLine.MyGrid != "" {
 			adifLine.WriteString(adifElement("MY_GRIDSQUARE", logLine.MyGrid))
 		}
+
+		if logLine.MyLat != "" {
+			adifLine.WriteString(adifElement("MY_LAT", logLine.MyLat))
+		}
+		if logLine.MyLon != "" {
+			adifLine.WriteString(adifElement("MY_LON", logLine.MyLon))
+		}
 		if logLine.MyCounty != "" {
 			adifLine.WriteString(adifElement("MY_CNTY", logLine.MyCounty))
 		}

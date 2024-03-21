@@ -25,6 +25,7 @@ THE SOFTWARE.
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/spf13/cobra"
 
@@ -82,4 +83,16 @@ func initConfig() {
 	if err := viper.ReadInConfig(); err == nil {
 		fmt.Println("Using config file:", viper.ConfigFileUsed())
 	}
+}
+
+// CheckDir verifies a given path/file string actually exists. If it does not
+// then exit with an error.
+func CheckDir(file string) error {
+	path := filepath.Dir(file)
+	if _, err := os.Stat(path); err != nil {
+		if os.IsNotExist(err) {
+			return fmt.Errorf("The directory of specified output file (%s) does not exist.", path)
+		}
+	}
+	return nil
 }

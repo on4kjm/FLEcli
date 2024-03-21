@@ -44,6 +44,8 @@ func TestLoadFile_happyCase(t *testing.T) {
 	dataArray = append(dataArray, "mySota on/on-001")
 	dataArray = append(dataArray, "myPota k-0802")
 	dataArray = append(dataArray, "myGrid jo50")
+	dataArray = append(dataArray, "myLat 55.5555555")
+	dataArray = append(dataArray, "myLon -120.01234567")
 	dataArray = append(dataArray, "myCounty Ham County")
 	dataArray = append(dataArray, "QslMsg This is a QSL message")
 	dataArray = append(dataArray, " ")
@@ -85,6 +87,14 @@ func TestLoadFile_happyCase(t *testing.T) {
 	expectedValue = "ON/ON-001"
 	if loadedLogFile[0].MySOTA != expectedValue {
 		t.Errorf("Not the expected MySOTA value: %s (expecting %s)", loadedLogFile[0].MySOTA, expectedValue)
+	}
+	expectedValue = "55.5555555"
+	if loadedLogFile[0].MyLat != expectedValue {
+		t.Errorf("Not the expected MyLat value: %s (expecting %s)", loadedLogFile[0].MyLat, expectedValue)
+	}
+	expectedValue = "-120.01234567"
+	if loadedLogFile[0].MyLon != expectedValue {
+		t.Errorf("Not the expected MyLon value: %s (expecting %s)", loadedLogFile[0].MyLon, expectedValue)
 	}
 	expectedValue = "This is a QSL message"
 	if loadedLogFile[0].QSLmsg != expectedValue {
@@ -386,6 +396,166 @@ func TestLoadFile_happyCase_day(t *testing.T) {
 	}
 	//Clean Up
 	os.Remove(temporaryDataFileName)
+}
+
+func TestLoadFile_redefining_myLat_must_fail(t *testing.T) {
+
+	//Given
+	dataArray := make([]string, 0)
+	dataArray = append(dataArray, "# Header")
+	dataArray = append(dataArray, "myCall on4kjm/p")
+	dataArray = append(dataArray, "operator on4kjm")
+	dataArray = append(dataArray, "nickname Portable")
+	dataArray = append(dataArray, "myLat -55.55")
+	dataArray = append(dataArray, " ")
+	dataArray = append(dataArray, " #Log")
+	dataArray = append(dataArray, "20/5/23")
+	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
+	dataArray = append(dataArray, "myLat 55.55")
+
+	temporaryDataFileName := createTestFile(dataArray)
+
+	//When
+	loadedLogFile, isLoadedOK := LoadFile(temporaryDataFileName, true)
+
+	//Then
+	if isLoadedOK {
+		t.Error("Test file processing should return with an error")
+	}
+	if len(loadedLogFile) == 0 {
+		t.Error("No data loaded")
+	}
+
+	expectedValue := "-55.55"
+	if loadedLogFile[0].MyLat != expectedValue {
+		t.Errorf("Not the expected MyLat value: %s (expecting %s)", loadedLogFile[0].MyLat, expectedValue)
+	}
+
+	//Clean Up
+	os.Remove(temporaryDataFileName)
+}
+
+func TestLoadFile_redefining_myLon_must_fail(t *testing.T) {
+
+	//Given
+	dataArray := make([]string, 0)
+	dataArray = append(dataArray, "# Header")
+	dataArray = append(dataArray, "myCall on4kjm/p")
+	dataArray = append(dataArray, "operator on4kjm")
+	dataArray = append(dataArray, "nickname Portable")
+	dataArray = append(dataArray, "myLon -55.55")
+	dataArray = append(dataArray, " ")
+	dataArray = append(dataArray, " #Log")
+	dataArray = append(dataArray, "20/5/23")
+	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
+	dataArray = append(dataArray, "myLon 55.55")
+
+	temporaryDataFileName := createTestFile(dataArray)
+
+	//When
+	loadedLogFile, isLoadedOK := LoadFile(temporaryDataFileName, true)
+
+	//Then
+	if isLoadedOK {
+		t.Error("Test file processing should return with an error")
+	}
+	if len(loadedLogFile) == 0 {
+		t.Error("No data loaded")
+	}
+
+	expectedValue := "-55.55"
+	if loadedLogFile[0].MyLon != expectedValue {
+		t.Errorf("Not the expected MyLon value: %s (expecting %s)", loadedLogFile[0].MyLon, expectedValue)
+	}
+
+	//Clean Up
+	os.Remove(temporaryDataFileName)
+}
+
+func Outofrange_myLonHelper(t *testing.T, val string) {
+	//Given
+	dataArray := make([]string, 0)
+	dataArray = append(dataArray, "# Header")
+	dataArray = append(dataArray, "myCall on4kjm/p")
+	dataArray = append(dataArray, "operator on4kjm")
+	dataArray = append(dataArray, "nickname Portable")
+	dataArray = append(dataArray, "myLon "+val)
+	dataArray = append(dataArray, " ")
+	dataArray = append(dataArray, " #Log")
+	dataArray = append(dataArray, "20/5/23")
+	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
+
+	temporaryDataFileName := createTestFile(dataArray)
+
+	//When
+	loadedLogFile, isLoadedOK := LoadFile(temporaryDataFileName, true)
+
+	//Then
+	if isLoadedOK {
+		t.Error("Test file processing should return with an error")
+	}
+	if len(loadedLogFile) == 0 {
+		t.Error("No data loaded")
+	}
+
+	expectedValue := "*" + val
+	if loadedLogFile[0].MyLon != expectedValue {
+		t.Errorf("Not the expected MyLon value: %s (expecting %s)", loadedLogFile[0].MyLon, expectedValue)
+	}
+
+	//Clean Up
+	os.Remove(temporaryDataFileName)
+}
+
+func TestLoadFile_outofrange_high_myLon_must_fail(t *testing.T) {
+	Outofrange_myLonHelper(t, "180.0001")
+}
+
+func TestLoadFile_outofrange_low_myLon_must_fail(t *testing.T) {
+	Outofrange_myLonHelper(t, "-180.0001")
+}
+
+func Outofrange_myLatHelper(t *testing.T, val string) {
+	//Given
+	dataArray := make([]string, 0)
+	dataArray = append(dataArray, "# Header")
+	dataArray = append(dataArray, "myCall on4kjm/p")
+	dataArray = append(dataArray, "operator on4kjm")
+	dataArray = append(dataArray, "nickname Portable")
+	dataArray = append(dataArray, "myLat "+val)
+	dataArray = append(dataArray, " ")
+	dataArray = append(dataArray, " #Log")
+	dataArray = append(dataArray, "20/5/23")
+	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
+
+	temporaryDataFileName := createTestFile(dataArray)
+
+	//When
+	loadedLogFile, isLoadedOK := LoadFile(temporaryDataFileName, true)
+
+	//Then
+	if isLoadedOK {
+		t.Error("Test file processing should return with an error")
+	}
+	if len(loadedLogFile) == 0 {
+		t.Error("No data loaded")
+	}
+
+	expectedValue := "*" + val
+	if loadedLogFile[0].MyLat != expectedValue {
+		t.Errorf("Not the expected MyLat value: %s (expecting %s)", loadedLogFile[0].MyLat, expectedValue)
+	}
+
+	//Clean Up
+	os.Remove(temporaryDataFileName)
+}
+
+func TestLoadFile_outofrange_high_myLat_must_fail(t *testing.T) {
+	Outofrange_myLatHelper(t, "90.0001")
+}
+
+func TestLoadFile_outofrange_low_myLat_must_fail(t *testing.T) {
+	Outofrange_myLatHelper(t, "-90.0001")
 }
 
 func TestLoadFile_redefining_myCall_must_fail(t *testing.T) {
@@ -1074,6 +1244,8 @@ func TestLoadFile_wrongData(t *testing.T) {
 	dataArray = append(dataArray, "myWwff  foobar")
 	dataArray = append(dataArray, "mySota foobar")
 	dataArray = append(dataArray, "myGrid foobar")
+	dataArray = append(dataArray, "myLat foobar")
+	dataArray = append(dataArray, "myLon foobar")
 	dataArray = append(dataArray, " ")
 	dataArray = append(dataArray, " #Log")
 	dataArray = append(dataArray, "date 2020-05-23")
@@ -1113,6 +1285,12 @@ func TestLoadFile_wrongData(t *testing.T) {
 	expectedValue = "*foobar"
 	if loadedLogFile[0].MyGrid != expectedValue {
 		t.Errorf("Not the expected MyGrid value: %s (expecting %s)", loadedLogFile[0].MyGrid, expectedValue)
+	}
+	if loadedLogFile[0].MyLat != expectedValue {
+		t.Errorf("Not the expected MyLat value: %s (expecting %s)", loadedLogFile[0].MyLat, expectedValue)
+	}
+	if loadedLogFile[0].MyLon != expectedValue {
+		t.Errorf("Not the expected MyLon value: %s (expecting %s)", loadedLogFile[0].MyLon, expectedValue)
 	}
 
 	expectedValue = "IK5ZVE"
