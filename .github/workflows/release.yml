@@ -22,7 +22,7 @@ jobs:
         app_id: ${{ secrets.HOMEBREW_APP_ID }}
         private_key: ${{ secrets.HOMEBREW_APP_PRIVKEY }}
     - name: Release via goreleaser
-      uses: goreleaser/goreleaser-action@v5
+      uses: goreleaser/goreleaser-action@v6
       with:
         distribution: goreleaser
         args: release --release-notes=doc/whats_new.md
