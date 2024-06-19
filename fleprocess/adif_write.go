@@ -53,14 +53,14 @@ func buildAdif(fullLog []LogLine, adifParams AdifParams) (adifList []string) {
 		}
 		adifLine.WriteString(adifElement("RST_SENT", logLine.RSTsent))
 		adifLine.WriteString(adifElement("RST_RCVD", logLine.RSTrcvd))
+		if logLine.GridLoc != "" {
+			adifLine.WriteString(adifElement("GRIDSQUARE", logLine.GridLoc))
+		}
 		if logLine.Comment != "" {
 			adifLine.WriteString(adifElement("COMMENT", logLine.Comment))
 		}
 		if logLine.OMname != "" {
 			adifLine.WriteString(adifElement("NAME", logLine.OMname))
-		}
-		if logLine.GridLoc != "" {
-			adifLine.WriteString(adifElement("GRIDSQUARE", logLine.GridLoc))
 		}
 		if logLine.QSLmsg != "" {
 			adifLine.WriteString(adifElement("QSLMSG", logLine.QSLmsg))
@@ -76,11 +76,13 @@ func buildAdif(fullLog []LogLine, adifParams AdifParams) (adifList []string) {
 		if adifParams.IsPOTA {
 			adifLine.WriteString(adifElement("MY_SIG", "POTA"))
 			adifLine.WriteString(adifElement("MY_SIG_INFO", logLine.MyPOTA))
-			if logLine.POTA != "" {
-				adifLine.WriteString(adifElement("SIG", "POTA"))
-				adifLine.WriteString(adifElement("SIG_INFO", logLine.POTA))
-			}
 		}
+
+		if logLine.POTA != "" {
+			adifLine.WriteString(adifElement("SIG", "POTA"))
+			adifLine.WriteString(adifElement("SIG_INFO", logLine.POTA))
+		}
+
 		if adifParams.IsSOTA {
 			adifLine.WriteString(adifElement("MY_SOTA_REF", logLine.MySOTA))
 			if logLine.SOTA != "" {

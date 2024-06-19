@@ -124,6 +124,22 @@ func Test_buildAdif(t *testing.T) {
 		"<STATION_CALLSIGN:8>ON4KJM/P <CALL:5>ON4LY <QSO_DATE:8>20200524 <TIME_ON:4>1312 <BAND:3>20m <MODE:2>CW <RST_SENT:3>559 <RST_RCVD:3>599 <MY_SIG:4>POTA <MY_SIG_INFO:8>ON-00259 <SIG:4>POTA <SIG_INFO:8>DL-00001 <OPERATOR:6>ON4KJM <MY_GRIDSQUARE:6>JO40eu <MY_LAT:10>15.1234567 <MY_LON:12>-123.1234567 <EOR>",
 	}
 
+	sampleFilledLogPOTAHunter := []LogLine{
+		{MyCall: "ON4KJM/P", Call: "S57LC", Date: "2020-05-24", MyGrid: "JO40eu", Time: "1310", Band: "20m", Frequency: "14.045", Mode: "CW", RSTsent: "599", RSTrcvd: "599", GridLoc: "JO50", Operator: "ON4KJM", Nickname: "ON-00259-1"},
+		{MyCall: "ON4KJM/P", Call: "ON4LY", Date: "2020-05-24", MyGrid: "JO40eu", Time: "1312", Band: "20m", Mode: "CW", RSTsent: "559", RSTrcvd: "599", Operator: "ON4KJM", POTA: "DL-00001"},
+		{MyCall: "ON4KJM/P", Call: "ON4LY", Date: "2020-05-24", MyGrid: "JO40eu", Time: "1312", Band: "20m", Mode: "CW", RSTsent: "559", RSTrcvd: "599", Operator: "ON4KJM", POTA: "DL-00001", MyLat: "15.1234567", MyLon: "-123.1234567"},
+	}
+
+	expectedOutputPOTAHunter := []string{
+		"ADIF Export for Fast Log Entry by DF3CB",
+		"<PROGRAMID:3>FLE",
+		"<ADIF_VER:5>3.1.0",
+		"<EOH>",
+		"<STATION_CALLSIGN:8>ON4KJM/P <CALL:5>S57LC <QSO_DATE:8>20200524 <TIME_ON:4>1310 <BAND:3>20m <MODE:2>CW <FREQ:6>14.045 <RST_SENT:3>599 <RST_RCVD:3>599 <GRIDSQUARE:4>JO50 <OPERATOR:6>ON4KJM <MY_GRIDSQUARE:6>JO40eu <APP_EQSL_QTH_NICKNAME:10>ON-00259-1 <EOR>",
+		"<STATION_CALLSIGN:8>ON4KJM/P <CALL:5>ON4LY <QSO_DATE:8>20200524 <TIME_ON:4>1312 <BAND:3>20m <MODE:2>CW <RST_SENT:3>559 <RST_RCVD:3>599 <SIG:4>POTA <SIG_INFO:8>DL-00001 <OPERATOR:6>ON4KJM <MY_GRIDSQUARE:6>JO40eu <EOR>",
+		"<STATION_CALLSIGN:8>ON4KJM/P <CALL:5>ON4LY <QSO_DATE:8>20200524 <TIME_ON:4>1312 <BAND:3>20m <MODE:2>CW <RST_SENT:3>559 <RST_RCVD:3>599 <SIG:4>POTA <SIG_INFO:8>DL-00001 <OPERATOR:6>ON4KJM <MY_GRIDSQUARE:6>JO40eu <MY_LAT:10>15.1234567 <MY_LON:12>-123.1234567 <EOR>",
+	}
+
 	type args struct {
 		fullLog    []LogLine
 		adifParams AdifParams
@@ -171,6 +187,14 @@ func Test_buildAdif(t *testing.T) {
 				adifParams: AdifParams{IsPOTA: true},
 			},
 			expectedOutputPOTA2,
+		},
+		{
+			"Happy case-POTA Hunter",
+			args{
+				fullLog:    sampleFilledLogPOTAHunter,
+				adifParams: AdifParams{IsPOTA: false},
+			},
+			expectedOutputPOTAHunter,
 		},
 	}
 	for _, tt := range tests {

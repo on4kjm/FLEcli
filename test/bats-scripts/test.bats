@@ -17,6 +17,12 @@
     output=$(test/docker-FLEcli.sh load -i test/data/ON4KJM@ONFF-025920200524.txt)
 }
 
+@test "Is the generated ADIF from a POTA hunter equivalent to the canonical one?" {
+    mkdir -p test/output/temp
+    output=$(test/docker-FLEcli.sh adif -o -i test/data/sample_pota_hunter.txt test/output/temp/sample_pota_hunter.adif)
+    diff test/output/temp/sample_pota_hunter.adif test/output/POTA/sample_pota_hunter.adif --strip-trailing-cr
+}
+
 @test "Is the generated SOTA csv equivalent to the canonical one?" {
     mkdir -p test/output/temp
     output=$(test/docker-FLEcli.sh csv -o -i test/FLE-sample/sota_wwff.txt test/output/temp/sota_wwff.csv)
