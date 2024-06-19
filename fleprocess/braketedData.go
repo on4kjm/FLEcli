@@ -59,5 +59,5 @@ func getBraketedData(inputLine string, braketType BraketType) (braketedData, cle
 
 	braketedData = inputLine[posFirstAdjusted:posLast]
 	cleanedLine = strings.Replace(inputLine, a+braketedData+b, "", 1)
-	return braketedData, cleanedLine
+	return strings.TrimSpace(braketedData), cleanedLine
 }
