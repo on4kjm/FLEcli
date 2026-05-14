@@ -43,11 +43,13 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		txtlines = append(txtlines, scanner.Text())
 	}
 
-	if error := scanner.Err(); error != nil {
-		log.Fatal(error)
+	if err := scanner.Err(); err != nil {
+		log.Fatal(err)
 	}
 
-	file.Close()
+	if err := file.Close(); err != nil {
+		log.Fatal(err)
+	}
 
 	//isInferTimeFatalError is set to true is something bad happened while storing time gaps.
 	isInferTimeFatalError := false

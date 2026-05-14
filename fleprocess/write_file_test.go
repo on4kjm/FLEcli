@@ -49,7 +49,7 @@ func Test_writeFile(t *testing.T) {
 	if error := scanner.Err(); error != nil {
 		t.Error(error)
 	}
-	file.Close()
+	_ = file.Close()
 
 	//Compare with what we have got
 	if len(dataArray) != len(readLines) {
@@ -62,6 +62,6 @@ func Test_writeFile(t *testing.T) {
 	}
 
 	// //detete test file
-	os.Remove(writeFileTestFname)
+	_ = os.Remove(writeFileTestFname)
 
 }

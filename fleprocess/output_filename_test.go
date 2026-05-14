@@ -33,14 +33,14 @@ func setupTestCase(t *testing.T) func(t *testing.T) {
 	}
 	//create test file
 	f, _ := os.OpenFile(testFile, os.O_WRONLY|os.O_CREATE, 0666)
-	defer f.Close()
+	defer f.Close() //nolint:errcheck
 
 	return func(t *testing.T) {
 		t.Log("teardown test case")
 		//delete test directory
-		os.Remove(testDir)
+		_ = os.Remove(testDir)
 		//delete test file
-		os.Remove(testFile)
+		_ = os.Remove(testFile)
 	}
 }
 
@@ -111,12 +111,12 @@ func Test_buildOutputFilename(t *testing.T) {
 			}
 
 			//test the error message, if any
-			if gotErr != nil && tt.wantError != nil {
+			if gotErr != nil && tt.wantError != nil { 
 				if gotErr.Error() != tt.wantError.Error() {
 					t.Errorf("buildOutputFilename() error = %v, want %v", gotErr, tt.wantError)
 				}
 			} else {
-				if !(gotErr == nil && tt.wantError == nil) {
+				if !(gotErr == nil && tt.wantError == nil) { //nolint:staticcheck
 					t.Errorf("buildOutputFilename() error = %v, want %v", gotErr, tt.wantError)
 				}
 			}

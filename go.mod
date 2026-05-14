@@ -1,6 +1,6 @@
 module FLEcli
 
-go 1.19
+go 1.26
 
 require (
 	github.com/mitchellh/go-homedir v1.1.0
