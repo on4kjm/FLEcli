@@ -85,7 +85,7 @@ func Test_ExecuteCommand_toManyArgs(t *testing.T) {
 	cmdErr := cmd.Execute()
 	if cmdErr != nil {
 		errString := cmdErr.Error()
-		if errString != "Too many arguments." {
+		if errString != "too many arguments." {
 			t.Fatal(cmdErr)
 		}
 
@@ -118,7 +118,7 @@ func Test_ExecuteCommand_happyCase(t *testing.T) {
 	cmdErr := cmd.Execute()
 
 	//Close the capture and get the data
-	w.Close()
+	_ = w.Close()
 	out, _ := io.ReadAll(r)
 	os.Stdout = rescueStdout
 

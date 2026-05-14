@@ -142,7 +142,7 @@ func Test_validateDataforAdif2(t *testing.T) {
 					t.Errorf("validateDataforAdif() = %v, want %v", got, tt.want)
 				}
 			} else {
-				if !(got == nil && tt.want == nil) {
+				if !(got == nil && tt.want == nil) { //nolint:staticcheck
 					t.Errorf("validateDataforAdif() = %v, want %v", got, tt.want)
 				}
 			}

@@ -49,7 +49,7 @@ var adifCmd = &cobra.Command{
 			outputFilename = args[1]
 		}
 		if len(args) > 2 {
-			return fmt.Errorf("Too many arguments.%s", "")
+			return fmt.Errorf("too many arguments.%s", "")
 		}
 
 		// Verify given output directory exists. This check should be performed

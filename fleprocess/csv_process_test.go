@@ -97,7 +97,7 @@ func Test_validateDataForSotaCsv(t *testing.T) {
 					t.Errorf("validateDataForSotaCsv() = %v, want %v", got, tt.want)
 				}
 			} else {
-				if !(got == nil && tt.want == nil) {
+				if !(got == nil && tt.want == nil) { //nolint:staticcheck
 					t.Errorf("validateDataForSotaCsv() = %v, want %v", got, tt.want)
 				}
 			}
