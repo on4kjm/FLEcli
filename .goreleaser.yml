@@ -1,3 +1,5 @@
+version: 2
+
 builds:
 - binary: FLEcli
 
@@ -80,7 +82,7 @@ snapshot:
   name_template: "{{ .Tag }}-next"
 
 changelog:
-  skip: true
+  disable: true
   sort: asc
   filters:
     exclude:
