@@ -146,7 +146,7 @@ brews:
 
     # Folder inside the repository to put the formula.
     # Default is the root folder.
-    folder: Formula
+    #folder: Formula
 
     # # Caveats for the user of your binary.
     # # Default is empty.
