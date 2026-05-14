@@ -57,7 +57,7 @@ func Test_ExecuteCommand_noArgs(t *testing.T) {
 	cmdErr := cmd.Execute()
 	if cmdErr != nil {
 		errString := cmdErr.Error()
-		if errString != "Missing input file " {
+		if errString != "missing input file " {
 			t.Fatal(cmdErr)
 		}
 
