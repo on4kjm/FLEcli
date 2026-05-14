@@ -1,3 +1,5 @@
+version: 2
+
 builds:
 - binary: FLEcli
 
@@ -52,16 +54,20 @@ dockers:
   - "--label=org.opencontainers.image.version={{.Version}}"
 
 archives:
-- name_template: >-
+- id: main-archive
+  formats: ["tar.gz"]
+  name_template: >-
     {{ .ProjectName }}_{{ .Version }}_
     {{- if eq .Os "darwin"}}macOS
     {{- else }}{{- .Os }}{{ end }}_
     {{- if eq .Arch "amd64" }}64-bit
     {{- else if eq .Arch "386" }}32-bit
     {{- else }}{{ .Arch }}{{ end }}
+  
   format_overrides:
   - goos: windows
-    format: zip
+    formats: ["zip"]
+
   files:
       - README.md
       - doc/whats_new.md
@@ -77,10 +83,10 @@ checksum:
   name_template: 'checksums.txt'
 
 snapshot:
-  name_template: "{{ .Tag }}-next"
+  version_template: "{{ .Tag }}-next"
 
 changelog:
-  skip: true
+  disable: true
   sort: asc
   filters:
     exclude:
