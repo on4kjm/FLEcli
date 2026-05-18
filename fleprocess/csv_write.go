@@ -39,25 +39,25 @@ func buildCsv(fullLog []LogLine) (csvList []string) {
 
 	for _, logLine := range fullLog {
 		var csvLine strings.Builder
-		csvLine.WriteString("V2,")
-		csvLine.WriteString(logLine.MyCall)
-		csvLine.WriteString(fmt.Sprintf(",%s", logLine.MySOTA))
-		csvLine.WriteString(fmt.Sprintf(",%s", csvDate(logLine.Date)))
-		csvLine.WriteString(fmt.Sprintf(",%s", logLine.Time))
+		fmt.Fprintf(&csvLine,"V2,")
+		fmt.Fprintf(&csvLine,"%s",logLine.MyCall)
+		fmt.Fprintf(&csvLine,",%s", logLine.MySOTA)
+		fmt.Fprintf(&csvLine,",%s", csvDate(logLine.Date))
+		fmt.Fprintf(&csvLine,",%s", logLine.Time)
 		//TODO: Should we test the result
 		_, _, _, sotaBand := IsBand(logLine.Band)
-		csvLine.WriteString(fmt.Sprintf(",%s", sotaBand))
-		csvLine.WriteString(fmt.Sprintf(",%s", logLine.Mode))
-		csvLine.WriteString(fmt.Sprintf(",%s", logLine.Call))
+		fmt.Fprintf(&csvLine,",%s", sotaBand)
+		fmt.Fprintf(&csvLine,",%s", logLine.Mode)
+		fmt.Fprintf(&csvLine,",%s", logLine.Call)
 		if logLine.SOTA != "" {
-			csvLine.WriteString(fmt.Sprintf(",%s", logLine.SOTA))
+			fmt.Fprintf(&csvLine,",%s", logLine.SOTA)
 		} else {
 			if logLine.Comment != "" {
 				csvLine.WriteString(",")
 			}
 		}
 		if logLine.Comment != "" {
-			csvLine.WriteString(fmt.Sprintf(",%s", logLine.Comment))
+			fmt.Fprintf(&csvLine,",%s", logLine.Comment)
 		}
 
 		csvList = append(csvList, csvLine.String())

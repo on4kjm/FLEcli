@@ -41,14 +41,14 @@ func csvCmdConstructor() *cobra.Command {
 			//if args is empty, throw an error (Cobra will display the )
 			if len(args) == 0 {
 				//TODO: fix this ugly statement (because I am lazy)
-				return fmt.Errorf("Missing input file %s", "")
+				return fmt.Errorf("missing input file %s", "")
 			}
 			inputFilename = args[0]
 			if len(args) == 2 {
 				outputCsvFilename = args[1]
 			}
 			if len(args) > 2 {
-				return fmt.Errorf("Too many arguments.%s", "")
+				return fmt.Errorf("too many arguments.%s", "")
 			}
 
 			// Verify given output directory exists. This check should be performed

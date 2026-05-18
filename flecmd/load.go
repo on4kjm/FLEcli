@@ -35,10 +35,10 @@ func loadCmdConstructor() *cobra.Command {
 			//if args is empty, throw an error
 			if len(args) < 1 {
 				//FIXME: Doesn't work as expected
-				return fmt.Errorf("Missing input file %s", "")
+				return fmt.Errorf("missing input file %s", "")
 			}
 			if len(args) > 1 {
-				return fmt.Errorf("Too many arguments.%s", "")
+				return fmt.Errorf("too many arguments.%s", "")
 			}
 			inputFilename = args[0]
 			//FIXME: we should return the result of the call
