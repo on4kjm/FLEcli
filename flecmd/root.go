@@ -91,7 +91,7 @@ func CheckDir(file string) error {
 	path := filepath.Dir(file)
 	if _, err := os.Stat(path); err != nil {
 		if os.IsNotExist(err) {
-			return fmt.Errorf("The directory of specified output file (%s) does not exist.", path)
+			return fmt.Errorf("the directory of specified output file (%s) does not exist", path)
 		}
 	}
 	return nil

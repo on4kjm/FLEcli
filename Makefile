@@ -5,7 +5,7 @@
 
 ## GITHUB_ACTIONS is set when running as a Github Action
  
-.PHONY: all lint vet test full-test test-coverage build clean
+.PHONY: all lint vet test full-test test-coverage build clean check-goreleaser
  
 all: build
 
@@ -20,6 +20,9 @@ lint: ## Lint Golang files
 
 vet: ## Run go vet
 	@go vet ./...
+
+check-goreleaser: ## Validate the goRelease configuration
+	@goreleaser check
 
 test: ## Run unit tests
 	@go test ./...

@@ -19,6 +19,7 @@ limitations under the License.
 //Documentation of the SOTA CSV format: https://www.sotadata.org.uk/en/upload/activator/csv/info
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 )
@@ -59,12 +60,9 @@ func validateDataForSotaCsv(loadedLogFile []LogLine) error {
 		return fmt.Errorf("no QSO found")
 	}
 
-	isNoMySota := false
+	isNoMySota := loadedLogFile[0].MySOTA == ""
 	//MySOTA and MyCall are header values. If missing on the first line, it will be missing at every line
-	if loadedLogFile[0].MySOTA == "" {
-		//if not set, we might be dealing with a chaser log
-		isNoMySota = true
-	}
+
 	if loadedLogFile[0].MyCall == "" {
 		return fmt.Errorf("missing MyCall")
 	}
@@ -85,49 +83,49 @@ func validateDataForSotaCsv(loadedLogFile []LogLine) error {
 			if errorsBuffer.String() != "" {
 				errorsBuffer.WriteString(", ")
 			}
-			errorsBuffer.WriteString(fmt.Sprintf("missing date %s", errorLocation))
+			fmt.Fprintf(&errorsBuffer,"missing date %s", errorLocation)
 		}
 		if loadedLogFile[i].Band == "" {
 			if errorsBuffer.String() != "" {
 				errorsBuffer.WriteString(", ")
 			}
-			errorsBuffer.WriteString(fmt.Sprintf("missing band %s", errorLocation))
+			fmt.Fprintf(&errorsBuffer,"missing band %s", errorLocation)
 		}
 		if loadedLogFile[i].Mode == "" {
 			if errorsBuffer.String() != "" {
 				errorsBuffer.WriteString(", ")
 			}
-			errorsBuffer.WriteString(fmt.Sprintf("missing mode %s", errorLocation))
+			fmt.Fprintf(&errorsBuffer,"missing mode %s", errorLocation)
 		}
 		if loadedLogFile[i].Call == "" {
 			if errorsBuffer.String() != "" {
 				errorsBuffer.WriteString(", ")
 			}
-			errorsBuffer.WriteString(fmt.Sprintf("missing call %s", errorLocation))
+			fmt.Fprintf(&errorsBuffer,"missing call %s", errorLocation)
 		}
 		if loadedLogFile[i].Time == "" {
 			if errorsBuffer.String() != "" {
 				errorsBuffer.WriteString(", ")
 			}
-			errorsBuffer.WriteString(fmt.Sprintf("missing QSO time %s", errorLocation))
+			fmt.Fprintf(&errorsBuffer,"missing QSO time %s", errorLocation)
 		}
 		//FIXME: if isNoMySota and MySota defined means that it was defined later in the log file
 		if isNoMySota && loadedLogFile[i].MySOTA != "" {
 			if errorsBuffer.String() != "" {
 				errorsBuffer.WriteString(", ")
 			}
-			errorsBuffer.WriteString(fmt.Sprintf("encountered an unexpexted MySota reference while processing what should be a chaser log %s", errorLocation))
+			fmt.Fprintf(&errorsBuffer,"encountered an unexpected MySota reference while processing what should be a chaser log %s", errorLocation)
 		}
 
 		if isNoMySota && loadedLogFile[i].SOTA == "" {
 			if errorsBuffer.String() != "" {
 				errorsBuffer.WriteString(", ")
 			}
-			errorsBuffer.WriteString(fmt.Sprintf("missing SOTA reference while attempting to process chaser log %s", errorLocation))
+			fmt.Fprintf(&errorsBuffer,"missing SOTA reference while attempting to process chaser log %s", errorLocation)
 		}
 	}
 	if errorsBuffer.String() != "" {
-		return fmt.Errorf(errorsBuffer.String())
+		return errors.New(errorsBuffer.String())
 	}
 	return nil
 }

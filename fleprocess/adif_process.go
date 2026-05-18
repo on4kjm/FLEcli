@@ -17,6 +17,7 @@ limitations under the License.
 */
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 )
@@ -114,35 +115,35 @@ func validateDataforAdif(loadedLogFile []LogLine, adifParams AdifParams) error {
 			if errorsBuffer.String() != "" {
 				errorsBuffer.WriteString(", ")
 			}
-			errorsBuffer.WriteString(fmt.Sprintf("missing date %s", errorLocation))
+			fmt.Fprintf(&errorsBuffer,"missing date %s", errorLocation)
 		}
 		if loadedLogFile[i].Band == "" {
 			if errorsBuffer.String() != "" {
 				errorsBuffer.WriteString(", ")
 			}
-			errorsBuffer.WriteString(fmt.Sprintf("missing band %s", errorLocation))
+			fmt.Fprintf(&errorsBuffer,"missing band %s", errorLocation)
 		}
 		if loadedLogFile[i].Mode == "" {
 			if errorsBuffer.String() != "" {
 				errorsBuffer.WriteString(", ")
 			}
-			errorsBuffer.WriteString(fmt.Sprintf("missing mode %s", errorLocation))
+			fmt.Fprintf(&errorsBuffer,"missing mode %s", errorLocation)
 		}
 		if loadedLogFile[i].Call == "" {
 			if errorsBuffer.String() != "" {
 				errorsBuffer.WriteString(", ")
 			}
-			errorsBuffer.WriteString(fmt.Sprintf("missing call %s", errorLocation))
+			fmt.Fprintf(&errorsBuffer,"missing call %s", errorLocation)
 		}
 		if loadedLogFile[i].Time == "" {
 			if errorsBuffer.String() != "" {
 				errorsBuffer.WriteString(", ")
 			}
-			errorsBuffer.WriteString(fmt.Sprintf("missing QSO time %s", errorLocation))
+			fmt.Fprintf(&errorsBuffer,"missing QSO time %s", errorLocation)
 		}
 	}
 	if errorsBuffer.String() != "" {
-		return fmt.Errorf(errorsBuffer.String())
+		return errors.New(errorsBuffer.String())
 	}
 
 	//If we reached here, all is ok

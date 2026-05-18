@@ -75,7 +75,7 @@ func Test_validateDataForSotaCsv(t *testing.T) {
 				{Date: "date", MyCall: "myCall", MySOTA: "mySota", Mode: "mode", Band: "band", Time: "12:02", Call: "call", SOTA: "Sota2"},
 				{Date: "date", MyCall: "myCall", MySOTA: "", Mode: "mode", Band: "band", Time: "12:03", Call: "call", SOTA: "Sota3"}},
 			},
-			fmt.Errorf("encountered an unexpexted MySota reference while processing what should be a chaser log for log entry at 12:02 (#2)"),
+			fmt.Errorf("encountered an unexpected MySota reference while processing what should be a chaser log for log entry at 12:02 (#2)"),
 		},
 		{
 			"Misc. missing data (Band, Time, Mode, Call)",
@@ -97,7 +97,7 @@ func Test_validateDataForSotaCsv(t *testing.T) {
 					t.Errorf("validateDataForSotaCsv() = %v, want %v", got, tt.want)
 				}
 			} else {
-				if !(got == nil && tt.want == nil) {
+				if !(got == nil && tt.want == nil) { //nolint:staticcheck
 					t.Errorf("validateDataForSotaCsv() = %v, want %v", got, tt.want)
 				}
 			}

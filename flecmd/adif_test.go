@@ -54,7 +54,7 @@ func Test_AdifWithToManyParmMustFail(t *testing.T) {
 	assert.Error(t, error, "Function call should have failed")
 
 	// Error is expected
-	expectedMsg := "Error: Too many arguments."
+	expectedMsg := "Error: too many arguments."
 	lines := strings.Split(actual.String(), "\n")
 	assert.Equal(t, expectedMsg, lines[0], "Function did not fail for the expected cause")
 }
@@ -69,7 +69,7 @@ func Test_AdifBadOutpoutDirMustFail(t *testing.T) {
 	assert.Error(t, error, "Function call should have failed")
 
 	// Error is expected
-	expectedMsg := "Error: The directory of specified output file (badDirectory) does not exist."
+	expectedMsg := "Error: the directory of specified output file (badDirectory) does not exist"
 	lines := strings.Split(actual.String(), "\n")
 	assert.Equal(t, expectedMsg, lines[0], "Function did not fail for the expected cause")
 }
