@@ -638,6 +638,51 @@ func TestLoadFile_redefining_myWWFF(t *testing.T) {
 	_ = os.Remove(temporaryDataFileName)
 }
 
+func TestLoadFile_redefining_myPOTA(t *testing.T) {
+
+	//Given
+	dataArray := make([]string, 0)
+	dataArray = append(dataArray, "# Header")
+	dataArray = append(dataArray, "myCall on4kjm/p")
+	dataArray = append(dataArray, "operator on4kjm")
+	dataArray = append(dataArray, "nickname Portable")
+	dataArray = append(dataArray, "myPota k-00258")
+	dataArray = append(dataArray, "mySota on/on-001")
+	dataArray = append(dataArray, " ")
+	dataArray = append(dataArray, " #Log")
+	dataArray = append(dataArray, "20/5/23")
+	dataArray = append(dataArray, "40m cw 0950 ik5zve/5 9 5")
+	dataArray = append(dataArray, "myPota k-00001")
+	dataArray = append(dataArray, "40m cw 0955 ik5zzz 9 5")
+
+	temporaryDataFileName := createTestFile(dataArray)
+
+	//When
+	loadedLogFile, isLoadedOK := LoadFile(temporaryDataFileName, true)
+
+	//Then
+	if !isLoadedOK {
+		t.Error("Test file processing should not fail")
+	}
+	if len(loadedLogFile) == 0 {
+		t.Error("No data loaded")
+	}
+
+	expectedValue := "K-00258"
+	if loadedLogFile[0].MyPOTA != expectedValue {
+		t.Errorf("Not the expected MyPOTA value: %s (expecting %s)", loadedLogFile[0].MyPOTA, expectedValue)
+	}
+
+	expectedValue = "K-00001"
+	if loadedLogFile[1].MyPOTA != expectedValue {
+		t.Errorf("Not the expected MyPOTA value: %s (expecting %s)", loadedLogFile[0].MyPOTA, expectedValue)
+	}
+
+	//Clean Up
+	_ = os.Remove(temporaryDataFileName)
+}
+
+
 func TestLoadFile_redefining_mySOTA(t *testing.T) {
 
 	//Given

@@ -201,11 +201,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 
 		//My Pota
 		if regexpHeaderMyPota.MatchString(eachline) {
-			//Attempt to redefine value
-			if headerMyPOTA != "" {
-				errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine MyPOTA at line %d", lineCount))
-				continue
-			}
+			oldHeaderMyPOTA := headerMyPOTA
 			errorMsg := ""
 			myPotaList := regexpHeaderMyPota.Split(eachline, -1)
 			if len(strings.TrimSpace(myPotaList[1])) > 0 {
@@ -215,6 +211,11 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My POTA\" at line %d: %s (%s)", lineCount, myPotaList[1], errorMsg))
 				}
 			}
+			if oldHeaderMyPOTA != headerMyPOTA {
+				// New SOTA reference defined
+				headerIsFirstLine = true
+			}
+			
 			//If there is no data after the marker, we just skip the data.
 			continue
 		}
@@ -234,7 +235,6 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			if oldHeaderMySOTA != headerMySOTA {
 				// New SOTA reference defined
 				headerIsFirstLine = true
-				
 			}
 			//If there is no data after the marker, we just skip the data.
 			continue
