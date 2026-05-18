@@ -679,7 +679,7 @@ func TestLoadFile_redefining_mySOTA(t *testing.T) {
 	}
 
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 // FIXME: See issue #101
