@@ -131,7 +131,7 @@ func TestLoadFile_happyCase(t *testing.T) {
 		t.Errorf("Not the expected Time[2] value: %s (expecting %s)", loadedLogFile[2].Time, expectedValue)
 	}
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 func TestLoadFile_happyCase_date(t *testing.T) {
@@ -211,7 +211,7 @@ func TestLoadFile_happyCase_date(t *testing.T) {
 		t.Errorf("Not the expected Time[2] value: %s (expecting %s)", loadedLogFile[2].Time, expectedValue)
 	}
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 func TestLoadFile_happyCase_date2(t *testing.T) {
@@ -302,7 +302,7 @@ func TestLoadFile_happyCase_date2(t *testing.T) {
 		t.Errorf("Not the expected Call[3] value: %s (expecting %s)", loadedLogFile[3].Call, expectedValue)
 	}
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 func TestLoadFile_happyCase_day(t *testing.T) {
@@ -393,7 +393,7 @@ func TestLoadFile_happyCase_day(t *testing.T) {
 		t.Errorf("Not the expected Call[3] value: %s (expecting %s)", loadedLogFile[3].Call, expectedValue)
 	}
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 func TestLoadFile_redefining_myLat_must_fail(t *testing.T) {
@@ -430,7 +430,7 @@ func TestLoadFile_redefining_myLat_must_fail(t *testing.T) {
 	}
 
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 func TestLoadFile_redefining_myLon_must_fail(t *testing.T) {
@@ -467,7 +467,7 @@ func TestLoadFile_redefining_myLon_must_fail(t *testing.T) {
 	}
 
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 func Outofrange_myLonHelper(t *testing.T, val string) {
@@ -502,7 +502,7 @@ func Outofrange_myLonHelper(t *testing.T, val string) {
 	}
 
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 func TestLoadFile_outofrange_high_myLon_must_fail(t *testing.T) {
@@ -545,7 +545,7 @@ func Outofrange_myLatHelper(t *testing.T, val string) {
 	}
 
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 func TestLoadFile_outofrange_high_myLat_must_fail(t *testing.T) {
@@ -589,7 +589,7 @@ func TestLoadFile_redefining_myCall_must_fail(t *testing.T) {
 	}
 
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 func TestLoadFile_redefining_myWWFF_must_fail(t *testing.T) {
@@ -627,7 +627,7 @@ func TestLoadFile_redefining_myWWFF_must_fail(t *testing.T) {
 	}
 
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 func TestLoadFile_redefining_mySOTA_must_fail(t *testing.T) {
@@ -665,7 +665,7 @@ func TestLoadFile_redefining_mySOTA_must_fail(t *testing.T) {
 	}
 
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 func TestLoadFile_redefining_myGRID_must_fail(t *testing.T) {
@@ -704,7 +704,7 @@ func TestLoadFile_redefining_myGRID_must_fail(t *testing.T) {
 	}
 
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 func TestLoadFile_redefining_operator_must_fail(t *testing.T) {
@@ -742,7 +742,7 @@ func TestLoadFile_redefining_operator_must_fail(t *testing.T) {
 	}
 
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 func TestLoadFile_redefining_nickname_must_fail(t *testing.T) {
@@ -780,7 +780,7 @@ func TestLoadFile_redefining_nickname_must_fail(t *testing.T) {
 	}
 
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 func TestLoadFile_bad_date(t *testing.T) {
@@ -861,7 +861,7 @@ func TestLoadFile_bad_date(t *testing.T) {
 		t.Errorf("Not the expected Time[2] value: %s (expecting %s)", loadedLogFile[2].Time, expectedValue)
 	}
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 func TestLoadFile_wrongHeader(t *testing.T) {
@@ -939,7 +939,7 @@ func TestLoadFile_wrongHeader(t *testing.T) {
 		t.Errorf("Not the expected Time[2] value: %s (expecting %s)", loadedLogFile[2].Time, expectedValue)
 	}
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 // if the first call is wrong the infertime doesn't work
@@ -1013,7 +1013,7 @@ func TestLoadFile_InferTime_missingStartTime(t *testing.T) {
 		t.Errorf("Not the expected Time[2] value: %s (expecting %s)", loadedLogFile[2].Time, expectedValue)
 	}
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 func TestLoadFile_InferTime_missingEndTime(t *testing.T) {
@@ -1086,7 +1086,7 @@ func TestLoadFile_InferTime_missingEndTime(t *testing.T) {
 		t.Errorf("Not the expected Time[2] value: %s (expecting %s)", loadedLogFile[2].Time, expectedValue)
 	}
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 // FIXME: same time
@@ -1178,7 +1178,7 @@ func TestLoadFile_2_QSO_same_time(t *testing.T) {
 		t.Errorf("Not the expected Time[4] value: %s (expecting %s)", loadedLogFile[4].Time, expectedValue)
 	}
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 func TestLoadFile_wrongData(t *testing.T) {
@@ -1269,7 +1269,7 @@ func TestLoadFile_wrongData(t *testing.T) {
 		t.Errorf("Not the expected Time[2] value: %s (expecting %s)", loadedLogFile[2].Time, expectedValue)
 	}
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 func TestLoadFile_firstCallWrong(t *testing.T) {
@@ -1347,7 +1347,7 @@ func TestLoadFile_firstCallWrong(t *testing.T) {
 		t.Errorf("Not the expected Time[2] value: %s (expecting %s)", loadedLogFile[2].Time, expectedValue)
 	}
 	//Clean Up
-	os.Remove(temporaryDataFileName)
+	_ = os.Remove(temporaryDataFileName)
 }
 
 // createTestFile creates and populates a test FLE input file.

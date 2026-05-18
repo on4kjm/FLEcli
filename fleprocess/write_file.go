@@ -29,7 +29,11 @@ func writeFile(outputFile string, dataArray []string) {
 	f, err := os.Create(outputFile)
 	checkFileError(err)
 
-	defer f.Close()
+	defer func() {
+    if err := f.Close(); err != nil {
+        fmt.Println("Error when closing:", err)
+    }
+}()
 
 	w := bufio.NewWriter(f)
 
@@ -38,7 +42,7 @@ func writeFile(outputFile string, dataArray []string) {
 		_, err := w.WriteString(dataLine + "\n")
 		checkFileError(err)
 
-		w.Flush()
+		_ = w.Flush()
 		checkFileError(err)
 		lineCount++
 	}

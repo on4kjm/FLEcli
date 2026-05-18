@@ -43,11 +43,11 @@ const ADIFdateTimeFormat = "2006-01-02 1504"
 // displayTimeGapInfo will print the details stored in an InferTimeBlock
 func (tb *InferTimeBlock) String() string {
 	var buffer strings.Builder
-	buffer.WriteString(fmt.Sprintf("Last Recorded Time:                 %s\n", tb.lastRecordedTime.Format(ADIFdateTimeFormat)))
-	buffer.WriteString(fmt.Sprintf("next Recorded Time:                 %s\n", tb.nextValidTime.Format(ADIFdateTimeFormat)))
-	buffer.WriteString(fmt.Sprintf("Log position of last recorded time: %d\n", tb.logFilePosition))
-	buffer.WriteString(fmt.Sprintf("Nbr of entries without time:        %d\n", tb.noTimeCount))
-	buffer.WriteString(fmt.Sprintf("Computed interval:                  %ds\n", int(tb.deltatime.Seconds())))
+	fmt.Fprintf(&buffer,"Last Recorded Time:                 %s\n", tb.lastRecordedTime.Format(ADIFdateTimeFormat))
+	fmt.Fprintf(&buffer,"next Recorded Time:                 %s\n", tb.nextValidTime.Format(ADIFdateTimeFormat))
+	fmt.Fprintf(&buffer,"Log position of last recorded time: %d\n", tb.logFilePosition)
+	fmt.Fprintf(&buffer,"Nbr of entries without time:        %d\n", tb.noTimeCount)
+	fmt.Fprintf(&buffer,"Computed interval:                  %ds\n", int(tb.deltatime.Seconds()))
 	return buffer.String()
 }
 
