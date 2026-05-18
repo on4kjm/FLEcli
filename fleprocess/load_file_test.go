@@ -617,8 +617,8 @@ func TestLoadFile_redefining_myWWFF(t *testing.T) {
 	loadedLogFile, isLoadedOK := LoadFile(temporaryDataFileName, true)
 
 	//Then
-	if isLoadedOK {
-		t.Error("Test file processing should return with an error")
+	if !isLoadedOK {
+		t.Error("Test file processing should not fail")
 	}
 	if len(loadedLogFile) == 0 {
 		t.Error("No data loaded")

@@ -176,11 +176,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 
 		// My WWFF
 		if regexpHeaderMyWwff.MatchString(eachline) {
-			//Attempt to redefine value
-			if headerMyWWFF != "" {
-				errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine MyWWFF at line %d", lineCount))
-				continue
-			}
+			oldHeaderMyWWFF := headerMyWWFF
 			errorMsg := ""
 			myWwffList := regexpHeaderMyWwff.Split(eachline, -1)
 			if len(strings.TrimSpace(myWwffList[1])) > 0 {
@@ -189,6 +185,15 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 				if len(errorMsg) != 0 {
 					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My WWFF\" at line %d: %s (%s)", lineCount, myWwffList[1], errorMsg))
 				}
+			}
+			// if headerMyWWFF != "" {
+			// 	errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine MyWWFF at line %d", lineCount))
+			// 	continue
+			// }
+			if oldHeaderMyWWFF != headerMyWWFF {
+				// New WWFF reference defined
+				headerIsFirstLine = true
+				
 			}
 			//If there is no data after the marker, we just skip the data.
 			continue
