@@ -28,6 +28,7 @@ type LogLine struct {
 	Date             string
 	MyCall           string
 	Operator         string
+	isFirstLine      bool
 	MyWWFF           string
 	MyPOTA           string
 	MySOTA           string
@@ -100,12 +101,12 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 
 	//TODO: what happens when we have <> or when there are multiple comments
 	//TODO: Refactor this! it is ugly
-	comment, inputStr := getBraketedData(inputStr, COMMENT)
+	comment, inputStr := getBracketedData(inputStr, COMMENT)
 	if comment != "" {
 		logLine.Comment = comment
 	}
 
-	QSLmsg, inputStr := getBraketedData(inputStr, QSL)
+	QSLmsg, inputStr := getBracketedData(inputStr, QSL)
 	if QSLmsg != "" {
 		logLine.QSLmsg = QSLmsg
 	}
@@ -127,7 +128,7 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 				logLine.RSTrcvd = defaultReport
 
 			} else {
-				errorMsg = errorMsg + "Double definitiion of RST"
+				errorMsg = errorMsg + "Double definition of RST"
 			}
 			continue
 		}
@@ -297,7 +298,7 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 
 			// If the "wwff" keyword is used, skip it
 			if regexpIsWwffKeyWord.MatchString(element) {
-				// this keyword is not requiered anymore with FLE 3 and doesn't add any value
+				// this keyword is not required anymore with FLE 3 and doesn't add any value
 				continue
 			}
 
@@ -310,7 +311,7 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 
 			// If the "pota" keyword is used, skip it
 			if regexpIsPotaKeyWord.MatchString(element) {
-				// this keyword is not requiered anymore with FLE 3 and doesn't add any value
+				// this keyword is not required anymore with FLE 3 and doesn't add any value
 				continue
 			}
 
@@ -323,7 +324,7 @@ func ParseLine(inputStr string, previousLine LogLine) (logLine LogLine, errorMsg
 
 			// If the "sota" keyword is used, skip it
 			if regexpIsSotaKeyWord.MatchString(element) {
-				// this keyword is not requiered anymore with FLE 3 and doesn't add any value
+				// this keyword is not required anymore with FLE 3 and doesn't add any value
 				continue
 			}
 

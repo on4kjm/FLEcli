@@ -29,7 +29,7 @@ const (
 	QSL
 )
 
-func getBraketedData(inputLine string, braketType BraketType) (braketedData, cleanedLine string) {
+func getBracketedData(inputLine string, braketType BraketType) (braketedData, cleanedLine string) {
 	// Get substring between two strings.
 	a := ""
 	b := ""

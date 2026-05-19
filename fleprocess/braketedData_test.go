@@ -74,7 +74,7 @@ func Test_getBraketedData(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			gotBraketedData, gotCleanedLine := getBraketedData(tt.args.inputLine, tt.args.braketType)
+			gotBraketedData, gotCleanedLine := getBracketedData(tt.args.inputLine, tt.args.braketType)
 			if gotBraketedData != tt.wantBraketedData {
 				t.Errorf("getBraketedData() gotBraketedData = %v, want %v", gotBraketedData, tt.wantBraketedData)
 			}

@@ -83,6 +83,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	headerMyCounty := ""
 	headerQslMsg := ""
 	headerNickname := ""
+	headerIsFirstLine := true
 	//headerDate := ""
 	lineCount := 0
 
@@ -175,11 +176,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 
 		// My WWFF
 		if regexpHeaderMyWwff.MatchString(eachline) {
-			//Attempt to redefine value
-			if headerMyWWFF != "" {
-				errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine MyWWFF at line %d", lineCount))
-				continue
-			}
+			oldHeaderMyWWFF := headerMyWWFF
 			errorMsg := ""
 			myWwffList := regexpHeaderMyWwff.Split(eachline, -1)
 			if len(strings.TrimSpace(myWwffList[1])) > 0 {
@@ -189,17 +186,22 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My WWFF\" at line %d: %s (%s)", lineCount, myWwffList[1], errorMsg))
 				}
 			}
+			// if headerMyWWFF != "" {
+			// 	errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine MyWWFF at line %d", lineCount))
+			// 	continue
+			// }
+			if oldHeaderMyWWFF != headerMyWWFF {
+				// New WWFF reference defined
+				headerIsFirstLine = true
+				
+			}
 			//If there is no data after the marker, we just skip the data.
 			continue
 		}
 
 		//My Pota
 		if regexpHeaderMyPota.MatchString(eachline) {
-			//Attempt to redefine value
-			if headerMyPOTA != "" {
-				errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine MyPOTA at line %d", lineCount))
-				continue
-			}
+			oldHeaderMyPOTA := headerMyPOTA
 			errorMsg := ""
 			myPotaList := regexpHeaderMyPota.Split(eachline, -1)
 			if len(strings.TrimSpace(myPotaList[1])) > 0 {
@@ -209,17 +211,18 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My POTA\" at line %d: %s (%s)", lineCount, myPotaList[1], errorMsg))
 				}
 			}
+			if oldHeaderMyPOTA != headerMyPOTA {
+				// New SOTA reference defined
+				headerIsFirstLine = true
+			}
+			
 			//If there is no data after the marker, we just skip the data.
 			continue
 		}
 
 		//My Sota
 		if regexpHeaderMySota.MatchString(eachline) {
-			//Attempt to redefine value
-			if headerMySOTA != "" {
-				errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine MySOTA at line %d", lineCount))
-				continue
-			}
+			oldHeaderMySOTA := headerMySOTA
 			errorMsg := ""
 			mySotaList := regexpHeaderMySota.Split(eachline, -1)
 			if len(strings.TrimSpace(mySotaList[1])) > 0 {
@@ -228,6 +231,10 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 				if len(errorMsg) != 0 {
 					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My SOTA\" at line %d: %s (%s)", lineCount, mySotaList[1], errorMsg))
 				}
+			}
+			if oldHeaderMySOTA != headerMySOTA {
+				// New SOTA reference defined
+				headerIsFirstLine = true
 			}
 			//If there is no data after the marker, we just skip the data.
 			continue
@@ -335,6 +342,7 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		// Load the header values in the previousLogLine
 		previousLogLine.MyCall = headerMyCall
 		previousLogLine.Operator = headerOperator
+		previousLogLine.isFirstLine = headerIsFirstLine
 		previousLogLine.MyWWFF = headerMyWWFF
 		previousLogLine.MyPOTA = headerMyPOTA
 		previousLogLine.MySOTA = headerMySOTA
@@ -394,7 +402,9 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		}
 
 		//store the current logline so that it can be used as a model when parsing the next line
+		// and reset the FirstLine flag
 		previousLogLine = logline
+		headerIsFirstLine = false
 
 		//We go back to the top to process the next loaded log line (Continue not necessary here)
 	}
@@ -447,14 +457,14 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 
 // displayLogSimple will print to stdout a simplified dump of a full log
 func displayLogSimple(fullLog []LogLine) {
-	firstLine := true
+	isFirstLogLine := true
 	for _, filledLogLine := range fullLog {
-		if firstLine {
+		if (filledLogLine.isFirstLine || isFirstLogLine) {
+			fmt.Print("\n\n")
 			fmt.Println(SprintHeaderValues(filledLogLine))
 			fmt.Print(SprintColumnTitles())
-			firstLine = false
+			isFirstLogLine = false
 		}
 		fmt.Print(SprintLogInColumn(filledLogLine))
 	}
-
 }
