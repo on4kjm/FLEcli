@@ -77,7 +77,7 @@ var pota_prefixes_list = []string{
 	"T7", "S9", "HZ", "GM", "6W", "YT", "S79", "9L1", "9V", "PJ7", "OM", "S5", "H44", "T5", "ZR", "HL",
 	"ST0", "1A0KM", "EA", "4S7", "V4", "J6", "J8", "ST", "PZ", "SM", "HB", "YK", "EY", "BV", "5H3", "HS",
 	"C5", "4W", "5V", "A3", "9Y", "3V8", "TA", "EZ", "VP5", "T2", "5X", "UA", "A6", "4U1UN", "K", "K",
-	"CV", "UI", "YJ8", "HV", "YV", "XV2", "GW", "S0", "7O", "9J2", "Z2",
+	"CV", "UI", "YJ8", "HV", "YV", "XV2", "GW", "S0", "7O", "9J2", "Z2", "FR", "AT-TIR",
 }
 
 // Explicit prefix test because of issue #111 and #108
@@ -138,6 +138,16 @@ func TestValidatePota(t *testing.T) {
 			"Good ref (5 digit park)",
 			args{inputStr: "k-10177"},
 			"K-10177", "",
+		},
+				{
+			"Good ref (5 digit park) with new US reference",
+			args{inputStr: "us-10177"},
+			"US-10177", "",
+		},
+				{
+			"Good ref (5 digit park) with sub regional prefix",
+			args{inputStr: "AT-tir-10177"},
+			"AT-TIR-10177", "",
 		},
 		{
 			"Bad ref (no country prefix)",

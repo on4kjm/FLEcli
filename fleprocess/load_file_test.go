@@ -40,7 +40,7 @@ func TestLoadFile_happyCase(t *testing.T) {
 	dataArray = append(dataArray, "nickname Portable")
 	dataArray = append(dataArray, "myWwff\tonff-0258")
 	dataArray = append(dataArray, "mySota on/on-001")
-	dataArray = append(dataArray, "myPota k-0802")
+	dataArray = append(dataArray, "myPota us-11396")
 	dataArray = append(dataArray, "myGrid jo50")
 	dataArray = append(dataArray, "myLat 55.5555555")
 	dataArray = append(dataArray, "myLon -120.01234567")
