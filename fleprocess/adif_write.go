@@ -35,8 +35,8 @@ func OutputAdif(outputFile string, fullLog []LogLine, adifParams AdifParams) {
 // buildAdif creates the adif file in memory ready to be printed
 func buildAdif(fullLog []LogLine, adifParams AdifParams) (adifList []string) {
 	//Print the fixed header
-	adifList = append(adifList, "ADIF Export for Fast Log Entry by DF3CB")
-	adifList = append(adifList, "<PROGRAMID:3>FLE")
+	adifList = append(adifList, "ADIF Export for Fast Log Entry CLI by ON4KJM")
+	adifList = append(adifList, "<PROGRAMID:6>FLEcli")
 	adifList = append(adifList, "<ADIF_VER:5>3.1.0")
 	adifList = append(adifList, "<EOH>")
 
