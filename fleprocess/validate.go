@@ -80,6 +80,7 @@ var validWwffRegexp = regexp.MustCompile(`^[\d]{0,1}[A-Z]{1,2}FF-[\d]{4}$`)
 // message is empty.
 // The syntax is: AA-CCCCC: AA = national prefix, CCCCC = 4 or 5-digit numeric code (e.g. ON-00001).
 // The national prefix is composed of letters and digits and is of at least 1 char and at most 5 char length.
+// The test also supports reference is the format AA-BBB-CCCCC where BBB is a sub-country reference
 func ValidatePota(inputStr string) (ref, errorMsg string) {
 	inputStr = strings.ToUpper(strings.TrimSpace(inputStr))
 	wrongInputStr := "*" + inputStr
@@ -90,7 +91,7 @@ func ValidatePota(inputStr string) (ref, errorMsg string) {
 	return wrongInputStr, errorMsg
 }
 
-var validPotaRegexp = regexp.MustCompile(`^[0-9A-Z]{1,5}-[\d]{4,5}$`)
+var validPotaRegexp = regexp.MustCompile(`^[\-0-9A-Z]{1,6}-[\d]{4,5}$`)
 
 // ValidateGridLocator verifies that the supplied is a valid Maidenhead locator reference
 // (either in 4 or 6 position). The returned grid case is normalized (first two letters
