@@ -86,6 +86,6 @@ func init() {
 	adifCmd.PersistentFlags().BoolVarP(&isInterpolateTime, "interpolate", "i", false, "Interpolates the missing time entries.")
 	adifCmd.PersistentFlags().BoolVarP(&isWWFFcli, "wwff", "w", false, "Generates a WWFF ready ADIF file.")
 	adifCmd.PersistentFlags().BoolVarP(&isSOTAcli, "sota", "s", false, "Generates a SOTA ready ADIF file.")
-	adifCmd.PersistentFlags().BoolVarP(&isPOTAcli, "pota", "p", false, "Generates a POTA ready ADIF file.")
+	adifCmd.PersistentFlags().BoolVarP(&isPOTAcli, "pota", "p", false, "Check if the POTA activation log is valid")
 	adifCmd.PersistentFlags().BoolVarP(&isOverwrite, "overwrite", "o", false, "Overwrites the output file if it exisits")
 }

@@ -1,0 +1,51 @@
+# Header
+mycall kc3yqi
+mygrid FM19je
+
+2024-05-10
+20m SSB
+0000 14.26 cu2yk 59 57 #HM77DT
+2137 14.273 kc0qna pota us-2481 55 55 #EN24pk
+
+20m
+
+2024-06-05 14.317 SSB 0220 kp4pr @Jose #FK68xk
+2024-06-05 14.270 SSB 0234 lz2vu @Juli #KN33gs
+
+SSB
+
+# 20m General is >= 14.225 <= 14.347
+
+2024-06-07
+0448 14.250 dl5pia 57 59 @Petra < Mother of Pia > #JN48kn
+0448 14.250 dl7pia 57 59 @Pia < Daughter of Petra > #JN48kn
+
+40m SSB
+
+7.266 SSB
+2024-06-12 0045 kd4ge 57 57 @Darryl #EM93dk
+
+7.216 SSB
+2024-06-12 0129 ko4nll 55 55
+
+20m SSB
+
+2024-06-13 0301 14.225 r5aj 59 59 @Valery < Moscow, will upload to youtube > #KO95iu
+2024-06-13 0225 14.280 lz2vu 59 59 < Bulgaria 1kW > @Juli #KN22dq
+
+40m SSB
+2024-06-15 2257 7.225 k4oki 55 55 @Ryan US-6907
+
+20m SSB
+14.225
+
+2024-06-18 2348 14.308 KI5YOO 57 57 US-0307 < D'Arbonne National Wildlife Refuge > #EM32vp @Mark
+2024-06-18 2350 14.333 WI0O 57 57 US-11701 < Wood-Rill SNA State Sanctuary > #EN34fx @Sean
+2024-06-18 2350 14.333 WI0O 57 57 US-9387 < Luce Line State Trail > #EN34gx @Sean
+2024-06-19 0003 14.336 N4SAX 59 59 US-1873 < Fred Gannon Rocky Bayou State Park > #EM60sl @Randall #EM60sl
+
+40m SSB
+
+2024-06-19 0008 7.248 KD2ZWM 56 55 US-0064 < Shenandoah National Park > #FM08vv @Brady
+2024-06-19 0012 7.267 KO4ZRX 55 57 US-1790 @Ronny  < Trail of Tears State Park > #EM57gk
+2024-06-19 0012 7.267 KO4ZRX 55 57 US-3791 @Ronny  < Trail of Tears Trail > #EM57gk
