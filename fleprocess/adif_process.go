@@ -59,7 +59,10 @@ func ProcessAdifCommand(adifParams AdifParams) error {
 		return err
 	}
 
-	if adifParams.IsSortChronological {
+	// SOTA importers require QSOs to be chronological, so SOTA-ready exports
+	// always sort. The explicit flag makes the same behavior available to the
+	// other ADIF export formats.
+	if adifParams.IsSOTA || adifParams.IsSortChronological {
 		reorderedRecords := sortLogChronologically(loadedLogFile)
 		if reorderedRecords > 0 {
 			fmt.Printf("\nSorted %d QSO record(s) chronologically.\n", reorderedRecords)

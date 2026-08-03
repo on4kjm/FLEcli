@@ -153,13 +153,12 @@ func Test_validateDataforAdif2(t *testing.T) {
 	}
 }
 
-func TestProcessAdifCommandSortsChronologically(t *testing.T) {
+func TestProcessAdifCommandSortsSOTAChronologicallyByDefault(t *testing.T) {
 	outputFilename := filepath.Join(t.TempDir(), "sorted.adi")
 	adifParams := AdifParams{
-		InputFilename:       "../test/data/fle-adif-sort.txt",
-		OutputFilename:      outputFilename,
-		IsSOTA:              true,
-		IsSortChronological: true,
+		InputFilename:  "../test/data/fle-adif-sort.txt",
+		OutputFilename: outputFilename,
+		IsSOTA:         true,
 	}
 
 	if err := ProcessAdifCommand(adifParams); err != nil {

@@ -90,5 +90,5 @@ func init() {
 	adifCmd.PersistentFlags().BoolVarP(&isSOTAcli, "sota", "s", false, "Generates a SOTA ready ADIF file.")
 	adifCmd.PersistentFlags().BoolVarP(&isPOTAcli, "pota", "p", false, "Generates a POTA ready ADIF file.")
 	adifCmd.PersistentFlags().BoolVarP(&isOverwrite, "overwrite", "o", false, "Overwrites the output file if it exisits")
-	adifCmd.PersistentFlags().BoolVar(&isSortChronological, "sort", false, "Sorts ADIF QSO records chronologically by date and time.")
+	adifCmd.PersistentFlags().BoolVar(&isSortChronological, "sort", false, "Sorts ADIF QSO records chronologically by date and time (automatic with --sota).")
 }

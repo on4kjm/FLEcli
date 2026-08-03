@@ -52,7 +52,7 @@ Flags:
   -o, --overwrite     Overwrites the output file if it exisits
   -p, --pota          Generates a POTA ready ADIF file.
   -s, --sota          Generates a SOTA ready ADIF file.
-      --sort          Sorts ADIF QSO records chronologically by date and time.
+      --sort          Sorts ADIF QSO records chronologically by date and time (automatic with --sota).
   -w, --wwff          Generates a WWFF ready ADIF file.
 
 Global Flags:
