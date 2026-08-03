@@ -36,7 +36,12 @@ type LogLine struct {
 	MyGrid           string
 	MyLat            string
 	MyLon            string
+	MyAltitude       string
+	MyCity           string
 	MyCounty         string
+	MyState          string
+	MyCountry        string
+	MyDXCC           string
 	QslMsgFromHeader string
 	Nickname         string
 	Mode             string

@@ -37,7 +37,7 @@ func buildAdif(fullLog []LogLine, adifParams AdifParams) (adifList []string) {
 	//Print the fixed header
 	adifList = append(adifList, "ADIF Export for Fast Log Entry CLI by ON4KJM")
 	adifList = append(adifList, "<PROGRAMID:6>FLEcli")
-	adifList = append(adifList, "<ADIF_VER:5>3.1.0")
+	adifList = append(adifList, "<ADIF_VER:5>3.1.7")
 	adifList = append(adifList, "<EOH>")
 
 	for _, logLine := range fullLog {
@@ -100,8 +100,23 @@ func buildAdif(fullLog []LogLine, adifParams AdifParams) (adifList []string) {
 		if logLine.MyLon != "" {
 			adifLine.WriteString(adifElement("MY_LON", logLine.MyLon))
 		}
+		if logLine.MyAltitude != "" {
+			adifLine.WriteString(adifElement("MY_ALTITUDE", logLine.MyAltitude))
+		}
+		if logLine.MyCity != "" {
+			adifLine.WriteString(adifElement("MY_CITY", logLine.MyCity))
+		}
 		if logLine.MyCounty != "" {
 			adifLine.WriteString(adifElement("MY_CNTY", logLine.MyCounty))
+		}
+		if logLine.MyState != "" {
+			adifLine.WriteString(adifElement("MY_STATE", logLine.MyState))
+		}
+		if logLine.MyCountry != "" {
+			adifLine.WriteString(adifElement("MY_COUNTRY", logLine.MyCountry))
+		}
+		if logLine.MyDXCC != "" {
+			adifLine.WriteString(adifElement("MY_DXCC", logLine.MyDXCC))
 		}
 		if logLine.Nickname != "" {
 			adifLine.WriteString(adifElement("APP_EQSL_QTH_NICKNAME", logLine.Nickname))

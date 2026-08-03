@@ -68,7 +68,12 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	regexpHeaderMyGrid := regexp.MustCompile(`(?i)^mygrid\s+`)
 	regexpHeaderMyLat := regexp.MustCompile(`(?i)^mylat\s+`)
 	regexpHeaderMyLon := regexp.MustCompile(`(?i)^mylon\s+`)
+	regexpHeaderMyAltitude := regexp.MustCompile(`(?i)^myaltitude\s+`)
+	regexpHeaderMyCity := regexp.MustCompile(`(?i)^mycity\s+`)
 	regexpHeaderMyCounty := regexp.MustCompile(`(?i)^mycounty\s+`)
+	regexpHeaderMyState := regexp.MustCompile(`(?i)^mystate\s+`)
+	regexpHeaderMyCountry := regexp.MustCompile(`(?i)^mycountry\s+`)
+	regexpHeaderMyDXCC := regexp.MustCompile(`(?i)^mydxcc\s+`)
 	regexpHeaderQslMsg := regexp.MustCompile(`(?i)^qslmsg\s+`)
 	regexpHeaderNickname := regexp.MustCompile(`(?i)^nickname\s+`)
 
@@ -80,7 +85,13 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	headerMyGrid := ""
 	headerMyLat := ""
 	headerMyLon := ""
+	headerMyAltitude := ""
+	headerMyCity := ""
 	headerMyCounty := ""
+	headerMyCountyLine := 0
+	headerMyState := ""
+	headerMyCountry := ""
+	headerMyDXCC := ""
 	headerQslMsg := ""
 	headerNickname := ""
 	//headerDate := ""
@@ -291,11 +302,89 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 			continue
 		}
 
+		//My Altitude
+		if regexpHeaderMyAltitude.MatchString(eachline) {
+			if headerMyAltitude != "" {
+				errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine MyAltitude at line %d", lineCount))
+				continue
+			}
+			errorMsg := ""
+			myAltitudeList := regexpHeaderMyAltitude.Split(eachline, -1)
+			if len(strings.TrimSpace(myAltitudeList[1])) > 0 {
+				headerMyAltitude, errorMsg = ValidateAltitude(myAltitudeList[1])
+				if len(errorMsg) != 0 {
+					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My Altitude\" at line %d: %s (%s)", lineCount, myAltitudeList[1], errorMsg))
+				}
+			}
+			continue
+		}
+
+		//My City
+		if regexpHeaderMyCity.MatchString(eachline) {
+			if headerMyCity != "" {
+				errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine MyCity at line %d", lineCount))
+				continue
+			}
+			myCityList := regexpHeaderMyCity.Split(eachline, -1)
+			if len(strings.TrimSpace(myCityList[1])) > 0 {
+				headerMyCity = strings.TrimSpace(myCityList[1])
+			}
+			continue
+		}
+
+		//My State
+		if regexpHeaderMyState.MatchString(eachline) {
+			if headerMyState != "" {
+				errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine MyState at line %d", lineCount))
+				continue
+			}
+			myStateList := regexpHeaderMyState.Split(eachline, -1)
+			if len(strings.TrimSpace(myStateList[1])) > 0 {
+				headerMyState = strings.ToUpper(strings.TrimSpace(myStateList[1]))
+			}
+			continue
+		}
+
+		//My Country
+		if regexpHeaderMyCountry.MatchString(eachline) {
+			if headerMyCountry != "" {
+				errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine MyCountry at line %d", lineCount))
+				continue
+			}
+			myCountryList := regexpHeaderMyCountry.Split(eachline, -1)
+			if len(strings.TrimSpace(myCountryList[1])) > 0 {
+				headerMyCountry = strings.TrimSpace(myCountryList[1])
+			}
+			continue
+		}
+
+		//My DXCC
+		if regexpHeaderMyDXCC.MatchString(eachline) {
+			if headerMyDXCC != "" {
+				errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine MyDXCC at line %d", lineCount))
+				continue
+			}
+			errorMsg := ""
+			myDXCCList := regexpHeaderMyDXCC.Split(eachline, -1)
+			if len(strings.TrimSpace(myDXCCList[1])) > 0 {
+				headerMyDXCC, errorMsg = ValidateDXCC(myDXCCList[1])
+				if len(errorMsg) != 0 {
+					errorLog = append(errorLog, fmt.Sprintf("Invalid \"My DXCC\" at line %d: %s (%s)", lineCount, myDXCCList[1], errorMsg))
+				}
+			}
+			continue
+		}
+
 		//My County
 		if regexpHeaderMyCounty.MatchString(eachline) {
+			if headerMyCounty != "" {
+				errorLog = append(errorLog, fmt.Sprintf("Attempt to redefine MyCounty at line %d", lineCount))
+				continue
+			}
 			myMyCountyList := regexpHeaderMyCounty.Split(eachline, -1)
-			if len(myMyCountyList[1]) > 0 {
-				headerMyCounty = myMyCountyList[1]
+			if len(strings.TrimSpace(myMyCountyList[1])) > 0 {
+				headerMyCounty = strings.TrimSpace(myMyCountyList[1])
+				headerMyCountyLine = lineCount
 			}
 			//If there is no data after the marker, we just skip the data.
 			continue
@@ -341,7 +430,12 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 		previousLogLine.MyGrid = headerMyGrid
 		previousLogLine.MyLat = headerMyLat
 		previousLogLine.MyLon = headerMyLon
+		previousLogLine.MyAltitude = headerMyAltitude
+		previousLogLine.MyCity = headerMyCity
 		previousLogLine.MyCounty = headerMyCounty
+		previousLogLine.MyState = headerMyState
+		previousLogLine.MyCountry = headerMyCountry
+		previousLogLine.MyDXCC = headerMyDXCC
 		previousLogLine.QSLmsg = headerQslMsg //previousLogLine.QslMsg is redundant
 		previousLogLine.Nickname = headerNickname
 
@@ -402,6 +496,16 @@ func LoadFile(inputFilename string, isInterpolateTime bool) (filleFullLog []LogL
 	//***
 	//*** We have done processing the log file, so let's post process it
 	//***
+	if headerMyCounty != "" {
+		validatedCounty, errorMsg := ValidateCounty(headerMyCounty, headerMyDXCC, headerMyState)
+		if errorMsg != "" {
+			errorLog = append(errorLog, fmt.Sprintf("Invalid \"My County\" at line %d: %s (%s)", headerMyCountyLine, headerMyCounty, errorMsg))
+		} else if validatedCounty != headerMyCounty {
+			for i := range fullLog {
+				fullLog[i].MyCounty = validatedCounty
+			}
+		}
+	}
 
 	//if asked to infer the date, lets update the loaded logfile accordingly
 	if isInterpolateTime {

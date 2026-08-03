@@ -1,0 +1,14 @@
+mycall AB1WX
+operator AB1WX
+mygrid FN42bl
+myaltitude 611
+mycity Princeton
+mycounty ma,Worcester
+mystate ma
+mycountry United States
+mydxcc 291
+
+date 2026-08-01
+cw
+20m
+2000 K1ABC 9 9

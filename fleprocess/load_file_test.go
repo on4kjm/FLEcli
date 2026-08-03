@@ -44,7 +44,12 @@ func TestLoadFile_happyCase(t *testing.T) {
 	dataArray = append(dataArray, "myGrid jo50")
 	dataArray = append(dataArray, "myLat 55.5555555")
 	dataArray = append(dataArray, "myLon -120.01234567")
-	dataArray = append(dataArray, "myCounty Ham County")
+	dataArray = append(dataArray, "myAltitude 611")
+	dataArray = append(dataArray, "myCity Princeton")
+	dataArray = append(dataArray, "myCounty ma,Worcester")
+	dataArray = append(dataArray, "myState ma")
+	dataArray = append(dataArray, "myCountry United States")
+	dataArray = append(dataArray, "myDXCC 291")
 	dataArray = append(dataArray, "QslMsg This is a QSL message")
 	dataArray = append(dataArray, " ")
 	dataArray = append(dataArray, " #Log")
@@ -94,11 +99,31 @@ func TestLoadFile_happyCase(t *testing.T) {
 	if loadedLogFile[0].MyLon != expectedValue {
 		t.Errorf("Not the expected MyLon value: %s (expecting %s)", loadedLogFile[0].MyLon, expectedValue)
 	}
+	expectedValue = "611"
+	if loadedLogFile[0].MyAltitude != expectedValue {
+		t.Errorf("Not the expected MyAltitude value: %s (expecting %s)", loadedLogFile[0].MyAltitude, expectedValue)
+	}
+	expectedValue = "Princeton"
+	if loadedLogFile[0].MyCity != expectedValue {
+		t.Errorf("Not the expected MyCity value: %s (expecting %s)", loadedLogFile[0].MyCity, expectedValue)
+	}
+	expectedValue = "MA"
+	if loadedLogFile[0].MyState != expectedValue {
+		t.Errorf("Not the expected MyState value: %s (expecting %s)", loadedLogFile[0].MyState, expectedValue)
+	}
+	expectedValue = "United States"
+	if loadedLogFile[0].MyCountry != expectedValue {
+		t.Errorf("Not the expected MyCountry value: %s (expecting %s)", loadedLogFile[0].MyCountry, expectedValue)
+	}
+	expectedValue = "291"
+	if loadedLogFile[0].MyDXCC != expectedValue {
+		t.Errorf("Not the expected MyDXCC value: %s (expecting %s)", loadedLogFile[0].MyDXCC, expectedValue)
+	}
 	expectedValue = "This is a QSL message"
 	if loadedLogFile[0].QSLmsg != expectedValue {
 		t.Errorf("Not the expected QSL Message from Header value: %s (expecting %s)", loadedLogFile[0].QSLmsg, expectedValue)
 	}
-	expectedValue = "Ham County"
+	expectedValue = "MA,Worcester"
 	if loadedLogFile[0].MyCounty != expectedValue {
 		t.Errorf("Not the expected MyCounty from Header value: %s (expecting %s)", loadedLogFile[0].MyCounty, expectedValue)
 	}

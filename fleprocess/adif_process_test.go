@@ -2,6 +2,9 @@ package fleprocess
 
 import (
 	"fmt"
+	"os"
+	"path/filepath"
+	"strings"
 	"testing"
 )
 
@@ -214,5 +217,34 @@ func TestProcessAdifCommand(t *testing.T) {
 				t.Errorf("ProcessAdifCommand() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
+	}
+}
+
+func TestProcessAdifCommandExportsStationLocation(t *testing.T) {
+	outputFilename := filepath.Join(t.TempDir(), "location.adi")
+	if err := ProcessAdifCommand(AdifParams{
+		InputFilename:  "../test/data/fle-adif-location.txt",
+		OutputFilename: outputFilename,
+	}); err != nil {
+		t.Fatalf("ProcessAdifCommand() error = %v", err)
+	}
+
+	output, err := os.ReadFile(outputFilename)
+	if err != nil {
+		t.Fatalf("os.ReadFile() error = %v", err)
+	}
+
+	wantedFields := []string{
+		"<MY_ALTITUDE:3>611",
+		"<MY_CITY:9>Princeton",
+		"<MY_CNTY:12>MA,Worcester",
+		"<MY_STATE:2>MA",
+		"<MY_COUNTRY:13>United States",
+		"<MY_DXCC:3>291",
+	}
+	for _, wantedField := range wantedFields {
+		if !strings.Contains(string(output), wantedField) {
+			t.Errorf("ADIF output is missing %q", wantedField)
+		}
 	}
 }
