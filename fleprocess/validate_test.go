@@ -4,6 +4,71 @@ import (
 	"testing"
 )
 
+func TestValidateAltitude(t *testing.T) {
+	tests := []struct {
+		input   string
+		wantRef string
+		wantErr bool
+	}{
+		{input: "611", wantRef: "611"},
+		{input: "-12.5", wantRef: "-12.5"},
+		{input: "not-a-number", wantRef: "*not-a-number", wantErr: true},
+		{input: "NaN", wantRef: "*NaN", wantErr: true},
+	}
+
+	for _, tt := range tests {
+		gotRef, gotError := ValidateAltitude(tt.input)
+		if gotRef != tt.wantRef || (gotError != "") != tt.wantErr {
+			t.Fatalf("ValidateAltitude(%q) = (%q, %q), want ref %q, error=%v", tt.input, gotRef, gotError, tt.wantRef, tt.wantErr)
+		}
+	}
+}
+
+func TestValidateDXCC(t *testing.T) {
+	tests := []struct {
+		input   string
+		wantRef string
+		wantErr bool
+	}{
+		{input: "291", wantRef: "291"},
+		{input: "000", wantRef: "0"},
+		{input: "-1", wantRef: "*-1", wantErr: true},
+		{input: "USA", wantRef: "*USA", wantErr: true},
+	}
+
+	for _, tt := range tests {
+		gotRef, gotError := ValidateDXCC(tt.input)
+		if gotRef != tt.wantRef || (gotError != "") != tt.wantErr {
+			t.Fatalf("ValidateDXCC(%q) = (%q, %q), want ref %q, error=%v", tt.input, gotRef, gotError, tt.wantRef, tt.wantErr)
+		}
+	}
+}
+
+func TestValidateCounty(t *testing.T) {
+	tests := []struct {
+		name    string
+		county  string
+		dxcc    string
+		state   string
+		wantRef string
+		wantErr bool
+	}{
+		{name: "US county", county: "ma,Worcester", dxcc: "291", state: "MA", wantRef: "MA,Worcester"},
+		{name: "US county missing state", county: "Worcester", dxcc: "291", state: "MA", wantRef: "*Worcester", wantErr: true},
+		{name: "US county state mismatch", county: "NH,Strafford", dxcc: "291", state: "MA", wantRef: "*NH,Strafford", wantErr: true},
+		{name: "non-US subdivision preserved", county: "AB-01", dxcc: "15", wantRef: "AB-01"},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			gotRef, gotError := ValidateCounty(tt.county, tt.dxcc, tt.state)
+			if gotRef != tt.wantRef || (gotError != "") != tt.wantErr {
+				t.Fatalf("ValidateCounty() = (%q, %q), want ref %q, error=%v", gotRef, gotError, tt.wantRef, tt.wantErr)
+			}
+		})
+	}
+}
+
 func TestValidateWwff(t *testing.T) {
 	type args struct {
 		inputStr string
@@ -139,12 +204,12 @@ func TestValidatePota(t *testing.T) {
 			args{inputStr: "k-10177"},
 			"K-10177", "",
 		},
-				{
+		{
 			"Good ref (5 digit park) with new US reference",
 			args{inputStr: "us-10177"},
 			"US-10177", "",
 		},
-				{
+		{
 			"Good ref (5 digit park) with sub regional prefix",
 			args{inputStr: "AT-tir-10177"},
 			"AT-TIR-10177", "",

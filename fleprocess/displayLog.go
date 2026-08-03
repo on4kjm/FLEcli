@@ -87,8 +87,28 @@ func SprintHeaderValues(logLine LogLine) string {
 		output.WriteString("MyLon     " + logLine.MyLon + "\n")
 	}
 
+	if logLine.MyAltitude != "" {
+		output.WriteString("MyAltitude " + logLine.MyAltitude + "\n")
+	}
+
+	if logLine.MyCity != "" {
+		output.WriteString("MyCity    " + logLine.MyCity + "\n")
+	}
+
 	if logLine.MyCounty != "" {
 		output.WriteString("MyCounty  " + logLine.MyCounty + "\n")
+	}
+
+	if logLine.MyState != "" {
+		output.WriteString("MyState   " + logLine.MyState + "\n")
+	}
+
+	if logLine.MyCountry != "" {
+		output.WriteString("MyCountry " + logLine.MyCountry + "\n")
+	}
+
+	if logLine.MyDXCC != "" {
+		output.WriteString("MyDXCC    " + logLine.MyDXCC + "\n")
 	}
 
 	return output.String()
@@ -101,8 +121,8 @@ var logLineFormat = "%-10s %-4s %-4s %-4s %-12s %-4s %-4s %s\n"
 func SprintColumnTitles() string {
 	var output strings.Builder
 	//output.WriteString(fmt.Sprintf(logLineFormat, "Date", "Time", "Band", "Mode", "Call", "Sent", "Rcvd", "Notes"))
-	fmt.Fprintf(&output,logLineFormat, "Date", "Time", "Band", "Mode", "Call", "Sent", "Rcvd", "Notes")
-	fmt.Fprintf(&output,logLineFormat, "----", "----", "----", "----", "----", "----", "----", "----")
+	fmt.Fprintf(&output, logLineFormat, "Date", "Time", "Band", "Mode", "Call", "Sent", "Rcvd", "Notes")
+	fmt.Fprintf(&output, logLineFormat, "----", "----", "----", "----", "----", "----", "----", "----")
 	return output.String()
 }
 

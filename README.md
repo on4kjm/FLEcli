@@ -73,6 +73,39 @@ The `-o` or `--overwrite` flag indicates that, if the output file already exists
 
 The `-i` or `--interpolate` flag will interpolate the missing non-entered times based on the first and the last entered time.
 
+#### Logging-station location directives
+
+Optional header directives can describe the physical location of the logging
+station. Their values are copied to every QSO record using the corresponding
+ADIF `MY_*` fields.
+
+| FLE directive | ADIF field | Value |
+| --- | --- | --- |
+| `mygrid` | `MY_GRIDSQUARE` | Maidenhead grid locator |
+| `mylat` | `MY_LAT` | latitude in decimal degrees |
+| `mylon` | `MY_LON` | longitude in decimal degrees |
+| `myaltitude` | `MY_ALTITUDE` | meters above mean sea level |
+| `mycity` | `MY_CITY` | city or municipality |
+| `mycounty` | `MY_CNTY` | ADIF secondary subdivision |
+| `mystate` | `MY_STATE` | ADIF primary subdivision code |
+| `mycountry` | `MY_COUNTRY` | ADIF DXCC entity name |
+| `mydxcc` | `MY_DXCC` | numeric ADIF DXCC entity code |
+
+For United States counties, `mycounty` uses `STATE,County` format and must
+agree with `mystate`. For example:
+
+```text
+mygrid      FN42bl
+mylat       42.4891
+mylon       -71.8865
+myaltitude  611
+mycity      Princeton
+mystate     MA
+mycountry   United States
+mydxcc      291
+mycounty    MA,Worcester
+```
+
 ### Example: generate an ADIF file for WWFF upload
 
 To generate a WWFF-ready ADIF file:

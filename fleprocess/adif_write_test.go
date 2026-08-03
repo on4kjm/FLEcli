@@ -18,6 +18,7 @@ limitations under the License.
 
 import (
 	"reflect"
+	"strings"
 	"testing"
 )
 
@@ -51,6 +52,44 @@ func Test_adifElement(t *testing.T) {
 	}
 }
 
+func TestBuildAdifIncludesStationLocationFields(t *testing.T) {
+	fullLog := []LogLine{{
+		MyCall:     "AB1WX",
+		Call:       "K1ABC",
+		Date:       "2026-08-01",
+		Time:       "2000",
+		Band:       "20m",
+		Mode:       "CW",
+		RSTsent:    "599",
+		RSTrcvd:    "599",
+		MyAltitude: "611",
+		MyCity:     "Princeton",
+		MyCounty:   "MA,Worcester",
+		MyState:    "MA",
+		MyCountry:  "United States",
+		MyDXCC:     "291",
+	}}
+
+	output := buildAdif(fullLog, AdifParams{})
+	if len(output) != 5 {
+		t.Fatalf("buildAdif() returned %d lines, want 5", len(output))
+	}
+
+	wantedFields := []string{
+		"<MY_ALTITUDE:3>611",
+		"<MY_CITY:9>Princeton",
+		"<MY_CNTY:12>MA,Worcester",
+		"<MY_STATE:2>MA",
+		"<MY_COUNTRY:13>United States",
+		"<MY_DXCC:3>291",
+	}
+	for _, wantedField := range wantedFields {
+		if !strings.Contains(output[4], wantedField) {
+			t.Errorf("ADIF record is missing %q: %s", wantedField, output[4])
+		}
+	}
+}
+
 func Test_buildAdif(t *testing.T) {
 	sampleFilledLog1 := []LogLine{
 		{MyCall: "ON4KJM/P", Call: "S57LC", Date: "2020-05-24", Time: "1310", Band: "20m", Frequency: "14.045", Mode: "CW", RSTsent: "599", RSTrcvd: "599", MyWWFF: "ONFF-0259", Operator: "ON4KJM", Nickname: "ONFF-0259-1"},
@@ -58,7 +97,7 @@ func Test_buildAdif(t *testing.T) {
 	}
 	expectedADIFtitle := "ADIF Export for Fast Log Entry CLI by ON4KJM"
 	expectedADIFprogramId := "<PROGRAMID:6>FLEcli"
-	expectedADIFversion := "<ADIF_VER:5>3.1.0"
+	expectedADIFversion := "<ADIF_VER:5>3.1.7"
 
 	expectedOutput1 := []string{
 		expectedADIFtitle,

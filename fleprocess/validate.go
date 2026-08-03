@@ -18,6 +18,7 @@ limitations under the License.
 
 import (
 	"fmt"
+	"math"
 	"regexp"
 	"strconv"
 	"strings"
@@ -46,6 +47,57 @@ func ValidateLon(lon string) (ref, errorMsg string) {
 
 	errorMsg = "[" + lon + "] is an invalid lon"
 	return "*" + lon, errorMsg
+}
+
+// ValidateAltitude checks that a station altitude is a finite number of meters
+// relative to mean sea level.
+func ValidateAltitude(altitude string) (ref, errorMsg string) {
+	altitude = strings.TrimSpace(altitude)
+	if value, err := strconv.ParseFloat(altitude, 64); err == nil && !math.IsNaN(value) && !math.IsInf(value, 0) {
+		return altitude, ""
+	}
+
+	errorMsg = "[" + altitude + "] is an invalid altitude"
+	return "*" + altitude, errorMsg
+}
+
+// ValidateDXCC checks that a logging station DXCC entity code is a
+// non-negative integer. Zero means that the station is known not to be within
+// a DXCC entity.
+func ValidateDXCC(dxcc string) (ref, errorMsg string) {
+	dxcc = strings.TrimSpace(dxcc)
+	if value, err := strconv.Atoi(dxcc); err == nil && value >= 0 {
+		return strconv.Itoa(value), ""
+	}
+
+	errorMsg = "[" + dxcc + "] is an invalid DXCC entity code"
+	return "*" + dxcc, errorMsg
+}
+
+var validUSCountyRegexp = regexp.MustCompile(`^([A-Za-z]{2}),([^,]+)$`)
+
+// ValidateCounty validates the ADIF county shape for United States DXCC
+// entities. Other countries use program-specific subdivision formats, which
+// are preserved unchanged.
+func ValidateCounty(county, dxcc, state string) (ref, errorMsg string) {
+	county = strings.TrimSpace(county)
+	if dxcc != "6" && dxcc != "110" && dxcc != "291" {
+		return county, ""
+	}
+
+	matches := validUSCountyRegexp.FindStringSubmatch(county)
+	if len(matches) != 3 {
+		errorMsg = "[" + county + "] is an invalid U.S. county; expected STATE,County"
+		return "*" + county, errorMsg
+	}
+
+	countyState := strings.ToUpper(matches[1])
+	if state != "" && !strings.EqualFold(countyState, state) {
+		errorMsg = fmt.Sprintf("[%s] county state does not match MyState [%s]", county, state)
+		return "*" + county, errorMsg
+	}
+
+	return countyState + "," + strings.TrimSpace(matches[2]), ""
 }
 
 // ValidateSota verifies whether the supplied string is a valid SOTA reference.
