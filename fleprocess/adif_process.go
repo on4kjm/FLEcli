@@ -24,13 +24,14 @@ import (
 
 // AdifParams is holding all the parameters required to generate an ADIF file
 type AdifParams struct {
-	InputFilename     string
-	OutputFilename    string
-	IsInterpolateTime bool
-	IsWWFF            bool
-	IsSOTA            bool
-	IsPOTA            bool
-	IsOverwrite       bool
+	InputFilename       string
+	OutputFilename      string
+	IsInterpolateTime   bool
+	IsWWFF              bool
+	IsSOTA              bool
+	IsPOTA              bool
+	IsOverwrite         bool
+	IsSortChronological bool
 }
 
 // ProcessAdifCommand loads an FLE input to produce an adif file (eventually in WWFF format). It is called from the COBRA interface
@@ -56,6 +57,18 @@ func ProcessAdifCommand(adifParams AdifParams) error {
 	//Check if we have all the necessary data
 	if err := validateDataforAdif(loadedLogFile, adifParams); err != nil {
 		return err
+	}
+
+	// SOTA importers require QSOs to be chronological, so SOTA-ready exports
+	// always sort. The explicit flag makes the same behavior available to the
+	// other ADIF export formats.
+	if adifParams.IsSOTA || adifParams.IsSortChronological {
+		reorderedRecords := sortLogChronologically(loadedLogFile)
+		if reorderedRecords > 0 {
+			fmt.Printf("\nSorted %d QSO record(s) chronologically.\n", reorderedRecords)
+		}
+	} else if reversals := countChronologicalReversals(loadedLogFile); reversals > 0 {
+		fmt.Printf("\nWarning: detected %d out-of-order QSO transition(s). Use --sort to generate chronologically ordered ADIF records.\n", reversals)
 	}
 
 	//Write the output file with the checked data
@@ -115,31 +128,31 @@ func validateDataforAdif(loadedLogFile []LogLine, adifParams AdifParams) error {
 			if errorsBuffer.String() != "" {
 				errorsBuffer.WriteString(", ")
 			}
-			fmt.Fprintf(&errorsBuffer,"missing date %s", errorLocation)
+			fmt.Fprintf(&errorsBuffer, "missing date %s", errorLocation)
 		}
 		if loadedLogFile[i].Band == "" {
 			if errorsBuffer.String() != "" {
 				errorsBuffer.WriteString(", ")
 			}
-			fmt.Fprintf(&errorsBuffer,"missing band %s", errorLocation)
+			fmt.Fprintf(&errorsBuffer, "missing band %s", errorLocation)
 		}
 		if loadedLogFile[i].Mode == "" {
 			if errorsBuffer.String() != "" {
 				errorsBuffer.WriteString(", ")
 			}
-			fmt.Fprintf(&errorsBuffer,"missing mode %s", errorLocation)
+			fmt.Fprintf(&errorsBuffer, "missing mode %s", errorLocation)
 		}
 		if loadedLogFile[i].Call == "" {
 			if errorsBuffer.String() != "" {
 				errorsBuffer.WriteString(", ")
 			}
-			fmt.Fprintf(&errorsBuffer,"missing call %s", errorLocation)
+			fmt.Fprintf(&errorsBuffer, "missing call %s", errorLocation)
 		}
 		if loadedLogFile[i].Time == "" {
 			if errorsBuffer.String() != "" {
 				errorsBuffer.WriteString(", ")
 			}
-			fmt.Fprintf(&errorsBuffer,"missing QSO time %s", errorLocation)
+			fmt.Fprintf(&errorsBuffer, "missing QSO time %s", errorLocation)
 		}
 	}
 	if errorsBuffer.String() != "" {
