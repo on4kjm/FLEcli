@@ -73,6 +73,11 @@ The `-o` or `--overwrite` flag indicates that, if the output file already exists
 
 The `-i` or `--interpolate` flag will interpolate the missing non-entered times based on the first and the last entered time.
 
+ADIF exports declare ADIF 3.1.7. Decimal-degree `mylat` and `mylon`
+values are converted to the ADIF `MY_LAT` and `MY_LON` location format.
+POTA and WWFF exports include both the generic `SIG` fields used by existing
+consumers and the dedicated ADIF `POTA_REF` or `WWFF_REF` fields.
+
 ### Example: generate an ADIF file for WWFF upload
 
 To generate a WWFF-ready ADIF file:

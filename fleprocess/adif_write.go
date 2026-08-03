@@ -18,6 +18,8 @@ limitations under the License.
 
 import (
 	"fmt"
+	"math"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -37,7 +39,7 @@ func buildAdif(fullLog []LogLine, adifParams AdifParams) (adifList []string) {
 	//Print the fixed header
 	adifList = append(adifList, "ADIF Export for Fast Log Entry CLI by ON4KJM")
 	adifList = append(adifList, "<PROGRAMID:6>FLEcli")
-	adifList = append(adifList, "<ADIF_VER:5>3.1.0")
+	adifList = append(adifList, "<ADIF_VER:5>3.1.7")
 	adifList = append(adifList, "<EOH>")
 
 	for _, logLine := range fullLog {
@@ -68,17 +70,21 @@ func buildAdif(fullLog []LogLine, adifParams AdifParams) (adifList []string) {
 		if adifParams.IsWWFF {
 			adifLine.WriteString(adifElement("MY_SIG", "WWFF"))
 			adifLine.WriteString(adifElement("MY_SIG_INFO", logLine.MyWWFF))
+			adifLine.WriteString(adifElement("MY_WWFF_REF", logLine.MyWWFF))
 			if logLine.WWFF != "" {
 				adifLine.WriteString(adifElement("SIG", "WWFF"))
 				adifLine.WriteString(adifElement("SIG_INFO", logLine.WWFF))
+				adifLine.WriteString(adifElement("WWFF_REF", logLine.WWFF))
 			}
 		}
 		if adifParams.IsPOTA {
 			adifLine.WriteString(adifElement("MY_SIG", "POTA"))
 			adifLine.WriteString(adifElement("MY_SIG_INFO", logLine.MyPOTA))
+			adifLine.WriteString(adifElement("MY_POTA_REF", logLine.MyPOTA))
 			if logLine.POTA != "" {
 				adifLine.WriteString(adifElement("SIG", "POTA"))
 				adifLine.WriteString(adifElement("SIG_INFO", logLine.POTA))
+				adifLine.WriteString(adifElement("POTA_REF", logLine.POTA))
 			}
 		}
 		if adifParams.IsSOTA {
@@ -95,10 +101,10 @@ func buildAdif(fullLog []LogLine, adifParams AdifParams) (adifList []string) {
 		}
 
 		if logLine.MyLat != "" {
-			adifLine.WriteString(adifElement("MY_LAT", logLine.MyLat))
+			adifLine.WriteString(adifElement("MY_LAT", adifLocation(logLine.MyLat, true)))
 		}
 		if logLine.MyLon != "" {
-			adifLine.WriteString(adifElement("MY_LON", logLine.MyLon))
+			adifLine.WriteString(adifElement("MY_LON", adifLocation(logLine.MyLon, false)))
 		}
 		if logLine.MyCounty != "" {
 			adifLine.WriteString(adifElement("MY_CNTY", logLine.MyCounty))
@@ -113,6 +119,37 @@ func buildAdif(fullLog []LogLine, adifParams AdifParams) (adifList []string) {
 	}
 
 	return adifList
+}
+
+// adifLocation converts decimal degrees to the ADIF Location data type:
+// XDDD MM.MMM, where X is N/S for latitude or E/W for longitude.
+func adifLocation(decimalDegrees string, isLatitude bool) string {
+	value, err := strconv.ParseFloat(decimalDegrees, 64)
+	if err != nil {
+		return decimalDegrees
+	}
+
+	direction := "E"
+	if isLatitude {
+		direction = "N"
+	}
+	if math.Signbit(value) {
+		if isLatitude {
+			direction = "S"
+		} else {
+			direction = "W"
+		}
+	}
+
+	absoluteValue := math.Abs(value)
+	degrees := int(absoluteValue)
+	minutes := math.Round((absoluteValue-float64(degrees))*60*1000) / 1000
+	if minutes >= 60 {
+		degrees++
+		minutes = 0
+	}
+
+	return fmt.Sprintf("%s%03d %06.3f", direction, degrees, minutes)
 }
 
 // adifElement generated the ADIF sub-element
