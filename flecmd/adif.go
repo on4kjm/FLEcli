@@ -29,6 +29,7 @@ var isWWFFcli bool
 var isSOTAcli bool
 var isPOTAcli bool
 var isOverwrite bool
+var isSortChronological bool
 
 // adifCmd is executed when choosing the adif option (load and generate adif file)
 var adifCmd = &cobra.Command{
@@ -68,6 +69,7 @@ var adifCmd = &cobra.Command{
 		adifParam.IsPOTA = isPOTAcli
 		adifParam.IsWWFF = isWWFFcli
 		adifParam.IsOverwrite = isOverwrite
+		adifParam.IsSortChronological = isSortChronological
 
 		err := fleprocess.ProcessAdifCommand(*adifParam)
 		if err != nil {
@@ -88,4 +90,5 @@ func init() {
 	adifCmd.PersistentFlags().BoolVarP(&isSOTAcli, "sota", "s", false, "Generates a SOTA ready ADIF file.")
 	adifCmd.PersistentFlags().BoolVarP(&isPOTAcli, "pota", "p", false, "Generates a POTA ready ADIF file.")
 	adifCmd.PersistentFlags().BoolVarP(&isOverwrite, "overwrite", "o", false, "Overwrites the output file if it exisits")
+	adifCmd.PersistentFlags().BoolVar(&isSortChronological, "sort", false, "Sorts ADIF QSO records chronologically by date and time.")
 }

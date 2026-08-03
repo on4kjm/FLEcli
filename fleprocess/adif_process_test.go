@@ -2,6 +2,9 @@ package fleprocess
 
 import (
 	"fmt"
+	"os"
+	"path/filepath"
+	"strings"
 	"testing"
 )
 
@@ -147,6 +150,40 @@ func Test_validateDataforAdif2(t *testing.T) {
 				}
 			}
 		})
+	}
+}
+
+func TestProcessAdifCommandSortsChronologically(t *testing.T) {
+	outputFilename := filepath.Join(t.TempDir(), "sorted.adi")
+	adifParams := AdifParams{
+		InputFilename:       "../test/data/fle-adif-sort.txt",
+		OutputFilename:      outputFilename,
+		IsSOTA:              true,
+		IsSortChronological: true,
+	}
+
+	if err := ProcessAdifCommand(adifParams); err != nil {
+		t.Fatalf("ProcessAdifCommand() error = %v", err)
+	}
+
+	output, err := os.ReadFile(outputFilename)
+	if err != nil {
+		t.Fatalf("os.ReadFile() error = %v", err)
+	}
+
+	adif := string(output)
+	positions := []int{
+		strings.Index(adif, "<TIME_ON:4>2149"),
+		strings.Index(adif, "<TIME_ON:4>2151"),
+		strings.Index(adif, "<TIME_ON:4>2153"),
+	}
+	for i, position := range positions {
+		if position == -1 {
+			t.Fatalf("sorted ADIF is missing expected time at index %d", i)
+		}
+		if i > 0 && position <= positions[i-1] {
+			t.Fatalf("ADIF times are not chronological: positions = %v", positions)
+		}
 	}
 }
 

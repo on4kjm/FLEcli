@@ -1,0 +1,9 @@
+mycall AB1WX
+mysota W1/CR-001
+date 2026-08-01
+cw
+17m
+18.093
+2151 AE6Z 3 4
+49 NW7E 5 5
+53 KG0AT 3 3

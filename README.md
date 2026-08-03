@@ -73,6 +73,15 @@ The `-o` or `--overwrite` flag indicates that, if the output file already exists
 
 The `-i` or `--interpolate` flag will interpolate the missing non-entered times based on the first and the last entered time.
 
+The optional `--sort` flag stably sorts the generated ADIF QSO records by date
+and time without changing the FLE input file. QSOs with identical dates and
+times retain their original relative order. When an input contains time
+reversals and `--sort` is not used, FLEcli prints a warning.
+
+```shell
+./FLEcli adif --sota --sort --overwrite activation.txt output/activation.adi
+```
+
 ### Example: generate an ADIF file for WWFF upload
 
 To generate a WWFF-ready ADIF file:
